@@ -17,7 +17,7 @@
     "select2"
   ],
   "author": "Bastiaan van den Berg <b.a.vandenberg@gmail.com>",
-  "license": "ICS",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/basvandenberg/angular2-select/issues"
   },
