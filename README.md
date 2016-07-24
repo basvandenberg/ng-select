@@ -1,12 +1,11 @@
 # Angular 2 select component
 
-A native angular2 select component that is based on the select2 JQuery
-component.
+A native select component for angular 2, based on the select2 JQuery plugin.
 
 ## Install
 
 ```
-npm install --save angular2-select2
+npm install --save angular2-select
 ```
 
 ## Configuration
