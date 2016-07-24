@@ -1,0 +1,9 @@
+index.d.ts
+index.js
+src/**/*.d.ts
+src/**/*.js
+
+
+/node_modules
+npm-debug.log
+/typings

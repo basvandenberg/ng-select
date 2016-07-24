@@ -1,0 +1,104 @@
+"use strict";
+
+var del = require('del');
+var gulp = require('gulp');
+var merge = require('merge2');
+var sourcemaps = require('gulp-sourcemaps');
+var systemjsBuilder = require('systemjs-builder');
+var tslint = require('gulp-tslint');
+var typescript = require('gulp-typescript');
+var typings = require("gulp-typings");
+
+// Build/watch.
+
+gulp.task('build', ['transpile:ts']);
+
+// Typings.
+
+gulp.task('clean:typings', function() {
+
+    return del([
+        './typings'
+    ]);
+});
+
+gulp.task('typings', ['clean:typings'], function() {
+
+    return gulp.src([
+        './typings.json'
+    ])
+        .pipe(typings());
+});
+
+// Typescript --> Javascript.
+
+gulp.task('clean:js', function() {
+
+    return del([
+        './index.d.ts',
+        './index.js',
+        './index.js.map',
+        './src/**/*.d.ts',
+        './src/**/*.js',
+        './src/**/*.js.map'
+    ]);
+});
+
+gulp.task('lint:ts', function() {
+    return gulp.src([
+        './index.ts', 
+        './src/*.ts', 
+        '!*/**/*.d.ts'
+    ])
+        .pipe(tslint({
+            formatter: "verbose"
+        }))
+        .pipe(tslint.report())
+});
+
+gulp.task('transpile:ts', ['clean:js', 'typings', 'lint:ts'], function () {
+
+    //var tsProject = typescript.createProject('tsconfig.json');
+
+    var compilerOptions = {
+        emitDecoratorMetadata: true,
+        experimentalDecorators: true,
+        declaration: true,
+        module: 'commonjs',
+        moduleResolution: 'node',
+        noImplicitAny: false,
+        removeComments: false,
+        sourceMap: false,
+        target: 'es5'
+    };
+
+    var tsResult = gulp.src([
+        './index.ts', 
+        './src/*.ts',
+        './typings/index.d.ts'
+    ], {
+        base: './'
+    })
+        //.pipe(sourcemaps.init())
+        .pipe(typescript(compilerOptions));
+
+    return merge([
+        tsResult.js
+            //.pipe(sourcemaps.write('.'))
+            .pipe(gulp.dest('.')),
+        tsResult.dts
+            .pipe(gulp.dest('.'))
+    ]);
+});
+
+
+
+
+
+
+//gulp.task('build:app', function() {
+//    var builder = new systemjsBuilder('dist', './system.config.js');
+//    return builder
+//        .buildStatic('app', 'app/app.js');
+//});
+

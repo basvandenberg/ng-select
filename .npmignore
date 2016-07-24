@@ -1,0 +1,12 @@
+*.ts
+!*.d.ts
+/typings
+
+gulpfile.js
+tslint.json
+typings.json
+.editorconfig
+
+.npmignore
+npm-debug.log
+*.swp
