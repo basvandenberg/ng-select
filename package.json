@@ -1,7 +1,7 @@
 {
   "name": "angular2-select",
-  "version": "1.0.0-alpha",
-  "description": "Select component for Angular 2 (based on the select2 JQuery plugin).",
+  "version": "1.0.0-alpha.0",
+  "description": "Select component for Angular 2 (based on select2 JQuery plugin).",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
