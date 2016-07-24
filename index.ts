@@ -1,3 +1,3 @@
-import {MdSelectComponent} from './src/select.component';
+import {SelectComponent} from './src/select.component';
 
-export const MD_SELECT_DIRECTIVES = [MdSelectComponent];
+export const SELECT_DIRECTIVES = [SelectComponent];

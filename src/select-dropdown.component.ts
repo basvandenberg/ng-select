@@ -4,7 +4,7 @@ import {CORE_DIRECTIVES, NgStyle} from '@angular/common';
 import {DiacriticsService} from './diacritics.service';
 
 @Component({
-    selector: 'md-select-dropdown',
+    selector: 'select-dropdown',
     template: `
 <span class="select2-container select2-container--default select2-container--open"
     [ngStyle]="{position: 'absolute', top: top + 'px', left: left + 'px'}">
@@ -52,7 +52,7 @@ import {DiacriticsService} from './diacritics.service';
     ]
 })
 
-export class MdSelectDropdownComponent implements OnInit {
+export class SelectDropdownComponent implements OnInit {
 
     // Messages.
     private MSG_LOADING = 'Searching...'; // TODO

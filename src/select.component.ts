@@ -2,15 +2,15 @@ import {Component, Input, OnInit, Provider, ViewChild, forwardRef} from '@angula
 import {CORE_DIRECTIVES} from '@angular/common';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 
-import {MdSelectDropdownComponent} from './select-dropdown.component';
+import {SelectDropdownComponent} from './select-dropdown.component';
 
-const MD_SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
-    useExisting: forwardRef(() => MdSelectComponent),
+const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
+    useExisting: forwardRef(() => SelectComponent),
     multi: true
 });
 
 @Component({
-    selector: 'md-select',
+    selector: 'ng-select',
     template: `
 <div style="width:100%;position:relative;">
     <span style="width:100%"
@@ -60,7 +60,7 @@ const MD_SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
             </span>
         </span>
     </span>
-    <md-select-dropdown
+    <select-dropdown
         *ngIf="isOpen"
         #dropdown
         [isSingle]="isSingle"
@@ -72,7 +72,7 @@ const MD_SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
         [left]="left"
         (toggleSelect)="onToggleSelect($event)"
         (close)="onClose($event)">
-    </md-select-dropdown>
+    </select-dropdown>
 </div>
 `,
     styleUrls: [
@@ -80,14 +80,14 @@ const MD_SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
     ],
     directives: [
         CORE_DIRECTIVES,
-        MdSelectDropdownComponent
+        SelectDropdownComponent
     ],
     providers: [
-        MD_SELECT_VALUE_ACCESSOR
+        SELECT_VALUE_ACCESSOR
     ]
 })
 
-export class MdSelectComponent implements ControlValueAccessor, OnInit {
+export class SelectComponent implements ControlValueAccessor, OnInit {
 
     // Class names.
     private S2: string = 'select2';
