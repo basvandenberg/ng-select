@@ -15,7 +15,7 @@ npm install --save angular2-select2
 
 In `systemjs.config.js` add `angular2-select` to map and package:
 
-```
+```javascript
 var map = {
 	// others...,
 	'angular2-select': 'node_modules/angular2-select'
@@ -46,7 +46,7 @@ import {SELECT_DIRECTIVES} from 'angular2-select';
 Adding `SELECT_DIRECTIVES` to the list of directives.
 
 ```typescript
-export class AppComponent implements OnInit {
+export class AppComponent implements {
 
     options = [
 		{
@@ -62,7 +62,6 @@ export class AppComponent implements OnInit {
 			label: 'Gamma'
 		}
 	];
-
 }
 ```
 
