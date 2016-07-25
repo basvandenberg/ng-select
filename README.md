@@ -114,20 +114,20 @@ export class YourComponent implements {
 Optional parameters will be set to their default value if they are not defined
 in the `ng-select` tag.
 
-#### `placeholder`
+### `placeholder`
 
 ***default: ''***
 
-The text defined as place holder is shown if no option is selected.
+The placeholder value is shown if no option is selected.
 
-#### `allowClear`
+### `allowClear`
 
 ***default: 'false'***
 
-If set to true, a cross is shown on the right of the drop down box if an option
-is selected, that can be used to clear the currently selected option.
+If set to true, a button with a cross that can be used to clear the currently
+selected option is shown if an option is selected.
 
-#### `theme`
+### `theme`
 
 ***default: 'default'***
 
