@@ -114,22 +114,22 @@ export class YourComponent implements {
 Optional parameters will be set to their default value if they are not defined
 in the `ng-select` tag.
 
-### `placeholder`
+### placeholder
 
-***default: ''***
+*default: ''*
 
 The placeholder value is shown if no option is selected.
 
-### `allowClear`
+### allowClear
 
-***default: 'false'***
+*default: 'false'*
 
 If set to true, a button with a cross that can be used to clear the currently
 selected option is shown if an option is selected.
 
-### `theme`
+### theme
 
-***default: 'default'***
+*default: 'default'*
 
 Currently the original `select2` CSS is used, which allows you to select between
 to themed looks, `default` and `classic`.
