@@ -1,6 +1,6 @@
 {
   "name": "angular2-select",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Select component for Angular 2 (based on select2 JQuery plugin).",
   "main": "dist/index.js",
   "scripts": {
