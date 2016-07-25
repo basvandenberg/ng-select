@@ -1,6 +1,7 @@
 # Angular 2 select component
 
-A native select component for angular 2, based on the select2 JQuery plugin.
+A native select component for angular 2, based on the select2 JQuery plugin. The
+component is currently in alpha, so breaking changes are to be expected.
 
 ## Install
 
@@ -47,10 +48,11 @@ component:
 </ng-select>
 ```
 
-And add the `SELECT_DIRECTIVES` to the list of directives. Within your
-component's class you can set the list of select options. This must be a list of
-objects, with for each object a value (option identifier) and a label (what is
-shown in the select dropdown).
+And add the `SELECT_DIRECTIVES` to the list of directives.
+
+Within your component's class you can set the list of select options. This must
+be a list of objects, with for each object a value (option identifier) and a
+label (which the user sees in the select drop down).
 
 ```typescript
 export class YourComponent {
@@ -87,8 +89,7 @@ following optional parameters:
 
 ```
 
-The optional parameters will be set to there default value if they are not
-defined. They can off course also be bound to a variable in the compontent
+The optional parameters can also be bound to a variable in the component's
 class.
 
 ```html
@@ -110,26 +111,44 @@ export class YourComponent implements {
 }
 ```
 
-#### `placeholder` (default: '')
+Optional parameters will be set to their default value if they are not defined
+in the `ng-select` tag.
+
+#### `placeholder`
+
+***default: ''***
 
 The text defined as place holder is shown if no option is selected.
 
-#### `allowClear` (default: 'false')
+#### `allowClear`
 
-If set to true, a cross is shown on the right of the dropdown box if an option
+***default: 'false'***
+
+If set to true, a cross is shown on the right of the drop down box if an option
 is selected, that can be used to clear the currently selected option.
 
-#### `theme` (default: 'default')
+#### `theme`
+
+***default: 'default'***
 
 Currently the original `select2` CSS is used, which allows you to select between
 to themed looks, `default` and `classic`.
 
-## Not yet supported parameters
+## Not yet supported
 
-Some select2 features that are not supported (yet) are:
+Select2 features that are currently not supported are:
 
-- Multiselect
+- Tests
 - Option groups
+- Loading remote data
+- Disabled mode
+- Disabled results
+- Multiselect
+    - Limit the number of selections
+    - Tagging
+- Localization, RTL
+- Themes
+- Templates
 
 ## Develop
 
