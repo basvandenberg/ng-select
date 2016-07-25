@@ -1,3 +1,5 @@
+
+export const DEFAULT_STYLES = `
 .select2-container {
   box-sizing: border-box;
   display: inline-block;
@@ -482,4 +484,5 @@
 
 .select2-container--classic.select2-container--open .select2-dropdown {
   border-color: #5897fb; }
+`;
 

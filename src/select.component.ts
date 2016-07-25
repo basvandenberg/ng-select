@@ -2,6 +2,7 @@ import {Component, Input, OnInit, Provider, ViewChild, forwardRef} from '@angula
 import {CORE_DIRECTIVES} from '@angular/common';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 
+import {DEFAULT_STYLES} from './style';
 import {SelectDropdownComponent} from './select-dropdown.component';
 
 const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
@@ -75,8 +76,8 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
     </select-dropdown>
 </div>
 `,
-    styleUrls: [
-        '../select2.css'
+    styles: [
+        DEFAULT_STYLES
     ],
     directives: [
         CORE_DIRECTIVES,

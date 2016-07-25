@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {CORE_DIRECTIVES, NgStyle} from '@angular/common';
 
+import {DEFAULT_STYLES} from './style';
 import {DiacriticsService} from './diacritics.service';
 
 @Component({
@@ -40,8 +41,8 @@ import {DiacriticsService} from './diacritics.service';
     </span>
 </span>
 `,
-    styleUrls: [
-        '../select2.css'
+    styles: [
+        DEFAULT_STYLES
     ],
     directives: [
         CORE_DIRECTIVES,
