@@ -3,15 +3,21 @@
 A native select component for angular 2, based on the select2 JQuery plugin. The
 component is currently in alpha, so breaking changes are to be expected.
 
-## Install
+## Demo
+
+Try it out with this [plunker].
+
+## Getting started
+
+### Install
 
 ```
 npm install --save angular2-select
 ```
 
-## Configuration
+### Configuration
 
-### Systemjs
+#### Systemjs
 
 In `systemjs.config.js` add `angular2-select` to map and package:
 
@@ -30,7 +36,7 @@ var packages = {
 };
 ```
 
-## Usage
+### Usage
 
 To use the select components in one of your components, import the
 `SELECT_DIRECTIVES` with:
@@ -162,6 +168,7 @@ gulp build
 **IMPORTANT** Building with `gulp build` currently only works with node version
 6, due to an [issue] in one of `gulp-typescript`'s dependencies ([beautylog]).
 
+[plunker]: https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview
 [issue]: https://gitlab.com/pushrocks/beautylog/issues/7
 [beautylog]: https://gitlab.com/pushrocks/beautylog
 
