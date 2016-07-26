@@ -80,6 +80,73 @@ export class YourComponent {
 }
 ```
 
+### Usage as part of form
+
+The component can be used in an angular 2 form, just like you would use regular
+`input` or `select` elements (the `angular2-select` component implements the
+[ControlValueAccessor] interface).
+
+```typescript
+import {Component, OnInit} from '@angular/core';
+import {REACTIVE_FORM_DIRECTIVES, FormControl, FormGroup} from '@angular/forms';
+import {SELECT_DIRECTIVES} from 'angular2-select'
+
+@Component({
+    selector: 'my-app',
+    template: `
+<h1>Angular 2 select demo app</h1>
+<form
+    [formGroup]="form">
+    <ng-select
+        [options]="options"
+        [placeholder]="placeholder"
+        allowClear="true"
+        theme="default"
+        formControlName="select">
+    </ng-select>
+</form>
+<hr>
+<div>
+    Selected option id: {{form.value.select}}
+</div>
+    `,
+    directives: [
+        REACTIVE_FORM_DIRECTIVES,
+        SELECT_DIRECTIVES
+    ]
+})
+
+export class App implements OnInit {
+
+    form: FormGroup;
+
+    placeholder = 'Select one of the options';
+    options = [];
+        
+    constructor() {
+        this.options = [
+            {
+                value: 'a',
+                label: 'Alpha'
+            },
+            {
+                value: 'b',
+                label: 'Beta'
+            },
+            {
+                value: 'c',
+                label: 'Gamma'
+            }
+        ];
+    }
+
+    ngOnInit() {
+        this.form = new FormGroup({});
+        this.form.addControl('select', new FormControl(''));
+    }
+}
+```
+
 ## Parameters
 
 Next to the obligatory `options` parameter, the `ng-select` tag supports the
@@ -169,6 +236,7 @@ gulp build
 6, due to an [issue] in one of `gulp-typescript`'s dependencies ([beautylog]).
 
 [plunker]: https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview
+[ControlValueAccessor]: https://angular.io/docs/ts/latest/api/common/index/ControlValueAccessor-interface.html
 [issue]: https://gitlab.com/pushrocks/beautylog/issues/7
 [beautylog]: https://gitlab.com/pushrocks/beautylog
 
