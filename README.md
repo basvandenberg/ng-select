@@ -232,9 +232,6 @@ npm install
 gulp build
 ```
 
-**IMPORTANT** Building with `gulp build` currently only works with node version
-6, due to an [issue] in one of `gulp-typescript`'s dependencies ([beautylog]).
-
 [plunker]: https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview
 [ControlValueAccessor]: https://angular.io/docs/ts/latest/api/common/index/ControlValueAccessor-interface.html
 [issue]: https://gitlab.com/pushrocks/beautylog/issues/7
