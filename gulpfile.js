@@ -3,32 +3,12 @@
 var del = require('del');
 var gulp = require('gulp');
 var merge = require('merge2');
-var sourcemaps = require('gulp-sourcemaps');
-var systemjsBuilder = require('systemjs-builder');
 var tslint = require('gulp-tslint');
 var typescript = require('gulp-typescript');
-var typings = require("gulp-typings");
 
-// Build/watch.
+// Build.
 
 gulp.task('build', ['transpile:ts']);
-
-// Typings.
-
-gulp.task('clean:typings', function() {
-
-    return del([
-        './typings'
-    ]);
-});
-
-gulp.task('typings', ['clean:typings'], function() {
-
-    return gulp.src([
-        './typings.json'
-    ])
-        .pipe(typings());
-});
 
 // Typescript --> Javascript.
 
@@ -56,9 +36,7 @@ gulp.task('lint:ts', function() {
         .pipe(tslint.report())
 });
 
-gulp.task('transpile:ts', ['clean:js', 'typings', 'lint:ts'], function () {
-
-    //var tsProject = typescript.createProject('tsconfig.json');
+gulp.task('transpile:ts', ['clean:js', 'lint:ts'], function () {
 
     var compilerOptions = {
         emitDecoratorMetadata: true,
@@ -75,30 +53,18 @@ gulp.task('transpile:ts', ['clean:js', 'typings', 'lint:ts'], function () {
     var tsResult = gulp.src([
         './index.ts', 
         './src/*.ts',
-        './typings/index.d.ts'
+        './node_modules/@types/core-js/index.d.ts',
+        './node_modules/@types/jasmine/index.d.ts',
+        './node_modules/@types/node/index.d.ts'
     ], {
         base: './'
     })
-        //.pipe(sourcemaps.init())
         .pipe(typescript(compilerOptions));
 
     return merge([
         tsResult.js
-            //.pipe(sourcemaps.write('.'))
             .pipe(gulp.dest('.')),
         tsResult.dts
             .pipe(gulp.dest('.'))
     ]);
 });
-
-
-
-
-
-
-//gulp.task('build:app', function() {
-//    var builder = new systemjsBuilder('dist', './system.config.js');
-//    return builder
-//        .buildStatic('app', 'app/app.js');
-//});
-
