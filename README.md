@@ -5,7 +5,7 @@ component is currently in alpha, so breaking changes are to be expected.
 
 ## Demo
 
-Try it out with this [plunker].
+Try it out with this [plunker] or by cloning [angular2-select-demo].
 
 ## Getting started
 
@@ -233,6 +233,7 @@ gulp build
 ```
 
 [plunker]: https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview
+[angular2-select-demo]: https://github.com/basvandenberg/angular2-select-demo
 [ControlValueAccessor]: https://angular.io/docs/ts/latest/api/common/index/ControlValueAccessor-interface.html
 [issue]: https://gitlab.com/pushrocks/beautylog/issues/7
 [beautylog]: https://gitlab.com/pushrocks/beautylog
