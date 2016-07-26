@@ -80,7 +80,7 @@ export class YourComponent {
 }
 ```
 
-### Usage as part of form
+## Use in forms
 
 The component can be used in an angular 2 form, just like you would use regular
 `input` or `select` elements (the `angular2-select` component implements the
