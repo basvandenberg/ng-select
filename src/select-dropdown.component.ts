@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {CORE_DIRECTIVES, NgStyle} from '@angular/common';
 
 import {DEFAULT_STYLES} from './style';
@@ -11,7 +11,8 @@ import {DiacriticsService} from './diacritics.service';
     [ngStyle]="{position: 'absolute', top: top + 'px', left: left + 'px'}">
     <span class="select2-dropdown select2-dropdown--below"
         [ngStyle]="{width: width + 'px'}">
-        <span class="select2-search select2-search--dropdown">
+        <span class="select2-search select2-search--dropdown"
+            *ngIf="!multiple">
             <input class="select2-search__field"
                 #input
                 (input)="onInput($event)"
@@ -53,7 +54,7 @@ import {DiacriticsService} from './diacritics.service';
     ]
 })
 
-export class SelectDropdownComponent implements OnInit {
+export class SelectDropdownComponent implements AfterViewInit, OnInit {
 
     // Messages.
     private MSG_LOADING = 'Searching...'; // TODO
@@ -67,7 +68,7 @@ export class SelectDropdownComponent implements OnInit {
     private S2_OPTION: string = this.S2_RESULTS + '__option';
     private S2_OPTION_HL: string = this.S2_OPTION + '--highlighted';
 
-    @Input() isSingle: boolean;
+    @Input() multiple: boolean;
     @Input() optionValues: Array<string>;
     @Input() optionsDict: any;
     @Input() selection: Array<any>;
@@ -95,6 +96,12 @@ export class SelectDropdownComponent implements OnInit {
 
     ngOnInit() {
         this.init();
+    }
+
+    ngAfterViewInit() {
+        if (!this.multiple) {
+            this.input.nativeElement.focus();
+        }
     }
 
     onInputClick(event) {
@@ -134,9 +141,6 @@ export class SelectDropdownComponent implements OnInit {
 
         // Highlight first option in list (or first option in selection).
         this.initHighlight();
-
-        // Put focus on input element.
-        this.input.nativeElement.focus();
     }
 
     /***************************************************************************

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, Provider, ViewChild, forwardRef} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
+import {CORE_DIRECTIVES, NgStyle} from '@angular/common';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 
 import {DEFAULT_STYLES} from './style';
@@ -27,14 +27,14 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
                 (keydown)="onKeydown($event)">
 
                 <span class="select2-selection__rendered"
-                    *ngIf="isSingle && showPlaceholder()">
+                    *ngIf="!multiple">
                     <span class="select2-selection__placeholder">
-                        {{placeholder}}
+                        {{getPlaceholder()}}
                     </span>
                 </span>
                 
                 <span class="select2-selection__rendered"
-                    *ngIf="isSingle && selection.length > 0">
+                    *ngIf="!multiple && selection.length > 0">
                     <span class="select2-selection__clear"
                         *ngIf="allowClear"
                         (click)="onClearClick($event)">
@@ -44,14 +44,15 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
                 </span>
 
                 <ul class="select2-selection__rendered"
-                    *ngIf="!isSingle">
+                    *ngIf="multiple">
                     <li class="select2-selection__choice" title="{{option.label}}"
                         *ngFor="let option of selection">
                         <span class="select2-selection__choice__remove">×</span>
                         {{option.label}}
                     </li>
                     <li class="select2-search select2-search--inline">
-                        <input class="select2-search__field" />
+                        <input class="select2-search__field" placeholder="{{getPlaceholder()}}"
+                            [ngStyle]="multipleInputWidth()" />
                     </li>
                 </ul>
 
@@ -64,7 +65,7 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
     <select-dropdown
         *ngIf="isOpen"
         #dropdown
-        [isSingle]="isSingle"
+        [multiple]="multiple"
         [optionValues]="optionValues"
         [optionsDict]="optionsDict"
         [selection]="selection"
@@ -81,6 +82,7 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
     ],
     directives: [
         CORE_DIRECTIVES,
+        NgStyle,
         SelectDropdownComponent
     ],
     providers: [
@@ -98,7 +100,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
     // Input settings.
     @Input() options: Array<any>;
     @Input() theme: string;
-    @Input() isSingle: boolean;
+    @Input() multiple: boolean;
     @Input() placeholder: string;
     @Input() allowClear: boolean;
 
@@ -193,8 +195,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
     }
 
     initDefaults() {
-        if (typeof this.isSingle === 'undefined') {
-            this.isSingle = true;
+        if (typeof this.multiple === 'undefined') {
+            this.multiple = false;
         }
         if (typeof this.theme === 'undefined') {
             this.theme = 'default';
@@ -232,7 +234,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
      **************************************************************************/
 
     toggleSelect(value: string) {
-        if (this.isSingle && this.selection.length > 0) {
+        if (!this.multiple && this.selection.length > 0) {
             this.selection[0].selected = false;
         }
         this.optionsDict[value].selected = !this.optionsDict[value].selected;
@@ -360,7 +362,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
 
         let s = this.S2_SELECTION;
         result[s] = true;
-        result[s + '--' + (this.isSingle ? 'single' : 'multiple')] = true;
+        result[s + '--' + (this.multiple ? 'multiple' : 'single')] = true;
 
         return result;
     }
@@ -368,6 +370,16 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
     showPlaceholder(): boolean {
         return typeof this.placeholder !== 'undefined' &&
             this.selection.length === 0;
+    }
+
+    getPlaceholder(): string {
+        return this.showPlaceholder() ? this.placeholder : '';
+    }
+
+    multipleInputWidth(): any {
+        return {
+            width: '200px'
+        };
     }
 }
 
