@@ -37,7 +37,7 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
                     *ngIf="!multiple && selection.length > 0">
                     <span class="select2-selection__clear"
                         *ngIf="allowClear"
-                        (click)="onClearClick($event)">
+                        (click)="onClearAllClick($event)">
                         x
                     </span>
                     {{selection[0].label}}
@@ -47,7 +47,10 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
                     *ngIf="multiple">
                     <li class="select2-selection__choice" title="{{option.label}}"
                         *ngFor="let option of selection">
-                        <span class="select2-selection__choice__remove">×</span>
+                        <span class="select2-selection__choice__remove"
+                            [attr.data-value]="option.value"
+                            (click)=onClearItemClick($event)>
+                            ×</span>
                         {{option.label}}
                     </li>
                     <li class="select2-search select2-search--inline">
@@ -143,8 +146,13 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
         event.stopPropagation();
     }
 
-    onClearClick(event) {
+    onClearAllClick(event) {
         this.clearSelected();
+        event.stopPropagation();
+    }
+
+    onClearItemClick(event) {
+        this.deselect(event.target.dataset.value);
         event.stopPropagation();
     }
 
@@ -240,6 +248,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
         this.optionsDict[value].selected = !this.optionsDict[value].selected;
         this.updateSelection();
         this.focus();
+    }
+
+    deselect(value: string) {
+        this.optionsDict[value].selected = false;
+        this.updateSelection();
     }
 
     updateSelection() {
