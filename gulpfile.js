@@ -10,6 +10,17 @@ var typescript = require('gulp-typescript');
 
 gulp.task('build', ['transpile:ts']);
 
+gulp.task('watch', function() {
+
+    gulp.watch([
+        './index.ts',
+        './src/*.ts',
+        '!*/**/*.d.ts'
+    ], [
+        'build'
+    ]);
+});
+
 // Typescript --> Javascript.
 
 gulp.task('clean:js', function() {
