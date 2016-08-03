@@ -54,8 +54,11 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
                         {{option.label}}
                     </li>
                     <li class="select2-search select2-search--inline">
-                        <input class="select2-search__field" placeholder="{{getPlaceholder()}}"
-                            [ngStyle]="multipleInputWidth()" />
+                        <input class="select2-search__field"
+                            #searchInput
+                            placeholder="{{getPlaceholder()}}"
+                            [ngStyle]="multipleInputWidth()"
+                            (input)="onInput($event)"/>
                     </li>
                 </ul>
 
@@ -109,9 +112,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
 
     @ViewChild('container') container;
     @ViewChild('selectionSpan') selectionSpan;
-
-    // Dropdown component.
-    private dropdown;
+    @ViewChild('dropdown') dropdown: SelectDropdownComponent;
+    @ViewChild('searchInput') searchInput;
 
     // State variables.
     private isDisabled: boolean = false;
@@ -143,6 +145,9 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
 
     onSelectionClick(event) {
         this.toggleDropdown();
+        if (this.multiple) {
+            this.searchInput.nativeElement.focus();
+        }
         event.stopPropagation();
     }
 
@@ -174,6 +179,19 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
 
     onKeydown(event) {
         this.handleKeyDown(event);
+    }
+
+    onInput(event) {
+        if (!this.isOpen) {
+            this.open();
+            // HACK
+            setTimeout(() => {
+                this.dropdown.filter(event.target.value);
+            }, 100);
+        }
+        else {
+            this.dropdown.filter(event.target.value);
+        }
     }
 
     /***************************************************************************
