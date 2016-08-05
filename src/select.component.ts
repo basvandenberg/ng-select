@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Provider, ViewChild, forwardRef} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, Provider, ViewChild, forwardRef} from '@angular/core';
 import {CORE_DIRECTIVES, NgStyle} from '@angular/common';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 
@@ -32,7 +32,7 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
                         {{getPlaceholder()}}
                     </span>
                 </span>
-                
+
                 <span class="select2-selection__rendered"
                     *ngIf="!multiple && selection.length > 0">
                     <span class="select2-selection__clear"
@@ -96,7 +96,7 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
     ]
 })
 
-export class SelectComponent implements ControlValueAccessor, OnInit {
+export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges {
 
     // Class names.
     private S2: string = 'select2';
@@ -110,10 +110,10 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
     @Input() placeholder: string;
     @Input() allowClear: boolean;
 
-    @ViewChild('container') container;
-    @ViewChild('selectionSpan') selectionSpan;
+    @ViewChild('container') container: any;
+    @ViewChild('selectionSpan') selectionSpan: any;
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
-    @ViewChild('searchInput') searchInput;
+    @ViewChild('searchInput') searchInput: any;
 
     // State variables.
     private isDisabled: boolean = false;
@@ -143,29 +143,34 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
         this.init();
     }
 
-    onSelectionClick(event) {
+    ngOnChanges(changes: any) {
+        this.init();
+    }
+
+    onSelectionClick(event: any) {
         this.toggleDropdown();
+
         if (this.multiple) {
             this.searchInput.nativeElement.focus();
         }
         event.stopPropagation();
     }
 
-    onClearAllClick(event) {
+    onClearAllClick(event: any) {
         this.clearSelected();
         event.stopPropagation();
     }
 
-    onClearItemClick(event) {
+    onClearItemClick(event: any) {
         this.deselect(event.target.dataset.value);
         event.stopPropagation();
     }
 
-    onToggleSelect(optionValue) {
+    onToggleSelect(optionValue: any) {
         this.toggleSelect(optionValue);
     }
 
-    onClose(focus) {
+    onClose(focus: any) {
         this.close(focus);
     }
 
@@ -177,11 +182,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
         this.updateWidth();
     }
 
-    onKeydown(event) {
+    onKeydown(event: any) {
         this.handleKeyDown(event);
     }
 
-    onInput(event) {
+    onInput(event: any) {
         if (!this.isOpen) {
             this.open();
             // HACK
@@ -204,7 +209,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
     }
 
     initOptions() {
-        let values = [];
+        let values: any[] = [];
         let opts = {};
 
         for (let option of this.options) {
@@ -274,8 +279,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
     }
 
     updateSelection() {
-        let s = [];
-        let v = [];
+        let s: Array<any> = [];
+        let v: Array<string> = [];
         for (let optionValue of this.optionValues) {
             if (this.optionsDict[optionValue].selected) {
                 let opt = this.optionsDict[optionValue];
@@ -283,10 +288,12 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
                 v.push(opt.value);
             }
         }
+
         this.selection = s;
         this.value = v;
+
         // TODO first check if value has changed?
-        this.onChange(this.value);
+        this.onChange(this.getOutputValue());
     }
 
     clearSelected() {
@@ -295,8 +302,18 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
         }
         this.selection = [];
         this.value = [];
+
         // TODO first check if value has changed?
-        this.onChange(this.value);
+        this.onChange(this.getOutputValue());
+    }
+
+    getOutputValue(): any {
+        if (this.multiple) {
+            return this.value.slice(0);
+        }
+        else {
+            return this.value.length === 0 ? '' : this.value[0];
+        }
     }
 
     /***************************************************************************
@@ -337,7 +354,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
         DOWN: 40
     };
 
-    handleKeyDown(event) {
+    handleKeyDown(event: any) {
 
         let key = event.which;
 

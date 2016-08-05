@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild} from '@angular/core';
 import {CORE_DIRECTIVES, NgStyle} from '@angular/common';
 
 import {DEFAULT_STYLES} from './style';
@@ -54,7 +54,7 @@ import {DiacriticsService} from './diacritics.service';
     ]
 })
 
-export class SelectDropdownComponent implements AfterViewInit, OnInit {
+export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit {
 
     // Messages.
     private MSG_LOADING = 'Searching...'; // TODO
@@ -80,8 +80,8 @@ export class SelectDropdownComponent implements AfterViewInit, OnInit {
     @Output() close = new EventEmitter<boolean>();
     @Output() toggleSelect = new EventEmitter<string>();
 
-    @ViewChild('input') input;
-    @ViewChild('optionsList') optionsList;
+    @ViewChild('input') input: any;
+    @ViewChild('optionsList') optionsList: any;
 
     private optionValuesFiltered: Array<string> = [];
     private highlighted: any = null;
@@ -98,36 +98,40 @@ export class SelectDropdownComponent implements AfterViewInit, OnInit {
         this.init();
     }
 
+    ngOnChanges(changes: any) {
+        this.init();
+    }
+
     ngAfterViewInit() {
         if (!this.multiple) {
             this.input.nativeElement.focus();
         }
     }
 
-    onInputClick(event) {
+    onInputClick(event: any) {
         event.stopPropagation();
     }
 
-    onOptionsMouseMove(event) {
+    onOptionsMouseMove(event: any) {
         let v = event.target.dataset.value;
         if (typeof v !== 'undefined') {
             this.highlight(v);
         }
     }
 
-    onOptionsWheel(event) {
+    onOptionsWheel(event: any) {
         this.handleOptionsWheel(event);
     }
 
-    onOptionsClick(event) {
+    onOptionsClick(event: any) {
         this.toggleSelect.emit(event.target.dataset.value);
     }
 
-    onKeydown(event) {
+    onKeydown(event: any) {
         this.handleKeyDown(event);
     }
 
-    onInput(event) {
+    onInput(event: any) {
         this.filter(event.target.value);
     }
 
@@ -237,7 +241,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnInit {
         DOWN: 40
     };
 
-    handleKeyDown(event) {
+    handleKeyDown(event: any) {
 
         let key = event.which;
 
@@ -275,7 +279,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnInit {
         }
     }
 
-    handleOptionsWheel(event) {
+    handleOptionsWheel(event: any) {
         let element = this.optionsList.nativeElement;
 
         let top = element.scrollTop;
