@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, OnChanges, Output, ViewChild} from '@angular/core';
 import {CORE_DIRECTIVES, NgStyle} from '@angular/common';
 
 import {DEFAULT_STYLES} from './style';
@@ -54,7 +54,12 @@ import {DiacriticsService} from './diacritics.service';
     ]
 })
 
-export class SelectDropdownComponent implements AfterViewInit, OnInit {
+export class SelectDropdownComponent implements AfterViewInit, OnInit, OnChanges {
+
+    ngOnChanges(changes: any) {
+        this.init();
+        console.log(this.optionValues);
+    }
 
     // Messages.
     private MSG_LOADING = 'Searching...'; // TODO

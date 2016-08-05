@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Provider, ViewChild, forwardRef} from '@angular/core';
+import {Component, Input, Output, OnInit, OnChanges, Provider, ViewChild, forwardRef, EventEmitter} from '@angular/core';
 import {CORE_DIRECTIVES, NgStyle} from '@angular/common';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 
@@ -32,7 +32,7 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
                         {{getPlaceholder()}}
                     </span>
                 </span>
-                
+
                 <span class="select2-selection__rendered"
                     *ngIf="!multiple && selection.length > 0">
                     <span class="select2-selection__clear"
@@ -96,7 +96,13 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
     ]
 })
 
-export class SelectComponent implements ControlValueAccessor, OnInit {
+export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges {
+
+    ngOnChanges(changes: any) {
+        this.init();
+
+        console.log(this.options);
+    }
 
     // Class names.
     private S2: string = 'select2';
@@ -114,6 +120,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
     @ViewChild('selectionSpan') selectionSpan;
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
     @ViewChild('searchInput') searchInput;
+
+    @Output() public onClick: EventEmitter<any> = new EventEmitter();
 
     // State variables.
     private isDisabled: boolean = false;
@@ -149,6 +157,9 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
             this.searchInput.nativeElement.focus();
         }
         event.stopPropagation();
+        this.onClick.emit({
+      value: 'click'
+    });
     }
 
     onClearAllClick(event) {
@@ -275,12 +286,12 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
 
     updateSelection() {
         let s = [];
-        let v = [];
+        let v = null;
         for (let optionValue of this.optionValues) {
             if (this.optionsDict[optionValue].selected) {
                 let opt = this.optionsDict[optionValue];
                 s.push(opt);
-                v.push(opt.value);
+                v = opt.value;
             }
         }
         this.selection = s;
