@@ -85,8 +85,8 @@ export class SelectDropdownComponent implements AfterViewInit, OnInit, OnChanges
     @Output() close = new EventEmitter<boolean>();
     @Output() toggleSelect = new EventEmitter<string>();
 
-    @ViewChild('input') input;
-    @ViewChild('optionsList') optionsList;
+    @ViewChild('input') input: any;
+    @ViewChild('optionsList') optionsList: any;
 
     private optionValuesFiltered: Array<string> = [];
     private highlighted: any = null;
@@ -109,30 +109,30 @@ export class SelectDropdownComponent implements AfterViewInit, OnInit, OnChanges
         }
     }
 
-    onInputClick(event) {
+    onInputClick(event: any) {
         event.stopPropagation();
     }
 
-    onOptionsMouseMove(event) {
+    onOptionsMouseMove(event: any) {
         let v = event.target.dataset.value;
         if (typeof v !== 'undefined') {
             this.highlight(v);
         }
     }
 
-    onOptionsWheel(event) {
+    onOptionsWheel(event: any) {
         this.handleOptionsWheel(event);
     }
 
-    onOptionsClick(event) {
+    onOptionsClick(event: any) {
         this.toggleSelect.emit(event.target.dataset.value);
     }
 
-    onKeydown(event) {
+    onKeydown(event: any) {
         this.handleKeyDown(event);
     }
 
-    onInput(event) {
+    onInput(event: any) {
         this.filter(event.target.value);
     }
 
@@ -242,7 +242,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnInit, OnChanges
         DOWN: 40
     };
 
-    handleKeyDown(event) {
+    handleKeyDown(event: any) {
 
         let key = event.which;
 
@@ -280,7 +280,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnInit, OnChanges
         }
     }
 
-    handleOptionsWheel(event) {
+    handleOptionsWheel(event: any) {
         let element = this.optionsList.nativeElement;
 
         let top = element.scrollTop;

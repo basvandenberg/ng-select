@@ -116,10 +116,10 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     @Input() placeholder: string;
     @Input() allowClear: boolean;
 
-    @ViewChild('container') container;
-    @ViewChild('selectionSpan') selectionSpan;
+    @ViewChild('container') container: any;
+    @ViewChild('selectionSpan') selectionSpan: any;
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
-    @ViewChild('searchInput') searchInput;
+    @ViewChild('searchInput') searchInput: any;
 
     @Output() public onClick: EventEmitter<any> = new EventEmitter();
 
@@ -151,7 +151,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         this.init();
     }
 
-    onSelectionClick(event) {
+    onSelectionClick(event: any) {
         this.toggleDropdown();
         if (this.multiple) {
             this.searchInput.nativeElement.focus();
@@ -162,21 +162,21 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     });
     }
 
-    onClearAllClick(event) {
+    onClearAllClick(event: any) {
         this.clearSelected();
         event.stopPropagation();
     }
 
-    onClearItemClick(event) {
+    onClearItemClick(event: any) {
         this.deselect(event.target.dataset.value);
         event.stopPropagation();
     }
 
-    onToggleSelect(optionValue) {
+    onToggleSelect(optionValue: any) {
         this.toggleSelect(optionValue);
     }
 
-    onClose(focus) {
+    onClose(focus: any) {
         this.close(focus);
     }
 
@@ -188,11 +188,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         this.updateWidth();
     }
 
-    onKeydown(event) {
+    onKeydown(event: any) {
         this.handleKeyDown(event);
     }
 
-    onInput(event) {
+    onInput(event: any) {
         if (!this.isOpen) {
             this.open();
             // HACK
@@ -215,7 +215,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     }
 
     initOptions() {
-        let values = [];
+        let values: any[] = [];
         let opts = {};
 
         for (let option of this.options) {
@@ -285,8 +285,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     }
 
     updateSelection() {
-        let s = [];
-        let v = null;
+        let s: any[] = [];
+        let v: any = null;
         for (let optionValue of this.optionValues) {
             if (this.optionsDict[optionValue].selected) {
                 let opt = this.optionsDict[optionValue];
@@ -348,7 +348,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         DOWN: 40
     };
 
-    handleKeyDown(event) {
+    handleKeyDown(event: any) {
 
         let key = event.which;
 
