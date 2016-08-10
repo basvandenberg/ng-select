@@ -84,7 +84,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
     @ViewChild('optionsList') optionsList: any;
 
     private optionValuesFiltered: Array<string> = [];
-    private highlighted: any = null;
+    private _highlighted: any = null;
 
     constructor(
         private diacriticsService: DiacriticsService
@@ -139,7 +139,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
      * Initialization.
      **************************************************************************/
 
-    init() {
+    private init() {
         // Set filtered list of options to all options.
         this.optionValuesFiltered = this.optionValues;
 
@@ -151,19 +151,23 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
      * Highlight.
      **************************************************************************/
 
-    initHighlight() {
-        this.highlighted = this.selection.length > 0 ?
+    get highlighted(): any {
+        return this._highlighted;
+    }
+
+    private initHighlight() {
+        this._highlighted = this.selection.length > 0 ?
             this.selection[0] : this.optionsDict[this.optionValues[0]];
     }
 
-    highlight(optionValue: string) {
+    private highlight(optionValue: string) {
         if (this.highlighted === null ||
             optionValue !== this.highlighted.value) {
-            this.highlighted = this.optionsDict[optionValue];
+            this._highlighted = this.optionsDict[optionValue];
         }
     }
 
-    ensureHighlightedVisible() {
+    private ensureHighlightedVisible() {
 
         let list = this.optionsList.nativeElement;
         let listHeight = list.offsetHeight;
@@ -186,7 +190,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
         }
     }
 
-    highlightIndex() {
+    private highlightIndex(): number {
         if (this.highlighted === null) {
             return null;
         }
@@ -225,7 +229,10 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
 
         // Highlight first item in list.
         if (this.optionValuesFiltered.length > 0) {
-            this.highlighted = this.optionsDict[this.optionValuesFiltered[0]];
+            this._highlighted = this.optionsDict[this.optionValuesFiltered[0]];
+        }
+        else {
+            this._highlighted = null;
         }
     }
 
@@ -241,7 +248,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
         DOWN: 40
     };
 
-    handleKeyDown(event: any) {
+    private handleKeyDown(event: any) {
 
         let key = event.which;
 
@@ -260,26 +267,16 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
             event.preventDefault();
         }
         else if (key === this.KEYS.UP) {
-            let i = this.highlightIndex();
-
-            if (i !== null && i > 0) {
-                this.highlight(this.optionValuesFiltered[i - 1]);
-                this.ensureHighlightedVisible();
-            }
+            this.highlightPrevious();
             event.preventDefault();
         }
         else if (key === this.KEYS.DOWN) {
-            let i = this.highlightIndex();
-
-            if (i !== null && i < this.optionValuesFiltered.length - 1) {
-                this.highlight(this.optionValuesFiltered[i + 1]);
-                this.ensureHighlightedVisible();
-            }
+            this.highlightNext();
             event.preventDefault();
         }
     }
 
-    handleOptionsWheel(event: any) {
+    private handleOptionsWheel(event: any) {
         let element = this.optionsList.nativeElement;
 
         let top = element.scrollTop;
@@ -302,11 +299,29 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
         }
     }
 
+    highlightPrevious() {
+        let i = this.highlightIndex();
+
+        if (i !== null && i > 0) {
+            this.highlight(this.optionValuesFiltered[i - 1]);
+            this.ensureHighlightedVisible();
+        }
+    }
+
+    highlightNext() {
+        let i = this.highlightIndex();
+
+        if (i !== null && i < this.optionValuesFiltered.length - 1) {
+            this.highlight(this.optionValuesFiltered[i + 1]);
+            this.ensureHighlightedVisible();
+        }
+    }
+
     /***************************************************************************
      * Classes.
      **************************************************************************/
 
-    getOptionClass(optionValue: string): any {
+    private getOptionClass(optionValue: string): any {
         let result = {};
         let hlValue = this.highlighted === null ? '' : this.highlighted.value;
 
@@ -321,7 +336,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
      * Util functions.
      **************************************************************************/
 
-    filteredOptionsIndex(optionValue: string) {
+    private filteredOptionsIndex(optionValue: string) {
         for (let i = 0; i < this.optionValuesFiltered.length; i++) {
             if (this.optionValuesFiltered[i] === optionValue) {
                 return i;

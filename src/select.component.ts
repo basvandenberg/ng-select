@@ -58,7 +58,8 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
                             #searchInput
                             placeholder="{{getPlaceholder()}}"
                             [ngStyle]="multipleInputWidth()"
-                            (input)="onInput($event)"/>
+                            (input)="onInput($event)"
+                            (keydown)="onSearchKeydown($event)"/>
                     </li>
                 </ul>
 
@@ -187,16 +188,22 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     }
 
     onInput(event: any) {
+
+        // Open dropdown, if it is currently closed.
         if (!this.isOpen) {
             this.open();
             // HACK
             setTimeout(() => {
-                this.dropdown.filter(event.target.value);
+                this.handleInput(event);
             }, 100);
         }
         else {
-            this.dropdown.filter(event.target.value);
+            this.handleInput(event);
         }
+    }
+
+    onSearchKeydown(event: any) {
+        this.handleSearchKeyDown(event);
     }
 
     /***************************************************************************
@@ -265,12 +272,21 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
      **************************************************************************/
 
     toggleSelect(value: string) {
+
         if (!this.multiple && this.selection.length > 0) {
             this.selection[0].selected = false;
         }
+
         this.optionsDict[value].selected = !this.optionsDict[value].selected;
         this.updateSelection();
-        this.focus();
+
+        if (this.multiple) {
+            this.searchInput.nativeElement.value = '';
+            this.searchInput.nativeElement.focus();
+        }
+        else {
+            this.focus();
+        }
     }
 
     deselect(value: string) {
@@ -296,6 +312,14 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         this.onChange(this.getOutputValue());
     }
 
+    popSelect() {
+        if (this.selection.length > 0) {
+            this.selection[this.selection.length - 1].selected = false;
+            this.updateSelection();
+            this.onChange(this.getOutputValue());
+        }
+    }
+
     clearSelected() {
         for (let item in this.optionsDict) {
             this.optionsDict[item].selected = false;
@@ -309,6 +333,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
 
     getOutputValue(): any {
         if (this.multiple) {
+            console.log(this.value);
             return this.value.slice(0);
         }
         else {
@@ -349,8 +374,12 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
      **************************************************************************/
 
     private KEYS: any = {
+        BACKSPACE: 8,
+        TAB: 9,
         ENTER: 13,
+        ESC: 27,
         SPACE: 32,
+        UP: 38,
         DOWN: 40
     };
 
@@ -366,16 +395,67 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         }
     }
 
+    handleInput(event: any) {
+        console.log(event.target.value);
+        this.dropdown.filter(event.target.value);
+    }
+
+    handleSearchKeyDown(event: any) {
+
+        let key = event.which;
+
+        if (key === this.KEYS.ENTER) {
+            if (typeof this.dropdown !== 'undefined') {
+                let hl = this.dropdown.highlighted;
+
+                if (hl !== null) {
+                    this.onToggleSelect(hl.value);
+                }
+            }
+        }
+        else if (key === this.KEYS.BACKSPACE) {
+            if (this.searchInput.nativeElement.value === '') {
+                this.popSelect();
+            }
+        }
+        else if (key === this.KEYS.UP) {
+            if (typeof this.dropdown === 'undefined') {
+                this.open();
+            }
+            else {
+                this.dropdown.highlightPrevious();
+            }
+        }
+        else if (key === this.KEYS.DOWN) {
+            if (typeof this.dropdown === 'undefined') {
+                this.open();
+            }
+            else {
+                this.dropdown.highlightNext();
+            }
+        }
+        else if (key === this.KEYS.ESC) {
+            this.close(true);
+        }
+    }
+
     /***************************************************************************
      * Layout/Style/Classes/Focus.
      **************************************************************************/
 
     focus() {
+        console.log('focus');
         this.hasFocus = true;
-        this.selectionSpan.nativeElement.focus();
+        if (this.multiple) {
+            this.searchInput.nativeElement.focus();
+        }
+        else {
+            this.selectionSpan.nativeElement.focus();
+        }
     }
 
     blur() {
+        console.log('blur');
         this.hasFocus = false;
         this.selectionSpan.nativeElement.blur();
     }
