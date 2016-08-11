@@ -1,6 +1,4 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild} from '@angular/core';
-import {CORE_DIRECTIVES, NgStyle} from '@angular/common';
-
 import {DEFAULT_STYLES} from './style';
 import {DiacriticsService} from './diacritics.service';
 
@@ -44,13 +42,6 @@ import {DiacriticsService} from './diacritics.service';
 `,
     styles: [
         DEFAULT_STYLES
-    ],
-    directives: [
-        CORE_DIRECTIVES,
-        NgStyle
-    ],
-    providers: [
-        DiacriticsService
     ]
 })
 

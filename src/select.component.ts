@@ -1,11 +1,10 @@
 import {Component, Input, OnChanges, OnInit, Provider, ViewChild, forwardRef} from '@angular/core';
-import {CORE_DIRECTIVES, NgStyle} from '@angular/common';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 
 import {DEFAULT_STYLES} from './style';
 import {SelectDropdownComponent} from './select-dropdown.component';
 
-const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
+export const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
     useExisting: forwardRef(() => SelectComponent),
     multi: true
 });
@@ -86,14 +85,6 @@ const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
 `,
     styles: [
         DEFAULT_STYLES
-    ],
-    directives: [
-        CORE_DIRECTIVES,
-        NgStyle,
-        SelectDropdownComponent
-    ],
-    providers: [
-        SELECT_VALUE_ACCESSOR
     ]
 })
 

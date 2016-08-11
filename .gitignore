@@ -1,5 +1,5 @@
-index.d.ts
-index.js
+select.d.ts
+select.js
 src/**/*.d.ts
 src/**/*.js
 
