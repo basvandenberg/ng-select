@@ -38,15 +38,36 @@ var packages = {
 
 ### Usage
 
-To use the select components in one of your components, import the
-`SELECT_DIRECTIVES` with:
+Import the `SelectModule` and define it as one of the imports of your
+application module:
 
-```typescript
-import {SELECT_DIRECTIVES} from 'angular2-select';
+```
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SelectModule} from 'angular2-select';
+
+import {AppComponent} from './app.component';
+
+@NgModule({
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        SelectModule
+    ],
+    declarations: [
+        AppComponent
+    ],
+    bootstrap: [
+        AppComponent
+    ]
+})
+export class AppModule { }
 ```
 
-Add the following HTML to your component's template to include the select
-component:
+
+Add the following HTML to the component template in which you want to use the
+select component:
 
 ```html
 <ng-select
@@ -54,9 +75,7 @@ component:
 </ng-select>
 ```
 
-And add the `SELECT_DIRECTIVES` to the list of directives.
-
-Within your component's class you can set the list of select options. This must
+Within the component class you have to set the list of select options. This must
 be a list of objects, with for each object a value (option identifier) and a
 label (which the user sees in the select drop down).
 
@@ -88,8 +107,7 @@ The component can be used in an angular 2 form, just like you would use regular
 
 ```typescript
 import {Component, OnInit} from '@angular/core';
-import {REACTIVE_FORM_DIRECTIVES, FormControl, FormGroup} from '@angular/forms';
-import {SELECT_DIRECTIVES} from 'angular2-select'
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'my-app',
@@ -99,28 +117,22 @@ import {SELECT_DIRECTIVES} from 'angular2-select'
     [formGroup]="form">
     <ng-select
         [options]="options"
-        [placeholder]="placeholder"
+        placeholder="Select one"
+		multiple="false"
         allowClear="true"
-        theme="default"
         formControlName="select">
     </ng-select>
 </form>
 <hr>
 <div>
     Selected option id: {{form.value.select}}
-</div>
-    `,
-    directives: [
-        REACTIVE_FORM_DIRECTIVES,
-        SELECT_DIRECTIVES
-    ]
+</div>`
 })
 
 export class App implements OnInit {
 
     form: FormGroup;
 
-    placeholder = 'Select one of the options';
     options = [];
         
     constructor() {
@@ -155,6 +167,7 @@ following optional parameters:
 ```html
 <ng-select
 	[options]="options"
+	multiple="true"
     placeholder="Select an option"
     allowClear="true"
     theme="default">
@@ -168,6 +181,7 @@ class.
 ```html
 <ng-select
 	[options]="options"
+	multiple="true"
     [placeholder]="placeholder"
     [allowClear]="canClearSelect"
     theme="default">
@@ -186,6 +200,12 @@ export class YourComponent implements {
 
 Optional parameters will be set to their default value if they are not defined
 in the `ng-select` tag.
+
+### multiple
+
+*default: 'false'*
+
+A boolean to choose between single and multi-select.
 
 ### placeholder
 
