@@ -85,6 +85,9 @@ export const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
 `,
     styles: [
         DEFAULT_STYLES
+    ],
+    providers: [
+        SELECT_VALUE_ACCESSOR
     ]
 })
 

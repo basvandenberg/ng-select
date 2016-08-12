@@ -2,7 +2,7 @@
   "name": "angular2-select",
   "version": "1.0.0-alpha.2",
   "description": "Select component for Angular 2 (based on select2 JQuery plugin).",
-  "main": "select.js",
+  "main": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -49,5 +49,10 @@
     "typescript": "^1.8.10",
     "zone.js": "^0.6.12"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "peerDependencies": {
+    "@angular/core": "^2.0.0-rc.5",
+    "@angular/common": "^2.0.0-rc.5",
+    "@angular/forms": "^0.3.0"
+  }
 }

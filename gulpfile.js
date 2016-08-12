@@ -13,7 +13,7 @@ gulp.task('build', ['transpile:ts']);
 gulp.task('watch', function() {
 
     gulp.watch([
-        './select.ts',
+        './index.ts',
         './src/*.ts',
         '!*/**/*.d.ts'
     ], [
@@ -26,9 +26,9 @@ gulp.task('watch', function() {
 gulp.task('clean:js', function() {
 
     return del([
-        './select.d.ts',
-        './select.js',
-        './select.js.map',
+        './index.d.ts',
+        './index.js',
+        './index.js.map',
         './src/**/*.d.ts',
         './src/**/*.js',
         './src/**/*.js.map'
@@ -37,7 +37,7 @@ gulp.task('clean:js', function() {
 
 gulp.task('lint:ts', function() {
     return gulp.src([
-        './select.ts', 
+        './index.ts', 
         './src/*.ts', 
         '!*/**/*.d.ts'
     ])
@@ -62,7 +62,7 @@ gulp.task('transpile:ts', ['clean:js', 'lint:ts'], function () {
     };
 
     var tsResult = gulp.src([
-        './select.ts', 
+        './index.ts', 
         './src/*.ts',
         './node_modules/@types/core-js/index.d.ts',
         './node_modules/@types/jasmine/index.d.ts',
