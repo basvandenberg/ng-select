@@ -41,7 +41,7 @@ var packages = {
 Import the `SelectModule` and define it as one of the imports of your
 application module:
 
-```
+```typescript
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -189,7 +189,7 @@ class.
 
 ```
 
-``` typescript
+```typescript
 export class YourComponent implements {
 
     placeholder: string = 'Select an option';
