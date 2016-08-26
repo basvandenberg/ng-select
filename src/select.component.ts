@@ -56,7 +56,7 @@ export const SELECT_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
                         <input class="select2-search__field"
                             #searchInput
                             placeholder="{{getPlaceholder()}}"
-                            [ngStyle]="multipleInputWidth()"
+                            [ngStyle]="getInputStyle()"
                             (input)="onInput($event)"
                             (keydown)="onSearchKeydown($event)"/>
                     </li>
@@ -327,7 +327,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
 
     getOutputValue(): any {
         if (this.multiple) {
-            console.log(this.value);
             return this.value.slice(0);
         }
         else {
@@ -390,7 +389,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     }
 
     handleInput(event: any) {
-        console.log(event.target.value);
         this.dropdown.filter(event.target.value);
     }
 
@@ -438,7 +436,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
      **************************************************************************/
 
     focus() {
-        console.log('focus');
         this.hasFocus = true;
         if (this.multiple) {
             this.searchInput.nativeElement.focus();
@@ -449,7 +446,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     }
 
     blur() {
-        console.log('blur');
         this.hasFocus = false;
         this.selectionSpan.nativeElement.blur();
     }
@@ -498,9 +494,24 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         return this.showPlaceholder() ? this.placeholder : '';
     }
 
-    multipleInputWidth(): any {
+    getInputStyle(): any {
+
+        let width: number;
+
+        if (typeof this.searchInput === 'undefined') {
+            width = 200;
+        }
+        else if (this.showPlaceholder() &&
+                 this.searchInput.nativeElement.value.length === 0 ) {
+
+            width = 10 + 10 * this.placeholder.length;
+        }
+        else {
+            width = 10 + 10 * this.searchInput.nativeElement.value.length;
+        }
+
         return {
-            width: '200px'
+            'width': width + 'px'
         };
     }
 }
