@@ -3,9 +3,18 @@
 A native select component for angular 2, based on the select2 JQuery plugin. The
 component is currently in alpha, so breaking changes are to be expected.
 
+- [Demo](#demo)
+- [Getting started](#getting-started)
+- [Input properties](#input-properties)
+- [Events](#events)
+- [Use in forms](#use-in-forms)
+- [Not supported](#not-supported)
+- [Develop](#develop)
+
 ## Demo
 
 Try it out with this [plunker] or by cloning [angular2-select-demo].
+
 
 ## Getting started
 
@@ -99,6 +108,126 @@ export class YourComponent {
 }
 ```
 
+
+## Input properties
+
+Next to the obligatory `options` property, the `ng-select` tag supports the
+following optional properties:
+
+```html
+<ng-select
+	[options]="options"
+	multiple="true"
+    placeholder="Select an option"
+    allowClear="true"
+    theme="default">
+</ng-select>
+
+```
+
+The optional properties can also be bound to a variable in the component's
+class.
+
+```html
+<ng-select
+	[options]="options"
+	multiple="true"
+    [placeholder]="placeholder"
+    [allowClear]="canClearSelect"
+    theme="default">
+</ng-select>
+
+```
+
+```typescript
+export class YourComponent implements {
+
+    placeholder: string = 'Select an option';
+    canClearSelect: boolean = true;
+    // ...
+}
+```
+
+Optional properties will be set to their default value if they are not defined
+in the `ng-select` tag.
+
+### multiple
+
+*default: 'false'*
+
+A boolean to choose between single and multi-select.
+
+### placeholder
+
+*default: ''*
+
+The placeholder value is shown if no option is selected.
+
+### allowClear
+
+*default: 'false'*
+
+If set to true, a button with a cross that can be used to clear the currently
+selected option is shown if an option is selected.
+
+### theme
+
+*default: 'default'*
+
+Currently the original `select2` CSS is used, which allows you to select between
+to themed looks, `default` and `classic`.
+
+
+## Events
+
+The angular2-select module emits output events to inform parent components that
+the select dropdown is `opened` or `closed`, and that an item is `selected` or
+`deselected`. 
+
+A parent component can bind to these events with the output properties `opened`, 
+`closed`, `selected`, and `deselected`:
+
+```html
+<ng-select
+	[options]="options"
+	multiple="true"
+    (opened)="onSelectOpened()"
+    (closed)="onSelectClosed()"
+    (selected)="onSelected($event)"
+    (deselected)="onDeselected($event)">
+</ng-select>
+
+```
+
+With the corresponding event handlers defened in the parent component's class:
+
+```typescript
+onSelectOpened() {
+    console.log('Select dropdown opened.');
+}
+
+onSelectClosed() {
+    console.log('Select dropdown closed.');
+}
+
+onSelected(item) {
+    console.log('Selected: ' + item.value + ', ' + item.label);
+}
+
+onDeselected(item) {
+    console.log('Deselected: ' + item.value + ', ' + item.label);
+}
+```
+
+The (de)selected item is provided as parameter to the `selected` and
+`deselected` events. This is an object with properties `value` and `label`, the
+same as the objects in the list of select `options` that was provided as input
+for the module.
+
+The `select` event is emitted by both the single and multiple select, the
+`deselect` event is only submitted by the multiple select.
+
+
 ## Use in forms
 
 The component can be used in an angular 2 form, just like you would use regular
@@ -159,123 +288,8 @@ export class App implements OnInit {
 }
 ```
 
-## Parameters
 
-Next to the obligatory `options` parameter, the `ng-select` tag supports the
-following optional parameters:
-
-```html
-<ng-select
-	[options]="options"
-	multiple="true"
-    placeholder="Select an option"
-    allowClear="true"
-    theme="default">
-</ng-select>
-
-```
-
-The optional parameters can also be bound to a variable in the component's
-class.
-
-```html
-<ng-select
-	[options]="options"
-	multiple="true"
-    [placeholder]="placeholder"
-    [allowClear]="canClearSelect"
-    theme="default">
-</ng-select>
-
-```
-
-```typescript
-export class YourComponent implements {
-
-    placeholder: string = 'Select an option';
-    canClearSelect: boolean = true;
-    // ...
-}
-```
-
-Optional parameters will be set to their default value if they are not defined
-in the `ng-select` tag.
-
-### multiple
-
-*default: 'false'*
-
-A boolean to choose between single and multi-select.
-
-### placeholder
-
-*default: ''*
-
-The placeholder value is shown if no option is selected.
-
-### allowClear
-
-*default: 'false'*
-
-If set to true, a button with a cross that can be used to clear the currently
-selected option is shown if an option is selected.
-
-### theme
-
-*default: 'default'*
-
-Currently the original `select2` CSS is used, which allows you to select between
-to themed looks, `default` and `classic`.
-
-## Events
-
-The angular2-select module emits output events to inform parent components that
-the select dropdown is `opened` or `closed`, and that an item is `selected` or
-`deselected`. 
-
-A parent component can bind to these event with the output properties `opened`, 
-`closed`, `selected`, and `deselected`:
-
-```html
-<ng-select
-	[options]="options"
-	multiple="true"
-    (opened)="onSelectOpened()"
-    (closed)="onSelectClosed()"
-    (selected)="onSelected($event)"
-    (deselected)="onDeselected($event)">
-</ng-select>
-
-```
-
-With the event handler functions defened in this parent's class.
-
-```typescript
-onSelectOpened() {
-    console.log('Select dropdown opened.');
-}
-
-onSelectClosed() {
-    console.log('Select dropdown closed.');
-}
-
-onSelected(item) {
-    console.log('Selected: ' + item.value + ', ' + item.label);
-}
-
-onDeselected(item) {
-    console.log('Deselected: ' + item.value + ', ' + item.label);
-}
-```
-
-The (de)selected item is given as parameter to the `selected` and `deselected` 
-events. This is an object with properties `value` and `label`, the same as the
-objects in the list of select `options`.
-
-The `select` event is emitted by both the single and multiple select, the
-`deselect` event is only submitted by the multiple select.
-
-## Not yet supported
+## Not supported
 
 Select2 features that are currently not supported are:
 
@@ -290,6 +304,7 @@ Select2 features that are currently not supported are:
 - Localization, RTL
 - Themes
 - Templates
+
 
 ## Develop
 
