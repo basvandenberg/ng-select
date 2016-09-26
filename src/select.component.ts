@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, ExistingProvider, ViewChild, forwardRef} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, forwardRef} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 
 import {DEFAULT_STYLES} from './style';
@@ -98,12 +98,16 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     private S2_CONTAINER: string = this.S2 + '-container';
     private S2_SELECTION: string = this.S2 + '-selection';
 
-    // Input settings.
     @Input() options: Array<any>;
     @Input() theme: string;
     @Input() multiple: boolean;
     @Input() placeholder: string;
     @Input() allowClear: boolean;
+
+    @Output() opened: EventEmitter<null> = new EventEmitter<null>();
+    @Output() closed: EventEmitter<null> = new EventEmitter<null>();
+    @Output() selected: EventEmitter<any> = new EventEmitter<any>();
+    @Output() deselected: EventEmitter<any> = new EventEmitter<any>();
 
     @ViewChild('container') container: any;
     @ViewChild('selectionSpan') selectionSpan: any;
@@ -249,15 +253,21 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     }
 
     open() {
-        this.updateWidth();
-        this.updatePosition();
-        this.isOpen = true;
+        if (!this.isOpen) {
+            this.updateWidth();
+            this.updatePosition();
+            this.isOpen = true;
+            this.opened.emit(null);
+        }
     }
 
     close(focus: boolean) {
-        this.isOpen = false;
-        if (focus) {
-            this.focus();
+        if (this.isOpen) {
+            this.isOpen = false;
+            if (focus) {
+                this.focus();
+            }
+            this.closed.emit(null);
         }
     }
 
@@ -271,8 +281,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
             this.selection[0].selected = false;
         }
 
-        this.optionsDict[value].selected = !this.optionsDict[value].selected;
-        this.updateSelection();
+        this.optionsDict[value].selected ?
+            this.deselect(value) : this.select(value);
 
         if (this.multiple) {
             this.searchInput.nativeElement.value = '';
@@ -283,9 +293,16 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         }
     }
 
+    select(value: string) {
+        this.optionsDict[value].selected = true;
+        this.updateSelection();
+        this.selected.emit(this.optionsDict[value]);
+    }
+
     deselect(value: string) {
         this.optionsDict[value].selected = false;
         this.updateSelection();
+        this.deselected.emit(this.optionsDict[value]);
     }
 
     updateSelection() {
