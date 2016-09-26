@@ -227,6 +227,54 @@ selected option is shown if an option is selected.
 Currently the original `select2` CSS is used, which allows you to select between
 to themed looks, `default` and `classic`.
 
+## Events
+
+The angular2-select module emits output events to inform parent components that
+the select dropdown is `opened` or `closed`, and that an item is `selected` or
+`deselected`. 
+
+A parent component can bind to these event with the output properties `opened`, 
+`closed`, `selected`, and `deselected`:
+
+```html
+<ng-select
+	[options]="options"
+	multiple="true"
+    (opened)="onSelectOpened()"
+    (closed)="onSelectClosed()"
+    (selected)="onSelected($event)"
+    (deselected)="onDeselected($event)">
+</ng-select>
+
+```
+
+With the event handler functions defened in this parent's class.
+
+```typescript
+onSelectOpened() {
+    console.log('Select dropdown opened.');
+}
+
+onSelectClosed() {
+    console.log('Select dropdown closed.');
+}
+
+onSelected(item) {
+    console.log('Selected: ' + item.value + ', ' + item.label);
+}
+
+onDeselected(item) {
+    console.log('Deselected: ' + item.value + ', ' + item.label);
+}
+```
+
+The (de)selected item is given as parameter to the `selected` and `deselected` 
+events. This is an object with properties `value` and `label`, the same as the
+objects in the list of select `options`.
+
+The `select` event is emitted by both the single and multiple select, the
+`deselect` event is only submitted by the multiple select.
+
 ## Not yet supported
 
 Select2 features that are currently not supported are:
