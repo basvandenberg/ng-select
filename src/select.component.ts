@@ -362,13 +362,16 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         }
 
         this.value = value;
-
-        // Populate `selection` array.
         this.selection = [];
-        for (let optionValue of value) {
-            let option = this.optionsDict[optionValue];
-            option.selected = true;
-            this.selection.push(option);
+
+        for (let item in this.optionsDict) {
+            if (value.indexOf(item) > -1) {
+                this.optionsDict[item].selected = true;
+                this.selection.push(item);
+            }
+            else {
+                this.optionsDict[item].selected = false;
+            }
         }
     }
 
