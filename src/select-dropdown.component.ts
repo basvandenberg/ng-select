@@ -155,8 +155,15 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
     }
 
     private initHighlight() {
-        this._highlighted = this.selection.length > 0 ?
-            this.selection[0] : this.optionsDict[this.optionValues[0]];
+        if (this.optionValues.length > 0) {
+
+            if (this.selection.length > 0) {
+                this._highlighted = this.selection[0];
+            }
+            else {
+                this._highlighted = this.optionsDict[this.optionValues[0]];
+            }
+        }
     }
 
     private highlight(optionValue: string) {
