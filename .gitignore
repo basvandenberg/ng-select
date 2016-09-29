@@ -1,7 +1,11 @@
 index.d.ts
 index.js
+index.metadata.json
+index.ngfactory.ts
 src/**/*.d.ts
 src/**/*.js
+src/**/*.metadata.json
+src/**/*.ngfactory.ts
 
 
 /node_modules
