@@ -115,7 +115,15 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
     }
 
     onOptionsClick(event: any) {
-        this.toggleSelect.emit(event.target.dataset.value);
+        let val = event.target.dataset.value;
+
+        if (typeof val !== 'undefined') {
+            this.toggleSelect.emit(val);
+        }
+        else {
+            // Prevent close dropdown.
+            event.stopPropagation();
+        }
     }
 
     onKeydown(event: any) {
