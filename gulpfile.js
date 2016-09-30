@@ -1,10 +1,9 @@
 "use strict";
 
 var del = require('del');
+var exec = require('child_process').exec;
 var gulp = require('gulp');
-var merge = require('merge2');
 var tslint = require('gulp-tslint');
-var typescript = require('gulp-typescript');
 
 // Build.
 
@@ -15,7 +14,8 @@ gulp.task('watch', function() {
     gulp.watch([
         './index.ts',
         './src/*.ts',
-        '!*/**/*.d.ts'
+        '!*/**/*.d.ts',
+        '!*/**/*.ngfactory.ts',
     ], [
         'build'
     ]);
@@ -27,18 +27,22 @@ gulp.task('clean:js', function() {
 
     return del([
         './index.d.ts',
-        './index.js',
         './index.js.map',
+        './index.js',
+        './index.metadata.json',
+        './index.ngfactory.ts',
         './src/**/*.d.ts',
+        './src/**/*.js.map',
         './src/**/*.js',
-        './src/**/*.js.map'
+        './src/**/*.metadata.json',
+        './src/**/*.ngfactory.ts',
     ]);
 });
 
 gulp.task('lint:ts', function() {
     return gulp.src([
-        './index.ts', 
-        './src/*.ts', 
+        './index.ts',
+        './src/*.ts',
         '!*/**/*.d.ts'
     ])
         .pipe(tslint({
@@ -47,35 +51,10 @@ gulp.task('lint:ts', function() {
         .pipe(tslint.report())
 });
 
-gulp.task('transpile:ts', ['clean:js', 'lint:ts'], function () {
-
-    var compilerOptions = {
-        emitDecoratorMetadata: true,
-        experimentalDecorators: true,
-        declaration: true,
-        module: 'commonjs',
-        moduleResolution: 'node',
-        noImplicitAny: false,
-        removeComments: false,
-        sourceMap: false,
-        target: 'es5'
-    };
-
-    var tsResult = gulp.src([
-        './index.ts', 
-        './src/*.ts',
-        './node_modules/@types/core-js/index.d.ts',
-        './node_modules/@types/jasmine/index.d.ts',
-        './node_modules/@types/node/index.d.ts'
-    ], {
-        base: './'
-    })
-        .pipe(typescript(compilerOptions));
-
-    return merge([
-        tsResult.js
-            .pipe(gulp.dest('.')),
-        tsResult.dts
-            .pipe(gulp.dest('.'))
-    ]);
+gulp.task('transpile:ts', ['clean:js', 'lint:ts'], function (cb) {
+  exec('./node_modules/.bin/ngc', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
 });
