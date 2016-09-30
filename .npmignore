@@ -1,5 +1,6 @@
 *.ts
 !*.d.ts
+!*.ngfactory.ts
 
 gulpfile.js
 tslint.json
