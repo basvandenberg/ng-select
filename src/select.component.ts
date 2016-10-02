@@ -368,6 +368,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
 
         if (typeof value === 'undefined' || value === null) {
             value = [];
+            this.clearSelected();
         }
 
         this.value = value;
