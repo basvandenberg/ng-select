@@ -119,7 +119,7 @@ following optional properties:
 	[options]="options"
 	multiple="true"
     placeholder="Select an option"
-    allowClear="true"
+    [allowClear]="true"
     theme="default">
 </ng-select>
 
@@ -248,7 +248,7 @@ import {FormControl, FormGroup} from '@angular/forms';
         [options]="options"
         placeholder="Select one"
 		multiple="false"
-        allowClear="true"
+        [allowClear]="true"
         formControlName="select">
     </ng-select>
 </form>
