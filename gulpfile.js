@@ -43,7 +43,8 @@ gulp.task('lint:ts', function() {
     return gulp.src([
         './index.ts',
         './src/*.ts',
-        '!*/**/*.d.ts'
+        '!*/**/*.d.ts',
+        '!*/**/*.ngfactory.ts'
     ])
         .pipe(tslint({
             formatter: "verbose"
