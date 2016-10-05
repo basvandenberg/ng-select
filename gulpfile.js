@@ -56,7 +56,7 @@ gulp.task('lint:ts', function() {
 gulp.task('transpile:ts', ['clean:js', 'lint:ts'], function (cb) {
 
     var cmd = os.platform() === 'win32' ? 
-        'node_modules\\.bin\\ncg' : './node_modules/.bin/ngc';
+        'node_modules\\.bin\\ngc' : './node_modules/.bin/ngc';
 
     exec(cmd, function (err, stdout, stderr) {
         console.log(stdout);
