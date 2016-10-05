@@ -115,20 +115,20 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     @ViewChild('searchInput') searchInput: any;
 
     // State variables.
-    private isDisabled: boolean = false;
-    private isBelow: boolean = true;
-    private isOpen: boolean = false;
-    private hasFocus: boolean = false;
+    isDisabled: boolean = false;
+    isBelow: boolean = true;
+    isOpen: boolean = false;
+    hasFocus: boolean = false;
 
-    private width: number;
-    private top: number;
-    private left: number;
+    width: number;
+    top: number;
+    left: number;
 
     // Select options.
-    private optionValues: Array<string> = [];
-    private optionsDict: any = {};
+    optionValues: Array<string> = [];
+    optionsDict: any = {};
 
-    private selection: Array<any> = [];
+    selection: Array<any> = [];
     value: Array<string> = [];
 
     onChange = (_: any) => {};

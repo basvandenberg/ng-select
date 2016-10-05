@@ -74,8 +74,8 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
     @ViewChild('input') input: any;
     @ViewChild('optionsList') optionsList: any;
 
-    private optionValuesFiltered: Array<string> = [];
-    private _highlighted: any = null;
+    optionValuesFiltered: Array<string> = [];
+    _highlighted: any = null;
 
     constructor(
         private diacriticsService: DiacriticsService
