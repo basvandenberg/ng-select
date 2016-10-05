@@ -3,6 +3,7 @@
 var del = require('del');
 var exec = require('child_process').exec;
 var gulp = require('gulp');
+var os = require('os');
 var tslint = require('gulp-tslint');
 
 // Build.
@@ -53,9 +54,14 @@ gulp.task('lint:ts', function() {
 });
 
 gulp.task('transpile:ts', ['clean:js', 'lint:ts'], function (cb) {
-  exec('./node_modules/.bin/ngc', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
+
+    var cmd = os.platform() === 'win32' ? 'ngc' : './ngc';
+
+    exec(cmd, {
+        cwd: 'node_modules/.bin/'
+    }, function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
 });
