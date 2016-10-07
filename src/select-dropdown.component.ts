@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
 import {DEFAULT_STYLES} from './style';
 import {DiacriticsService} from './diacritics.service';
 
@@ -42,7 +42,8 @@ import {DiacriticsService} from './diacritics.service';
 `,
     styles: [
         DEFAULT_STYLES
-    ]
+    ],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit {

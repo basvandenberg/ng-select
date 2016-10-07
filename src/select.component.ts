@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, forwardRef} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 
 import {DEFAULT_STYLES} from './style';
@@ -86,6 +86,7 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = { provide: NG_VALUE_ACCES
     styles: [
         DEFAULT_STYLES
     ],
+    encapsulation: ViewEncapsulation.None,
     providers: [
         SELECT_VALUE_ACCESSOR
     ]
