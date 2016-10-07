@@ -1,5 +1,16 @@
 # Changelog
 
+<a name="1.0.0-alpha.10"></a>
+## [1.0.0-alpha.10](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.9...1.0.0-alpha.10) ()
+
+### Bug fixes
+
+### Improvements
+
+- Set ViewEncapsulation to None to enable style override ([#16] (https://github.com/basvandenberg/angular2-select/issues/16)). 
+
+
+
 <a name="1.0.0-alpha.9"></a>
 ## [1.0.0-alpha.9](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.8...1.0.0-alpha.9) (2016-10-05)
 
@@ -9,6 +20,8 @@
 - Fix gulp build taks.
 - Fix tsconfig, and added types to compilerOptions.
 - Fix AoT build, made some variables public.
+
+
 
 <a name="1.0.0-alpha.8"></a>
 ## [1.0.0-alpha.8](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.7...1.0.0-alpha.8) (2016-10-01)
