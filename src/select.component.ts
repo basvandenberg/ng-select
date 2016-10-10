@@ -367,20 +367,23 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
 
     writeValue(value: any) {
 
-        if (typeof value === 'undefined' || value === null) {
-            value = [];
+        if (typeof value === 'undefined' || value === null || value === '') {
+            value = this.multiple ? [] : '';
         }
-
-        this.value = value;
 
         for (let item in this.optionsDict) {
-            if (value.indexOf(item) > -1) {
+            this.optionsDict[item].selected = false;
+        }
+
+        if (this.multiple) {
+            for (let item of value) {
                 this.optionsDict[item].selected = true;
             }
-            else {
-                this.optionsDict[item].selected = false;
-            }
         }
+        else if (value !== '') {
+            this.optionsDict[value].selected = true;
+        }
+
         this.updateSelection();
     }
 
