@@ -224,8 +224,8 @@ The (de)selected item is provided as parameter to the `selected` and
 same as the objects in the list of select `options` that was provided as input
 for the module.
 
-The `select` event is emitted by both the single and multiple select, the
-`deselect` event is only submitted by the multiple select.
+The `selected` event is emitted by both the single and multiple select, the
+`deselected` event is only submitted by the multiple select.
 
 
 ## Use in forms
