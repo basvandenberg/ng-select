@@ -1,9 +1,18 @@
 # Changelog
 
+<a name="1.0.0-alpha.11"></a>
+## [1.0.0-alpha.11](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.10...1.0.0-alpha.11) ()
+
+
+
 <a name="1.0.0-alpha.10"></a>
 ## [1.0.0-alpha.10](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.9...1.0.0-alpha.10) ()
 
 ### Bug fixes
+
+- Fix errors in package.json and tsconfig.json ([#18] (https://github.com/basvandenberg/angular2-select/issues/18)).
+- Fix empty value multi-select, so that required validator works ([#21] (https://github.com/basvandenberg/angular2-select/issues/21)).
+- Fix setting value of single select ([#19] (https://github.com/basvandenberg/angular2-select/issues/19)).
 
 ### Improvements
 
@@ -32,7 +41,7 @@
 
 ### Bug fixes
 
-- Fixed clear selection using form control's setValue function ([#5] (https://github.com/basvandenberg/angular2-select/issues/5)).
+- Fix clear selection using form control's setValue function ([#5] (https://github.com/basvandenberg/angular2-select/issues/5)).
 - Update current selection when option list is changed ([#6] (https://github.com/basvandenberg/angular2-select/issues/6)).
 - Prevent javascript error when list of options is empty ([#7] (https://github.com/basvandenberg/angular2-select/issues/7)).
 - Prevent javascript error when clicking the 'No results found' option ([#8] (https://github.com/basvandenberg/angular2-select/issues/8)).
