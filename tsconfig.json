@@ -8,19 +8,12 @@
         "noImplicitAny": false,
         "removeComments": false,
         "sourceMap": false,
-        "target": "es5",
-        "typeRoots": [
-            "./node_modules/@types"
-        ],
-        "types": [
-            "core-js",
-            "jasmine",
-            "node"
-        ]
+        "target": "es5"
     },
     "include": [
         "index.ts",
-        "src/*.ts"
+        "src/*.ts",
+        "node_modules/@types/**/*.d.ts"
     ],
     "exclude": [
         "./**/*.ngfactory.ts",
