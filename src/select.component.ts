@@ -354,7 +354,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
 
     getOutputValue(): any {
         if (this.multiple) {
-            return this.value.slice(0);
+            return this.value.length === 0 ? '' : this.value.slice(0);
         }
         else {
             return this.value.length === 0 ? '' : this.value[0];
