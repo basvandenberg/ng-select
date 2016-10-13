@@ -1,7 +1,14 @@
 # Changelog
 
+<a name="1.0.0-alpha.12"></a>
+## [1.0.0-alpha.12](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.11...1.0.0-alpha.12) ()
+
+
+
 <a name="1.0.0-alpha.11"></a>
 ## [1.0.0-alpha.11](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.10...1.0.0-alpha.11) ()
+
+- Update to Angular 2.1.0.
 
 
 
