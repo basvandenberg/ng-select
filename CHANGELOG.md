@@ -3,7 +3,13 @@
 <a name="1.0.0-alpha.12"></a>
 ## [1.0.0-alpha.12](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.11...1.0.0-alpha.12) ()
 
+### Breaking changes
 
+- The method `clearSelected` is changed to `clear`.
+
+### Bug fixes
+
+- Trigger `deselected` event on clear single select click (#23).
 
 <a name="1.0.0-alpha.11"></a>
 ## [1.0.0-alpha.11](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.10...1.0.0-alpha.11) ()

@@ -36,7 +36,7 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = { provide: NG_VALUE_ACCES
                     *ngIf="!multiple && selection.length > 0">
                     <span class="select2-selection__clear"
                         *ngIf="allowClear"
-                        (click)="onClearAllClick($event)">
+                        (click)="onClearClick($event)">
                         x
                     </span>
                     {{selection[0].label}}
@@ -156,8 +156,15 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         event.stopPropagation();
     }
 
-    onClearAllClick(event: any) {
-        this.clearSelected();
+    /**
+     * Event handler of the single select clear (x) button click. It is assumed
+     * that there is exactly one item selected.
+     *
+     * The `deselect` method is used instead of `clear`, to heve the deselected
+     * event emitted.
+     */
+    onClearClick(event: any) {
+        this.deselect(this.selection[0].value);
         event.stopPropagation();
     }
 
@@ -341,7 +348,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         }
     }
 
-    clearSelected() {
+    clear() {
         for (let item in this.optionsDict) {
             this.optionsDict[item].selected = false;
         }
