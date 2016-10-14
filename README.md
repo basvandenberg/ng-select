@@ -199,7 +199,7 @@ A parent component can bind to these events with the output properties `opened`,
 
 ```
 
-With the corresponding event handlers defened in the parent component's class:
+With the corresponding event handlers defined in the parent component's class:
 
 ```typescript
 onSelectOpened() {
