@@ -22,23 +22,21 @@ gulp.task('watch', function() {
     ]);
 });
 
-// Typescript --> Javascript.
-
-gulp.task('clean:js', function() {
+gulp.task('clean', function() {
 
     return del([
         './index.d.ts',
-        './index.js.map',
         './index.js',
         './index.metadata.json',
         './index.ngfactory.ts',
         './src/**/*.d.ts',
-        './src/**/*.js.map',
         './src/**/*.js',
         './src/**/*.metadata.json',
         './src/**/*.ngfactory.ts',
     ]);
 });
+
+// Typescript --> Javascript.
 
 gulp.task('lint:ts', function() {
     return gulp.src([
@@ -53,7 +51,7 @@ gulp.task('lint:ts', function() {
         .pipe(tslint.report())
 });
 
-gulp.task('transpile:ts', ['clean:js', 'lint:ts'], function (cb) {
+gulp.task('transpile:ts', ['clean', 'lint:ts'], function (cb) {
 
     var cmd = os.platform() === 'win32' ? 
         'node_modules\\.bin\\ngc' : './node_modules/.bin/ngc';
