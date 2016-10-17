@@ -10,6 +10,7 @@
 ### Bug fixes
 
 - Trigger `deselected` event on clear single select click (#23).
+- Typo fixes.
 
 <a name="1.0.0-alpha.11"></a>
 ## [1.0.0-alpha.11](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.10...1.0.0-alpha.11) ()
