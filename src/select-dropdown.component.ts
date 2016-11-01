@@ -1,48 +1,12 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
-import {DEFAULT_STYLES} from './style';
+// import {DEFAULT_STYLES} from './style';
 import {DiacriticsService} from './diacritics.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'select-dropdown',
-    template: `
-<span class="select2-container select2-container--default select2-container--open"
-    [ngStyle]="{position: 'absolute', top: top + 'px', left: left + 'px'}">
-    <span class="select2-dropdown select2-dropdown--below"
-        [ngStyle]="{width: width + 'px'}">
-        <span class="select2-search select2-search--dropdown"
-            *ngIf="!multiple">
-            <input class="select2-search__field"
-                #input
-                (input)="onInput($event)"
-                (keydown)="onKeydown($event)"
-                (click)="onInputClick($event)">
-        </span>
-        <span class="select2-results">
-            <ul class="select2-results__options"
-                #optionsList
-                (mousemove)="onOptionsMouseMove($event)"
-                (wheel)="onOptionsWheel($event)"
-                (click)="onOptionsClick($event)">
-                <li
-                    *ngFor="let optionValue of optionValuesFiltered;"
-                    [attr.aria-selected]="optionsDict[optionValue].selected"
-                    [ngClass]="getOptionClass(optionValue)"
-                    [attr.data-value]="optionValue">
-                    {{optionsDict[optionValue].label}}
-                </li>
-                <li 
-                    *ngIf="optionValuesFiltered.length === 0"
-                    [ngClass]="getOptionClass(null)">
-                    {{MSG_NOT_FOUND}}
-                </li>
-            </ul>
-        </span>
-    </span>
-</span>
-`,
-    styles: [
-        DEFAULT_STYLES
-    ],
+    templateUrl: 'select-dropdown.html',
+    styleUrls: ['select.css'],
     encapsulation: ViewEncapsulation.None
 })
 

@@ -1,95 +1,24 @@
 import {Component, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 
-import {DEFAULT_STYLES} from './style';
+// import {DEFAULT_STYLES} from './style';
 import {SelectDropdownComponent} from './select-dropdown.component';
 
-export const SELECT_VALUE_ACCESSOR: ExistingProvider = { provide: NG_VALUE_ACCESSOR,
+export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
+    provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => SelectComponent),
     multi: true
 };
 
 @Component({
+    moduleId: module.id,
     selector: 'ng-select',
-    template: `
-<div style="width:100%;position:relative;">
-    <span style="width:100%"
-        #container
-        [ngClass]="getContainerClass()"
-        (window:resize)="onWindowResize()"
-        (window:click)="onWindowClick()">
-        <span class="selection">
-            <span tabindex=0
-                #selectionSpan
-                [ngClass]="getSelectionClass()"
-                (click)="onSelectionClick($event)"
-                (keydown)="onKeydown($event)">
-
-                <span class="select2-selection__rendered"
-                    *ngIf="!multiple">
-                    <span class="select2-selection__placeholder">
-                        {{getPlaceholder()}}
-                    </span>
-                </span>
-
-                <span class="select2-selection__rendered"
-                    *ngIf="!multiple && selection.length > 0">
-                    <span class="select2-selection__clear"
-                        *ngIf="allowClear"
-                        (click)="onClearClick($event)">
-                        x
-                    </span>
-                    {{selection[0].label}}
-                </span>
-
-                <ul class="select2-selection__rendered"
-                    *ngIf="multiple">
-                    <li class="select2-selection__choice" title="{{option.label}}"
-                        *ngFor="let option of selection">
-                        <span class="select2-selection__choice__remove"
-                            [attr.data-value]="option.value"
-                            (click)=onClearItemClick($event)>
-                            ×</span>
-                        {{option.label}}
-                    </li>
-                    <li class="select2-search select2-search--inline">
-                        <input class="select2-search__field"
-                            #searchInput
-                            placeholder="{{getPlaceholder()}}"
-                            [ngStyle]="getInputStyle()"
-                            (input)="onInput($event)"
-                            (keydown)="onSearchKeydown($event)"/>
-                    </li>
-                </ul>
-
-                <span class="select2-selection__arrow">
-                    <b></b>
-                </span>
-            </span>
-        </span>
-    </span>
-    <select-dropdown
-        *ngIf="isOpen"
-        #dropdown
-        [multiple]="multiple"
-        [optionValues]="optionValues"
-        [optionsDict]="optionsDict"
-        [selection]="selection"
-        [width]="width"
-        [top]="top"
-        [left]="left"
-        (toggleSelect)="onToggleSelect($event)"
-        (close)="onClose($event)">
-    </select-dropdown>
-</div>
-`,
-    styles: [
-        DEFAULT_STYLES
-    ],
-    encapsulation: ViewEncapsulation.None,
+    templateUrl: 'select.html',
+    styleUrls: ['select.css'],
     providers: [
         SELECT_VALUE_ACCESSOR
-    ]
+    ],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges {
@@ -100,6 +29,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     private S2_SELECTION: string = this.S2 + '-selection';
 
     @Input() options: Array<any>;
+
     @Input() theme: string;
     @Input() multiple: boolean;
     @Input() placeholder: string;
