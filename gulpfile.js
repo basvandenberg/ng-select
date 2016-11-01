@@ -30,6 +30,7 @@ gulp.task('clean', function() {
         './index.metadata.json',
         './index.ngfactory.ts',
         './src/**/*.d.ts',
+        './src/**/*.css.ts',
         './src/**/*.js',
         './src/**/*.metadata.json',
         './src/**/*.ngfactory.ts',
@@ -43,6 +44,7 @@ gulp.task('lint:ts', function() {
         './index.ts',
         './src/*.ts',
         '!*/**/*.d.ts',
+        '!*/**/*.css.ts',
         '!*/**/*.ngfactory.ts'
     ])
         .pipe(tslint({

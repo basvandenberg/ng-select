@@ -1,12 +1,13 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
-// import {DEFAULT_STYLES} from './style';
+
 import {DiacriticsService} from './diacritics.service';
+import {OptionList} from './option-list';
 
 @Component({
     moduleId: module.id,
     selector: 'select-dropdown',
     templateUrl: 'select-dropdown.html',
-    styleUrls: ['select.css'],
+    styleUrls: ['select-dropdown.css'],
     encapsulation: ViewEncapsulation.None
 })
 
@@ -25,9 +26,15 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
     private S2_OPTION_HL: string = this.S2_OPTION + '--highlighted';
 
     @Input() multiple: boolean;
-    @Input() optionValues: Array<string>;
-    @Input() optionsDict: any;
-    @Input() selection: Array<any>;
+
+    @Input() optionValues: Array<string>; // DEPRICATED
+    @Input() optionsDict: any; // DEPRICATED
+    @Input() selection: Array<any>; // DEPRICATED
+
+    optionValuesFiltered: Array<string> = []; // DEPRICATED
+    _highlighted: any = null; // DEPRICATED
+
+    @Input() options: OptionList;
 
     @Input() width: number;
     @Input() top: number;
@@ -38,9 +45,6 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
 
     @ViewChild('input') input: any;
     @ViewChild('optionsList') optionsList: any;
-
-    optionValuesFiltered: Array<string> = [];
-    _highlighted: any = null;
 
     constructor(
         private diacriticsService: DiacriticsService
@@ -68,6 +72,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
         event.stopPropagation();
     }
 
+    /*
     onOptionsMouseMove(event: any) {
         let v = event.target.dataset.value;
         if (typeof v !== 'undefined') {
@@ -96,26 +101,23 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
     }
 
     onInput(event: any) {
-        this.filter(event.target.value);
-    }
+        this.options.filter(event.target.value);
+    }*/
 
     /***************************************************************************
      * Initialization.
      **************************************************************************/
 
     private init() {
-        // Set filtered list of options to all options.
-        this.optionValuesFiltered = this.optionValues;
-
-        // Highlight first option in list (or first option in selection).
-        this.initHighlight();
+        this.options.resetFilter();
+        this.options.highlight();
     }
 
     /***************************************************************************
      * Highlight.
      **************************************************************************/
 
-    get highlighted(): any {
+    /*get highlighted(): any {
         return this._highlighted;
     }
 
@@ -136,9 +138,10 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
             optionValue !== this.highlighted.value) {
             this._highlighted = this.optionsDict[optionValue];
         }
-    }
+    }*/
 
-    private ensureHighlightedVisible() {
+    // TODO
+    /*private ensureHighlightedVisible() {
 
         let list = this.optionsList.nativeElement;
         let listHeight = list.offsetHeight;
@@ -166,51 +169,13 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
             return null;
         }
         return this.filteredOptionsIndex(this.highlighted.value);
-    }
-
-    /***************************************************************************
-     * Filter.
-     **************************************************************************/
-
-    filter(term: string) {
-
-        // Nothing to filter, set all options.
-        if (term.trim() === '') {
-            this.optionValuesFiltered = this.optionValues;
-        }
-
-        // Clone list of option values.
-        let filtered = this.optionValues.slice(0);
-
-        // Backwards iterate over list of options (to remove options).
-        for (let i = this.optionValues.length - 1; i >= 0; i--) {
-
-            let label = this.optionsDict[this.optionValues[i]].label;
-
-            let a = this.diacriticsService.stripDiacritics(label).toUpperCase();
-            let b = this.diacriticsService.stripDiacritics(term).toUpperCase();
-
-            if (a.indexOf(b) === -1) {
-                filtered.splice(i, 1);
-            }
-        }
-
-        // Set filtered option values.
-        this.optionValuesFiltered = filtered;
-
-        // Highlight first item in list.
-        if (this.optionValuesFiltered.length > 0) {
-            this._highlighted = this.optionsDict[this.optionValuesFiltered[0]];
-        }
-        else {
-            this._highlighted = null;
-        }
-    }
+    }*/
 
     /***************************************************************************
      * Keys/scroll.
      **************************************************************************/
 
+    /*
     private KEYS: any = {
         TAB: 9,
         ENTER: 13,
@@ -286,13 +251,13 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
             this.highlight(this.optionValuesFiltered[i + 1]);
             this.ensureHighlightedVisible();
         }
-    }
+    }*/
 
     /***************************************************************************
      * Classes.
      **************************************************************************/
 
-    private getOptionClass(optionValue: string): any {
+    /*private getOptionClass(optionValue: string): any {
         let result = {};
         let hlValue = this.highlighted === null ? '' : this.highlighted.value;
 
@@ -301,7 +266,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
         result[this.S2_MSG] = optionValue === null;
 
         return result;
-    }
+    }*/
 
     /***************************************************************************
      * Util functions.

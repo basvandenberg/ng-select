@@ -359,12 +359,12 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     }
 
     handleInput(event: any) {
-        this.dropdown.filter(event.target.value);
+        // this.dropdown.filter(event.target.value);
     }
 
     handleSearchKeyDown(event: any) {
 
-        let key = event.which;
+        /*let key = event.which;
 
         if (key === this.KEYS.ENTER) {
             if (typeof this.dropdown !== 'undefined') {
@@ -398,7 +398,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         }
         else if (key === this.KEYS.ESC) {
             this.close(true);
-        }
+        }*/
     }
 
     /***************************************************************************
