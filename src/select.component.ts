@@ -3,6 +3,7 @@ import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 
 // import {DEFAULT_STYLES} from './style';
 import {SelectDropdownComponent} from './select-dropdown.component';
+import {OptionList} from './option-list';
 
 export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
     provide: NG_VALUE_ACCESSOR,
@@ -28,8 +29,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     private S2_CONTAINER: string = this.S2 + '-container';
     private S2_SELECTION: string = this.S2 + '-selection';
 
-    @Input() options: Array<any>;
-
+    @Input() options: Array<{ value: string; label: string; }>;
     @Input() theme: string;
     @Input() multiple: boolean;
     @Input() placeholder: string;
@@ -45,6 +45,10 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
     @ViewChild('searchInput') searchInput: any;
 
+    // Select options.
+    private _optionList: OptionList;
+    get optionList(): OptionList { return this._optionList; }
+
     // State variables.
     isDisabled: boolean = false;
     isBelow: boolean = true;
@@ -56,11 +60,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     left: number;
 
     // Select options.
-    optionValues: Array<string> = [];
-    optionsDict: any = {};
+    optionValues: Array<string> = []; // DEPCRICATED.
+    optionsDict: any = {}; // DEPRICATED.
 
-    selection: Array<any> = [];
-    value: Array<string> = [];
+    selection: Array<any> = []; // DEPRICATED --> optionList
+    value: Array<string> = []; // DEPRICATED --> optionList
 
     onChange = (_: any) => {};
     onTouched = () => {};
@@ -74,6 +78,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     }
 
     ngOnChanges(changes: any) {
+        console.log(changes);
         this.init();
     }
 
@@ -152,6 +157,9 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     }
 
     initOptions() {
+
+        this._optionList = new OptionList(this.options);
+        /*
         let values: any[] = [];
         let opts = {};
 
@@ -175,6 +183,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         this.optionsDict = opts;
 
         this.updateSelection();
+        */
     }
 
     initDefaults() {

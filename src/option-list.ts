@@ -6,17 +6,20 @@ import {DiacriticsService} from './diacritics.service';
 export class OptionList {
 
     private diacriticsService: DiacriticsService;
+
     private _options: Array<Option>;
+    get options(): Array<Option> { return this._options; }
 
     // TODO add state variables that are updated upon changes, to avoid calling
     // expensive functions all the time...
 
-    constructor() {
+    constructor(options: Array<{ value: string; label: string; }>) {
+
+        // Inject diacritics service.
         let inj = ReflectiveInjector.resolveAndCreate([DiacriticsService]);
         this.diacriticsService = inj.get(DiacriticsService);
-    }
 
-    set options(options: any) {
+        // Initialize array of option objects.
         this._options = options.map((option) => {
             return new Option(option.value, option.label);
         });
