@@ -25,17 +25,9 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
     private S2_OPTION: string = this.S2_RESULTS + '__option';
     private S2_OPTION_HL: string = this.S2_OPTION + '--highlighted';
 
+    @Input() optionList: OptionList;
+
     @Input() multiple: boolean;
-
-    @Input() optionValues: Array<string>; // DEPRICATED
-    @Input() optionsDict: any; // DEPRICATED
-    @Input() selection: Array<any>; // DEPRICATED
-
-    optionValuesFiltered: Array<string> = []; // DEPRICATED
-    _highlighted: any = null; // DEPRICATED
-
-    @Input() options: OptionList;
-
     @Input() width: number;
     @Input() top: number;
     @Input() left: number;
@@ -72,14 +64,15 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
         event.stopPropagation();
     }
 
-    /*
     onOptionsMouseMove(event: any) {
-        let v = event.target.dataset.value;
-        if (typeof v !== 'undefined') {
-            this.highlight(v);
+        console.log(event);
+        let index: number = event.target.dataset['optionIndex'];
+        if (typeof index !== 'undefined') {
+            console.log(index);
         }
     }
 
+    /*
     onOptionsWheel(event: any) {
         this.handleOptionsWheel(event);
     }
@@ -109,8 +102,9 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
      **************************************************************************/
 
     private init() {
-        this.options.resetFilter();
-        this.options.highlight();
+        this.optionList.resetFilter();
+        this.optionList.highlight();
+        console.log(this.optionList);
     }
 
     /***************************************************************************
@@ -272,13 +266,13 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
      * Util functions.
      **************************************************************************/
 
-    private filteredOptionsIndex(optionValue: string) {
+    /*private filteredOptionsIndex(optionValue: string) {
         for (let i = 0; i < this.optionValuesFiltered.length; i++) {
             if (this.optionValuesFiltered[i] === optionValue) {
                 return i;
             }
         }
         return null;
-    }
+    }*/
 }
 

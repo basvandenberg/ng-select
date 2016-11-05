@@ -20,16 +20,13 @@
                 (mousemove)="onOptionsMouseMove($event)"
                 (wheel)="onOptionsWheel($event)"
                 (click)="onOptionsClick($event)">
-                <template ngFor #option [ngForOf]="options">
-                    <li
-                        *ngIf="option.shown"
-                        [ngClass]="{'highlighted': option.higlighted, 'selected': option.selected}"
-                        [attr.data-option]="option">
-                        {{option.label}}
-                    </li>
-                </template>
+                <li *ngFor="let option of optionList.filtered"
+                    [ngClass]="{'highlighted': option.higlighted, 'selected': option.selected}"
+                    [attr.data-option-index]="option.index">
+                    {{option.label}}
+                </li>
                 <li 
-                    *ngIf="!options.hasShown()"
+                    *ngIf="!optionList.hasShown()"
                     class="message">
                     {{MSG_NOT_FOUND}}
                 </li>

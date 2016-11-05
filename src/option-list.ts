@@ -8,7 +8,9 @@ export class OptionList {
     private diacriticsService: DiacriticsService;
 
     private _options: Array<Option>;
-    get options(): Array<Option> { return this._options; }
+    private _selection: Array<Option>;
+    private _filtered: Array<Option>;
+    private _value: Array<string>;
 
     // TODO add state variables that are updated upon changes, to avoid calling
     // expensive functions all the time...
@@ -20,29 +22,61 @@ export class OptionList {
         this.diacriticsService = inj.get(DiacriticsService);
 
         // Initialize array of option objects.
-        this._options = options.map((option) => {
-            return new Option(option.value, option.label);
+        this._options = options.map((option, index) => {
+            return new Option(option.value, option.label, index);
         });
     }
 
     /**************************************************************************
-     * Select.
+     * Options.
      *************************************************************************/
 
+    get options(): Array<Option> {
+        return this._options;
+    }
+
+    /**************************************************************************
+     * Value.
+     *************************************************************************/
+
+    get value(): Array<string> {
+        return this.selection.map((selectedOption) => {
+            return selectedOption.value;
+        });
+    }
+
+    set value(v: Array<string>) {
+        v = typeof v === 'undefined' || v === null ? [] : v;
+
+        this.options.forEach((option) => {
+            option.selected = v.indexOf(option.value) > -1;
+        });
+    }
+
+    /**************************************************************************
+     * Selection.
+     *************************************************************************/
+
+    get selection(): Array<Option> {
+        return this.options.filter((option) => {
+            return option.selected;
+        });
+    }
+
     unselectAll() {
-        this._options.forEach((option) => {
+        this.options.forEach((option) => {
             option.selected = false;
         });
     }
 
     hasSelected() {
-        return this._options.some((option) => {
+        return this.options.some((option) => {
             return option.selected;
         });
     }
 
     hasShownSelected() {
-        return this._options.some((option) => {
+        return this.options.some((option) => {
             return option.shown && option.selected;
         });
     }
@@ -51,13 +85,19 @@ export class OptionList {
      * Filter.
      *************************************************************************/
 
+    get filtered(): Array<Option> {
+        return this.options.filter((option) => {
+            return option.shown;
+        });
+    }
+
     filter(term: string) {
 
         if (term.trim() === '') {
             this.resetFilter();
         }
         else {
-            this._options.forEach((option) => {
+            this.options.forEach((option) => {
                 let strip: any = this.diacriticsService.stripDiacritics;
 
                 let l: string = strip.call(null, option.label).toUpperCase();
@@ -71,13 +111,13 @@ export class OptionList {
     }
 
     resetFilter() {
-        this._options.forEach((option) => {
+        this.options.forEach((option) => {
             option.shown = true;
         });
     }
 
     hasShown() {
-        return this._options.some((option) => {
+        return this.options.some((option) => {
             return option.shown;
         });
     }

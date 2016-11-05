@@ -19,19 +19,19 @@
                 </span>
 
                 <span class="select2-selection__rendered"
-                    *ngIf="!multiple && selection.length > 0">
+                    *ngIf="!multiple && optionList.selection.length > 0">
                     <span class="select2-selection__clear"
                         *ngIf="allowClear"
                         (click)="onClearClick($event)">
                         x
                     </span>
-                    {{selection[0].label}}
+                    {{optionList.selection[0].label}}
                 </span>
 
                 <ul class="select2-selection__rendered"
                     *ngIf="multiple">
                     <li class="select2-selection__choice" title="{{option.label}}"
-                        *ngFor="let option of selection">
+                        *ngFor="let option of optionList.selection">
                         <span class="select2-selection__choice__remove"
                             [attr.data-value]="option.value"
                             (click)=onClearItemClick($event)>
@@ -58,9 +58,7 @@
         *ngIf="isOpen"
         #dropdown
         [multiple]="multiple"
-        [optionValues]="optionValues"
-        [optionsDict]="optionsDict"
-        [selection]="selection"
+        [optionList]="optionList"
         [width]="width"
         [top]="top"
         [left]="left"

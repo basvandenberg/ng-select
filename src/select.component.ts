@@ -30,6 +30,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     private S2_SELECTION: string = this.S2 + '-selection';
 
     @Input() options: Array<{ value: string; label: string; }>;
+
     @Input() theme: string;
     @Input() multiple: boolean;
     @Input() placeholder: string;
@@ -59,13 +60,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     top: number;
     left: number;
 
-    // Select options.
-    optionValues: Array<string> = []; // DEPCRICATED.
-    optionsDict: any = {}; // DEPRICATED.
-
-    selection: Array<any> = []; // DEPRICATED --> optionList
-    value: Array<string> = []; // DEPRICATED --> optionList
-
     onChange = (_: any) => {};
     onTouched = () => {};
 
@@ -74,12 +68,13 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
      **************************************************************************/
 
     ngOnInit() {
-        this.init();
+        this.initDefaults();
     }
 
     ngOnChanges(changes: any) {
-        console.log(changes);
-        this.init();
+        if (changes.hasOwnProperty('options')) {
+            this.updateOptionsList(changes['options'].isFirstChange());
+        }
     }
 
     onSelectionClick(event: any) {
@@ -99,7 +94,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
      * event emitted.
      */
     onClearClick(event: any) {
-        this.deselect(this.selection[0].value);
+        // this.deselect(this.selection[0].value);
         event.stopPropagation();
     }
 
@@ -151,42 +146,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
      * Initialization.
      **************************************************************************/
 
-    init() {
-        this.initOptions();
-        this.initDefaults();
-    }
-
-    initOptions() {
-
-        this._optionList = new OptionList(this.options);
-        /*
-        let values: any[] = [];
-        let opts = {};
-
-        for (let option of this.options) {
-
-            let selected = false;
-            let existingOption = this.optionsDict[option.value];
-            if (typeof existingOption !== 'undefined') {
-                selected = existingOption.selected;
-            }
-
-            opts[option.value] = {
-                value: option.value,
-                label: option.label,
-                selected: selected
-            };
-            values.push(option.value);
-        }
-
-        this.optionValues = values;
-        this.optionsDict = opts;
-
-        this.updateSelection();
-        */
-    }
-
-    initDefaults() {
+    private initDefaults() {
         if (typeof this.multiple === 'undefined') {
             this.multiple = false;
         }
@@ -195,6 +155,20 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         }
         if (typeof this.allowClear === 'undefined') {
             this.allowClear = false;
+        }
+    }
+
+    private updateOptionsList(firstTime: boolean) {
+        let v: Array<string>;
+
+        if (!firstTime) {
+            v = this.optionList.value;
+        }
+
+        this._optionList = new OptionList(this.options);
+
+        if (!firstTime) {
+            this._optionList.value = v;
         }
     }
 
@@ -233,6 +207,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
 
     toggleSelect(value: string) {
 
+        /*
         if (!this.multiple && this.selection.length > 0) {
             this.selection[0].selected = false;
         }
@@ -246,23 +221,23 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         }
         else {
             this.focus();
-        }
+        }*/
     }
 
     select(value: string) {
-        this.optionsDict[value].selected = true;
-        this.updateSelection();
-        this.selected.emit(this.optionsDict[value]);
+        // this.optionsDict[value].selected = true;
+        // this.updateSelection();
+        // this.selected.emit(this.optionsDict[value]);
     }
 
     deselect(value: string) {
-        this.optionsDict[value].selected = false;
-        this.updateSelection();
-        this.deselected.emit(this.optionsDict[value]);
+        // this.optionsDict[value].selected = false;
+        // this.updateSelection();
+        // this.deselected.emit(this.optionsDict[value]);
     }
 
     updateSelection() {
-        let s: Array<any> = [];
+        /*let s: Array<any> = [];
         let v: Array<string> = [];
         for (let optionValue of this.optionValues) {
             if (this.optionsDict[optionValue].selected) {
@@ -276,18 +251,20 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         this.value = v;
 
         // TODO first check if value has changed?
-        this.onChange(this.getOutputValue());
+        this.onChange(this.getOutputValue());*/
     }
 
     popSelect() {
+        /*
         if (this.selection.length > 0) {
             this.selection[this.selection.length - 1].selected = false;
             this.updateSelection();
             this.onChange(this.getOutputValue());
-        }
+        }*/
     }
 
     clear() {
+        /*
         for (let item in this.optionsDict) {
             this.optionsDict[item].selected = false;
         }
@@ -296,15 +273,18 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
 
         // TODO first check if value has changed?
         this.onChange(this.getOutputValue());
+        */
     }
 
     getOutputValue(): any {
+        /*
         if (this.multiple) {
             return this.value.length === 0 ? '' : this.value.slice(0);
         }
         else {
             return this.value.length === 0 ? '' : this.value[0];
         }
+       */
     }
 
     /***************************************************************************
@@ -313,7 +293,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
 
     writeValue(value: any) {
 
-        if (typeof value === 'undefined' || value === null || value === '') {
+        /*if (typeof value === 'undefined' || value === null || value === '') {
             value = this.multiple ? [] : '';
         }
 
@@ -330,7 +310,17 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
             this.optionsDict[value].selected = true;
         }
 
-        this.updateSelection();
+        this.updateSelection();*/
+
+        if (typeof value === 'undefined' || value === null || value === '') {
+            value = [];
+        }
+
+        if (typeof value === 'string') {
+            value = [value];
+        }
+
+        this.optionList.value = value;
     }
 
     registerOnChange(fn: (_: any) => void) {
@@ -465,8 +455,9 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     }
 
     showPlaceholder(): boolean {
-        return typeof this.placeholder !== 'undefined' &&
-            this.selection.length === 0;
+        // return typeof this.placeholder !== 'undefined' &&
+        // this.selection.length === 0;
+        return true;
     }
 
     getPlaceholder(): string {
