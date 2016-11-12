@@ -6,8 +6,8 @@ import {OptionList} from './option-list';
 @Component({
     moduleId: module.id,
     selector: 'select-dropdown',
-    templateUrl: 'select-dropdown.html',
-    styleUrls: ['select-dropdown.css'],
+    templateUrl: 'select-dropdown.component.html',
+    styleUrls: ['select-dropdown.component.css'],
     encapsulation: ViewEncapsulation.None
 })
 

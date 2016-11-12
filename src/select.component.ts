@@ -14,8 +14,8 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
 @Component({
     moduleId: module.id,
     selector: 'ng-select',
-    templateUrl: 'select.html',
-    styleUrls: ['select.css'],
+    templateUrl: 'select.component.html',
+    styleUrls: ['select.component.css'],
     providers: [
         SELECT_VALUE_ACCESSOR
     ],
