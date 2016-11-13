@@ -315,7 +315,7 @@ npm install
 gulp build
 ```
 
-[plunker]: https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview
+[plunker]: https://plnkr.co/edit/PeGmCwVmi1X8Ag7LgnPT?p=preview
 [angular2-select-demo]: https://github.com/basvandenberg/angular2-select-demo
 [ControlValueAccessor]: https://angular.io/docs/ts/latest/api/common/index/ControlValueAccessor-interface.html
 [issue]: https://gitlab.com/pushrocks/beautylog/issues/7
