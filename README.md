@@ -5,9 +5,10 @@ component is currently in alpha, so breaking changes are to be expected.
 
 - [Demo](#demo)
 - [Getting started](#getting-started)
+- [Use with ngModel](#use-with-ngmodel)
+- [Use in reactive forms](#use-in-reactive-forms)
 - [Input properties](#input-properties)
 - [Events](#events)
-- [Use in forms](#use-in-forms)
 - [Not supported](#not-supported)
 - [Develop](#develop)
 
@@ -55,9 +56,7 @@ var packages = {
 
 
 
-## Usage
-
-### Use with `ngModel`
+## Use with `ngModel`
 
 Import the `SelectModule` and define it as one of the imports of your
 application module. Import the `FormsModule` so that you can use `ngModel`:
@@ -128,7 +127,9 @@ the `mySelectValue` to `['a', 'b']`. Because of the two-way data binding,
 updating the `mySelectValue` will cause the selection in your view to be 
 updated.
 
-### Use in reactive forms
+
+
+## Use in reactive forms
 
 The component can be used in an angular 2 form, just like you would use regular
 `input` or `select` elements (the `angular2-select` component implements the
