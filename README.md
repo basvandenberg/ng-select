@@ -11,9 +11,12 @@ component is currently in alpha, so breaking changes are to be expected.
 - [Not supported](#not-supported)
 - [Develop](#develop)
 
+
+
 ## Demo
 
 Try it out with this [plunker] or by cloning [angular2-select-demo].
+
 
 
 ## Getting started
@@ -25,6 +28,11 @@ npm install --save angular2-select
 ```
 
 ### Configuration
+
+#### Angular cli
+
+After installation, no additional configuration is needed. The `SelectModule`
+can be added to the list of imports of your module. See below for examples.
 
 #### Systemjs
 
@@ -45,14 +53,92 @@ var packages = {
 };
 ```
 
-### Usage
+
+
+## Usage
+
+### Use with `ngModel`
 
 Import the `SelectModule` and define it as one of the imports of your
-application module:
+application module. Import the `FormsModule` so that you can use `ngModel`:
 
 ```typescript
-import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {SelectModule} from 'angular2-select';
+
+import {AppComponent} from './app.component';
+
+@NgModule({
+    imports: [
+        BrowserModule,
+        FormsModule,
+        SelectModule
+    ],
+    declarations: [
+        AppComponent
+    ],
+    bootstrap: [
+        AppComponent
+    ]
+})
+export class AppModule { }
+```
+
+Add the select component to a components HTML:
+
+```html
+<ng-select
+	[multiple]="true"
+	[options]="myOptions"
+    [(ngModel)]="mySelectValue">
+</ng-select>
+```
+
+In the corresponding component class, set the list of options (`myOptions`) and
+set up the two-way data binding by defining `mySelectValue`.
+
+```typescript
+import {Component, OnInit} from '@angular/core';
+
+@Component({
+    selector: 'my-select',
+    templateUrl: 'my-select.component.html'
+})
+
+export class App implements OnInit {
+
+    options: Array<any>;
+    mySelectValue: Array<string>; // Array of stings for multiple select.
+        
+    ngOnInit() {
+        this.options = [
+            {value: 'a', label: 'Alpha'},
+            {value: 'b', label: 'Beta'},
+            {value: 'c', label: 'Gamma'},
+        ];
+        this.mySelectValue = ['b', 'c'];
+    }
+}
+```
+
+### Use in template-driven forms
+
+TODO
+
+### Use in reactive forms
+
+The component can be used in an angular 2 form, just like you would use regular
+`input` or `select` elements (the `angular2-select` component implements the
+[ControlValueAccessor] interface).
+
+For use in reactive forms, import the `ReactiveFormsModule` and `SelectModule`
+and add both to the list of imports of your application module:
+
+```typescript
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SelectModule} from 'angular2-select';
 
@@ -74,39 +160,53 @@ import {AppComponent} from './app.component';
 export class AppModule { }
 ```
 
-
-Add the following HTML to the component template in which you want to use the
-select component:
+Add a form with the select component to your template:
 
 ```html
-<ng-select
-	[options]="options">
-</ng-select>
+<form
+    [formGroup]="form">
+    <ng-select
+        [options]="myOptions"
+		[multiple]="true"
+        formControlName="mySelect">
+    </ng-select>
+</form>
+<hr>
+<div>
+    Selected option id: {{form.value.mySelect}}
+</div>`
 ```
 
-Within the component class you have to set the list of select options. This must
-be a list of objects, with for each object a value (option identifier) and a
-label (which the user sees in the select drop down).
+Within the corresponding component set the list of select options
+(`myOptions`). 
+
 
 ```typescript
-export class YourComponent {
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 
-    options = [
-		{
-			value: 'a',
-			label: 'Alpha'
-		},
-		{
-			value: 'b',
-			label: 'Beta'
-		},
-		{
-			value: 'c',
-			label: 'Gamma'
-		}
-	];
+@Component({
+    selector: 'my-select',
+    templateUrl: 'my-select.component.html'
+})
+
+export class App implements OnInit {
+
+    form: FormGroup;
+    options = [];
+
+    ngOnInit() {
+        this.options = [
+            {value: 'a', label: 'Alpha'},
+            {value: 'b', label: 'Beta'},
+            {value: 'c', label: 'Gamma'},
+        ];
+        this.form = new FormGroup({});
+        this.form.addControl('select', new FormControl(['b', 'c']));
+    }
 }
 ```
+
 
 
 ## Input properties
@@ -117,33 +217,27 @@ following optional properties:
 ```html
 <ng-select
 	[options]="options"
-	multiple="true"
-    placeholder="Select an option"
-    [allowClear]="true"
-    theme="default">
-</ng-select>
-
-```
-
-The optional properties can also be bound to a variable in the component's
-class.
-
-```html
-<ng-select
-	[options]="options"
-	multiple="true"
-    [placeholder]="placeholder"
-    [allowClear]="canClearSelect"
-    theme="default">
+	[multiple]="multiple"
+    [placeholder]="myPlaceholderText"
+    [allowClear]="canClearSelect">
 </ng-select>
 
 ```
 
 ```typescript
+// ...
+
 export class YourComponent implements {
 
-    placeholder: string = 'Select an option';
+    options: Array<any> = [
+        {value: 'a', label: 'Alpha'},
+        {value: 'b', label: 'Beta'},
+        {value: 'c', label: 'Gamma'},
+    ];
+    multiple: boolean = true;
+    myPlaceholderText: string = 'Select an option';
     canClearSelect: boolean = true;
+
     // ...
 }
 ```
@@ -170,18 +264,12 @@ The placeholder value is shown if no option is selected.
 If set to true, a button with a cross that can be used to clear the currently
 selected option is shown if an option is selected.
 
-### theme
-
-*default: 'default'*
-
-Currently the original `select2` CSS is used, which allows you to select between
-to themed looks, `default` and `classic`.
 
 
 ## Events
 
 The angular2-select module emits output events to inform parent components that
-the select dropdown is `opened` or `closed`, and that an item is `selected` or
+the select drop down is `opened` or `closed`, and that an item is `selected` or
 `deselected`. 
 
 A parent component can bind to these events with the output properties `opened`, 
@@ -190,7 +278,7 @@ A parent component can bind to these events with the output properties `opened`,
 ```html
 <ng-select
 	[options]="options"
-	multiple="true"
+	[multiple]="true"
     (opened)="onSelectOpened()"
     (closed)="onSelectClosed()"
     (selected)="onSelected($event)"
@@ -224,69 +312,6 @@ The (de)selected item is provided as parameter to the `selected` and
 same as the objects in the list of select `options` that was provided as input
 for the module.
 
-The `selected` event is emitted by both the single and multiple select, the
-`deselected` event is only submitted by the multiple select.
-
-
-## Use in forms
-
-The component can be used in an angular 2 form, just like you would use regular
-`input` or `select` elements (the `angular2-select` component implements the
-[ControlValueAccessor] interface).
-
-```typescript
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-
-@Component({
-    selector: 'my-app',
-    template: `
-<h1>Angular 2 select demo app</h1>
-<form
-    [formGroup]="form">
-    <ng-select
-        [options]="options"
-        placeholder="Select one"
-		multiple="false"
-        [allowClear]="true"
-        formControlName="select">
-    </ng-select>
-</form>
-<hr>
-<div>
-    Selected option id: {{form.value.select}}
-</div>`
-})
-
-export class App implements OnInit {
-
-    form: FormGroup;
-
-    options = [];
-        
-    constructor() {
-        this.options = [
-            {
-                value: 'a',
-                label: 'Alpha'
-            },
-            {
-                value: 'b',
-                label: 'Beta'
-            },
-            {
-                value: 'c',
-                label: 'Gamma'
-            }
-        ];
-    }
-
-    ngOnInit() {
-        this.form = new FormGroup({});
-        this.form.addControl('select', new FormControl(''));
-    }
-}
-```
 
 
 ## Not supported
@@ -304,6 +329,7 @@ Select2 features that are currently not supported are:
 - Localization, RTL
 - Themes
 - Templates
+
 
 
 ## Develop
