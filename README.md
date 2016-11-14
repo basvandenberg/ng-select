@@ -109,7 +109,7 @@ import {Component, OnInit} from '@angular/core';
 export class App implements OnInit {
 
     options: Array<any>;
-    mySelectValue: Array<string>; // Array of stings for multi select, string for single select.
+    mySelectValue: Array<string>; // Array of strings for multi select, string for single select.
         
     ngOnInit() {
         this.options = [
@@ -123,7 +123,7 @@ export class App implements OnInit {
 ```
 
 In this example the last two options are selected in `ngOnInit` by initializing
-the `mySelectValue` to `['a', 'b']`. Because of the two-way data binding,
+the `mySelectValue` to `['b', 'c']`. Because of the two-way data binding,
 updating the `mySelectValue` will cause the selection in your view to be 
 updated.
 
@@ -195,16 +195,16 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class App implements OnInit {
 
     form: FormGroup;
-    options = [];
+    myOptions = [];
 
     ngOnInit() {
-        this.options = [
+        this.myOptions = [
             {value: 'a', label: 'Alpha'},
             {value: 'b', label: 'Beta'},
             {value: 'c', label: 'Gamma'},
         ];
         this.form = new FormGroup({});
-        this.form.addControl('select', new FormControl(['b', 'c']));
+        this.form.addControl('mySelect', new FormControl(['b', 'c']));
     }
 }
 ```
