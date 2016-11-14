@@ -110,7 +110,7 @@ import {Component, OnInit} from '@angular/core';
 export class App implements OnInit {
 
     options: Array<any>;
-    mySelectValue: Array<string>; // Array of stings for multiple select.
+    mySelectValue: Array<string>; // Array of stings for multi select, string for single select.
         
     ngOnInit() {
         this.options = [
@@ -123,7 +123,10 @@ export class App implements OnInit {
 }
 ```
 
-In this example options `a` and `b` are selected during initialization
+In this example the last two options are selected in `ngOnInit` by initializing
+the `mySelectValue` to `['a', 'b']`. Because of the two-way data binding,
+updating the `mySelectValue` will cause the selection in your view to be 
+updated.
 
 ### Use in reactive forms
 
