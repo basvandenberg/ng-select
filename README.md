@@ -86,7 +86,7 @@ import {AppComponent} from './app.component';
 export class AppModule { }
 ```
 
-Add the select component to a components HTML:
+Add the select component to one of your templates:
 
 ```html
 <ng-select
@@ -123,9 +123,7 @@ export class App implements OnInit {
 }
 ```
 
-### Use in template-driven forms
-
-TODO
+In this example options `a` and `b` are selected during initialization
 
 ### Use in reactive forms
 
