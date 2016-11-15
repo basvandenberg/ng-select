@@ -29,4 +29,11 @@ export class Option {
     hide() {
         this.shown = false;
     }
+
+    undecoratedCopy() {
+        return {
+            label: this.label,
+            value: this.value
+        };
+    }
 }

@@ -12,3 +12,5 @@ src/**/*.ngfactory.ts
 /node_modules
 npm-debug.log
 *.swp
+
+copy-to-demo.sh

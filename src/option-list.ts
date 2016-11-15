@@ -63,7 +63,7 @@ export class OptionList {
         });
     }
 
-    unselectAll() {
+    clearSelection() {
         this.options.forEach((option) => {
             option.selected = false;
         });

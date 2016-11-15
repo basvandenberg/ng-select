@@ -4,7 +4,6 @@ import {DiacriticsService} from './diacritics.service';
 import {OptionList} from './option-list';
 
 @Component({
-    moduleId: module.id,
     selector: 'select-dropdown',
     templateUrl: 'select-dropdown.component.html',
     styleUrls: ['select-dropdown.component.css'],
@@ -65,28 +64,29 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
     }
 
     onOptionsMouseMove(event: any) {
-        console.log(event);
+        // console.log(event);
         let index: number = event.target.dataset['optionIndex'];
         if (typeof index !== 'undefined') {
-            console.log(index);
+            // console.log(index);
+        }
+    }
+
+    onOptionsClick(event: any) {
+        let index: number = event.target.dataset.optionIndex;
+        console.log(index);
+
+        if (typeof index !== 'undefined') {
+            // this.toggleSelect.emit(val);
+        }
+        else {
+            // Prevent close dropdown.
+            event.stopPropagation();
         }
     }
 
     /*
     onOptionsWheel(event: any) {
         this.handleOptionsWheel(event);
-    }
-
-    onOptionsClick(event: any) {
-        let val = event.target.dataset.value;
-
-        if (typeof val !== 'undefined') {
-            this.toggleSelect.emit(val);
-        }
-        else {
-            // Prevent close dropdown.
-            event.stopPropagation();
-        }
     }
 
     onKeydown(event: any) {
@@ -104,7 +104,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
     private init() {
         this.optionList.resetFilter();
         this.optionList.highlight();
-        console.log(this.optionList);
+        // console.log(this.optionList);
     }
 
     /***************************************************************************

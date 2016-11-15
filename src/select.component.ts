@@ -12,7 +12,6 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
 };
 
 @Component({
-    moduleId: module.id,
     selector: 'ng-select',
     templateUrl: 'select.component.html',
     styleUrls: ['select.component.css'],
@@ -224,16 +223,20 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         }*/
     }
 
-    select(value: string) {
-        // this.optionsDict[value].selected = true;
-        // this.updateSelection();
-        // this.selected.emit(this.optionsDict[value]);
+    select(index: number) {
+        this.optionList[index].selected = true;
+        this.onChange(this.getOutputValue());
+        this.selected.emit(this.optionList[index].undecoratedCopy());
     }
 
-    deselect(value: string) {
-        // this.optionsDict[value].selected = false;
-        // this.updateSelection();
-        // this.deselected.emit(this.optionsDict[value]);
+    deselect(index: number) {
+        let option = this.optionList[index];
+        option.selected = false;
+        this.onChange(this.getOutputValue());
+        this.deselected.emit({
+            value: option.value,
+            label: option.label
+        });
     }
 
     updateSelection() {
@@ -264,27 +267,15 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     }
 
     clear() {
-        /*
-        for (let item in this.optionsDict) {
-            this.optionsDict[item].selected = false;
+        if (this.optionList.hasSelected()) {
+            this.optionList.clearSelection();
+            this.onChange(this.getOutputValue());
         }
-        this.selection = [];
-        this.value = [];
-
-        // TODO first check if value has changed?
-        this.onChange(this.getOutputValue());
-        */
     }
 
     getOutputValue(): any {
-        /*
-        if (this.multiple) {
-            return this.value.length === 0 ? '' : this.value.slice(0);
-        }
-        else {
-            return this.value.length === 0 ? '' : this.value[0];
-        }
-       */
+        let v = this.optionList.value.slice(0);
+        return v.length === 0 ? '' : this.multiple ? v : v[0];
     }
 
     /***************************************************************************
@@ -292,25 +283,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
      **************************************************************************/
 
     writeValue(value: any) {
-
-        /*if (typeof value === 'undefined' || value === null || value === '') {
-            value = this.multiple ? [] : '';
-        }
-
-        for (let item in this.optionsDict) {
-            this.optionsDict[item].selected = false;
-        }
-
-        if (this.multiple) {
-            for (let item of value) {
-                this.optionsDict[item].selected = true;
-            }
-        }
-        else if (value !== '') {
-            this.optionsDict[value].selected = true;
-        }
-
-        this.updateSelection();*/
 
         if (typeof value === 'undefined' || value === null || value === '') {
             value = [];
