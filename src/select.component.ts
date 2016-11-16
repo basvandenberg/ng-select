@@ -40,8 +40,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     @Output() selected: EventEmitter<any> = new EventEmitter<any>();
     @Output() deselected: EventEmitter<any> = new EventEmitter<any>();
 
-    @ViewChild('container') container: any;
-    @ViewChild('selectionSpan') selectionSpan: any;
+    @ViewChild('selection') selectionSpan: any;
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
     @ViewChild('searchInput') searchInput: any;
 
@@ -392,11 +391,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     }
 
     updateWidth() {
-        this.width = this.container.nativeElement.offsetWidth;
+        this.width = this.selectionSpan.nativeElement.offsetWidth;
     }
 
     updatePosition() {
-        let e = this.container.nativeElement;
+        let e = this.selectionSpan.nativeElement;
         this.left = e.offsetLeft;
         this.top = e.offsetTop + e.offsetHeight;
     }

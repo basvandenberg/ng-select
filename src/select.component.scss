@@ -1,0 +1,32 @@
+ng-select {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
+
+    // Container.
+    >span {
+        cursor: pointer;
+        display: block;
+        height: 30px;
+        user-select: none;
+
+        &.open {
+
+        }
+
+        &.focus {
+
+        }
+
+        &.below {
+
+        }
+
+        &.multiple {
+
+        }
+    }
+}

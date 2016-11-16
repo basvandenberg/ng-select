@@ -1,68 +1,60 @@
-<div style="width:100%;position:relative;">
-    <span style="width:100%"
-        #container
-        [ngClass]="getContainerClass()"
-        (window:resize)="onWindowResize()"
-        (window:click)="onWindowClick()">
-        <span class="selection">
-            <span tabindex=0
-                #selectionSpan
-                [ngClass]="getSelectionClass()"
-                (click)="onSelectionClick($event)"
-                (keydown)="onKeydown($event)">
+<span tabindex=0
+    #selection
+    [ngClass]="{'open': isOpen, 'focus': hasFocus, 'below': isBelow, 'multiple': multiple}"
+    (click)="onSelectionClick($event)"
+    (keydown)="onKeydown($event)"
+    (window:resize)="onWindowResize()"
+    (window:click)="onWindowClick()">
 
-                <span class="select2-selection__rendered"
-                    *ngIf="!multiple">
-                    <span class="select2-selection__placeholder">
-                        {{getPlaceholder()}}
-                    </span>
-                </span>
-
-                <span class="select2-selection__rendered"
-                    *ngIf="!multiple && optionList.selection.length > 0">
-                    <span class="select2-selection__clear"
-                        *ngIf="allowClear"
-                        (click)="onClearClick($event)">
-                        x
-                    </span>
-                    {{optionList.selection[0].label}}
-                </span>
-
-                <ul class="select2-selection__rendered"
-                    *ngIf="multiple">
-                    <li class="select2-selection__choice" title="{{option.label}}"
-                        *ngFor="let option of optionList.selection">
-                        <span class="select2-selection__choice__remove"
-                            [attr.data-value]="option.value"
-                            (click)=onClearItemClick($event)>
-                            ×</span>
-                        {{option.label}}
-                    </li>
-                    <li class="select2-search select2-search--inline">
-                        <input class="select2-search__field"
-                            #searchInput
-                            placeholder="{{getPlaceholder()}}"
-                            [ngStyle]="getInputStyle()"
-                            (input)="onInput($event)"
-                            (keydown)="onSearchKeydown($event)"/>
-                    </li>
-                </ul>
-
-                <span class="select2-selection__arrow">
-                    <b></b>
-                </span>
-            </span>
+    <span class="select2-selection__rendered"
+        *ngIf="!multiple">
+        <span class="select2-selection__placeholder">
+            {{getPlaceholder()}}
         </span>
     </span>
-    <select-dropdown
-        *ngIf="isOpen"
-        #dropdown
-        [multiple]="multiple"
-        [optionList]="optionList"
-        [width]="width"
-        [top]="top"
-        [left]="left"
-        (toggleSelect)="onToggleSelect($event)"
-        (close)="onClose($event)">
-    </select-dropdown>
-</div>
+
+    <span class="select2-selection__rendered"
+        *ngIf="!multiple && optionList.selection.length > 0">
+        <span class="select2-selection__clear"
+            *ngIf="allowClear"
+            (click)="onClearClick($event)">
+            x
+        </span>
+        {{optionList.selection[0].label}}
+    </span>
+
+    <ul class="select2-selection__rendered"
+        *ngIf="multiple">
+        <li class="select2-selection__choice" title="{{option.label}}"
+            *ngFor="let option of optionList.selection">
+            <span class="select2-selection__choice__remove"
+                [attr.data-value]="option.value"
+                (click)=onClearItemClick($event)>
+                ×</span>
+            {{option.label}}
+        </li>
+        <li class="select2-search select2-search--inline">
+            <input class="select2-search__field"
+                #searchInput
+                placeholder="{{getPlaceholder()}}"
+                [ngStyle]="getInputStyle()"
+                (input)="onInput($event)"
+                (keydown)="onSearchKeydown($event)"/>
+        </li>
+    </ul>
+
+    <span class="select2-selection__arrow">
+        <b></b>
+    </span>
+</span>
+<select-dropdown
+    *ngIf="isOpen"
+    #dropdown
+    [multiple]="multiple"
+    [optionList]="optionList"
+    [width]="width"
+    [top]="top"
+    [left]="left"
+    (toggleSelect)="onToggleSelect($event)"
+    (close)="onClose($event)">
+</select-dropdown>
