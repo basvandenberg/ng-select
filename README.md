@@ -108,11 +108,11 @@ import {Component, OnInit} from '@angular/core';
 
 export class App implements OnInit {
 
-    options: Array<any>;
+    myOptions: Array<any>;
     mySelectValue: Array<string>; // Array of strings for multi select, string for single select.
         
     ngOnInit() {
-        this.options = [
+        this.myOptions = [
             {value: 'a', label: 'Alpha'},
             {value: 'b', label: 'Beta'},
             {value: 'c', label: 'Gamma'},
