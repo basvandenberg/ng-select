@@ -1,7 +1,17 @@
-import {Component, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef} from '@angular/core';
+import {
+    Component,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    EventEmitter,
+    ExistingProvider,
+    ViewChild,
+    ViewEncapsulation,
+    forwardRef
+} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 
-// import {DEFAULT_STYLES} from './style';
 import {SelectDropdownComponent} from './select-dropdown.component';
 import {OptionList} from './option-list';
 
@@ -14,23 +24,16 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
 @Component({
     selector: 'ng-select',
     templateUrl: 'select.component.html',
-    styleUrls: ['select.component.css'],
-    providers: [
-        SELECT_VALUE_ACCESSOR
-    ],
+    styleUrls: ['select.component.scss'],
+    providers: [SELECT_VALUE_ACCESSOR],
     encapsulation: ViewEncapsulation.None
 })
 
-export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges {
-
-    // Class names.
-    private S2: string = 'select2';
-    private S2_CONTAINER: string = this.S2 + '-container';
-    private S2_SELECTION: string = this.S2 + '-selection';
+export class SelectComponent
+        implements ControlValueAccessor, OnInit, OnChanges {
 
     @Input() options: Array<{ value: string; label: string; }>;
 
-    @Input() theme: string;
     @Input() multiple: boolean;
     @Input() placeholder: string;
     @Input() allowClear: boolean;
@@ -53,6 +56,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     isBelow: boolean = true;
     isOpen: boolean = false;
     hasFocus: boolean = false;
+
+    renderedValue: string = '';
 
     width: number;
     top: number;
@@ -88,11 +93,13 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
      * Event handler of the single select clear (x) button click. It is assumed
      * that there is exactly one item selected.
      *
-     * The `deselect` method is used instead of `clear`, to heve the deselected
+     * The `deselect` method is used instead of `clear`, to have the deselected
      * event emitted.
      */
-    onClearClick(event: any) {
-        // this.deselect(this.selection[0].value);
+    onClearSingleClick(event: any) {
+        console.log('Clear single.');
+
+        // Prevent open/close dropdown.
         event.stopPropagation();
     }
 
@@ -148,9 +155,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         if (typeof this.multiple === 'undefined') {
             this.multiple = false;
         }
-        if (typeof this.theme === 'undefined') {
-            this.theme = 'default';
-        }
         if (typeof this.allowClear === 'undefined') {
             this.allowClear = false;
         }
@@ -203,25 +207,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
      * Select.
      **************************************************************************/
 
-    toggleSelect(value: string) {
-
-        /*
-        if (!this.multiple && this.selection.length > 0) {
-            this.selection[0].selected = false;
-        }
-
-        this.optionsDict[value].selected ?
-            this.deselect(value) : this.select(value);
-
-        if (this.multiple) {
-            this.searchInput.nativeElement.value = '';
-            this.searchInput.nativeElement.focus();
-        }
-        else {
-            this.focus();
-        }*/
-    }
-
     select(index: number) {
         this.optionList[index].selected = true;
         this.onChange(this.getOutputValue());
@@ -231,38 +216,19 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     deselect(index: number) {
         let option = this.optionList[index];
         option.selected = false;
+
         this.onChange(this.getOutputValue());
+
         this.deselected.emit({
             value: option.value,
             label: option.label
         });
     }
 
-    updateSelection() {
-        /*let s: Array<any> = [];
-        let v: Array<string> = [];
-        for (let optionValue of this.optionValues) {
-            if (this.optionsDict[optionValue].selected) {
-                let opt = this.optionsDict[optionValue];
-                s.push(opt);
-                v.push(opt.value);
-            }
-        }
-
-        this.selection = s;
-        this.value = v;
-
-        // TODO first check if value has changed?
-        this.onChange(this.getOutputValue());*/
+    toggleSelect(index: number) {
     }
 
     popSelect() {
-        /*
-        if (this.selection.length > 0) {
-            this.selection[this.selection.length - 1].selected = false;
-            this.updateSelection();
-            this.onChange(this.getOutputValue());
-        }*/
     }
 
     clear() {
@@ -286,8 +252,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         if (typeof value === 'undefined' || value === null || value === '') {
             value = [];
         }
-
-        if (typeof value === 'string') {
+        else if (typeof value === 'string') {
             value = [value];
         }
 
@@ -398,61 +363,5 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
         let e = this.selectionSpan.nativeElement;
         this.left = e.offsetLeft;
         this.top = e.offsetTop + e.offsetHeight;
-    }
-
-    getContainerClass(): any {
-        let result = {};
-
-        result[this.S2] = true;
-
-        let c = this.S2_CONTAINER;
-        result[c] = true;
-        result[c + '--open'] = this.isOpen;
-        result[c + '--focus'] = this.hasFocus;
-        result[c + '--' + this.theme] = true;
-        result[c + '--' + (this.isBelow ? 'below' : 'above')] = true;
-
-        return result;
-    }
-
-    getSelectionClass(): any {
-        let result = {};
-
-        let s = this.S2_SELECTION;
-        result[s] = true;
-        result[s + '--' + (this.multiple ? 'multiple' : 'single')] = true;
-
-        return result;
-    }
-
-    showPlaceholder(): boolean {
-        // return typeof this.placeholder !== 'undefined' &&
-        // this.selection.length === 0;
-        return true;
-    }
-
-    getPlaceholder(): string {
-        return this.showPlaceholder() ? this.placeholder : '';
-    }
-
-    getInputStyle(): any {
-
-        let width: number;
-
-        if (typeof this.searchInput === 'undefined') {
-            width = 200;
-        }
-        else if (this.showPlaceholder() &&
-                 this.searchInput.nativeElement.value.length === 0 ) {
-
-            width = 10 + 10 * this.placeholder.length;
-        }
-        else {
-            width = 10 + 10 * this.searchInput.nativeElement.value.length;
-        }
-
-        return {
-            'width': width + 'px'
-        };
     }
 }

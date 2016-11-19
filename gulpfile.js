@@ -15,8 +15,10 @@ gulp.task('watch', function() {
     gulp.watch([
         './index.ts',
         './src/*.ts',
+        './src/*.html',
+        './src/*.scss',
         '!*/**/*.d.ts',
-        '!*/**/*.ngfactory.ts',
+        '!*/**/*.ngfactory.ts'
     ], [
         'build'
     ]);
@@ -55,7 +57,7 @@ gulp.task('lint:ts', function() {
 
 gulp.task('transpile:ts', ['clean', 'lint:ts'], function (cb) {
 
-    var cmd = os.platform() === 'win32' ? 
+    var cmd = os.platform() === 'win32' ?
         'node_modules\\.bin\\ngc' : './node_modules/.bin/ngc';
 
     exec(cmd, function (err, stdout, stderr) {

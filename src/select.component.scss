@@ -7,11 +7,12 @@ ng-select {
     width: 100%;
 
     // Container.
-    >span {
+    >div {
+        border: 1px solid #ececec;
         cursor: pointer;
-        display: block;
         height: 30px;
         user-select: none;
+        width: 100%;
 
         &.open {
 
@@ -27,6 +28,28 @@ ng-select {
 
         &.multiple {
 
+        }
+
+        >div.single {
+            display: flex;
+            height: 100%;
+            width: 100%;
+
+            >div.value {
+                flex: 1;
+            }
+
+            >div.clear {
+                width: 30px;
+
+                &:hover {
+                    background-color: #ececec;
+                }
+            }
+
+            >div.arrow {
+                width: 30px;
+            }
         }
     }
 }

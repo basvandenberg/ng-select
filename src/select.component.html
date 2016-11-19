@@ -1,4 +1,4 @@
-<span tabindex=0
+<div tabindex=0
     #selection
     [ngClass]="{'open': isOpen, 'focus': hasFocus, 'below': isBelow, 'multiple': multiple}"
     (click)="onSelectionClick($event)"
@@ -6,22 +6,22 @@
     (window:resize)="onWindowResize()"
     (window:click)="onWindowClick()">
 
-    <span class="select2-selection__rendered"
+    <div class="single"
         *ngIf="!multiple">
-        <span class="select2-selection__placeholder">
-            {{getPlaceholder()}}
-        </span>
-    </span>
-
-    <span class="select2-selection__rendered"
-        *ngIf="!multiple && optionList.selection.length > 0">
-        <span class="select2-selection__clear"
+        <div class="value">
+            {{renderedValue}}
+        </div>
+        <div class="clear"
             *ngIf="allowClear"
-            (click)="onClearClick($event)">
+            (click)="onClearSingleClick($event)">
             x
-        </span>
-        {{optionList.selection[0].label}}
-    </span>
+        </div>
+        <div class="arrow">
+            a
+            <b></b>
+        </div>
+    </div>
+
 
     <ul class="select2-selection__rendered"
         *ngIf="multiple">
@@ -43,10 +43,7 @@
         </li>
     </ul>
 
-    <span class="select2-selection__arrow">
-        <b></b>
-    </span>
-</span>
+</div>
 <select-dropdown
     *ngIf="isOpen"
     #dropdown
