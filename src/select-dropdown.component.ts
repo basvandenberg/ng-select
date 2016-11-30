@@ -10,12 +10,13 @@ import {DiacriticsService} from './diacritics.service';
     <span class="select2-dropdown select2-dropdown--below"
         [ngStyle]="{width: width + 'px'}">
         <span class="select2-search select2-search--dropdown"
-            *ngIf="!multiple">
+            *ngIf="search && !multiple">
             <input class="select2-search__field"
                 #input
                 (input)="onInput($event)"
                 (keydown)="onKeydown($event)"
-                (click)="onInputClick($event)">
+                (click)="onInputClick($event)"
+                placeholder="{{searchPlaceholder}}">
         </span>
         <span class="select2-results">
             <ul class="select2-results__options"
@@ -30,7 +31,7 @@ import {DiacriticsService} from './diacritics.service';
                     [attr.data-value]="optionValue">
                     {{optionsDict[optionValue].label}}
                 </li>
-                <li 
+                <li
                     *ngIf="optionValuesFiltered.length === 0"
                     [ngClass]="getOptionClass(null)">
                     {{MSG_NOT_FOUND}}
@@ -61,6 +62,8 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
     private S2_OPTION_HL: string = this.S2_OPTION + '--highlighted';
 
     @Input() multiple: boolean;
+    @Input() search: boolean;
+    @Input() searchPlaceholder: string;
     @Input() optionValues: Array<string>;
     @Input() optionsDict: any;
     @Input() selection: Array<any>;
@@ -95,7 +98,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
     }
 
     ngAfterViewInit() {
-        if (!this.multiple) {
+        if (this.search && !this.multiple) {
             this.input.nativeElement.focus();
         }
     }

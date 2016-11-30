@@ -71,6 +71,8 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = { provide: NG_VALUE_ACCES
     <select-dropdown
         *ngIf="isOpen"
         #dropdown
+        [search]="search"
+        [searchPlaceholder]="searchPlaceholder"
         [multiple]="multiple"
         [optionValues]="optionValues"
         [optionsDict]="optionsDict"
@@ -102,6 +104,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     @Input() options: Array<any>;
     @Input() theme: string;
     @Input() multiple: boolean;
+    @Input() search: boolean;
+    @Input() searchPlaceholder: string;
     @Input() placeholder: string;
     @Input() allowClear: boolean;
 
@@ -250,6 +254,9 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges 
     initDefaults() {
         if (typeof this.multiple === 'undefined') {
             this.multiple = false;
+        }
+        if (typeof this.search === 'undefined') {
+            this.search = false;
         }
         if (typeof this.theme === 'undefined') {
             this.theme = 'default';

@@ -7,7 +7,7 @@ src/**/*.d.ts
 src/**/*.js
 src/**/*.metadata.json
 src/**/*.ngfactory.ts
-
+.history
 
 /node_modules
 npm-debug.log
