@@ -33,6 +33,7 @@ gulp.task('clean', function() {
         './index.ngfactory.ts',
         './src/**/*.d.ts',
         './src/**/*.css.ts',
+        './src/**/*.scss.ts',
         './src/**/*.js',
         './src/**/*.metadata.json',
         './src/**/*.ngfactory.ts',

@@ -3,6 +3,7 @@ index.js
 index.metadata.json
 index.ngfactory.ts
 src/**/*.css.ts
+src/**/*.scss.ts
 src/**/*.d.ts
 src/**/*.js
 src/**/*.metadata.json
