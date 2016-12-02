@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 ng-select {
     box-sizing: border-box;
     display: inline-block;
@@ -9,6 +13,7 @@ ng-select {
     // Container.
     >div {
         border: 1px solid #ececec;
+        box-sizing: border-box;
         cursor: pointer;
         height: 30px;
         user-select: none;
@@ -42,7 +47,6 @@ ng-select {
             >div.clear,
             >div.toggle {
                 color: #aaa;
-                font-size:18px;
                 line-height: 30px;
                 text-align: center;
                 width: 30px;
@@ -50,6 +54,14 @@ ng-select {
                 &:hover {
                     background-color: #ececec;
                 }
+            }
+
+            >div.clear {
+                font-size:18px;
+            }
+
+            >div.toggle {
+                font-size:14px;
             }
         }
     }

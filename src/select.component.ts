@@ -11,7 +11,6 @@ import {
     forwardRef
 } from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
-
 import {SelectDropdownComponent} from './select-dropdown.component';
 import {OptionList} from './option-list';
 
@@ -33,7 +32,6 @@ export class SelectComponent
         implements ControlValueAccessor, OnInit, OnChanges {
 
     @Input() options: Array<{ value: string; label: string; }>;
-
     @Input() multiple: boolean;
     @Input() placeholder: string;
     @Input() allowClear: boolean;
@@ -59,6 +57,7 @@ export class SelectComponent
 
     renderedValue: string = '';
 
+    // Width and position for the dropdown container.
     width: number;
     top: number;
     left: number;
@@ -82,34 +81,10 @@ export class SelectComponent
 
     onSelectionClick(event: any) {
         this.toggleDropdown();
-
         if (this.multiple) {
             this.searchInput.nativeElement.focus();
         }
         event.stopPropagation();
-    }
-
-    /**
-     * Event handler of the single select clear (x) button click. It is assumed
-     * that there is exactly one item selected.
-     *
-     * The `deselect` method is used instead of `clear`, to have the deselected
-     * event emitted.
-     */
-    onClearSingleClick(event: any) {
-        console.log('Clear single.');
-
-        // Prevent open/close dropdown.
-        event.stopPropagation();
-    }
-
-    onClearItemClick(event: any) {
-        this.deselect(event.target.dataset.value);
-        event.stopPropagation();
-    }
-
-    onToggleSelect(optionValue: any) {
-        this.toggleSelect(optionValue);
     }
 
     onClose(focus: any) {
@@ -122,6 +97,22 @@ export class SelectComponent
 
     onWindowResize() {
         this.updateWidth();
+    }
+
+    // Single select.
+
+    onClearSingleClick(event: any) {
+        event.stopPropagation();
+    }
+
+    // Multi select.
+
+    onClearItemClick(event: any) {
+        event.stopPropagation();
+    }
+
+    onToggleSelect(optionValue: any) {
+        this.toggleSelect(optionValue);
     }
 
     onKeydown(event: any) {

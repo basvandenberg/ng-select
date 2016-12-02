@@ -84,18 +84,17 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
         }
     }
 
-    /*
-    onOptionsWheel(event: any) {
-        this.handleOptionsWheel(event);
+    onKeydown(event: any) {
+        this.handleKeydown(event);
     }
 
-    onKeydown(event: any) {
-        this.handleKeyDown(event);
+    onOptionsWheel(event: any) {
+        // this.handleOptionsWheel(event);
     }
 
     onInput(event: any) {
-        this.options.filter(event.target.value);
-    }*/
+        this.optionList.filter(event.target.value);
+    }
 
     /**************************************************************************
      * API.
@@ -173,7 +172,6 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
      * Keys/scroll.
      **************************************************************************/
 
-    /*
     private KEYS: any = {
         TAB: 9,
         ENTER: 13,
@@ -182,7 +180,7 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
         DOWN: 40
     };
 
-    private handleKeyDown(event: any) {
+    private handleKeydown(event: any) {
 
         let key = event.which;
 
@@ -193,23 +191,24 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
             event.preventDefault();
         }
         else if (key === this.KEYS.ENTER) {
-            if (this.highlighted !== null) {
+            /*if (this.highlighted !== null) {
                 this.toggleSelect.emit(this.highlighted.value);
 
                 this.close.emit(true);
-            }
+            }*/
             event.preventDefault();
         }
         else if (key === this.KEYS.UP) {
-            this.highlightPrevious();
+            // this.highlightPrevious();
             event.preventDefault();
         }
         else if (key === this.KEYS.DOWN) {
-            this.highlightNext();
+            // this.highlightNext();
             event.preventDefault();
         }
     }
 
+    /*
     private handleOptionsWheel(event: any) {
         let element = this.optionsList.nativeElement;
 

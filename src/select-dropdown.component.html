@@ -1,37 +1,33 @@
-<span class="select2-container select2-container--default select2-container--open"
-    [ngStyle]="{position: 'absolute', top: top + 'px', left: left + 'px'}">
+<div
+    [ngStyle]="{'top.px': top, 'left.px': left, 'width.px': width}">
 
-    <span class="select2-dropdown select2-dropdown--below"
-        [ngStyle]="{width: width + 'px'}">
+    <div class="filter"
+        *ngIf="!multiple">
+        <input
+            #input
+            (input)="onInput($event)"
+            (keydown)="onKeydown($event)"
+            (click)="onInputClick($event)">
+    </div>
 
-        <span class="select2-search select2-search--dropdown"
-            *ngIf="!multiple">
-            <input class="select2-search__field"
-                #input
-                (input)="onInput($event)"
-                (keydown)="onKeydown($event)"
-                (click)="onInputClick($event)">
-        </span>
+    <div class="options">
 
-        <span class="select2-results">
+        <ul class="select2-results__options"
+            #optionsList
+            (mousemove)="onOptionsMouseMove($event)"
+            (wheel)="onOptionsWheel($event)"
+            (click)="onOptionsClick($event)">
+            <li *ngFor="let option of optionList.filtered"
+                [ngClass]="{'highlighted': option.higlighted, 'selected': option.selected}"
+                [attr.data-option-index]="option.index">
+                {{option.label}}
+            </li>
+            <li 
+                *ngIf="!optionList.hasShown()"
+                class="message">
+                {{MSG_NOT_FOUND}}
+            </li>
+        </ul>
 
-            <ul class="select2-results__options"
-                #optionsList
-                (mousemove)="onOptionsMouseMove($event)"
-                (wheel)="onOptionsWheel($event)"
-                (click)="onOptionsClick($event)">
-                <li *ngFor="let option of optionList.filtered"
-                    [ngClass]="{'highlighted': option.higlighted, 'selected': option.selected}"
-                    [attr.data-option-index]="option.index">
-                    {{option.label}}
-                </li>
-                <li 
-                    *ngIf="!optionList.hasShown()"
-                    class="message">
-                    {{MSG_NOT_FOUND}}
-                </li>
-            </ul>
-
-        </span>
-    </span>
-</span>
+    </div>
+</div>
