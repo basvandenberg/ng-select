@@ -14,11 +14,15 @@
         <div class="clear"
             *ngIf="allowClear"
             (click)="onClearSingleClick($event)">
-            x
+            &#x2715;
         </div>
-        <div class="arrow">
-            a
-            <b></b>
+        <div class="toggle"
+            *ngIf="isOpen">
+            &#x25B2;
+        </div>
+        <div class="toggle"
+            *ngIf="!isOpen">
+            &#x25BC;
         </div>
     </div>
 
@@ -37,7 +41,6 @@
             <input class="select2-search__field"
                 #searchInput
                 placeholder="{{getPlaceholder()}}"
-                [ngStyle]="getInputStyle()"
                 (input)="onInput($event)"
                 (keydown)="onSearchKeydown($event)"/>
         </li>

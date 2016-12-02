@@ -39,16 +39,17 @@ ng-select {
                 flex: 1;
             }
 
-            >div.clear {
+            >div.clear,
+            >div.toggle {
+                color: #aaa;
+                font-size:18px;
+                line-height: 30px;
+                text-align: center;
                 width: 30px;
 
                 &:hover {
                     background-color: #ececec;
                 }
-            }
-
-            >div.arrow {
-                width: 30px;
             }
         }
     }

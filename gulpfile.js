@@ -18,6 +18,7 @@ gulp.task('watch', function() {
         './src/*.html',
         './src/*.scss',
         '!*/**/*.d.ts',
+        '!*/**/*.scss.ts',
         '!*/**/*.ngfactory.ts'
     ], [
         'build'
@@ -48,6 +49,7 @@ gulp.task('lint:ts', function() {
         './src/*.ts',
         '!*/**/*.d.ts',
         '!*/**/*.css.ts',
+        '!*/**/*.scss.ts',
         '!*/**/*.ngfactory.ts'
     ])
         .pipe(tslint({

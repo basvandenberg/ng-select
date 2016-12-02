@@ -66,9 +66,9 @@ export class SelectComponent
     onChange = (_: any) => {};
     onTouched = () => {};
 
-    /***************************************************************************
+    /**************************************************************************
      * Event handlers.
-     **************************************************************************/
+     *************************************************************************/
 
     ngOnInit() {
         this.initDefaults();
@@ -113,11 +113,11 @@ export class SelectComponent
     }
 
     onClose(focus: any) {
-        this.close(focus);
+        this.closeDropdown(focus);
     }
 
     onWindowClick() {
-        this.close(false);
+        this.closeDropdown();
     }
 
     onWindowResize() {
@@ -147,9 +147,9 @@ export class SelectComponent
         this.handleSearchKeyDown(event);
     }
 
-    /***************************************************************************
+    /**************************************************************************
      * Initialization.
-     **************************************************************************/
+     *************************************************************************/
 
     private initDefaults() {
         if (typeof this.multiple === 'undefined') {
@@ -174,73 +174,20 @@ export class SelectComponent
         }
     }
 
-    /***************************************************************************
-     * Dropdown toggle.
-     **************************************************************************/
-
-    toggleDropdown() {
-        if (!this.isDisabled) {
-            this.isOpen ? this.close(true) : this.open();
-        }
-    }
+    /**************************************************************************
+     * API.
+     *************************************************************************/
 
     open() {
-        if (!this.isOpen) {
-            this.updateWidth();
-            this.updatePosition();
-            this.isOpen = true;
-            this.opened.emit(null);
-        }
+        this.openDropdown();
     }
 
-    close(focus: boolean) {
-        if (this.isOpen) {
-            this.isOpen = false;
-            if (focus) {
-                this.focus();
-            }
-            this.closed.emit(null);
-        }
-    }
-
-    /***************************************************************************
-     * Select.
-     **************************************************************************/
-
-    select(index: number) {
-        this.optionList[index].selected = true;
-        this.onChange(this.getOutputValue());
-        this.selected.emit(this.optionList[index].undecoratedCopy());
-    }
-
-    deselect(index: number) {
-        let option = this.optionList[index];
-        option.selected = false;
-
-        this.onChange(this.getOutputValue());
-
-        this.deselected.emit({
-            value: option.value,
-            label: option.label
-        });
-    }
-
-    toggleSelect(index: number) {
-    }
-
-    popSelect() {
+    close() {
+        this.closeDropdown();
     }
 
     clear() {
-        if (this.optionList.hasSelected()) {
-            this.optionList.clearSelection();
-            this.onChange(this.getOutputValue());
-        }
-    }
-
-    getOutputValue(): any {
-        let v = this.optionList.value.slice(0);
-        return v.length === 0 ? '' : this.multiple ? v : v[0];
+        this.clearSelection();
     }
 
     /***************************************************************************
@@ -267,9 +214,78 @@ export class SelectComponent
         this.onTouched = fn;
     }
 
-    /***************************************************************************
+    /**************************************************************************
+     * Dropdown.
+     *************************************************************************/
+
+    private toggleDropdown() {
+        if (!this.isDisabled) {
+            this.isOpen ? this.closeDropdown(true) : this.openDropdown();
+        }
+    }
+
+    private openDropdown() {
+        if (!this.isOpen) {
+            this.updateWidth();
+            this.updatePosition();
+            this.isOpen = true;
+            this.opened.emit(null);
+        }
+    }
+
+    private closeDropdown(focus: boolean = false) {
+        if (this.isOpen) {
+            this.isOpen = false;
+            if (focus) {
+                this.focus();
+            }
+            this.closed.emit(null);
+        }
+    }
+
+    /**************************************************************************
+     * Select.
+     *************************************************************************/
+
+    select(index: number) {
+        this.optionList[index].selected = true;
+        this.onChange(this.getOutputValue());
+        this.selected.emit(this.optionList[index].undecoratedCopy());
+    }
+
+    deselect(index: number) {
+        let option = this.optionList[index];
+        option.selected = false;
+
+        this.onChange(this.getOutputValue());
+
+        this.deselected.emit({
+            value: option.value,
+            label: option.label
+        });
+    }
+
+    toggleSelect(index: number) {
+    }
+
+    popSelect() {
+    }
+
+    private clearSelection() {
+        if (this.optionList.hasSelected()) {
+            this.optionList.clearSelection();
+            this.onChange(this.getOutputValue());
+        }
+    }
+
+    getOutputValue(): any {
+        let v = this.optionList.value.slice(0);
+        return v.length === 0 ? '' : this.multiple ? v : v[0];
+    }
+
+    /**************************************************************************
      * Keys.
-     **************************************************************************/
+     *************************************************************************/
 
     private KEYS: any = {
         BACKSPACE: 8,
