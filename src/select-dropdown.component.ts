@@ -1,6 +1,16 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
-
+import {
+    AfterViewInit,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    ViewChild,
+    ViewEncapsulation
+} from '@angular/core';
 import {DiacriticsService} from './diacritics.service';
+import {Option} from './option';
 import {OptionList} from './option-list';
 
 @Component({
@@ -10,29 +20,18 @@ import {OptionList} from './option-list';
     encapsulation: ViewEncapsulation.None
 })
 
-export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit {
-
-    // Messages.
-    private MSG_LOADING = 'Searching...'; // TODO
-    private MSG_NOT_FOUND = 'No results found';
-
-    // Class names.
-    private S2: string = 'select2';
-    private S2_RESULTS: string = this.S2 + '-results';
-    private S2_MSG: string = this.S2_RESULTS + '__message';
-    private S2_OPTIONS: string = this.S2_RESULTS + '__options';
-    private S2_OPTION: string = this.S2_RESULTS + '__option';
-    private S2_OPTION_HL: string = this.S2_OPTION + '--highlighted';
+export class SelectDropdownComponent
+        implements AfterViewInit, OnChanges, OnInit {
 
     @Input() optionList: OptionList;
-
     @Input() multiple: boolean;
+    @Input() notFoundMsg: string = 'No results found';
     @Input() width: number;
     @Input() top: number;
     @Input() left: number;
 
     @Output() close = new EventEmitter<boolean>();
-    @Output() toggleSelect = new EventEmitter<string>();
+    @Output() optionClicked = new EventEmitter<Option>();
 
     @ViewChild('input') input: any;
     @ViewChild('optionsList') optionsList: any;
@@ -41,16 +40,18 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
         private diacriticsService: DiacriticsService
     ) {}
 
-    /***************************************************************************
+    /**************************************************************************
      * Event handlers.
-     **************************************************************************/
+     *************************************************************************/
 
     ngOnInit() {
-        this.init();
+        this.optionsReset();
     }
 
     ngOnChanges(changes: any) {
-        this.init();
+        if (changes.hasOwnProperty('optionList')) {
+            this.optionsReset();
+        }
     }
 
     ngAfterViewInit() {
@@ -65,23 +66,14 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
 
     onOptionsMouseMove(event: any) {
         // console.log(event);
-        let index: number = event.target.dataset['optionIndex'];
+        /*let index: number = event.target.dataset['optionIndex'];
         if (typeof index !== 'undefined') {
             // console.log(index);
-        }
+        }*/
     }
 
-    onOptionsClick(event: any) {
-        let index: number = event.target.dataset.optionIndex;
-        console.log(index);
-
-        if (typeof index !== 'undefined') {
-            // this.toggleSelect.emit(val);
-        }
-        else {
-            // Prevent close dropdown.
-            event.stopPropagation();
-        }
+    onOptionClick(option: Option) {
+        this.optionClicked.emit(option);
     }
 
     onKeydown(event: any) {
@@ -89,25 +81,20 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
     }
 
     onOptionsWheel(event: any) {
-        // this.handleOptionsWheel(event);
+        this.handleOptionsWheel(event);
     }
 
     onInput(event: any) {
         this.optionList.filter(event.target.value);
     }
 
-    /**************************************************************************
-     * API.
-     *************************************************************************/
-
     /***************************************************************************
      * Initialization.
      **************************************************************************/
 
-    private init() {
+    private optionsReset() {
         this.optionList.resetFilter();
         this.optionList.highlight();
-        // console.log(this.optionList);
     }
 
     /***************************************************************************
@@ -168,9 +155,9 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
         return this.filteredOptionsIndex(this.highlighted.value);
     }*/
 
-    /***************************************************************************
+    /**************************************************************************
      * Keys/scroll.
-     **************************************************************************/
+     *************************************************************************/
 
     private KEYS: any = {
         TAB: 9,
@@ -208,30 +195,20 @@ export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit
         }
     }
 
-    /*
-    private handleOptionsWheel(event: any) {
-        let element = this.optionsList.nativeElement;
+    private handleOptionsWheel(e: any) {
+        let div = this.optionsList.nativeElement.parentElement;
+        let atTop = div.scrollTop === 0;
+        let atBottom = div.offsetHeight + div.scrollTop === div.scrollHeight;
 
-        let top = element.scrollTop;
-        let bottom = (element.scrollHeight - top) - element.offsetHeight;
-
-        let isAtTop = event.deltaY < 0 && top + event.deltaY <= 0;
-        let isAtBottom = event.deltaY > 0 && bottom - event.deltaY <= 0;
-
-        if (isAtTop) {
-            element.scrollTop = 0;
-
-            event.preventDefault();
-            event.stopPropagation();
+        if (atTop && e.deltaY < 0) {
+            e.preventDefault();
         }
-        else if (isAtBottom) {
-            element.scrollTop = element.scrollHeight - element.offsetHeight;
-
-            event.preventDefault();
-            event.stopPropagation();
+        else if (atBottom && e.deltaY > 0) {
+            e.preventDefault();
         }
     }
 
+    /*
     highlightPrevious() {
         let i = this.highlightIndex();
 

@@ -12,9 +12,6 @@ export class OptionList {
     private _filtered: Array<Option>;
     private _value: Array<string>;
 
-    // TODO add state variables that are updated upon changes, to avoid calling
-    // expensive functions all the time...
-
     constructor(options: Array<{ value: string; label: string; }>) {
 
         // Inject diacritics service.
@@ -33,6 +30,12 @@ export class OptionList {
 
     get options(): Array<Option> {
         return this._options;
+    }
+
+    getOptionsByValue(value: string): Array<Option> {
+        return this.options.filter((option) => {
+            return option.value === value;
+        });
     }
 
     /**************************************************************************
@@ -61,6 +64,17 @@ export class OptionList {
         return this.options.filter((option) => {
             return option.selected;
         });
+    }
+
+    select(option: Option, multiple: boolean) {
+        if (!multiple) {
+            this.clearSelection();
+        }
+        option.selected = true;
+    }
+
+    deselect(option: Option) {
+        option.selected = false;
     }
 
     clearSelection() {

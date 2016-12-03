@@ -1,6 +1,6 @@
 <div tabindex=0
     #selection
-    [ngClass]="{'open': isOpen, 'focus': hasFocus, 'below': isBelow, 'multiple': multiple}"
+    [ngClass]="{'open': isOpen, 'focus': hasFocus, 'below': isBelow}"
     (click)="onSelectionClick($event)"
     (keydown)="onKeydown($event)"
     (window:resize)="onWindowResize()"
@@ -13,7 +13,7 @@
         </div>
         <div class="clear"
             *ngIf="allowClear"
-            (click)="onClearSingleClick($event)">
+            (click)="onClearSelectionClick($event)">
             &#x2715;
         </div>
         <div class="toggle"
@@ -26,25 +26,22 @@
         </div>
     </div>
 
-
-    <ul class="select2-selection__rendered"
+    <div class="multiple"
         *ngIf="multiple">
-        <li class="select2-selection__choice" title="{{option.label}}"
+        <div class="option"
             *ngFor="let option of optionList.selection">
-            <span class="select2-selection__choice__remove"
-                [attr.data-value]="option.value"
-                (click)=onClearItemClick($event)>
-                ×</span>
+            <span class="deselect-option"
+                (click)=onDeselectOptionClick(option)>
+                &#x2715;
+            </span>
             {{option.label}}
-        </li>
-        <li class="select2-search select2-search--inline">
-            <input class="select2-search__field"
-                #searchInput
-                placeholder="test"
-                (input)="onInput($event)"
-                (keydown)="onSearchKeydown($event)"/>
-        </li>
-    </ul>
+        </div>
+        <input
+            #searchInput
+            placeholder="test"
+            (input)="onInput($event)"
+            (keydown)="onSearchKeydown($event)"/>
+    </div>
 
 </div>
 <select-dropdown
@@ -55,6 +52,6 @@
     [width]="width"
     [top]="top"
     [left]="left"
-    (toggleSelect)="onToggleSelect($event)"
+    (optionClicked)="onOptionClicked($event)"
     (close)="onClose($event)">
 </select-dropdown>

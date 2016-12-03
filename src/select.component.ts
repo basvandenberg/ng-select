@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 import {SelectDropdownComponent} from './select-dropdown.component';
+import {Option} from './option';
 import {OptionList} from './option-list';
 
 export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
@@ -87,6 +88,11 @@ export class SelectComponent
         event.stopPropagation();
     }
 
+    onOptionClicked(option: Option) {
+        this.multiple ?
+            this.toggleSelectOption(option) : this.selectOption(option);
+    }
+
     onClose(focus: any) {
         this.closeDropdown(focus);
     }
@@ -97,22 +103,6 @@ export class SelectComponent
 
     onWindowResize() {
         this.updateWidth();
-    }
-
-    // Single select.
-
-    onClearSingleClick(event: any) {
-        event.stopPropagation();
-    }
-
-    // Multi select.
-
-    onClearItemClick(event: any) {
-        event.stopPropagation();
-    }
-
-    onToggleSelect(optionValue: any) {
-        this.toggleSelect(optionValue);
     }
 
     onKeydown(event: any) {
@@ -134,8 +124,68 @@ export class SelectComponent
         }
     }
 
-    onSearchKeydown(event: any) {
+    // Single select.
+
+    onClearSelectionClick(event: any) {
+        this.clearSelection();
+        event.stopPropagation();
+    }
+
+    // Multi select.
+
+    onDeselectOptionClick(option: Option) {
+        this.deselectOption(option);
+        event.stopPropagation();
+    }
+
+    onFilterKeydown(event: any) {
         this.handleSearchKeyDown(event);
+    }
+
+    /**************************************************************************
+     * API.
+     *************************************************************************/
+
+    open() {
+        this.openDropdown();
+    }
+
+    close() {
+        this.closeDropdown();
+    }
+
+    clear() {
+        this.clearSelection();
+    }
+
+    select(value: string) {
+        this.optionList.getOptionsByValue(value).forEach((option) => {
+            this.selectOption(option);
+        });
+    }
+
+    /***************************************************************************
+     * ControlValueAccessor interface methods.
+     **************************************************************************/
+
+    writeValue(value: any) {
+
+        if (typeof value === 'undefined' || value === null || value === '') {
+            value = [];
+        }
+        else if (typeof value === 'string') {
+            value = [value];
+        }
+
+        this.optionList.value = value;
+    }
+
+    registerOnChange(fn: (_: any) => void) {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn: () => void) {
+        this.onTouched = fn;
     }
 
     /**************************************************************************
@@ -163,46 +213,6 @@ export class SelectComponent
         if (!firstTime) {
             this._optionList.value = v;
         }
-    }
-
-    /**************************************************************************
-     * API.
-     *************************************************************************/
-
-    open() {
-        this.openDropdown();
-    }
-
-    close() {
-        this.closeDropdown();
-    }
-
-    clear() {
-        this.clearSelection();
-    }
-
-    /***************************************************************************
-     * ControlValueAccessor interface methods.
-     **************************************************************************/
-
-    writeValue(value: any) {
-
-        if (typeof value === 'undefined' || value === null || value === '') {
-            value = [];
-        }
-        else if (typeof value === 'string') {
-            value = [value];
-        }
-
-        this.optionList.value = value;
-    }
-
-    registerOnChange(fn: (_: any) => void) {
-        this.onChange = fn;
-    }
-
-    registerOnTouched(fn: () => void) {
-        this.onTouched = fn;
     }
 
     /**************************************************************************
@@ -238,38 +248,45 @@ export class SelectComponent
      * Select.
      *************************************************************************/
 
-    select(index: number) {
-        this.optionList[index].selected = true;
-        this.onChange(this.getOutputValue());
-        this.selected.emit(this.optionList[index].undecoratedCopy());
-    }
-
-    deselect(index: number) {
-        let option = this.optionList[index];
-        option.selected = false;
-
-        this.onChange(this.getOutputValue());
-
-        this.deselected.emit({
-            value: option.value,
-            label: option.label
-        });
-    }
-
-    toggleSelect(index: number) {
-    }
-
-    popSelect() {
-    }
-
-    private clearSelection() {
-        if (this.optionList.hasSelected()) {
-            this.optionList.clearSelection();
+    private selectOption(option: Option) {
+        if (!option.selected) {
+            this.optionList.select(option, this.multiple);
             this.onChange(this.getOutputValue());
+            this.selected.emit(option.undecoratedCopy());
         }
     }
 
-    getOutputValue(): any {
+    private deselectOption(option: Option) {
+        if (option.selected) {
+            this.optionList.deselect(option);
+            this.onChange(this.getOutputValue());
+            this.deselected.emit(option.undecoratedCopy());
+        }
+    }
+
+    private clearSelection() {
+        let selection: Array<Option> = this.optionList.selection;
+        if (selection.length > 0) {
+            this.optionList.clearSelection();
+            this.onChange(this.getOutputValue());
+
+            if (selection.length === 1) {
+                this.deselected.emit(selection[0].undecoratedCopy());
+            }
+            else {
+                this.deselected.emit(selection.map((option) => {
+                    return option.undecoratedCopy();
+                }));
+            }
+        }
+    }
+
+    private toggleSelectOption(option: Option) {
+        option.selected ?
+            this.deselectOption(option) : this.selectOption(option);
+    }
+
+    private getOutputValue(): any {
         let v = this.optionList.value.slice(0);
         return v.length === 0 ? '' : this.multiple ? v : v[0];
     }
@@ -344,7 +361,7 @@ export class SelectComponent
     }
 
     /***************************************************************************
-     * Layout/Style/Classes/Focus.
+     * Layout.
      **************************************************************************/
 
     focus() {

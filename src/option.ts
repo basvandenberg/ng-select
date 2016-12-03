@@ -18,10 +18,6 @@ export class Option {
         this.highlighted = false;
     }
 
-    toggleSelected() {
-        this.selected = !this.selected;
-    }
-
     show() {
         this.shown = true;
     }

@@ -12,17 +12,17 @@
 
     <div class="options">
 
-        <ul class="select2-results__options"
+        <ul
             #optionsList
             (mousemove)="onOptionsMouseMove($event)"
-            (wheel)="onOptionsWheel($event)"
-            (click)="onOptionsClick($event)">
+            (wheel)="onOptionsWheel($event)">
             <li *ngFor="let option of optionList.filtered"
                 [ngClass]="{'highlighted': option.higlighted, 'selected': option.selected}"
-                [attr.data-option-index]="option.index">
+                [attr.data-option-index]="option.index"
+                (click)="onOptionClick(option)">
                 {{option.label}}
             </li>
-            <li 
+            <li
                 *ngIf="!optionList.hasShown()"
                 class="message">
                 {{MSG_NOT_FOUND}}
