@@ -33,9 +33,9 @@ export class SelectComponent
         implements ControlValueAccessor, OnInit, OnChanges {
 
     @Input() options: Array<{ value: string; label: string; }>;
-    @Input() multiple: boolean;
-    @Input() placeholder: string;
-    @Input() allowClear: boolean;
+    @Input() multiple: boolean = false;
+    @Input() placeholder: string = '';
+    @Input() allowClear: boolean = false;
 
     @Output() opened: EventEmitter<null> = new EventEmitter<null>();
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();
@@ -56,8 +56,6 @@ export class SelectComponent
     isOpen: boolean = false;
     hasFocus: boolean = false;
 
-    renderedValue: string = '';
-
     // Width and position for the dropdown container.
     width: number;
     top: number;
@@ -71,7 +69,6 @@ export class SelectComponent
      *************************************************************************/
 
     ngOnInit() {
-        this.initDefaults();
     }
 
     ngOnChanges(changes: any) {
@@ -164,9 +161,9 @@ export class SelectComponent
         });
     }
 
-    /***************************************************************************
+    /**************************************************************************
      * ControlValueAccessor interface methods.
-     **************************************************************************/
+     *************************************************************************/
 
     writeValue(value: any) {
 
@@ -191,15 +188,6 @@ export class SelectComponent
     /**************************************************************************
      * Initialization.
      *************************************************************************/
-
-    private initDefaults() {
-        if (typeof this.multiple === 'undefined') {
-            this.multiple = false;
-        }
-        if (typeof this.allowClear === 'undefined') {
-            this.allowClear = false;
-        }
-    }
 
     private updateOptionsList(firstTime: boolean) {
         let v: Array<string>;

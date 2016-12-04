@@ -8,8 +8,13 @@
 
     <div class="single"
         *ngIf="!multiple">
-        <div class="value">
-            {{renderedValue}}
+        <div class="value"
+            *ngIf="optionList.hasSelected()">
+            {{optionList.selection[0].label}}
+        </div>
+        <div class="placeholder"
+            *ngIf="!optionList.hasSelected()">
+            {{placeholder}}
         </div>
         <div class="clear"
             *ngIf="allowClear"
