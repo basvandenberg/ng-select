@@ -44,8 +44,8 @@
         <input
             #searchInput
             placeholder="test"
-            (input)="onInput($event)"
-            (keydown)="onSearchKeydown($event)"/>
+            (input)="onFilterInput($event)"
+            (keydown)="onFilterInputKeydown($event)"/>
     </div>
 
 </div>
@@ -57,6 +57,7 @@
     [width]="width"
     [top]="top"
     [left]="left"
+    (filterInputChanged)="onFilterInputChanged($event)"
     (optionClicked)="onOptionClicked($event)"
     (close)="onClose($event)">
 </select-dropdown>

@@ -102,41 +102,35 @@ export class SelectComponent
         this.updateWidth();
     }
 
-    onKeydown(event: any) {
-        this.handleKeyDown(event);
-    }
-
-    onInput(event: any) {
-
-        // Open dropdown, if it is currently closed.
+    onFilterInput(event: any) {
         if (!this.isOpen) {
-            this.open();
-            // HACK
-            setTimeout(() => {
-                this.handleInput(event);
-            }, 100);
+            this.openDropdown();
         }
-        else {
-            this.handleInput(event);
-        }
+        setTimeout(() => {
+            this.onFilterInputChanged(event.target.value);
+        }, 0);
     }
 
-    // Single select.
+    onFilterInputChanged(term: string) {
+        this.optionList.filter(term);
+    }
 
     onClearSelectionClick(event: any) {
         this.clearSelection();
         event.stopPropagation();
     }
 
-    // Multi select.
-
     onDeselectOptionClick(option: Option) {
         this.deselectOption(option);
         event.stopPropagation();
     }
 
-    onFilterKeydown(event: any) {
-        this.handleSearchKeyDown(event);
+    onFilterInputKeydown(event: any) {
+        this.handleFilterInputKeydown(event);
+    }
+
+    onKeydown(event: any) {
+        this.handleKeydown(event);
     }
 
     /**************************************************************************
@@ -293,7 +287,7 @@ export class SelectComponent
         DOWN: 40
     };
 
-    handleKeyDown(event: any) {
+    handleKeydown(event: any) {
 
         let key = event.which;
 
@@ -305,47 +299,43 @@ export class SelectComponent
         }
     }
 
-    handleInput(event: any) {
-        // this.dropdown.filter(event.target.value);
-    }
+    handleFilterInputKeydown(event: any) {
 
-    handleSearchKeyDown(event: any) {
-
-        /*let key = event.which;
+        let key = event.which;
 
         if (key === this.KEYS.ENTER) {
             if (typeof this.dropdown !== 'undefined') {
-                let hl = this.dropdown.highlighted;
+                // let hl = this.dropdown.highlighted;
 
-                if (hl !== null) {
-                    this.onToggleSelect(hl.value);
-                }
+                // if (hl !== null) {
+                    // this.onToggleSelect(hl.value);
+                // }
             }
         }
         else if (key === this.KEYS.BACKSPACE) {
             if (this.searchInput.nativeElement.value === '') {
-                this.popSelect();
+                // this.popSelect();
             }
         }
         else if (key === this.KEYS.UP) {
             if (typeof this.dropdown === 'undefined') {
-                this.open();
+                this.openDropdown();
             }
             else {
-                this.dropdown.highlightPrevious();
+                // this.dropdown.highlightPrevious();
             }
         }
         else if (key === this.KEYS.DOWN) {
             if (typeof this.dropdown === 'undefined') {
-                this.open();
+                this.openDropdown();
             }
             else {
-                this.dropdown.highlightNext();
+                // this.dropdown.highlightNext();
             }
         }
         else if (key === this.KEYS.ESC) {
-            this.close(true);
-        }*/
+            this.closeDropdown(true);
+        }
     }
 
     /***************************************************************************

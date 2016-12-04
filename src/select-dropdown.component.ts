@@ -32,6 +32,7 @@ export class SelectDropdownComponent
 
     @Output() close = new EventEmitter<boolean>();
     @Output() optionClicked = new EventEmitter<Option>();
+    @Output() filterInputChanged = new EventEmitter<string>();
 
     @ViewChild('input') input: any;
     @ViewChild('optionsList') optionsList: any;
@@ -72,6 +73,10 @@ export class SelectDropdownComponent
         }*/
     }
 
+    onOptionsWheel(event: any) {
+        this.handleOptionsWheel(event);
+    }
+
     onOptionClick(option: Option) {
         this.optionClicked.emit(option);
     }
@@ -80,12 +85,8 @@ export class SelectDropdownComponent
         this.handleKeydown(event);
     }
 
-    onOptionsWheel(event: any) {
-        this.handleOptionsWheel(event);
-    }
-
-    onInput(event: any) {
-        this.optionList.filter(event.target.value);
+    onFilterInput(event: any) {
+        this.filterInputChanged.emit(event.target.value);
     }
 
     /***************************************************************************
