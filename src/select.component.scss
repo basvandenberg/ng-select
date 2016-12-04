@@ -1,5 +1,6 @@
 * {
 	box-sizing: border-box;
+    font-family: Sans-Serif;
 }
 
 ng-select {
@@ -12,7 +13,7 @@ ng-select {
 
     // Container.
     >div {
-        border: 1px solid #ececec;
+        border: 1px solid #ddd;
         box-sizing: border-box;
         cursor: pointer;
         user-select: none;
@@ -28,6 +29,13 @@ ng-select {
 
         &.below {
 
+        }
+
+        &.disabled {
+            background-color: #eee;
+            color: #aaa;
+            cursor: default;
+            pointer-events: none;
         }
 
         >div.single {
@@ -71,6 +79,7 @@ ng-select {
             display: flex;
             flex-flow: row wrap;
             height: 100%;
+            min-height: 30px;
             padding: 0 5px;
             width: 100%;
 
@@ -78,16 +87,38 @@ ng-select {
                 background-color: #eee;
                 border: 1px solid #aaa;
                 border-radius: 4px;
+                color: #333;
+                cursor: default;
                 display: inline-block;
+                flex-shrink: 0;
                 font-size: 14px;
-                height: 22px;
                 line-height: 22px;
                 margin: 3px 5px 3px 0;
                 padding: 0 4px;
 
-                span {
+                span.deselect-option {
                     color: #aaa;
-                    font-size: 12px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    height: 20px;
+                    line-height: 20px;
+
+                    &:hover {
+                        color: #555;
+                    }
+                }
+            }
+
+            input {
+                background-color: transparent;
+                border: none;
+                font-size: 15px;
+                height: 30px;
+                line-height: 30px;
+                padding: 0;
+                
+                &:focus {
+                    outline: none;
                 }
             }
         }

@@ -33,9 +33,12 @@ export class SelectComponent
         implements ControlValueAccessor, OnInit, OnChanges {
 
     @Input() options: Array<{ value: string; label: string; }>;
+
+    @Input() allowClear: boolean = false;
+    @Input() disabled: boolean = false;
     @Input() multiple: boolean = false;
     @Input() placeholder: string = '';
-    @Input() allowClear: boolean = false;
+    @Input() notFoundMsg: string = 'No results found';
 
     @Output() opened: EventEmitter<null> = new EventEmitter<null>();
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();
@@ -61,6 +64,8 @@ export class SelectComponent
     top: number;
     left: number;
 
+    filterInputWidth: number = 20;
+
     onChange = (_: any) => {};
     onTouched = () => {};
 
@@ -69,6 +74,7 @@ export class SelectComponent
      *************************************************************************/
 
     ngOnInit() {
+        this.filterInputWidth = 20 + this.placeholder.length * 7;
     }
 
     ngOnChanges(changes: any) {
@@ -103,6 +109,10 @@ export class SelectComponent
     }
 
     onFilterInput(event: any) {
+        let val = event.target.value;
+        let l = val.length === 0 ? this.placeholder.length : val.length;
+        this.filterInputWidth = 20 + l * 7;
+
         if (!this.isOpen) {
             this.openDropdown();
         }

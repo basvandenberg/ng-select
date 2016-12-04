@@ -43,7 +43,8 @@
         </div>
         <input
             #searchInput
-            placeholder="test"
+            [placeholder]="placeholder"
+            [ngStyle]="{'width.px': filterInputWidth}"
             (input)="onFilterInput($event)"
             (keydown)="onFilterInputKeydown($event)"/>
     </div>
@@ -54,6 +55,7 @@
     #dropdown
     [multiple]="multiple"
     [optionList]="optionList"
+    [notFoundMsg]="notFoundMsg"
     [width]="width"
     [top]="top"
     [left]="left"
