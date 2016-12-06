@@ -32,7 +32,9 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
 export class SelectComponent
         implements ControlValueAccessor, OnInit, OnChanges {
 
-    @Input() options: Array<{ value: string; label: string; }>;
+    @Input() options: Array<any>;
+    @Input() valueField = 'value';
+    @Input() labelField = 'lable;';
     @Input() multiple: boolean = false;
     @Input() placeholder: string = '';
     @Input() allowClear: boolean = false;
@@ -190,7 +192,7 @@ export class SelectComponent
             v = this.optionList.value;
         }
 
-        this._optionList = new OptionList(this.options);
+        this._optionList = new OptionList(this.options, this.valueField, this.labelField);
 
         if (!firstTime) {
             this._optionList.value = v;

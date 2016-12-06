@@ -12,7 +12,11 @@ export class OptionList {
     private _filtered: Array<Option>;
     private _value: Array<string>;
 
-    constructor(options: Array<{ value: string; label: string; }>) {
+    constructor(
+        options: Array<any>,
+        valueField: string,
+        labelField: string
+    ) {
 
         // Inject diacritics service.
         let inj = ReflectiveInjector.resolveAndCreate([DiacriticsService]);
@@ -20,7 +24,7 @@ export class OptionList {
 
         // Initialize array of option objects.
         this._options = options.map((option, index) => {
-            return new Option(option.value, option.label, index);
+            return new Option(option[valueField], option[labelField], index);
         });
     }
 
