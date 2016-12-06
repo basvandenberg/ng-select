@@ -131,6 +131,7 @@ export class SelectComponent
 
     onClearSelectionClick(event: any) {
         this.clearSelection();
+        this.closeDropdown(true);
         event.stopPropagation();
     }
 
