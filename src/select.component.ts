@@ -49,15 +49,16 @@ export class SelectComponent
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
     @ViewChild('searchInput') searchInput: any;
 
-    // Select options.
-    private _optionList: OptionList;
-    get optionList(): OptionList { return this._optionList; }
+    private _value: '';
+
+    optionList: OptionList;
 
     // State variables.
-    isDisabled: boolean = false;
-    isBelow: boolean = true;
-    isOpen: boolean = false;
     hasFocus: boolean = false;
+    hasSelected: boolean = false;
+    isBelow: boolean = true;
+    isDisabled: boolean = false;
+    isOpen: boolean = false;
 
     // Width and position for the dropdown container.
     width: number;
@@ -66,15 +67,14 @@ export class SelectComponent
 
     filterInputWidth: number = 20;
 
-    onChange = (_: any) => {};
-    onTouched = () => {};
+    private _onChange = (_: any) => {};
+    private onTouched = () => {};
 
     /**************************************************************************
      * Event handlers.
      *************************************************************************/
 
     ngOnInit() {
-        this.filterInputWidth = 20 + this.placeholder.length * 7;
     }
 
     ngOnChanges(changes: any) {
@@ -109,10 +109,6 @@ export class SelectComponent
     }
 
     onFilterInput(event: any) {
-        let val = event.target.value;
-        let l = val.length === 0 ? this.placeholder.length : val.length;
-        this.filterInputWidth = 20 + l * 7;
-
         if (!this.isOpen) {
             this.openDropdown();
         }
@@ -170,23 +166,45 @@ export class SelectComponent
      *************************************************************************/
 
     writeValue(value: any) {
-
-        if (typeof value === 'undefined' || value === null || value === '') {
-            value = [];
-        }
-        else if (typeof value === 'string') {
-            value = [value];
-        }
-
-        this.optionList.value = value;
+        this.value = value;
     }
 
     registerOnChange(fn: (_: any) => void) {
-        this.onChange = fn;
+        this._onChange = fn;
     }
 
     registerOnTouched(fn: () => void) {
         this.onTouched = fn;
+    }
+
+    /**************************************************************************
+     * Getters/setters.
+     *************************************************************************/
+
+    get value(): any {
+        if (this._value.length === 0) {
+            return '';
+        }
+        else {
+            return this.multiple ? this._value : this._value[0];
+        }
+    }
+
+    set value(v: any) {
+        if (typeof v === 'undefined' || v === null || v === '') {
+            v = [];
+        }
+        else if (typeof v === 'string') {
+            v = [v];
+        }
+
+        if (v !== this._value) {
+            this._value = v;
+            this.optionList.value = v;
+            this.hasSelected = v.length > 0;
+
+            this._onChange(v);
+        }
     }
 
     /**************************************************************************
@@ -200,10 +218,10 @@ export class SelectComponent
             v = this.optionList.value;
         }
 
-        this._optionList = new OptionList(this.options);
+        this.optionList = new OptionList(this.options);
 
         if (!firstTime) {
-            this._optionList.value = v;
+            this.optionList.value = v;
         }
     }
 
@@ -243,7 +261,7 @@ export class SelectComponent
     private selectOption(option: Option) {
         if (!option.selected) {
             this.optionList.select(option, this.multiple);
-            this.onChange(this.getOutputValue());
+            this.value = this.optionList.value;
             this.selected.emit(option.undecoratedCopy());
         }
     }
@@ -251,7 +269,7 @@ export class SelectComponent
     private deselectOption(option: Option) {
         if (option.selected) {
             this.optionList.deselect(option);
-            this.onChange(this.getOutputValue());
+            this.value = this.optionList.value;
             this.deselected.emit(option.undecoratedCopy());
         }
     }
@@ -260,7 +278,7 @@ export class SelectComponent
         let selection: Array<Option> = this.optionList.selection;
         if (selection.length > 0) {
             this.optionList.clearSelection();
-            this.onChange(this.getOutputValue());
+            this.value = this.optionList.value;
 
             if (selection.length === 1) {
                 this.deselected.emit(selection[0].undecoratedCopy());
@@ -276,11 +294,6 @@ export class SelectComponent
     private toggleSelectOption(option: Option) {
         option.selected ?
             this.deselectOption(option) : this.selectOption(option);
-    }
-
-    private getOutputValue(): any {
-        let v = this.optionList.value.slice(0);
-        return v.length === 0 ? '' : this.multiple ? v : v[0];
     }
 
     /**************************************************************************
