@@ -47,7 +47,7 @@ export class SelectComponent
 
     @ViewChild('selection') selectionSpan: any;
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
-    @ViewChild('searchInput') searchInput: any;
+    @ViewChild('filterInput') filterInput: any;
 
     private _value: '';
 
@@ -87,7 +87,7 @@ export class SelectComponent
     onSelectionClick(event: any) {
         this.toggleDropdown();
         if (this.multiple) {
-            this.searchInput.nativeElement.focus();
+            this.filterInput.nativeElement.focus();
         }
         event.stopPropagation();
     }
@@ -121,9 +121,8 @@ export class SelectComponent
         if (!this.isOpen) {
             this.openDropdown();
         }
-        setTimeout(() => {
-            this.onFilterInputChanged(event.target.value);
-        }, 0);
+        this.filterInputWidth = 20 + event.target.value.length * 10;
+        setTimeout(() => { this.onFilterInputChanged(event.target.value); });
     }
 
     onFilterInputChanged(term: string) {
@@ -255,6 +254,7 @@ export class SelectComponent
 
     private closeDropdown(focus: boolean = false) {
         if (this.isOpen) {
+            this.clearFilter();
             this.isOpen = false;
             if (focus) {
                 this.focus();
@@ -306,6 +306,19 @@ export class SelectComponent
     }
 
     /**************************************************************************
+     * Filter.
+     *************************************************************************/
+
+    private clearFilter() {
+        if (this.multiple) {
+            this.filterInput.nativeElement.value = '';
+        }
+        else {
+            this.dropdown.clearFilter();
+        }
+    }
+
+    /**************************************************************************
      * Keys.
      *************************************************************************/
 
@@ -345,7 +358,7 @@ export class SelectComponent
             }
         }
         else if (key === this.KEYS.BACKSPACE) {
-            if (this.searchInput.nativeElement.value === '') {
+            if (this.filterInput.nativeElement.value === '') {
                 // this.popSelect();
             }
         }
@@ -377,7 +390,7 @@ export class SelectComponent
     focus() {
         this.hasFocus = true;
         if (this.multiple) {
-            this.searchInput.nativeElement.focus();
+            this.filterInput.nativeElement.focus();
         }
         else {
             this.selectionSpan.nativeElement.focus();

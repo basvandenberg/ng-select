@@ -4,7 +4,7 @@
     <div class="filter"
         *ngIf="!multiple">
         <input
-            #input
+            #filterInput
             (input)="onFilterInput($event)"
             (keydown)="onKeydown($event)"
             (click)="onInputClick($event)">

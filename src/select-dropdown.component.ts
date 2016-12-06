@@ -34,7 +34,7 @@ export class SelectDropdownComponent
     @Output() optionClicked = new EventEmitter<Option>();
     @Output() filterInputChanged = new EventEmitter<string>();
 
-    @ViewChild('input') input: any;
+    @ViewChild('filterInput') filterInput: any;
     @ViewChild('optionsList') optionsList: any;
 
     constructor(
@@ -57,7 +57,7 @@ export class SelectDropdownComponent
 
     ngAfterViewInit() {
         if (!this.multiple) {
-            this.input.nativeElement.focus();
+            this.filterInput.nativeElement.focus();
         }
     }
 
@@ -89,18 +89,26 @@ export class SelectDropdownComponent
         this.filterInputChanged.emit(event.target.value);
     }
 
-    /***************************************************************************
+    /**************************************************************************
      * Initialization.
-     **************************************************************************/
+     *************************************************************************/
 
     private optionsReset() {
         this.optionList.resetFilter();
         this.optionList.highlight();
     }
 
-    /***************************************************************************
+    /**************************************************************************
+     * Filter.
+     *************************************************************************/
+
+    clearFilter() {
+        this.filterInput.nativeElement.value = '';
+    }
+
+    /**************************************************************************
      * Highlight.
-     **************************************************************************/
+     *************************************************************************/
 
     /*get highlighted(): any {
         return this._highlighted;
