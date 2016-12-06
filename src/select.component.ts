@@ -66,6 +66,7 @@ export class SelectComponent
     left: number;
 
     filterInputWidth: number = 20;
+    filterFocus: boolean = false;
 
     private _onChange = (_: any) => {};
     private onTouched = () => {};
@@ -106,6 +107,14 @@ export class SelectComponent
 
     onWindowResize() {
         this.updateWidth();
+    }
+
+    onFilterFocus() {
+        this.filterFocus = true;
+    }
+
+    onFilterBlur() {
+        this.filterFocus = false;
     }
 
     onFilterInput(event: any) {

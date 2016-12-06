@@ -41,10 +41,15 @@
             </span>
             {{option.label}}
         </div>
+        <div class="placeholder"
+            *ngIf="!filterFocus && !optionList.hasSelected()">
+            {{placeholder}}
+        </div>
         <input
             #searchInput
-            [placeholder]="placeholder"
             [ngStyle]="{'width.px': filterInputWidth}"
+            (blur)="onFilterBlur()"
+            (focus)="onFilterFocus()"
             (input)="onFilterInput($event)"
             (keydown)="onFilterInputKeydown($event)"/>
     </div>
