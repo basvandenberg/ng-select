@@ -33,6 +33,18 @@ select-dropdown {
                     padding: 4px 8px;
                     cursor: pointer;
                     user-select: none;
+
+                    &.selected {
+                        background-color: #aaa;
+
+                        &.highlighted {
+                            background-color: #2196f3;
+                        }
+                    }
+
+                    &.highlighted {
+                        background-color: #2196f3;
+                    }
                 }
             }
         }

@@ -5,21 +5,20 @@
         *ngIf="!multiple">
         <input
             #filterInput
+            (click)="onFilterInputClick($event)"
             (input)="onFilterInput($event)"
-            (keydown)="onKeydown($event)"
-            (click)="onInputClick($event)">
+            (keydown)="onFilterKeydown($event)">
     </div>
 
     <div class="options">
-
         <ul
             #optionsList
-            (mousemove)="onOptionsMouseMove($event)"
             (wheel)="onOptionsWheel($event)">
             <li *ngFor="let option of optionList.filtered"
-                [ngClass]="{'highlighted': option.higlighted, 'selected': option.selected}"
+                [ngClass]="{'highlighted': option.highlighted, 'selected': option.selected}"
                 [attr.data-option-index]="option.index"
-                (click)="onOptionClick(option)">
+                (click)="onOptionClick(option)"
+                (mouseover)="onOptionMouseover(option)">
                 {{option.label}}
             </li>
             <li
@@ -28,6 +27,5 @@
                 {{notFoundMsg}}
             </li>
         </ul>
-
     </div>
 </div>

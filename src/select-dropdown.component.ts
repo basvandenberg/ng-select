@@ -45,6 +45,8 @@ export class SelectDropdownComponent
      * Event handlers.
      *************************************************************************/
 
+    // Life cycle hooks.
+
     ngOnInit() {
         this.optionsReset();
     }
@@ -61,32 +63,34 @@ export class SelectDropdownComponent
         }
     }
 
-    onInputClick(event: any) {
+    // Filter input.
+
+    onFilterInputClick(event: any) {
         event.stopPropagation();
     }
 
-    onOptionsMouseMove(event: any) {
-        // console.log(event);
-        /*let index: number = event.target.dataset['optionIndex'];
-        if (typeof index !== 'undefined') {
-            // console.log(index);
-        }*/
+    onFilterInput(event: any) {
+        this.filterInputChanged.emit(event.target.value);
     }
+
+    onFilterKeydown(event: any) {
+        this.handleKeydown(event);
+    }
+
+    // Options list.
 
     onOptionsWheel(event: any) {
         this.handleOptionsWheel(event);
     }
 
+    // Option.
+
     onOptionClick(option: Option) {
         this.optionClicked.emit(option);
     }
 
-    onKeydown(event: any) {
-        this.handleKeydown(event);
-    }
-
-    onFilterInput(event: any) {
-        this.filterInputChanged.emit(event.target.value);
+    onOptionMouseover(option: Option) {
+        console.log(option);
     }
 
     /**************************************************************************
@@ -156,13 +160,6 @@ export class SelectDropdownComponent
             list.scrollTop = itemTop;
         }
     }
-
-    private highlightIndex(): number {
-        if (this.highlighted === null) {
-            return null;
-        }
-        return this.filteredOptionsIndex(this.highlighted.value);
-    }*/
 
     /**************************************************************************
      * Keys/scroll.
@@ -234,34 +231,6 @@ export class SelectDropdownComponent
             this.highlight(this.optionValuesFiltered[i + 1]);
             this.ensureHighlightedVisible();
         }
-    }*/
-
-    /***************************************************************************
-     * Classes.
-     **************************************************************************/
-
-    /*private getOptionClass(optionValue: string): any {
-        let result = {};
-        let hlValue = this.highlighted === null ? '' : this.highlighted.value;
-
-        result[this.S2_OPTION] = true;
-        result[this.S2_OPTION_HL] = optionValue === hlValue;
-        result[this.S2_MSG] = optionValue === null;
-
-        return result;
-    }*/
-
-    /***************************************************************************
-     * Util functions.
-     **************************************************************************/
-
-    /*private filteredOptionsIndex(optionValue: string) {
-        for (let i = 0; i < this.optionValuesFiltered.length; i++) {
-            if (this.optionValuesFiltered[i] === optionValue) {
-                return i;
-            }
-        }
-        return null;
     }*/
 }
 

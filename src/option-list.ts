@@ -12,6 +12,8 @@ export class OptionList {
     private _filtered: Array<Option>;
     private _value: Array<string>;
 
+    private highlightedOption: Option = null;
+
     constructor(options: Array<{ value: string; label: string; }>) {
 
         // Inject diacritics service.
@@ -19,9 +21,11 @@ export class OptionList {
         this.diacriticsService = inj.get(DiacriticsService);
 
         // Initialize array of option objects.
-        this._options = options.map((option, index) => {
-            return new Option(option.value, option.label, index);
+        this._options = options.map((option) => {
+            return new Option(option.value, option.label);
         });
+
+        this.highlight();
     }
 
     /**************************************************************************
@@ -121,7 +125,7 @@ export class OptionList {
             });
         }
 
-        this.highlightFirst();
+        this.highlight();
     }
 
     resetFilter() {
@@ -141,37 +145,41 @@ export class OptionList {
      *************************************************************************/
 
     highlight() {
-        this.resetHighlight();
-
-        if (this.hasShownSelected()) {
-            this.highlightFirstShownSelected();
-        }
-        else {
-            this.highlightFirst();
-        }
-    }
-
-    resetHighlight() {
-        this._options.forEach((option) => {
-            option.highlighted = false;
-        });
+        this.hasShownSelected() ?
+            this.highlightFirstShownSelected() : this.highlightFirstShown();
     }
 
     private highlightFirstShownSelected() {
+        this.clearHighlightedOption();
+
         for (let option of this._options) {
             if (option.shown && option.selected) {
-                option.highlighted = true;
+                this.highlightOption(option);
                 break;
             }
         }
     }
 
-    private highlightFirst() {
+    private highlightFirstShown() {
+        this.clearHighlightedOption();
+
         for (let option of this._options) {
             if (option.shown) {
-                option.highlighted = true;
+                this.highlightOption(option);
                 break;
             }
+        }
+    }
+
+    private highlightOption(option: Option) {
+        option.highlighted = true;
+        this.highlightedOption = option;
+    }
+
+    private clearHighlightedOption() {
+        if (this.highlightedOption !== null) {
+            this.highlightedOption.highlighted = false;
+            this.highlightedOption = null;
         }
     }
 }
