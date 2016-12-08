@@ -45,10 +45,13 @@ ng-select {
 
             >div.value,
             >div.placeholder {
-                color: #aaa;
                 flex: 1;
                 line-height: 30px;
                 padding: 0 10px;
+            }
+
+            >div.placeholder {
+                color: #aaa;
             }
 
             >div.clear,

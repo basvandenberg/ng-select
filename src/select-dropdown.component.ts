@@ -9,7 +9,6 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import {DiacriticsService} from './diacritics.service';
 import {Option} from './option';
 import {OptionList} from './option-list';
 
@@ -31,15 +30,13 @@ export class SelectDropdownComponent
     @Input() left: number;
 
     @Output() close = new EventEmitter<boolean>();
-    @Output() optionClicked = new EventEmitter<Option>();
+    @Output() filterEnterPressed = new EventEmitter<null>();
     @Output() filterInputChanged = new EventEmitter<string>();
+    @Output() optionClicked = new EventEmitter<Option>();
+    @Output() optionHovered = new EventEmitter<Option>();
 
     @ViewChild('filterInput') filterInput: any;
     @ViewChild('optionsList') optionsList: any;
-
-    constructor(
-        private diacriticsService: DiacriticsService
-    ) {}
 
     /**************************************************************************
      * Event handlers.
@@ -74,7 +71,7 @@ export class SelectDropdownComponent
     }
 
     onFilterKeydown(event: any) {
-        this.handleKeydown(event);
+        this.handleFilterKeydown(event);
     }
 
     // Options list.
@@ -90,7 +87,7 @@ export class SelectDropdownComponent
     }
 
     onOptionMouseover(option: Option) {
-        console.log(option);
+        this.optionHovered.emit(option);
     }
 
     /**************************************************************************
@@ -166,39 +163,33 @@ export class SelectDropdownComponent
      *************************************************************************/
 
     private KEYS: any = {
-        TAB: 9,
         ENTER: 13,
         ESC: 27,
         UP: 38,
         DOWN: 40
     };
 
-    private handleKeydown(event: any) {
+    private handleFilterKeydown(event: any) {
 
         let key = event.which;
 
-        if (key === this.KEYS.ESC || key === this.KEYS.TAB ||
-            (key === this.KEYS.UP && event.altKey)) {
-
+        if (key === this.KEYS.ESC || (key === this.KEYS.UP && event.altKey)) {
             this.close.emit(true);
             event.preventDefault();
         }
         else if (key === this.KEYS.ENTER) {
-            /*if (this.highlighted !== null) {
-                this.toggleSelect.emit(this.highlighted.value);
-
-                this.close.emit(true);
-            }*/
+            this.filterEnterPressed.emit(null);
             event.preventDefault();
         }
         else if (key === this.KEYS.UP) {
-            // this.highlightPrevious();
+            this.optionList.highlightPreviousOption();
             event.preventDefault();
         }
         else if (key === this.KEYS.DOWN) {
-            // this.highlightNext();
+            this.optionList.highlightNextOption();
             event.preventDefault();
         }
+
     }
 
     private handleOptionsWheel(e: any) {
@@ -213,24 +204,5 @@ export class SelectDropdownComponent
             e.preventDefault();
         }
     }
-
-    /*
-    highlightPrevious() {
-        let i = this.highlightIndex();
-
-        if (i !== null && i > 0) {
-            this.highlight(this.optionValuesFiltered[i - 1]);
-            this.ensureHighlightedVisible();
-        }
-    }
-
-    highlightNext() {
-        let i = this.highlightIndex();
-
-        if (i !== null && i < this.optionValuesFiltered.length - 1) {
-            this.highlight(this.optionValuesFiltered[i + 1]);
-            this.ensureHighlightedVisible();
-        }
-    }*/
 }
 

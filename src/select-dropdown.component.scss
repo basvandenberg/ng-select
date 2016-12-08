@@ -35,15 +35,15 @@ select-dropdown {
                     user-select: none;
 
                     &.selected {
-                        background-color: #aaa;
+                        background-color: #eee;
 
                         &.highlighted {
-                            background-color: #2196f3;
+                            background-color: #42A5F5;
                         }
                     }
 
                     &.highlighted {
-                        background-color: #2196f3;
+                        background-color: #64B5F6;
                     }
                 }
             }

@@ -97,6 +97,10 @@ export class SelectComponent
             this.toggleSelectOption(option) : this.selectOption(option);
     }
 
+    onOptionHovered(option: Option) {
+        this.optionList.highlightOption(option);
+    }
+
     onClose(focus: any) {
         this.closeDropdown(focus);
     }
@@ -117,6 +121,10 @@ export class SelectComponent
         this.filterFocus = false;
     }
 
+    onFilterEnterPressed() {
+        this.selectHighlightedOption();
+    }
+
     onFilterInput(event: any) {
         if (!this.isOpen) {
             this.openDropdown();
@@ -129,6 +137,10 @@ export class SelectComponent
         this.optionList.filter(term);
     }
 
+    onFilterInputKeydown(event: any) {
+        this.handleFilterInputKeydown(event);
+    }
+
     onClearSelectionClick(event: any) {
         this.clearSelection();
         this.closeDropdown(true);
@@ -138,10 +150,6 @@ export class SelectComponent
     onDeselectOptionClick(option: Option) {
         this.deselectOption(option);
         event.stopPropagation();
-    }
-
-    onFilterInputKeydown(event: any) {
-        this.handleFilterInputKeydown(event);
     }
 
     onKeydown(event: any) {
@@ -306,6 +314,15 @@ export class SelectComponent
             this.deselectOption(option) : this.selectOption(option);
     }
 
+    private selectHighlightedOption() {
+        let option = this.optionList.highlightedOption;
+
+        if (option !== null) {
+            this.multiple ?
+                this.toggleSelectOption(option) : this.selectOption(option);
+        }
+    }
+
     /**************************************************************************
      * Filter.
      *************************************************************************/
@@ -350,34 +367,18 @@ export class SelectComponent
         let key = event.which;
 
         if (key === this.KEYS.ENTER) {
-            if (typeof this.dropdown !== 'undefined') {
-                // let hl = this.dropdown.highlighted;
-
-                // if (hl !== null) {
-                    // this.onToggleSelect(hl.value);
-                // }
-            }
+            this.selectHighlightedOption();
         }
         else if (key === this.KEYS.BACKSPACE) {
             if (this.filterInput.nativeElement.value === '') {
-                // this.popSelect();
+                this.optionList.deselectLast();
             }
         }
         else if (key === this.KEYS.UP) {
-            if (typeof this.dropdown === 'undefined') {
-                this.openDropdown();
-            }
-            else {
-                // this.dropdown.highlightPrevious();
-            }
+            this.optionList.highlightPreviousOption();
         }
         else if (key === this.KEYS.DOWN) {
-            if (typeof this.dropdown === 'undefined') {
-                this.openDropdown();
-            }
-            else {
-                // this.dropdown.highlightNext();
-            }
+            this.optionList.highlightNextOption();
         }
         else if (key === this.KEYS.ESC) {
             this.closeDropdown(true);

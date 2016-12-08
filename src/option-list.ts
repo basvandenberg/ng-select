@@ -1,24 +1,22 @@
 import {ReflectiveInjector} from '@angular/core';
 
 import {Option} from './option';
-import {DiacriticsService} from './diacritics.service';
+import {Diacritics} from './diacritics';
 
 export class OptionList {
-
-    private diacriticsService: DiacriticsService;
 
     private _options: Array<Option>;
     private _selection: Array<Option>;
     private _filtered: Array<Option>;
     private _value: Array<string>;
 
-    private highlightedOption: Option = null;
+    private _highlightedOption: Option = null;
 
     constructor(options: Array<{ value: string; label: string; }>) {
 
         // Inject diacritics service.
-        let inj = ReflectiveInjector.resolveAndCreate([DiacriticsService]);
-        this.diacriticsService = inj.get(DiacriticsService);
+        // let inj = ReflectiveInjector.resolveAndCreate([DiacriticsService]);
+        // this.diacriticsService = inj.get(DiacriticsService);
 
         // Initialize array of option objects.
         this._options = options.map((option) => {
@@ -81,21 +79,16 @@ export class OptionList {
         option.selected = false;
     }
 
+    deselectLast() {
+        let sel = this.selection;
+        if (sel.length > 0) {
+            this.deselect(sel[sel.length - 1]);
+        }
+    }
+
     clearSelection() {
         this.options.forEach((option) => {
             option.selected = false;
-        });
-    }
-
-    hasSelected() {
-        return this.options.some((option) => {
-            return option.selected;
-        });
-    }
-
-    hasShownSelected() {
-        return this.options.some((option) => {
-            return option.shown && option.selected;
         });
     }
 
@@ -116,10 +109,14 @@ export class OptionList {
         }
         else {
             this.options.forEach((option) => {
-                let strip: any = this.diacriticsService.stripDiacritics;
+                // let strip: any = this.diacriticsService.stripDiacritics;
 
-                let l: string = strip.call(null, option.label).toUpperCase();
-                let t: string = strip.call(null, term).toUpperCase();
+
+                // let l: string = strip.call(null, option.label).toUpperCase();
+                // let t: string = strip.call(null, term).toUpperCase();
+
+                let l: string = Diacritics.strip(option.label).toUpperCase();
+                let t: string = Diacritics.strip(term).toUpperCase();
 
                 option.shown = l.indexOf(t) > -1;
             });
@@ -134,52 +131,98 @@ export class OptionList {
         });
     }
 
+    /**************************************************************************
+     * Highlight.
+     *************************************************************************/
+
+    get highlightedOption(): Option {
+        return this._highlightedOption;
+    }
+
+    highlight() {
+        let option: Option = this.hasShownSelected() ?
+            this.getFirstShownSelected() : this.getFirstShown();
+
+        if (option !== null) {
+            this.highlightOption(option);
+        }
+    }
+
+    highlightOption(option: Option) {
+        this.clearHighlightedOption();
+        option.highlighted = true;
+        this._highlightedOption = option;
+    }
+
+    highlightNextOption() {
+        let index = this.getHighlightedIndex();
+        if (index > -1 && index < this.options.length - 2) {
+            this.highlightOption(this.options[index + 1]);
+        }
+    }
+
+    highlightPreviousOption() {
+        let index = this.getHighlightedIndex();
+        if (index > 0) {
+            this.highlightOption(this.options[index - 1]);
+        }
+    }
+
+    private clearHighlightedOption() {
+        if (this.highlightedOption !== null) {
+            this._highlightedOption.highlighted = false;
+            this._highlightedOption = null;
+        }
+    }
+
+    private getHighlightedIndex() {
+        if (this.highlightedOption === null) {
+            return -1;
+        }
+        for (let i = 0; i < this.options.length; i++) {
+            if (this.options[i].highlighted) {
+                return i;
+            }
+        }
+    }
+
+    /**************************************************************************
+     * Util.
+     *************************************************************************/
+
     hasShown() {
         return this.options.some((option) => {
             return option.shown;
         });
     }
 
-    /**************************************************************************
-     * Highlight.
-     *************************************************************************/
-
-    highlight() {
-        this.hasShownSelected() ?
-            this.highlightFirstShownSelected() : this.highlightFirstShown();
+    hasSelected() {
+        return this.options.some((option) => {
+            return option.selected;
+        });
     }
 
-    private highlightFirstShownSelected() {
-        this.clearHighlightedOption();
-
-        for (let option of this._options) {
-            if (option.shown && option.selected) {
-                this.highlightOption(option);
-                break;
-            }
-        }
+    hasShownSelected() {
+        return this.options.some((option) => {
+            return option.shown && option.selected;
+        });
     }
 
-    private highlightFirstShown() {
-        this.clearHighlightedOption();
-
+    private getFirstShown(): Option {
         for (let option of this._options) {
             if (option.shown) {
-                this.highlightOption(option);
-                break;
+                return option;
             }
         }
+        return null;
     }
 
-    private highlightOption(option: Option) {
-        option.highlighted = true;
-        this.highlightedOption = option;
-    }
-
-    private clearHighlightedOption() {
-        if (this.highlightedOption !== null) {
-            this.highlightedOption.highlighted = false;
-            this.highlightedOption = null;
+    private getFirstShownSelected(): Option {
+        for (let option of this._options) {
+            if (option.shown && option.selected) {
+                return option;
+            }
         }
+        return null;
     }
 }

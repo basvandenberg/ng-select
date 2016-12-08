@@ -64,7 +64,9 @@
     [width]="width"
     [top]="top"
     [left]="left"
+    (close)="onClose($event)"
     (filterInputChanged)="onFilterInputChanged($event)"
+    (filterEnterPressed)="onFilterEnterPressed()"
     (optionClicked)="onOptionClicked($event)"
-    (close)="onClose($event)">
+    (optionHovered)="onOptionHovered($event)">
 </select-dropdown>

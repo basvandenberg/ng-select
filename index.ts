@@ -5,8 +5,6 @@ import {FormsModule} from '@angular/forms';
 import {SelectComponent} from './src/select.component';
 import {SelectDropdownComponent} from './src/select-dropdown.component';
 
-import {DiacriticsService} from './src/diacritics.service';
-
 @NgModule({
     declarations: [
         SelectComponent,
@@ -18,9 +16,6 @@ import {DiacriticsService} from './src/diacritics.service';
     imports: [
         CommonModule,
         FormsModule
-    ],
-    providers: [
-        DiacriticsService
     ]
 })
 export class SelectModule {}
