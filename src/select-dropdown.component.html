@@ -10,9 +10,9 @@
             (keydown)="onFilterKeydown($event)">
     </div>
 
-    <div class="options">
+    <div class="options"
+        #optionsList>
         <ul
-            #optionsList
             (wheel)="onOptionsWheel($event)">
             <li *ngFor="let option of optionList.filtered"
                 [ngClass]="{'highlighted': option.highlighted, 'selected': option.selected}"

@@ -97,10 +97,6 @@ export class SelectComponent
             this.toggleSelectOption(option) : this.selectOption(option);
     }
 
-    onOptionHovered(option: Option) {
-        this.optionList.highlightOption(option);
-    }
-
     onClose(focus: any) {
         this.closeDropdown(focus);
     }
@@ -121,7 +117,7 @@ export class SelectComponent
         this.filterFocus = false;
     }
 
-    onFilterEnterPressed() {
+    onSingleFilterEnterPressed() {
         this.selectHighlightedOption();
     }
 
@@ -315,12 +311,8 @@ export class SelectComponent
     }
 
     private selectHighlightedOption() {
-        let option = this.optionList.highlightedOption;
-
-        if (option !== null) {
-            this.multiple ?
-                this.toggleSelectOption(option) : this.selectOption(option);
-        }
+        this.selectOption(this.optionList.highlightedOption);
+        this.closeDropdown(true);
     }
 
     /**************************************************************************
@@ -354,10 +346,15 @@ export class SelectComponent
 
         let key = event.which;
 
-        if (key === this.KEYS.ENTER || key === this.KEYS.SPACE ||
+        if (key === this.KEYS.ESC || (key === this.KEYS.UP && event.altKey)) {
+
+            this.closeDropdown(true);
+            event.preventDefault();
+        }
+        else if (key === this.KEYS.ENTER || key === this.KEYS.SPACE ||
             (key === this.KEYS.DOWN && event.altKey)) {
 
-            this.open();
+            this.openDropdown();
             event.preventDefault();
         }
     }
@@ -367,21 +364,26 @@ export class SelectComponent
         let key = event.which;
 
         if (key === this.KEYS.ENTER) {
-            this.selectHighlightedOption();
+            this.isOpen ? this.selectHighlightedOption() : this.openDropdown();
+            event.stopPropagation();
         }
         else if (key === this.KEYS.BACKSPACE) {
             if (this.filterInput.nativeElement.value === '') {
                 this.optionList.deselectLast();
             }
+            event.preventDefault();
         }
         else if (key === this.KEYS.UP) {
             this.optionList.highlightPreviousOption();
+            event.preventDefault();
         }
         else if (key === this.KEYS.DOWN) {
             this.optionList.highlightNextOption();
+            event.preventDefault();
         }
         else if (key === this.KEYS.ESC) {
             this.closeDropdown(true);
+            event.preventDefault();
         }
     }
 

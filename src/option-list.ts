@@ -155,16 +155,20 @@ export class OptionList {
     }
 
     highlightNextOption() {
-        let index = this.getHighlightedIndex();
-        if (index > -1 && index < this.options.length - 2) {
-            this.highlightOption(this.options[index + 1]);
+        let shownOptions = this.filtered;
+        let index = this.getHighlightedIndexFromList(shownOptions);
+
+        if (index > -1 && index < shownOptions.length - 1) {
+            this.highlightOption(shownOptions[index + 1]);
         }
     }
 
     highlightPreviousOption() {
-        let index = this.getHighlightedIndex();
+        let shownOptions = this.filtered;
+        let index = this.getHighlightedIndexFromList(shownOptions);
+
         if (index > 0) {
-            this.highlightOption(this.options[index - 1]);
+            this.highlightOption(shownOptions[index - 1]);
         }
     }
 
@@ -175,15 +179,17 @@ export class OptionList {
         }
     }
 
-    private getHighlightedIndex() {
-        if (this.highlightedOption === null) {
-            return -1;
-        }
-        for (let i = 0; i < this.options.length; i++) {
-            if (this.options[i].highlighted) {
+    private getHighlightedIndexFromList(options: Array<Option>) {
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].highlighted) {
                 return i;
             }
         }
+        return -1;
+    }
+
+    getHighlightedIndex() {
+        return this.getHighlightedIndexFromList(this.filtered);
     }
 
     /**************************************************************************

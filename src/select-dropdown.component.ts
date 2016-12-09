@@ -33,7 +33,6 @@ export class SelectDropdownComponent
     @Output() filterEnterPressed = new EventEmitter<null>();
     @Output() filterInputChanged = new EventEmitter<string>();
     @Output() optionClicked = new EventEmitter<Option>();
-    @Output() optionHovered = new EventEmitter<Option>();
 
     @ViewChild('filterInput') filterInput: any;
     @ViewChild('optionsList') optionsList: any;
@@ -55,6 +54,7 @@ export class SelectDropdownComponent
     }
 
     ngAfterViewInit() {
+        this.moveHighlightedIntoView();
         if (!this.multiple) {
             this.filterInput.nativeElement.focus();
         }
@@ -87,7 +87,7 @@ export class SelectDropdownComponent
     }
 
     onOptionMouseover(option: Option) {
-        this.optionHovered.emit(option);
+        this.optionList.highlightOption(option);
     }
 
     /**************************************************************************
@@ -111,37 +111,13 @@ export class SelectDropdownComponent
      * Highlight.
      *************************************************************************/
 
-    /*get highlighted(): any {
-        return this._highlighted;
-    }
-
-    private initHighlight() {
-        if (this.optionValues.length > 0) {
-
-            if (this.selection.length > 0) {
-                this._highlighted = this.selection[0];
-            }
-            else {
-                this._highlighted = this.optionsDict[this.optionValues[0]];
-            }
-        }
-    }
-
-    private highlight(optionValue: string) {
-        if (this.highlighted === null ||
-            optionValue !== this.highlighted.value) {
-            this._highlighted = this.optionsDict[optionValue];
-        }
-    }*/
-
-    // TODO
-    /*private ensureHighlightedVisible() {
+    moveHighlightedIntoView() {
 
         let list = this.optionsList.nativeElement;
         let listHeight = list.offsetHeight;
 
-        let itemIndex = this.highlightIndex();
-        let item = list.children[itemIndex];
+        let itemIndex = this.optionList.getHighlightedIndex();
+        let item = list.children[0].children[itemIndex];
         let itemHeight = item.offsetHeight;
 
         let itemTop = itemIndex * itemHeight;
@@ -158,6 +134,7 @@ export class SelectDropdownComponent
         }
     }
 
+
     /**************************************************************************
      * Keys/scroll.
      *************************************************************************/
@@ -173,27 +150,25 @@ export class SelectDropdownComponent
 
         let key = event.which;
 
-        if (key === this.KEYS.ESC || (key === this.KEYS.UP && event.altKey)) {
-            this.close.emit(true);
-            event.preventDefault();
-        }
-        else if (key === this.KEYS.ENTER) {
+        if (key === this.KEYS.ENTER) {
             this.filterEnterPressed.emit(null);
             event.preventDefault();
         }
         else if (key === this.KEYS.UP) {
             this.optionList.highlightPreviousOption();
+            this.moveHighlightedIntoView();
             event.preventDefault();
         }
         else if (key === this.KEYS.DOWN) {
             this.optionList.highlightNextOption();
+            this.moveHighlightedIntoView();
             event.preventDefault();
         }
 
     }
 
     private handleOptionsWheel(e: any) {
-        let div = this.optionsList.nativeElement.parentElement;
+        let div = this.optionsList.nativeElement;
         let atTop = div.scrollTop === 0;
         let atBottom = div.offsetHeight + div.scrollTop === div.scrollHeight;
 
