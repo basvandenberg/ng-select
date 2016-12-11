@@ -79,13 +79,6 @@ export class OptionList {
         option.selected = false;
     }
 
-    deselectLast() {
-        let sel = this.selection;
-        if (sel.length > 0) {
-            this.deselect(sel[sel.length - 1]);
-        }
-    }
-
     clearSelection() {
         this.options.forEach((option) => {
             option.selected = false;

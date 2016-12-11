@@ -5,9 +5,9 @@
         *ngIf="!multiple">
         <input
             #filterInput
-            (click)="onFilterInputClick($event)"
-            (input)="onFilterInput($event)"
-            (keydown)="onFilterKeydown($event)">
+            (click)="onSingleFilterClick($event)"
+            (input)="onSingleFilterInput($event)"
+            (keydown)="onSingleFilterKeydown($event)">
     </div>
 
     <div class="options"

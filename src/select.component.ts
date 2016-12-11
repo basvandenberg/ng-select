@@ -53,20 +53,21 @@ export class SelectComponent
 
     optionList: OptionList;
 
-    // State variables.
-    hasFocus: boolean = false;
+    // Selection state variables.
     hasSelected: boolean = false;
+
+    // View state variables.
+    filterInputWidth: number = 1;
+    hasFocus: boolean = false;
     isBelow: boolean = true;
     isDisabled: boolean = false;
     isOpen: boolean = false;
+    placeholderView: string = '';
 
     // Width and position for the dropdown container.
     width: number;
     top: number;
     left: number;
-
-    filterInputWidth: number = 20;
-    filterFocus: boolean = false;
 
     private _onChange = (_: any) => {};
     private onTouched = () => {};
@@ -74,6 +75,8 @@ export class SelectComponent
     /**************************************************************************
      * Event handlers.
      *************************************************************************/
+
+    // Angular lifecycle hooks.
 
     ngOnInit() {
     }
@@ -84,22 +87,7 @@ export class SelectComponent
         }
     }
 
-    onSelectionClick(event: any) {
-        this.toggleDropdown();
-        if (this.multiple) {
-            this.filterInput.nativeElement.focus();
-        }
-        event.stopPropagation();
-    }
-
-    onOptionClicked(option: Option) {
-        this.multiple ?
-            this.toggleSelectOption(option) : this.selectOption(option);
-    }
-
-    onClose(focus: any) {
-        this.closeDropdown(focus);
-    }
+    // Window.
 
     onWindowClick() {
         this.closeDropdown();
@@ -109,33 +97,63 @@ export class SelectComponent
         this.updateWidth();
     }
 
-    onFilterFocus() {
-        this.filterFocus = true;
-    }
+    // Select container.
 
-    onFilterBlur() {
-        this.filterFocus = false;
-    }
-
-    onSingleFilterEnterPressed() {
-        this.selectHighlightedOption();
-    }
-
-    onFilterInput(event: any) {
-        if (!this.isOpen) {
-            this.openDropdown();
+    onSelectContainerClick(event: any) {
+        this.toggleDropdown();
+        if (this.multiple) {
+            this.filterInput.nativeElement.focus();
         }
-        this.filterInputWidth = 20 + event.target.value.length * 10;
-        setTimeout(() => { this.onFilterInputChanged(event.target.value); });
+        event.stopPropagation();
     }
 
-    onFilterInputChanged(term: string) {
+    onSelectContainerKeydown(event: any) {
+        console.log('Select container keydown');
+        this.handleKeydown(event);
+    }
+
+    // Dropdown container.
+
+    onDropdownOptionClicked(option: Option) {
+        this.multiple ?
+            this.toggleSelectOption(option) : this.selectOption(option);
+    }
+
+    onDropdownClose(focus: any) {
+        this.closeDropdown(focus);
+    }
+
+    // Single filter input.
+
+    onSingleFilterInput(term: string) {
+        console.log('single filter input');
         this.optionList.filter(term);
     }
 
-    onFilterInputKeydown(event: any) {
-        this.handleFilterInputKeydown(event);
+    onSingleFilterKeydown(event: any) {
+        console.log('single filter keydown');
+        this.handleSingleFilterKeydown(event);
     }
+
+    // Multiple filter input.
+
+    onMultipleFilterInput(event: any) {
+        console.log('multiple filter input');
+        if (!this.isOpen) {
+            this.openDropdown();
+        }
+        this.updateFilterWidth();
+        setTimeout(() => {
+            this.optionList.filter(event.target.value);
+        });
+    }
+
+    onMultipleFilterKeydown(event: any) {
+        console.log('multiple filter keydown');
+        this.handleMultipleFilterKeydown(event);
+    }
+
+    // Single clear select.
 
     onClearSelectionClick(event: any) {
         this.clearSelection();
@@ -143,13 +161,11 @@ export class SelectComponent
         event.stopPropagation();
     }
 
+    // Multiple deselect option.
+
     onDeselectOptionClick(option: Option) {
         this.deselectOption(option);
         event.stopPropagation();
-    }
-
-    onKeydown(event: any) {
-        this.handleKeydown(event);
     }
 
     /**************************************************************************
@@ -214,7 +230,9 @@ export class SelectComponent
         if (v !== this._value) {
             this._value = v;
             this.optionList.value = v;
+
             this.hasSelected = v.length > 0;
+            this.placeholderView = this.hasSelected ? '' : this.placeholder;
 
             this._onChange(v);
         }
@@ -259,7 +277,7 @@ export class SelectComponent
 
     private closeDropdown(focus: boolean = false) {
         if (this.isOpen) {
-            this.clearFilter();
+            this.clearFilterInput();
             this.isOpen = false;
             if (focus) {
                 this.focus();
@@ -277,6 +295,9 @@ export class SelectComponent
             this.optionList.select(option, this.multiple);
             this.value = this.optionList.value;
             this.selected.emit(option.undecoratedCopy());
+            setTimeout(() => {
+                this.updateFilterWidth();
+            });
         }
     }
 
@@ -285,6 +306,11 @@ export class SelectComponent
             this.optionList.deselect(option);
             this.value = this.optionList.value;
             this.deselected.emit(option.undecoratedCopy());
+            // Reposition dropdown if heigh select container changes.
+            setTimeout(() => {
+                this.updateFilterWidth();
+                this.updatePosition();
+            });
         }
     }
 
@@ -315,17 +341,31 @@ export class SelectComponent
         this.closeDropdown(true);
     }
 
+    private deselectLast() {
+        let sel: Array<Option> = this.optionList.selection;
+
+        if (sel.length > 0) {
+            let option: Option = sel[sel.length - 1];
+            this.deselectOption(option);
+            this.setMultipleFilterInput(option.label + ' ');
+        }
+    }
+
     /**************************************************************************
      * Filter.
      *************************************************************************/
 
-    private clearFilter() {
+    private clearFilterInput() {
         if (this.multiple) {
             this.filterInput.nativeElement.value = '';
         }
         else {
-            this.dropdown.clearFilter();
+            this.dropdown.clearFilterInput();
         }
+    }
+
+    private setMultipleFilterInput(value: string) {
+        this.filterInput.nativeElement.value = value;
     }
 
     /**************************************************************************
@@ -342,24 +382,22 @@ export class SelectComponent
         DOWN: 40
     };
 
-    handleKeydown(event: any) {
+    private handleKeydown(event: any) {
 
         let key = event.which;
 
         if (key === this.KEYS.ESC || (key === this.KEYS.UP && event.altKey)) {
 
             this.closeDropdown(true);
-            event.preventDefault();
         }
         else if (key === this.KEYS.ENTER || key === this.KEYS.SPACE ||
             (key === this.KEYS.DOWN && event.altKey)) {
 
             this.openDropdown();
-            event.preventDefault();
         }
     }
 
-    handleFilterInputKeydown(event: any) {
+    private handleMultipleFilterKeydown(event: any) {
 
         let key = event.which;
 
@@ -368,23 +406,48 @@ export class SelectComponent
             event.stopPropagation();
         }
         else if (key === this.KEYS.BACKSPACE) {
-            if (this.filterInput.nativeElement.value === '') {
-                this.optionList.deselectLast();
+            if (this.hasSelected &&
+                    this.filterInput.nativeElement.value === '') {
+                this.deselectLast();
+                event.stopPropagation();
             }
+        }
+        else if (key === this.KEYS.UP) {
+            if (this.isOpen) {
+                this.optionList.highlightPreviousOption();
+                this.dropdown.moveHighlightedIntoView();
+            }
+        }
+        else if (key === this.KEYS.DOWN) {
+            if (this.isOpen) {
+                this.optionList.highlightNextOption();
+                this.dropdown.moveHighlightedIntoView();
+            }
+        }
+        else if (key === this.KEYS.ESC) {
+            this.closeDropdown(true);
+        }
+    }
+
+    private handleSingleFilterKeydown(event: any) {
+
+        let key = event.which;
+
+        if (key === this.KEYS.ENTER) {
+            this.selectHighlightedOption();
             event.preventDefault();
         }
         else if (key === this.KEYS.UP) {
             this.optionList.highlightPreviousOption();
+            this.dropdown.moveHighlightedIntoView();
             event.preventDefault();
         }
         else if (key === this.KEYS.DOWN) {
             this.optionList.highlightNextOption();
+            this.dropdown.moveHighlightedIntoView();
             event.preventDefault();
         }
-        else if (key === this.KEYS.ESC) {
-            this.closeDropdown(true);
-            event.preventDefault();
-        }
+
     }
 
     /***************************************************************************
@@ -415,4 +478,11 @@ export class SelectComponent
         this.left = e.offsetLeft;
         this.top = e.offsetTop + e.offsetHeight;
     }
+
+    updateFilterWidth() {
+        let value: string = this.filterInput.nativeElement.value;
+        this.filterInputWidth = value.length === 0 ?
+            this.placeholderView.length * 10 : 1 + value.length * 10;
+    }
+
 }

@@ -1,8 +1,8 @@
 <div tabindex=0
     #selection
     [ngClass]="{'open': isOpen, 'focus': hasFocus, 'below': isBelow}"
-    (click)="onSelectionClick($event)"
-    (keydown)="onKeydown($event)"
+    (click)="onSelectContainerClick($event)"
+    (keydown)="onSelectContainerKeydown($event)"
     (window:resize)="onWindowResize()"
     (window:click)="onWindowClick()">
 
@@ -41,17 +41,12 @@
             </span>
             {{option.label}}
         </div>
-        <div class="placeholder"
-            *ngIf="!filterFocus && !optionList.hasSelected()">
-            {{placeholder}}
-        </div>
         <input
             #filterInput
+            [placeholder]="placeholderView"
             [ngStyle]="{'width.px': filterInputWidth}"
-            (blur)="onFilterBlur()"
-            (focus)="onFilterFocus()"
-            (input)="onFilterInput($event)"
-            (keydown)="onFilterInputKeydown($event)"/>
+            (input)="onMultipleFilterInput($event)"
+            (keydown)="onMultipleFilterKeydown($event)"/>
     </div>
 
 </div>
@@ -64,8 +59,8 @@
     [width]="width"
     [top]="top"
     [left]="left"
-    (close)="onClose($event)"
-    (filterInputChanged)="onFilterInputChanged($event)"
-    (filterEnterPressed)="onSingleFilterEnterPressed()"
-    (optionClicked)="onOptionClicked($event)">
+    (close)="onDropdownClose($event)"
+    (singleFilterInput)="onSingleFilterInput($event)"
+    (singleFilterKeydown)="onSingleFilterKeydown($event)"
+    (optionClicked)="onDropdownOptionClicked($event)">
 </select-dropdown>
