@@ -63,6 +63,7 @@ export class SelectComponent
     isDisabled: boolean = false;
     isOpen: boolean = false;
     placeholderView: string = '';
+    selectContainerClicked: boolean = false;
 
     // Width and position for the dropdown container.
     width: number;
@@ -90,7 +91,10 @@ export class SelectComponent
     // Window.
 
     onWindowClick() {
-        this.closeDropdown();
+        if (!this.selectContainerClicked) {
+            this.closeDropdown();
+        }
+        this.selectContainerClicked = false;
     }
 
     onWindowResize() {
@@ -100,16 +104,15 @@ export class SelectComponent
     // Select container.
 
     onSelectContainerClick(event: any) {
+        this.selectContainerClicked = true;
         this.toggleDropdown();
         if (this.multiple) {
             this.filterInput.nativeElement.focus();
         }
-        event.stopPropagation();
     }
 
     onSelectContainerKeydown(event: any) {
-        console.log('Select container keydown');
-        this.handleKeydown(event);
+        this.handleSelectContainerKeydown(event);
     }
 
     // Dropdown container.
@@ -126,19 +129,16 @@ export class SelectComponent
     // Single filter input.
 
     onSingleFilterInput(term: string) {
-        console.log('single filter input');
         this.optionList.filter(term);
     }
 
     onSingleFilterKeydown(event: any) {
-        console.log('single filter keydown');
         this.handleSingleFilterKeydown(event);
     }
 
     // Multiple filter input.
 
     onMultipleFilterInput(event: any) {
-        console.log('multiple filter input');
         if (!this.isOpen) {
             this.openDropdown();
         }
@@ -149,23 +149,22 @@ export class SelectComponent
     }
 
     onMultipleFilterKeydown(event: any) {
-        console.log('multiple filter keydown');
         this.handleMultipleFilterKeydown(event);
     }
 
     // Single clear select.
 
     onClearSelectionClick(event: any) {
+        this.selectContainerClicked = true;
         this.clearSelection();
         this.closeDropdown(true);
-        event.stopPropagation();
     }
 
     // Multiple deselect option.
 
     onDeselectOptionClick(option: Option) {
+        this.selectContainerClicked = true;
         this.deselectOption(option);
-        event.stopPropagation();
     }
 
     /**************************************************************************
@@ -296,7 +295,9 @@ export class SelectComponent
             this.value = this.optionList.value;
             this.selected.emit(option.undecoratedCopy());
             setTimeout(() => {
-                this.updateFilterWidth();
+                if (this.multiple) {
+                    this.updateFilterWidth();
+                }
             });
         }
     }
@@ -306,10 +307,13 @@ export class SelectComponent
             this.optionList.deselect(option);
             this.value = this.optionList.value;
             this.deselected.emit(option.undecoratedCopy());
-            // Reposition dropdown if heigh select container changes.
             setTimeout(() => {
-                this.updateFilterWidth();
-                this.updatePosition();
+                if (this.multiple) {
+                    this.updateFilterWidth();
+                    this.updatePosition();
+                    this.optionList.highlight();
+                    this.dropdown.moveHighlightedIntoView();
+                }
             });
         }
     }
@@ -382,17 +386,14 @@ export class SelectComponent
         DOWN: 40
     };
 
-    private handleKeydown(event: any) {
-
+    private handleSelectContainerKeydown(event: any) {
         let key = event.which;
 
         if (key === this.KEYS.ESC || (key === this.KEYS.UP && event.altKey)) {
-
             this.closeDropdown(true);
         }
         else if (key === this.KEYS.ENTER || key === this.KEYS.SPACE ||
             (key === this.KEYS.DOWN && event.altKey)) {
-
             this.openDropdown();
         }
     }
@@ -409,7 +410,6 @@ export class SelectComponent
             if (this.hasSelected &&
                     this.filterInput.nativeElement.value === '') {
                 this.deselectLast();
-                event.stopPropagation();
             }
         }
         else if (key === this.KEYS.UP) {
@@ -424,9 +424,6 @@ export class SelectComponent
                 this.dropdown.moveHighlightedIntoView();
             }
         }
-        else if (key === this.KEYS.ESC) {
-            this.closeDropdown(true);
-        }
     }
 
     private handleSingleFilterKeydown(event: any) {
@@ -435,19 +432,17 @@ export class SelectComponent
 
         if (key === this.KEYS.ENTER) {
             this.selectHighlightedOption();
-            event.preventDefault();
+            event.stopPropagation();
         }
         else if (key === this.KEYS.UP) {
             this.optionList.highlightPreviousOption();
             this.dropdown.moveHighlightedIntoView();
-            event.preventDefault();
+            this.handleSelectContainerKeydown(event);
         }
         else if (key === this.KEYS.DOWN) {
             this.optionList.highlightNextOption();
             this.dropdown.moveHighlightedIntoView();
-            event.preventDefault();
         }
-
     }
 
     /***************************************************************************
