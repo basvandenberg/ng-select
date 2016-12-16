@@ -2,7 +2,6 @@ import {
     Component,
     Input,
     OnChanges,
-    OnInit,
     Output,
     EventEmitter,
     ExistingProvider,
@@ -29,16 +28,16 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
     encapsulation: ViewEncapsulation.None
 })
 
-export class SelectComponent
-        implements ControlValueAccessor, OnInit, OnChanges {
+export class SelectComponent implements ControlValueAccessor, OnChanges {
 
     @Input() options: Array<{ value: string; label: string; }>;
 
     @Input() allowClear: boolean = false;
-    @Input() disabled: boolean = false;
+    @Input() disabled: boolean = false; // TODO
     @Input() multiple: boolean = false;
-    @Input() placeholder: string = '';
+    @Input() noSearch: number = 0; // TODO
     @Input() notFoundMsg: string = 'No results found';
+    @Input() placeholder: string = '';
 
     @Output() opened: EventEmitter<null> = new EventEmitter<null>();
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();
@@ -74,14 +73,9 @@ export class SelectComponent
     private _onChange = (_: any) => {};
     private onTouched = () => {};
 
-    /**************************************************************************
-     * Event handlers.
-     *************************************************************************/
+    /** Event handlers. **/
 
     // Angular lifecycle hooks.
-
-    ngOnInit() {
-    }
 
     ngOnChanges(changes: any) {
         if (changes.hasOwnProperty('options')) {
@@ -132,6 +126,10 @@ export class SelectComponent
 
     // Single filter input.
 
+    onSingleFilterClick() {
+        this.selectContainerClicked = true;
+    }
+
     onSingleFilterInput(term: string) {
         this.optionList.filter(term);
     }
@@ -171,9 +169,7 @@ export class SelectComponent
         this.deselectOption(option);
     }
 
-    /**************************************************************************
-     * API.
-     *************************************************************************/
+    /** API. **/
 
     open() {
         this.openDropdown();
@@ -193,9 +189,7 @@ export class SelectComponent
         });
     }
 
-    /**************************************************************************
-     * ControlValueAccessor interface methods.
-     *************************************************************************/
+    /** ControlValueAccessor interface methods. **/
 
     writeValue(value: any) {
         this.value = value;
@@ -209,9 +203,7 @@ export class SelectComponent
         this.onTouched = fn;
     }
 
-    /**************************************************************************
-     * Getters/setters.
-     *************************************************************************/
+    /** Getters/setters. **/
 
     get value(): any {
         if (this._value.length === 0) {
@@ -241,9 +233,7 @@ export class SelectComponent
         }
     }
 
-    /**************************************************************************
-     * Initialization.
-     *************************************************************************/
+    /** Initialization. **/
 
     private updateOptionsList(firstTime: boolean) {
         let v: Array<string>;
@@ -259,9 +249,7 @@ export class SelectComponent
         }
     }
 
-    /**************************************************************************
-     * Dropdown.
-     *************************************************************************/
+    /** Dropdown. **/
 
     private toggleDropdown() {
         if (!this.isDisabled) {
@@ -289,9 +277,7 @@ export class SelectComponent
         }
     }
 
-    /**************************************************************************
-     * Select.
-     *************************************************************************/
+    /** Select. **/
 
     private selectOption(option: Option) {
         if (!option.selected) {
@@ -361,9 +347,7 @@ export class SelectComponent
         }
     }
 
-    /**************************************************************************
-     * Filter.
-     *************************************************************************/
+    /** Filter. **/
 
     private clearFilterInput() {
         if (this.multiple) {
@@ -378,9 +362,7 @@ export class SelectComponent
         this.filterInput.nativeElement.value = value;
     }
 
-    /**************************************************************************
-     * Keys.
-     *************************************************************************/
+    /** Keys. **/
 
     private KEYS: any = {
         BACKSPACE: 8,
@@ -454,9 +436,7 @@ export class SelectComponent
         }
     }
 
-    /***************************************************************************
-     * Layout.
-     **************************************************************************/
+    /** Layout. **/
 
     focus() {
         this.hasFocus = true;

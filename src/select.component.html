@@ -60,7 +60,8 @@
     [top]="top"
     [left]="left"
     (close)="onDropdownClose($event)"
+    (optionClicked)="onDropdownOptionClicked($event)"
+    (singleFilterClick)="onSingleFilterClick()"
     (singleFilterInput)="onSingleFilterInput($event)"
-    (singleFilterKeydown)="onSingleFilterKeydown($event)"
-    (optionClicked)="onDropdownOptionClicked($event)">
+    (singleFilterKeydown)="onSingleFilterKeydown($event)">
 </select-dropdown>

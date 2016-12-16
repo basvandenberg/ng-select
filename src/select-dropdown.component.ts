@@ -9,6 +9,7 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
+
 import {Option} from './option';
 import {OptionList} from './option-list';
 
@@ -30,16 +31,15 @@ export class SelectDropdownComponent
     @Input() left: number;
 
     @Output() close = new EventEmitter<boolean>();
-    @Output() singleFilterKeydown = new EventEmitter<any>();
-    @Output() singleFilterInput = new EventEmitter<string>();
     @Output() optionClicked = new EventEmitter<Option>();
+    @Output() singleFilterClick = new EventEmitter<null>();
+    @Output() singleFilterInput = new EventEmitter<string>();
+    @Output() singleFilterKeydown = new EventEmitter<any>();
 
     @ViewChild('filterInput') filterInput: any;
     @ViewChild('optionsList') optionsList: any;
 
-    /**************************************************************************
-     * Event handlers.
-     *************************************************************************/
+    /** Event handlers. **/
 
     // Angular life cycle hooks.
 
@@ -63,7 +63,7 @@ export class SelectDropdownComponent
     // Filter input (single select).
 
     onSingleFilterClick(event: any) {
-        event.stopPropagation();
+        this.singleFilterClick.emit(null);
     }
 
     onSingleFilterInput(event: any) {
@@ -88,18 +88,14 @@ export class SelectDropdownComponent
         this.optionClicked.emit(option);
     }
 
-    /**************************************************************************
-     * Initialization.
-     *************************************************************************/
+    /** Initialization. **/
 
     private optionsReset() {
         this.optionList.resetFilter();
         this.optionList.highlight();
     }
 
-    /**************************************************************************
-     * View.
-     *************************************************************************/
+    /** View. **/
 
     clearFilterInput() {
         this.filterInput.nativeElement.value = '';
@@ -140,5 +136,4 @@ export class SelectDropdownComponent
             e.preventDefault();
         }
     }
-
 }
