@@ -64,6 +64,7 @@ export class SelectComponent
     isOpen: boolean = false;
     placeholderView: string = '';
     selectContainerClicked: boolean = false;
+    clearClicked: boolean = false;
 
     // Width and position for the dropdown container.
     width: number;
@@ -105,10 +106,13 @@ export class SelectComponent
 
     onSelectContainerClick(event: any) {
         this.selectContainerClicked = true;
-        this.toggleDropdown();
-        if (this.multiple) {
-            this.filterInput.nativeElement.focus();
+        if (!this.clearClicked) {
+            this.toggleDropdown();
+            if (this.multiple) {
+                this.filterInput.nativeElement.focus();
+            }
         }
+        this.clearClicked = false;
     }
 
     onSelectContainerKeydown(event: any) {
@@ -155,7 +159,7 @@ export class SelectComponent
     // Single clear select.
 
     onClearSelectionClick(event: any) {
-        this.selectContainerClicked = true;
+        this.clearClicked = true;
         this.clearSelection();
         this.closeDropdown(true);
     }
@@ -163,7 +167,7 @@ export class SelectComponent
     // Multiple deselect option.
 
     onDeselectOptionClick(option: Option) {
-        this.selectContainerClicked = true;
+        this.clearClicked = true;
         this.deselectOption(option);
     }
 
@@ -312,7 +316,9 @@ export class SelectComponent
                     this.updateFilterWidth();
                     this.updatePosition();
                     this.optionList.highlight();
-                    this.dropdown.moveHighlightedIntoView();
+                    if (this.isOpen) {
+                        this.dropdown.moveHighlightedIntoView();
+                    }
                 }
             });
         }
@@ -430,7 +436,10 @@ export class SelectComponent
 
         let key = event.which;
 
-        if (key === this.KEYS.ENTER) {
+        if (key === this.KEYS.ESC) {
+            this.closeDropdown(true);
+        }
+        else if (key === this.KEYS.ENTER) {
             this.selectHighlightedOption();
             event.stopPropagation();
         }
@@ -477,7 +486,7 @@ export class SelectComponent
     updateFilterWidth() {
         let value: string = this.filterInput.nativeElement.value;
         this.filterInputWidth = value.length === 0 ?
-            this.placeholderView.length * 10 : 1 + value.length * 10;
+            1 + this.placeholderView.length * 10 : 1 + value.length * 10;
     }
 
 }
