@@ -12,6 +12,7 @@ var tslint = require('gulp-tslint');
 
 gulp.task('build', ['transpile:ts'], function() {
     return del([
+        './aot',
         './src/select.component.html.ts',
         './src/select.component.css',
         './src/select.component.css.ts',
@@ -22,52 +23,17 @@ gulp.task('build', ['transpile:ts'], function() {
 });
 
 gulp.task('watch', function() {
-
-    gulp.watch([
-        './index.ts',
-        './src/*.ts',
-        './src/*.html',
-        './src/*.scss',
-        '!*/**/*.d.ts',
-        '!*/**/*.scss.ts',
-        '!*/**/*.ngfactory.ts'
-    ], [
-        'build'
-    ]);
+    gulp.watch(['./src/**/*'], ['build']);
 });
 
 gulp.task('clean', function() {
-
-    // TODO delete dist directory...
-    return del([
-        './index.d.ts',
-        './index.js',
-        './index.metadata.json',
-        './index.ngfactory.ts',
-        './index.ngsummary.json',
-        './src/**/*.d.ts',
-        './src/**/*.css.ts',
-        './src/**/*.scss.ts',
-        './src/**/*.js',
-        './src/**/*.metadata.json',
-        './src/**/*.ngfactory.ts',
-        './src/**/*.ngstyle.ts',
-        './src/**/*.ngsummary.json',
-    ]);
+    return del(['./aot', './dist/**/*']);
 });
 
 // Typescript --> Javascript.
 
 gulp.task('lint:ts', function() {
-    return gulp.src([
-        './index.ts',
-        './src/*.ts',
-        '!*/**/*.d.ts',
-        '!*/**/*.css.ts',
-        '!*/**/*.scss.ts',
-        '!*/**/*.ngfactory.ts',
-        '!*/**/*.ngstyle.ts'
-    ])
+    return gulp.src(['./src/*.ts'])
         .pipe(tslint({
             formatter: "verbose"
         }))
@@ -77,7 +43,8 @@ gulp.task('lint:ts', function() {
 gulp.task('transpile:ts', ['clean', 'templates', 'styles'], function (cb) {
 
     var cmd = os.platform() === 'win32' ?
-        'node_modules\\.bin\\ngc' : './node_modules/.bin/ngc';
+        'node_modules\\.bin\\ngc -p src/tsconfig.json' : 
+        './node_modules/.bin/ngc -p src/tsconfig.json';
 
     exec(cmd, function (err, stdout, stderr) {
         console.log(stdout);

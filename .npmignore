@@ -1,17 +1,13 @@
-*.ts
-*.html
-*.scss
-!*.d.ts
-!*.ngfactory.ts
-
 /.git
+/node_modules
+/src
+
 yarn.lock
 gulpfile.js
 tslint.json
 .editorconfig
 .npmignore
 
-/node_modules
 npm-debug.log
 yarn-error.log
 
