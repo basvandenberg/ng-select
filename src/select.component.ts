@@ -10,6 +10,8 @@ import {
     forwardRef
 } from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
+import {STYLE} from './select.component.css';
+import {TEMPLATE} from './select.component.html';
 import {SelectDropdownComponent} from './select-dropdown.component';
 import {Option} from './option';
 import {OptionList} from './option-list';
@@ -22,8 +24,8 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
 
 @Component({
     selector: 'ng-select',
-    templateUrl: 'select.component.html',
-    styleUrls: ['select.component.scss'],
+    template: TEMPLATE,
+    styles: [STYLE],
     providers: [SELECT_VALUE_ACCESSOR],
     encapsulation: ViewEncapsulation.None
 })

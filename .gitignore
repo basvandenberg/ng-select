@@ -1,17 +1,20 @@
 index.d.ts
 index.js
 index.metadata.json
+index.ngsummary.json
 index.ngfactory.ts
 src/**/*.css.ts
 src/**/*.scss.ts
 src/**/*.d.ts
 src/**/*.js
 src/**/*.metadata.json
+src/**/*.ngsummary.json
 src/**/*.ngfactory.ts
-
 
 /node_modules
 npm-debug.log
-*.swp
+yarn-error.log
 
-copy-to-demo.sh
+*.swp
+*.tgz
+*.sh

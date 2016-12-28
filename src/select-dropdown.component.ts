@@ -10,13 +10,15 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 
+import {STYLE} from './select-dropdown.component.css';
+import {TEMPLATE} from './select-dropdown.component.html';
 import {Option} from './option';
 import {OptionList} from './option-list';
 
 @Component({
     selector: 'select-dropdown',
-    templateUrl: 'select-dropdown.component.html',
-    styleUrls: ['select-dropdown.component.scss'],
+    template: TEMPLATE,
+    styles: [STYLE],
     encapsulation: ViewEncapsulation.None
 })
 
