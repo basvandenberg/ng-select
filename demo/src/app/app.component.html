@@ -1,0 +1,62 @@
+<h1>Angular 2 select demo app</h1>
+
+<form style="padding:18px;max-width:800px;"
+    [formGroup]="formSingle">
+
+    <div style="margin:5px 0;font-weight:600;">Single select example</div>
+    <ng-select
+        #singleSelectComponent
+		[options]="optionsSingle"
+		[multiple]="multipleSingle"
+		placeholder="Select one"
+        formControlName="selectSingle"
+		[allowClear]="allowClear"
+        (opened)="onSingleOpened()"
+        (closed)="onSingleClosed()"
+        (selected)="onSingleSelected($event)"
+        (deselected)="onSingleDeselected($event)">
+	</ng-select>
+
+    <div style="margin:10px 0 20px 0;color:#666;font-size:11pt;font-style:italic;">
+	    Selected option id: {{formSingle.value['selectSingle']}}
+    </div>
+
+    <div>Events:</div>
+    <pre #preSingle>{{logSingleString}}</pre>
+
+</form>
+
+<button
+    (click)="onSingleResetClick()">Reset</button>
+
+<hr style="margin: 18px 0;">
+
+<form style="padding:18px;max-width:800px;"
+    [formGroup]="formMultiple">
+
+    <div style="margin:5px 0;font-weight:600;">Multiple select example</div>
+	<ng-select
+        #multipleSelectComponent
+        [ngStyle]="{'width': '500px'}"
+		[options]="optionsMultiple"
+		[multiple]="multipleMultiple"
+		placeholder="Select multiple"
+        formControlName="selectMultiple"
+        (opened)="onMultipleOpened()"
+        (closed)="onMultipleClosed()"
+        (selected)="onMultipleSelected($event)"
+        (deselected)="onMultipleDeselected($event)">
+	</ng-select>
+
+    <div style="margin:10px 0 20px 0;color:#666;font-size:11pt;font-style:italic;">
+	    Selected option id: {{formMultiple.value['selectMultiple']}}
+    </div>
+
+    <div>Events:</div>
+    <pre #preMultiple>{{logMultipleString}}</pre>
+</form>
+
+<button
+    (click)="onMultipleResetClick()">Reset</button>
+<button
+    (click)="onMultipleSetOptions1Click()">Set options 0, 1, A, B</button>
