@@ -12,7 +12,8 @@ export class OptionList {
 
     private _highlightedOption: Option = null;
 
-    constructor(options: Array<{ value: string; label: string; }>) {
+    constructor(options: Array<any>) {
+        // Array<{ value: string; label: string;>) {
 
         // Inject diacritics service.
         // let inj = ReflectiveInjector.resolveAndCreate([DiacriticsService]);
@@ -20,7 +21,11 @@ export class OptionList {
 
         // Initialize array of option objects.
         this._options = options.map((option) => {
-            return new Option(option.value, option.label);
+            let o: Option = new Option(option.value, option.label);
+            if (option.disabled) {
+                o.disable();
+            }
+            return o;
         });
 
         this.highlight();

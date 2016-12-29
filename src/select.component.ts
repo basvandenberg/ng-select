@@ -35,7 +35,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges {
     @Input() options: Array<{ value: string; label: string; }>;
 
     @Input() allowClear: boolean = false;
-    @Input() disabled: boolean = false; // TODO
+    @Input() disabled: boolean = false;
     @Input() multiple: boolean = false;
     @Input() noSearch: number = 0; // TODO
     @Input() notFoundMsg: string = 'No results found';
@@ -64,15 +64,19 @@ export class SelectComponent implements ControlValueAccessor, OnChanges {
     isDisabled: boolean = false;
     isOpen: boolean = false;
     placeholderView: string = '';
-    selectContainerClicked: boolean = false;
+
     clearClicked: boolean = false;
+    selectContainerClicked: boolean = false;
+
+    multipleFilterEnterPressed: boolean = false;
+    selectContainerEnterPressed: boolean = false;
 
     // Width and position for the dropdown container.
     width: number;
     top: number;
     left: number;
 
-    private _onChange = (_: any) => {};
+    private onChange = (_: any) => {};
     private onTouched = () => {};
 
     /** Event handlers. **/
@@ -91,7 +95,16 @@ export class SelectComponent implements ControlValueAccessor, OnChanges {
         if (!this.selectContainerClicked) {
             this.closeDropdown();
         }
+        this.clearClicked = false;
         this.selectContainerClicked = false;
+    }
+
+    onWindowEnterKeyDown() {
+        if (!this.selectContainerEnterPressed) {
+            this.closeDropdown();
+        }
+        this.multipleFilterEnterPressed = false;
+        this.selectContainerEnterPressed = false;
     }
 
     onWindowResize() {
@@ -104,11 +117,11 @@ export class SelectComponent implements ControlValueAccessor, OnChanges {
         this.selectContainerClicked = true;
         if (!this.clearClicked) {
             this.toggleDropdown();
-            if (this.multiple) {
-                this.filterInput.nativeElement.focus();
-            }
         }
-        this.clearClicked = false;
+    }
+
+    onSelectContainerFocus() {
+        this.onTouched();
     }
 
     onSelectContainerKeydown(event: any) {
@@ -198,11 +211,15 @@ export class SelectComponent implements ControlValueAccessor, OnChanges {
     }
 
     registerOnChange(fn: (_: any) => void) {
-        this._onChange = fn;
+        this.onChange = fn;
     }
 
     registerOnTouched(fn: () => void) {
         this.onTouched = fn;
+    }
+
+    setDisabledState(isDisabled: boolean) {
+        this.disabled = isDisabled;
     }
 
     /** Getters/setters. **/
@@ -230,8 +247,9 @@ export class SelectComponent implements ControlValueAccessor, OnChanges {
 
             this.hasSelected = v.length > 0;
             this.placeholderView = this.hasSelected ? '' : this.placeholder;
+            this.updateFilterWidth();
 
-            this._onChange(v);
+            this.onChange(v);
         }
     }
 
@@ -264,6 +282,9 @@ export class SelectComponent implements ControlValueAccessor, OnChanges {
             this.updateWidth();
             this.updatePosition();
             this.isOpen = true;
+            if (this.multiple) {
+                this.filterInput.nativeElement.focus();
+            }
             this.opened.emit(null);
         }
     }
@@ -384,7 +405,18 @@ export class SelectComponent implements ControlValueAccessor, OnChanges {
         }
         else if (key === this.KEYS.ENTER || key === this.KEYS.SPACE ||
             (key === this.KEYS.DOWN && event.altKey)) {
-            this.openDropdown();
+
+            this.selectContainerEnterPressed = true;
+            if (!this.multipleFilterEnterPressed) {
+
+                /* FIREFOX HACK:
+                 *
+                 * The setTimeout is added to prevent the enter keydown event
+                 * to be triggered for the filter input field, which causes
+                 * the dropdown to be closed again.
+                 */
+                setTimeout(() => { this.openDropdown(); });
+            }
         }
     }
 
@@ -393,8 +425,13 @@ export class SelectComponent implements ControlValueAccessor, OnChanges {
         let key = event.which;
 
         if (key === this.KEYS.ENTER) {
+            this.multipleFilterEnterPressed = true;
             this.isOpen ? this.selectHighlightedOption() : this.openDropdown();
-            event.stopPropagation();
+        }
+        else if (key === this.KEYS.TAB) {
+            if (this.isOpen) {
+                this.closeDropdown();
+            }
         }
         else if (key === this.KEYS.BACKSPACE) {
             if (this.hasSelected &&
@@ -423,9 +460,11 @@ export class SelectComponent implements ControlValueAccessor, OnChanges {
         if (key === this.KEYS.ESC) {
             this.closeDropdown(true);
         }
+        else if (key === this.KEYS.TAB) {
+            this.closeDropdown();
+        }
         else if (key === this.KEYS.ENTER) {
             this.selectHighlightedOption();
-            event.stopPropagation();
         }
         else if (key === this.KEYS.UP) {
             this.optionList.highlightPreviousOption();
@@ -466,9 +505,10 @@ export class SelectComponent implements ControlValueAccessor, OnChanges {
     }
 
     updateFilterWidth() {
-        let value: string = this.filterInput.nativeElement.value;
-        this.filterInputWidth = value.length === 0 ?
-            1 + this.placeholderView.length * 10 : 1 + value.length * 10;
+        if (typeof this.filterInput !== 'undefined') {
+            let value: string = this.filterInput.nativeElement.value;
+            this.filterInputWidth = value.length === 0 ?
+                1 + this.placeholderView.length * 10 : 1 + value.length * 10;
+        }
     }
-
 }

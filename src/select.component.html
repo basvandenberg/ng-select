@@ -1,10 +1,13 @@
-<div tabindex=0
+<div
     #selection
-    [ngClass]="{'open': isOpen, 'focus': hasFocus, 'below': isBelow}"
+    [attr.tabindex]="disabled ? null : 0"
+    [ngClass]="{'open': isOpen, 'focus': hasFocus, 'below': isBelow, 'disabled': disabled}"
     (click)="onSelectContainerClick($event)"
+    (focus)="onSelectContainerFocus()"
     (keydown)="onSelectContainerKeydown($event)"
-    (window:resize)="onWindowResize()"
-    (window:click)="onWindowClick()">
+    (window:click)="onWindowClick()"
+    (window:keydown.enter)="onWindowEnterKeyDown()"
+    (window:resize)="onWindowResize()">
 
     <div class="single"
         *ngIf="!multiple">
@@ -14,7 +17,7 @@
         </div>
         <div class="placeholder"
             *ngIf="!optionList.hasSelected()">
-            {{placeholder}}
+            {{placeholderView}}
         </div>
         <div class="clear"
             *ngIf="allowClear"
@@ -43,6 +46,7 @@
         </div>
         <input
             #filterInput
+            tabindex="-1"
             [placeholder]="placeholderView"
             [ngStyle]="{'width.px': filterInputWidth}"
             (input)="onMultipleFilterInput($event)"
