@@ -108,6 +108,36 @@ export class YourComponent {
 }
 ```
 
+## API summary
+
+### Inputs (properties)
+
+| Name          | Type      | Default               | Description      |
+| ------------- | --------- | --------------------- | ---------------- |
+| allowClear    | boolean   | false                 | Only applies to single select. If set to true, a clickable clear selection cross is shown. |
+| disabled      | boolean   | false                 | If set to true, the select component is disabled. |
+| multiple      | boolean   | false                 | If set to true, the select component is multi-select, otherwise single select. |
+| notFoundMsg   | string    | "No results found"    | The message shown if no options are found for the current filter input value. |
+| placeholder   | string    | ""                    | Placeholder text that is shown if no options are selected.
+
+### Outputs (events)
+
+| Name          | Value                 | Description   |
+| ------------- | --------------------- | ------------- | 
+| opened        | null                  |               |
+| closed        | null                  |               |
+| selected      | option                |               |
+| deselected    | option or [option]    |               |
+
+### Methods
+
+| Name          | Parameters            | Description   |
+| ------------- | --------------------- | ------------- |
+| open          | -                     |               |
+| close         | -                     |               |
+| clear         | -                     |               |
+| select        | value: string         |
+
 
 ## Input properties
 
