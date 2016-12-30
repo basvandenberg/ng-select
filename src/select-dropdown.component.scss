@@ -1,5 +1,11 @@
 select-dropdown {
     box-sizing: border-box;
+    font-family: Sans-Serif;
+
+    * {
+        box-sizing: border-box;
+        font-family: Sans-Serif;
+    }
 
     >div {
         background-color: #fff;

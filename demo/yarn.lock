@@ -43,6 +43,10 @@
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@angular/http/-/http-2.4.1.tgz#f06067e370c44d025ed00a03ef704f6c46ea59ac"
 
+"@angular/material@^2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.1.tgz#106a0b79fb2b48a7606a0682c4e5d0bbe03364a0"
+
 "@angular/platform-browser-dynamic@^2.3.1":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.4.1.tgz#5fb72038f76c1e3646cea95f5b4722d67a4419dd"
@@ -235,9 +239,9 @@ angular-cli@1.0.0-beta.24:
     yam "0.0.18"
     zone.js "^0.7.2"
 
-"angular2-select@file:angular2-select-1.0.0-beta.0.tgz":
+"angular2-select@file:../angular2-select-1.0.0-beta.0.tgz":
   version "1.0.0-beta.0"
-  resolved angular2-select-1.0.0-beta.0.tgz#fc982f4365cdbca40a7efdd447a2f7075c917e8f
+  resolved "../angular2-select-1.0.0-beta.0.tgz#d26816b0297e4b296260b525aa88e01e113689af"
 
 ansi-align@^1.1.0:
   version "1.1.0"
@@ -3739,6 +3743,10 @@ normalize-url@^1.4.0:
     prepend-http "^1.0.0"
     query-string "^4.1.0"
     sort-keys "^1.0.0"
+
+normalize.css@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/normalize.css/-/normalize.css-5.0.0.tgz#7cec875ce8178a5333c4de80b68ea9c18b9d7c37"
 
 "npmlog@0 || 1 || 2 || 3":
   version "3.1.2"

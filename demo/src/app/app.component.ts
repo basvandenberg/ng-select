@@ -1,13 +1,21 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    OnInit,
+    ViewChild
+} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+
+declare var hljs: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit, OnInit {
 
     formSingle: FormGroup;
     multipleSingle: boolean = false;
@@ -34,7 +42,29 @@ export class AppComponent implements OnInit {
     logSingleString: string = '';
     logMultipleString: string = '';
 
-    constructor() {
+    sample00html = `
+<pre><code class="html">
+    &lt;ng-select
+        [options]="options"&gt;
+    &lt;/ng-select&gt;
+</code></pre>
+    `;
+
+    sample00ts = `
+<pre><code class="typescript">
+    this.options = [
+        {value: '0', label: 'Aech'},
+        {value: '1', label: 'Art3mis'},
+        {value: '2', label: 'Daito'},
+        {value: '3', label: 'Parzival'},
+        {value: '4', label: 'Shoto'}
+    ]
+</code></pre>
+    `;
+
+    constructor(
+        private elementRef: ElementRef
+    ) {
 
         this.opts = this.OPTIONS_A;
 
@@ -64,6 +94,20 @@ export class AppComponent implements OnInit {
         this.formMultiple = new FormGroup({});
         this.formMultiple.addControl('selectMultiple',
                 new FormControl(this.initialValueMultiple));
+    }
+
+    ngAfterViewInit() {
+
+        hljs.initHighlighting();
+
+        let e = this.elementRef
+            .nativeElement
+            .querySelectorAll('.typescript, .html, .css');
+
+        e.forEach((element) => {
+            console.log(element);
+            hljs.highlightBlock(element);
+        });
     }
 
     onSingleOpened() {
@@ -135,6 +179,14 @@ export class AppComponent implements OnInit {
     private scrollToBottom(elem) {
         elem.scrollTop = elem.scrollHeight;
     }
+
+    OPTIONS_BASIC = [
+        {value: '0', label: 'Aech'},
+        {value: '1', label: 'Art3mis'},
+        {value: '2', label: 'Daito'},
+        {value: '3', label: 'Parzival'},
+        {value: '4', label: 'Shoto'}
+    ];
 
 	OPTIONS_A = [
 		{label: 'Agrajag', value: '0', disabled: true},
