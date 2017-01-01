@@ -13,6 +13,7 @@ select-dropdown {
         border-top: none;
         box-sizing: border-box;
         position: absolute;
+        z-index: 1;
 
         .filter {
             padding: 3px;

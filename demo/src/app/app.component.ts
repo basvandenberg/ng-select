@@ -33,6 +33,10 @@ export class AppComponent implements AfterViewInit, OnInit {
     opts;
     alternativeOpts;
 
+    disabled: boolean = true;
+    disabledOptions: boolean = true;
+    optionsWithDisabled: Array<any>;
+
     @ViewChild('singleSelectComponent') singleSelectComponent;
     @ViewChild('multipleSelectComponent') multipleSelectComponent;
 
@@ -41,14 +45,6 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     logSingleString: string = '';
     logMultipleString: string = '';
-
-    sample00html = `
-<pre><code class="html">
-    &lt;ng-select
-        [options]="options"&gt;
-    &lt;/ng-select&gt;
-</code></pre>
-    `;
 
     sample00ts = `
 <pre><code class="typescript">
@@ -62,9 +58,63 @@ export class AppComponent implements AfterViewInit, OnInit {
 </code></pre>
     `;
 
+    sample00html = `
+<pre><code class="html">
+    &lt;ng-select
+        [options]="options"&gt;
+    &lt;/ng-select&gt;
+</code></pre>
+    `;
+
+    sample01html = `
+<pre><code class="html">
+    &lt;ng-select
+        [options]="options"
+        [multiple]="true"&gt;
+    &lt;/ng-select&gt;
+</code></pre>
+    `;
+
+    sample02html = `
+<pre><code class="html">
+    &lt;ng-select
+        [options]="options"
+        [disabled]="disabled"&gt;
+    &lt;/ng-select&gt;
+</code></pre>
+    `;
+
+    sample03html = `
+<pre><code class="html">
+    &lt;ng-select
+        [options]="options"&gt;
+    &lt;/ng-select&gt;
+</code></pre>
+    `;
+
+    sample04html = `
+<pre><code class="html">
+    &lt;ng-select
+        [options]="options"
+        [allowClear]="true"&gt;
+    &lt;/ng-select&gt;
+</code></pre>
+    `;
+
+    sample05html = `
+<pre><code class="html">
+    &lt;ng-select
+        [options]="options"
+        [multiple]="true"&gt;
+    &lt;/ng-select&gt;
+</code></pre>
+    `;
+
     constructor(
         private elementRef: ElementRef
     ) {
+        this.optionsWithDisabled = this.OPTIONS_BASIC_WITH_DISABLED;
+
 
         this.opts = this.OPTIONS_A;
 
@@ -84,6 +134,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
         this.optionsSingle = this.opts.slice(0);
         this.optionsMultiple = this.opts.slice(0);
+
     }
 
     ngOnInit() {
@@ -158,6 +209,30 @@ export class AppComponent implements AfterViewInit, OnInit {
         this.optionsMultiple = this.alternativeOpts.slice(0);
     }
 
+    onDisableClick() {
+        this.disabled = true;
+    }
+
+    onEnableClick() {
+        this.disabled = false;
+    }
+
+    onDisableOptionsClick() {
+        this.optionsWithDisabled = this.OPTIONS_BASIC_WITH_DISABLED;
+        this.disabledOptions = true;
+    }
+
+    onEnableOptionsClick() {
+        this.optionsWithDisabled = this.OPTIONS_BASIC;
+        this.disabledOptions = false;
+    }
+
+    onClearClick() {
+
+    }
+
+    /** **/
+
     private logSingle(msg: string) {
         this.logSingleString += msg + '\n';
 
@@ -185,6 +260,14 @@ export class AppComponent implements AfterViewInit, OnInit {
         {value: '1', label: 'Art3mis'},
         {value: '2', label: 'Daito'},
         {value: '3', label: 'Parzival'},
+        {value: '4', label: 'Shoto'}
+    ];
+
+    OPTIONS_BASIC_WITH_DISABLED = [
+        {value: '0', label: 'Aech'},
+        {value: '1', label: 'Art3mis'},
+        {value: '2', label: 'Daito', disabled: true},
+        {value: '3', label: 'Parzival', disabled: true},
         {value: '4', label: 'Shoto'}
     ];
 

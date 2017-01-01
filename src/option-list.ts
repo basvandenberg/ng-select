@@ -19,6 +19,10 @@ export class OptionList {
         // let inj = ReflectiveInjector.resolveAndCreate([DiacriticsService]);
         // this.diacriticsService = inj.get(DiacriticsService);
 
+        if (typeof options === 'undefined' || options === null) {
+            options = [];
+        }
+
         // Initialize array of option objects.
         this._options = options.map((option) => {
             let o: Option = new Option(option.value, option.label);

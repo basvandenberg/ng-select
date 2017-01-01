@@ -109,20 +109,23 @@ export class SelectDropdownComponent
         let listHeight = list.offsetHeight;
 
         let itemIndex = this.optionList.getHighlightedIndex();
-        let item = list.children[0].children[itemIndex];
-        let itemHeight = item.offsetHeight;
 
-        let itemTop = itemIndex * itemHeight;
-        let itemBottom = itemTop + itemHeight;
+        if (itemIndex > -1) {
+            let item = list.children[0].children[itemIndex];
+            let itemHeight = item.offsetHeight;
 
-        let viewTop = list.scrollTop;
-        let viewBottom = viewTop + listHeight;
+            let itemTop = itemIndex * itemHeight;
+            let itemBottom = itemTop + itemHeight;
 
-        if (itemBottom > viewBottom) {
-            list.scrollTop = itemBottom - listHeight;
-        }
-        else if (itemTop < viewTop) {
-            list.scrollTop = itemTop;
+            let viewTop = list.scrollTop;
+            let viewBottom = viewTop + listHeight;
+
+            if (itemBottom > viewBottom) {
+                list.scrollTop = itemBottom - listHeight;
+            }
+            else if (itemTop < viewTop) {
+                list.scrollTop = itemTop;
+            }
         }
     }
 

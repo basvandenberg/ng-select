@@ -20,6 +20,119 @@
         </md-card-content>
     </md-card>
 
+    <md-card>
+        <md-card-title>
+            Multiple select
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                [multiple]="true">
+            </ng-select>
+            <section [innerHTML]="sample01html" highlight-js-content=".highlight"></section>
+            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <h1>Disable</h1>
+
+    <md-card>
+        <md-card-title>
+            Disable select component
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                [disabled]="disabled">
+            </ng-select>
+            <div class="button-bar">
+                <button
+                    md-raised-button
+                    [disabled]="disabled"
+                    (click)="onDisableClick()">
+                    Disable
+                </button>
+                <button
+                    md-raised-button
+                    [disabled]="!disabled"
+                    (click)="onEnableClick()">
+                    Enable
+                </button>
+            </div>
+            <section [innerHTML]="sample02html" highlight-js-content=".highlight"></section>
+            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <!-- TODO first fix issue, disabled options are still selectable.
+         TODO add possibility to dis/enable options through API method?
+    <md-card>
+        <md-card-title>
+            Disable select options
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="optionsWithDisabled">
+            </ng-select>
+            <div class="button-bar">
+                <button
+                    md-raised-button
+                    [disabled]="disabledOptions"
+                    (click)="onDisableOptionsClick()">
+                    Disable options
+                </button>
+                <button
+                    md-raised-button
+                    [disabled]="!disabledOptions"
+                    (click)="onEnableOptionsClick()">
+                    Enable options
+                </button>
+            </div>
+            <section [innerHTML]="sample03html" highlight-js-content=".highlight"></section>
+            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+    -->
+
+    <h1>Clear selection</h1>
+
+    <md-card>
+        <md-card-title>
+            Clear button (single select only)
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                [allowClear]="true">
+            </ng-select>
+            <section [innerHTML]="sample04html" highlight-js-content=".highlight"></section>
+            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
+            Clear function
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                #clearSelectExample
+                [options]="OPTIONS_BASIC"
+                [multiple]="true">
+            </ng-select>
+            <div class="button-bar">
+                <button
+                    md-raised-button
+                    (click)="clearSelectExample.clear()">
+                    Clear selection
+                </button>
+            </div>
+            <section [innerHTML]="sample05html" highlight-js-content=".highlight"></section>
+            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+
     <h2>Multiple select</h2>
 
 
