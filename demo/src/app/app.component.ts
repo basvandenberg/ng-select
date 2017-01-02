@@ -17,6 +17,14 @@ declare var hljs: any;
 
 export class AppComponent implements AfterViewInit, OnInit {
 
+    options: Array<any>;
+    optionsWithDisabled: Array<any>;
+
+    disabled: boolean = true;
+    disabledOptions: boolean = true;
+
+
+    // Old
     formSingle: FormGroup;
     multipleSingle: boolean = false;
     optionsSingle: Array<any> = [];
@@ -33,10 +41,6 @@ export class AppComponent implements AfterViewInit, OnInit {
     opts;
     alternativeOpts;
 
-    disabled: boolean = true;
-    disabledOptions: boolean = true;
-    optionsWithDisabled: Array<any>;
-
     @ViewChild('singleSelectComponent') singleSelectComponent;
     @ViewChild('multipleSelectComponent') multipleSelectComponent;
 
@@ -46,75 +50,13 @@ export class AppComponent implements AfterViewInit, OnInit {
     logSingleString: string = '';
     logMultipleString: string = '';
 
-    sample00ts = `
-<pre><code class="typescript">
-    this.options = [
-        {value: '0', label: 'Aech'},
-        {value: '1', label: 'Art3mis'},
-        {value: '2', label: 'Daito'},
-        {value: '3', label: 'Parzival'},
-        {value: '4', label: 'Shoto'}
-    ]
-</code></pre>
-    `;
-
-    sample00html = `
-<pre><code class="html">
-    &lt;ng-select
-        [options]="options"&gt;
-    &lt;/ng-select&gt;
-</code></pre>
-    `;
-
-    sample01html = `
-<pre><code class="html">
-    &lt;ng-select
-        [options]="options"
-        [multiple]="true"&gt;
-    &lt;/ng-select&gt;
-</code></pre>
-    `;
-
-    sample02html = `
-<pre><code class="html">
-    &lt;ng-select
-        [options]="options"
-        [disabled]="disabled"&gt;
-    &lt;/ng-select&gt;
-</code></pre>
-    `;
-
-    sample03html = `
-<pre><code class="html">
-    &lt;ng-select
-        [options]="options"&gt;
-    &lt;/ng-select&gt;
-</code></pre>
-    `;
-
-    sample04html = `
-<pre><code class="html">
-    &lt;ng-select
-        [options]="options"
-        [allowClear]="true"&gt;
-    &lt;/ng-select&gt;
-</code></pre>
-    `;
-
-    sample05html = `
-<pre><code class="html">
-    &lt;ng-select
-        [options]="options"
-        [multiple]="true"&gt;
-    &lt;/ng-select&gt;
-</code></pre>
-    `;
-
     constructor(
         private elementRef: ElementRef
-    ) {
-        this.optionsWithDisabled = this.OPTIONS_BASIC_WITH_DISABLED;
+    ) {}
 
+    ngOnInit() {
+        this.options = this.OPTIONS_BASIC;
+        this.optionsWithDisabled = this.OPTIONS_BASIC_WITH_DISABLED;
 
         this.opts = this.OPTIONS_A;
 
@@ -134,10 +76,6 @@ export class AppComponent implements AfterViewInit, OnInit {
 
         this.optionsSingle = this.opts.slice(0);
         this.optionsMultiple = this.opts.slice(0);
-
-    }
-
-    ngOnInit() {
         this.formSingle = new FormGroup({});
         this.formSingle.addControl('selectSingle',
                 new FormControl(this.initialValueSingle));
@@ -254,6 +192,75 @@ export class AppComponent implements AfterViewInit, OnInit {
     private scrollToBottom(elem) {
         elem.scrollTop = elem.scrollHeight;
     }
+
+    /** Code strings **/
+
+    sample00ts = `
+<pre><code class="typescript">characters: Array&lt;any&gt;;
+
+ngOnInit() {
+    this.characters = [
+        {value: '0', label: 'Aech'},
+        {value: '1', label: 'Art3mis'},
+        {value: '2', label: 'Daito'},
+        {value: '3', label: 'Parzival'},
+        {value: '4', label: 'Shoto'}
+    ];
+}
+</code></pre>
+    `;
+
+    sample00html = `
+<pre><code class="html">&lt;ng-select
+    [options]="characters"&gt;
+&lt;/ng-select&gt;
+</code></pre>
+    `;
+
+    sample01html = `
+<pre><code class="html">&lt;ng-select
+    [options]="characters"
+    [multiple]="true"&gt;
+&lt;/ng-select&gt;
+</code></pre>
+    `;
+
+    sample02html = `
+<pre><code class="html">
+    &lt;ng-select
+        [options]="options"
+        [disabled]="disabled"&gt;
+    &lt;/ng-select&gt;
+</code></pre>
+    `;
+
+    sample03html = `
+<pre><code class="html">
+    &lt;ng-select
+        [options]="options"&gt;
+    &lt;/ng-select&gt;
+</code></pre>
+    `;
+
+    sample04html = `
+<pre><code class="html">
+    &lt;ng-select
+        [options]="options"
+        [allowClear]="true"&gt;
+    &lt;/ng-select&gt;
+</code></pre>
+    `;
+
+    sample05html = `
+<pre><code class="html">
+    &lt;ng-select
+        [options]="options"
+        [multiple]="true"&gt;
+    &lt;/ng-select&gt;
+</code></pre>
+    `;
+
+    /** Sample data **/
 
     OPTIONS_BASIC = [
         {value: '0', label: 'Aech'},

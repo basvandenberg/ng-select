@@ -9,14 +9,25 @@
 
     <md-card>
         <md-card-title>
+            Options
+        </md-card-title>
+        <md-card-content>
+            <p>Define your options in the component class as an array of objects. Each object should have a <code>value</code> and a <code>label</code>, both of which are string values:</p>
+            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
+            <p>This small set of options is used in the examples below.</p>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
             Single select
         </md-card-title>
         <md-card-content>
             <ng-select
                 [options]="OPTIONS_BASIC">
             </ng-select>
+            <p>Add a select component to your template using the <code>ng-select</code> tag, and use the <code>options</code> property to bind your list of options in your component class to the select component.
             <section [innerHTML]="sample00html" highlight-js-content=".highlight"></section>
-            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 
@@ -29,8 +40,8 @@
                 [options]="OPTIONS_BASIC"
                 [multiple]="true">
             </ng-select>
+            <p>Set the <code>multiple</code> property to <code>true</code> to get a multiple select component.
             <section [innerHTML]="sample01html" highlight-js-content=".highlight"></section>
-            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 
@@ -64,6 +75,14 @@
         </md-card-content>
     </md-card>
 
+    <md-card>
+        <md-card-title>
+            Disable select options
+        </md-card-title>
+        <md-card-content>
+            <p>Not yet supported.</p>
+        </md-card-content>
+    </md-card>
     <!-- TODO first fix issue, disabled options are still selectable.
          TODO add possibility to dis/enable options through API method?
     <md-card>
