@@ -12,9 +12,8 @@
             Options
         </md-card-title>
         <md-card-content>
-            <p>Define options in your component class as an array of objects. Each object should have a <code>value</code> and a <code>label</code>:</p>
+            <p>Define options in your component class as an array of objects. Each object should have a <code>value</code> and a <code>label</code>. The following small set of options is used in the examples below.</p>
             <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
-            <p>This small set of options is used in the examples below.</p>
         </md-card-content>
     </md-card>
 
@@ -152,7 +151,7 @@
         </md-card-content>
     </md-card>
 
-    <h1>Custom texts</h1>
+    <h1>Custom text</h1>
 
 
     <md-card>
@@ -199,68 +198,91 @@
         </md-card-content>
     </md-card>
 
+    <h1>Custom style</h1>
 
-    <h2>Multiple select</h2>
+    <md-card>
+        <md-card-title>
+            Modify select container width
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                [ngStyle]="{'width': '300px'}">
+            </ng-select>
+            <p>You can use Angular's <code>ngStyle</code> to modify the width of the select container.</p>
+            <section [innerHTML]="sample09html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <!-- TODO Set highlight color -->
+    <!-- TODO Override CSS rules -->
+
+    <h1>(Pre)select options</h1>
+
+    <md-card>
+        <md-card-title>
+            Change list of options
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                [ngStyle]="{'width': '300px'}">
+            </ng-select>
+            <p>You can use Angular's <code>ngStyle</code> to modify the width of the select container.</p>
+            <section [innerHTML]="sample09html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <h1>Open/close dropdown</h1>
+
+    <md-card>
+        <md-card-title>
+            Open/close dropdown
+        </md-card-title>
+        <md-card-content>
+            <p>Not yet available, some issues need te be fixed first.</p>
+        </md-card-content>
+    </md-card>
+    <!--md-card>
+        <md-card-title>
+            Open/close dropdown
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                #openCloseSelectExample
+                [options]="OPTIONS_BASIC">
+            </ng-select>
+            <div class="button-bar">
+                <button
+                    md-raised-button
+                    (click)="openCloseSelectExample.open()">
+                    Open dropdown
+                </button>
+                <button
+                    md-raised-button
+                    (click)="openCloseSelectExample.close()">
+                    Close dropdown
+                </button>
+            </div>
+            <p></p>
+            <section [innerHTML]="sample05html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card-->
+
+    <h1>Respond to output events</h1>
+
+    <md-card>
+        <md-card-title>
+
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC">
+            </ng-select>
+            <p></p>
+            <!--section [innerHTML]="sample09html" highlight-js-content=".highlight"></section-->
+        </md-card-content>
+    </md-card>
 
 
-    <form style="padding:18px;max-width:800px;"
-        [formGroup]="formSingle">
-
-        <div style="margin:5px 0;font-weight:600;">Single select example</div>
-        <ng-select
-            #singleSelectComponent
-            [options]="optionsSingle"
-            [multiple]="multipleSingle"
-            placeholder="Select one"
-            formControlName="selectSingle"
-            [allowClear]="allowClear"
-            (opened)="onSingleOpened()"
-            (closed)="onSingleClosed()"
-            (selected)="onSingleSelected($event)"
-            (deselected)="onSingleDeselected($event)">
-        </ng-select>
-
-        <div style="margin:10px 0 20px 0;color:#666;font-size:11pt;font-style:italic;">
-            Selected option id: {{formSingle.value['selectSingle']}}
-        </div>
-
-        <div>Events:</div>
-        <pre #preSingle>{{logSingleString}}</pre>
-
-    </form>
-
-    <button
-        (click)="onSingleResetClick()">Reset</button>
-
-    <hr style="margin: 18px 0;">
-
-    <form style="padding:18px;max-width:800px;"
-        [formGroup]="formMultiple">
-
-        <div style="margin:5px 0;font-weight:600;">Multiple select example</div>
-        <ng-select
-            #multipleSelectComponent
-            [ngStyle]="{'width': '500px'}"
-            [options]="optionsMultiple"
-            [multiple]="multipleMultiple"
-            placeholder="Select multiple"
-            formControlName="selectMultiple"
-            (opened)="onMultipleOpened()"
-            (closed)="onMultipleClosed()"
-            (selected)="onMultipleSelected($event)"
-            (deselected)="onMultipleDeselected($event)">
-        </ng-select>
-
-        <div style="margin:10px 0 20px 0;color:#666;font-size:11pt;font-style:italic;">
-            Selected option id: {{formMultiple.value['selectMultiple']}}
-        </div>
-
-        <div>Events:</div>
-        <pre #preMultiple>{{logMultipleString}}</pre>
-    </form>
-
-    <button
-        (click)="onMultipleResetClick()">Reset</button>
-    <button
-        (click)="onMultipleSetOptions1Click()">Set options 0, 1, A, B</button>
 </div>

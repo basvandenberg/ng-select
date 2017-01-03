@@ -23,35 +23,6 @@ export class AppComponent implements AfterViewInit, OnInit {
     disabled: boolean = true;
     disabledOptions: boolean = true;
 
-    examplePlaceholder: string = 'Test';
-
-
-    // Old
-    formSingle: FormGroup;
-    multipleSingle: boolean = false;
-    optionsSingle: Array<any> = [];
-    alternativeOptionsSingle: Array<any> = [];
-    initialValueSingle: string = '22';
-    allowClear: boolean = true;
-
-    formMultiple: FormGroup;
-    multipleMultiple: boolean = true;
-    optionsMultiple: Array<any> = [];
-    alternativeOptionsMultiple: Array<any> = [];
-    initialValueMultiple: Array<string> = ['0', '2', '22', '66'];
-
-    opts;
-    alternativeOpts;
-
-    @ViewChild('singleSelectComponent') singleSelectComponent;
-    @ViewChild('multipleSelectComponent') multipleSelectComponent;
-
-    @ViewChild('preSingle') preSingle;
-    @ViewChild('preMultiple') preMultiple;
-
-    logSingleString: string = '';
-    logMultipleString: string = '';
-
     constructor(
         private elementRef: ElementRef
     ) {}
@@ -59,38 +30,10 @@ export class AppComponent implements AfterViewInit, OnInit {
     ngOnInit() {
         this.options = this.OPTIONS_BASIC;
         this.optionsWithDisabled = this.OPTIONS_BASIC_WITH_DISABLED;
-
-        this.opts = this.OPTIONS_A;
-
-        this.alternativeOpts = [{
-            value: '0',
-            label: '0'
-        }, {
-            value: '1',
-            label: '1'
-        }, {
-            value: 'A',
-            label: 'A'
-        }, {
-            value: 'B',
-            label: 'B'
-        }]
-
-        this.optionsSingle = this.opts.slice(0);
-        this.optionsMultiple = this.opts.slice(0);
-        this.formSingle = new FormGroup({});
-        this.formSingle.addControl('selectSingle',
-                new FormControl(this.initialValueSingle));
-
-        this.formMultiple = new FormGroup({});
-        this.formMultiple.addControl('selectMultiple',
-                new FormControl(this.initialValueMultiple));
     }
 
     ngAfterViewInit() {
-
         hljs.initHighlighting();
-
         let e = this.elementRef
             .nativeElement
             .querySelectorAll('.typescript, .html, .css');
@@ -99,54 +42,6 @@ export class AppComponent implements AfterViewInit, OnInit {
             console.log(element);
             hljs.highlightBlock(element);
         });
-    }
-
-    onSingleOpened() {
-        this.logSingle('- opened');
-    }
-
-    onSingleClosed() {
-        this.logSingle('- closed');
-    }
-
-    onSingleSelected(item) {
-        this.logSingle('- selected (value: ' + item.value  + ', label:' +
-                       item.label + ')');
-    }
-
-    onSingleDeselected(item) {
-        this.logSingle('- deselected (value: ' + item.value  + ', label:' +
-                       item.label + ')');
-    }
-
-    onMultipleOpened() {
-        this.logMultiple('- opened');
-    }
-
-    onMultipleClosed() {
-        this.logMultiple('- closed');
-    }
-
-    onMultipleSelected(item) {
-        this.logMultiple('- selected (value: ' + item.value  + ', label:' +
-                       item.label + ')');
-    }
-
-    onMultipleDeselected(item) {
-        this.logMultiple('- deselected (value: ' + item.value  + ', label:' +
-                       item.label + ')');
-    }
-
-    onSingleResetClick() {
-        this.formSingle.reset();
-    }
-
-    onMultipleResetClick() {
-        this.formMultiple.reset();
-    }
-
-    onMultipleSetOptions1Click() {
-        this.optionsMultiple = this.alternativeOpts.slice(0);
     }
 
     onDisableClick() {
@@ -167,32 +62,19 @@ export class AppComponent implements AfterViewInit, OnInit {
         this.disabledOptions = false;
     }
 
-    onClearClick() {
+    onOpened() {
 
     }
 
-    /** **/
+    onClosed() {
 
-    private logSingle(msg: string) {
-        this.logSingleString += msg + '\n';
-
-        // Let change detection do its work before scrolling to div bottom.
-        setTimeout(() => {
-            this.scrollToBottom(this.preSingle.nativeElement);
-        });
     }
 
-    private logMultiple(msg: string) {
-        this.logMultipleString += msg + '\n';
+    onSelected(item) {
 
-        // Let change detection do its work before scrolling to div bottom.
-        setTimeout(() => {
-            this.scrollToBottom(this.preMultiple.nativeElement);
-        });
     }
 
-    private scrollToBottom(elem) {
-        elem.scrollTop = elem.scrollHeight;
+    onDeselected(item) {
     }
 
     /** Code strings **/
@@ -301,6 +183,13 @@ onEnableClick() {
 &lt;/ng-select&gt;
 </code></pre>`;
 
+    sample09html = `
+<pre><code class="html">&lt;ng-select
+    [options]="options"
+    [ngStyle]="{'width': '300px'}"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
     /** Sample data **/
 
     OPTIONS_BASIC = [
@@ -319,8 +208,8 @@ onEnableClick() {
         {value: '4', label: 'Shoto'}
     ];
 
-	OPTIONS_A = [
-		{label: 'Agrajag', value: '0', disabled: true},
+	OPTIONS_MANY = [
+		{label: 'Agrajag', value: '0'},
 		{label: 'Mrs Alice Beeblebrox', value: '1'},
 		{label: 'The Allitnils', value: '2'},
 		{label: 'Almighty Bob', value: '3'},
@@ -459,7 +348,5 @@ onEnableClick() {
 		{label: 'Zarquon', value: '136'},
 		{label: 'Zem', value: '137'}
 	];
-
-	OPTIONS_B = [];
 }
 
