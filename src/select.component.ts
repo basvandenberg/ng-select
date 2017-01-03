@@ -1,7 +1,9 @@
 import {
+    AfterViewInit,
     Component,
     Input,
     OnChanges,
+    OnInit,
     Output,
     EventEmitter,
     ExistingProvider,
@@ -30,7 +32,8 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
     encapsulation: ViewEncapsulation.None
 })
 
-export class SelectComponent implements ControlValueAccessor, OnChanges {
+export class SelectComponent
+        implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit {
 
     @Input() options: Array<{ value: string; label: string; }>;
 
@@ -82,6 +85,14 @@ export class SelectComponent implements ControlValueAccessor, OnChanges {
     /** Event handlers. **/
 
     // Angular lifecycle hooks.
+
+    ngOnInit() {
+        this.placeholderView = this.placeholder;
+    }
+
+    ngAfterViewInit() {
+        this.updateFilterWidth();
+    }
 
     ngOnChanges(changes: any) {
         if (changes.hasOwnProperty('options')) {

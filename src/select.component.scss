@@ -46,7 +46,9 @@ ng-select {
             >div.placeholder {
                 flex: 1;
                 line-height: 30px;
+                overflow: hidden;
                 padding: 0 10px;
+                white-space: nowrap;
             }
 
             >div.placeholder {

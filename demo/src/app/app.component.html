@@ -12,7 +12,7 @@
             Options
         </md-card-title>
         <md-card-content>
-            <p>Define your options in the component class as an array of objects. Each object should have a <code>value</code> and a <code>label</code>, both of which are string values:</p>
+            <p>Define options in your component class as an array of objects. Each object should have a <code>value</code> and a <code>label</code>:</p>
             <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
             <p>This small set of options is used in the examples below.</p>
         </md-card-content>
@@ -26,7 +26,7 @@
             <ng-select
                 [options]="OPTIONS_BASIC">
             </ng-select>
-            <p>Add a select component to your template using the <code>ng-select</code> tag, and use the <code>options</code> property to bind your list of options in your component class to the select component.
+            <p>Add a select component to your template using the <code>ng-select</code> tag, and use the <code>options</code> property to bind it to your list of options.
             <section [innerHTML]="sample00html" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
@@ -70,8 +70,9 @@
                     Enable
                 </button>
             </div>
+            <p>TODO</p>
             <section [innerHTML]="sample02html" highlight-js-content=".highlight"></section>
-            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
+            <section [innerHTML]="sample02ts" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 
@@ -124,8 +125,8 @@
                 [options]="OPTIONS_BASIC"
                 [allowClear]="true">
             </ng-select>
+            <p>Set the <code>allowClear</code> property to <code>true</code> to enable clearing the selected option by clicking the little cross on the right. This is only available for the single select component.
             <section [innerHTML]="sample04html" highlight-js-content=".highlight"></section>
-            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 
@@ -146,8 +147,55 @@
                     Clear selection
                 </button>
             </div>
+            <p>Or use the <code>clear()</code> function to have all selected options cleared.</p>
             <section [innerHTML]="sample05html" highlight-js-content=".highlight"></section>
-            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <h1>Custom texts</h1>
+
+
+    <md-card>
+        <md-card-title>
+            Placeholder single select
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                [allowClear]="true"
+                placeholder="Select one of the characters">
+            </ng-select>
+            <p>If you set the <code>placeholder</code> property, this text will be shown in the select container if no option is selected.</p>
+            <section [innerHTML]="sample06html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
+            Placeholder multiple select
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                [multiple]="true"
+                placeholder="Select characters">
+            </ng-select>
+            <p>Same as for the single select, the placeholder will be shown if no options are selected.</p>
+            <section [innerHTML]="sample07html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
+            No results found text
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                notFoundMsg="None of the characters match your search">
+            </ng-select>
+            <p>By default the message "No results found" is shown if no options match the given filter input. Use the <code>notFoundMsg</code> property to change this message.</p>
+            <section [innerHTML]="sample08html" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 

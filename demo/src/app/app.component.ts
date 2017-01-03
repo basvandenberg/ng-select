@@ -23,6 +23,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     disabled: boolean = true;
     disabledOptions: boolean = true;
 
+    examplePlaceholder: string = 'Test';
+
 
     // Old
     formSingle: FormGroup;
@@ -207,58 +209,97 @@ ngOnInit() {
         {value: '4', label: 'Shoto'}
     ];
 }
-</code></pre>
-    `;
+</code></pre>`;
 
     sample00html = `
 <pre><code class="html">&lt;ng-select
     [options]="characters"&gt;
 &lt;/ng-select&gt;
-</code></pre>
-    `;
+</code></pre>`;
 
     sample01html = `
 <pre><code class="html">&lt;ng-select
     [options]="characters"
     [multiple]="true"&gt;
 &lt;/ng-select&gt;
-</code></pre>
-    `;
+</code></pre>`;
 
     sample02html = `
-<pre><code class="html">
-    &lt;ng-select
-        [options]="options"
-        [disabled]="disabled"&gt;
-    &lt;/ng-select&gt;
-</code></pre>
-    `;
+<pre><code class="html">&lt;ng-select
+    [options]="options"
+    [disabled]="disabled"&gt;
+&lt;/ng-select&gt;
+&lt;button
+    [disabled]="disabled"
+    (click)="onDisableClick()"&gt;
+    Disable
+&lt;/button&gt;
+&lt;button
+    [disabled]="!disabled"
+    (click)="onEnableClick()"&gt;
+    Enable
+&lt;/button&gt;
+</code></pre>`;
+
+    sample02ts = `
+<pre><code class="typescript">disabled: boolean = true;
+
+onDisableClick() {
+    this.disabled = true;
+}
+
+onEnableClick() {
+    this.disabled = false;
+}
+</code></pre>`;
 
     sample03html = `
-<pre><code class="html">
-    &lt;ng-select
-        [options]="options"&gt;
-    &lt;/ng-select&gt;
-</code></pre>
-    `;
+<pre><code class="html">&lt;ng-select
+    [options]="options"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
 
     sample04html = `
-<pre><code class="html">
-    &lt;ng-select
-        [options]="options"
-        [allowClear]="true"&gt;
-    &lt;/ng-select&gt;
-</code></pre>
-    `;
+<pre><code class="html">&lt;ng-select
+    [options]="options"
+    [allowClear]="true"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
 
     sample05html = `
-<pre><code class="html">
-    &lt;ng-select
-        [options]="options"
-        [multiple]="true"&gt;
-    &lt;/ng-select&gt;
-</code></pre>
-    `;
+<pre><code class="html">&lt;ng-select
+    #clearSelectExample
+    [options]="options"
+    [multiple]="true"&gt;
+&lt;/ng-select&gt;
+&lt;button
+    (click)="clearSelectExample.clear()"&gt;
+    Clear selection
+&lt;/button&gt;
+</code></pre>`;
+
+    sample06html = `
+<pre><code class="html">&lt;ng-select
+    [options]="options"
+    [allowClear]="true"
+    placeholder="Select one of the characters"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
+    sample07html = `
+<pre><code class="html">&lt;ng-select
+    [options]="options"
+    [multiple]="true"
+    placeholder="Select characters"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
+    sample08html = `
+<pre><code class="html">&lt;ng-select
+    [options]="options"
+    notFoundMsg="None of the characters match your search"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
 
     /** Sample data **/
 
