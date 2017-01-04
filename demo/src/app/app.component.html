@@ -44,7 +44,7 @@
         </md-card-content>
     </md-card>
 
-    <h1>Getting the selection value</h1>
+    <h1>Get the select value</h1>
 
     <md-card>
         <md-card-title>
@@ -66,14 +66,14 @@
                     Select values 1 and 3
                 </button>
             </div>
-            <p>TODO</p>
+            <p>Use the <code>ngModel</code> property to (two-way) bind a variable to the select component's value. This means that the variable value will be updated as soon as options are (de)selected, and that the selected options will be updated if you change the variable value (by clicking the button in this example).</p>
             <section [innerHTML]="sample10html" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 
     <md-card>
         <md-card-title>
-            Detect selected and deselected events
+            Respond to (de)selected events
         </md-card-title>
         <md-card-content>
             <div class="event-log-bar">
@@ -85,8 +85,22 @@
                 (selected)="lastEvent='selected ' + $event.label"
                 (deselected)="lastEvent='deselected ' + $event.label">
             </ng-select>
-            <p>TODO</p>
+            <p>The <code>selected</code> and <code>deselected</code> output event enable you to keep track of what options are being (de)selected.</p>
             <section [innerHTML]="sample11html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
+            Use the select component in a form
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC">
+            </ng-select>
+            <p></p>
+            <section [innerHTML]="sample12html" highlight-js-content=".highlight"></section>
+            <section [innerHTML]="sample12ts" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 
@@ -314,21 +328,5 @@
             <section [innerHTML]="sample05html" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card-->
-
-    <h1>Respond to output events</h1>
-
-    <md-card>
-        <md-card-title>
-
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC">
-            </ng-select>
-            <p></p>
-            <!--section [innerHTML]="sample09html" highlight-js-content=".highlight"></section-->
-        </md-card-content>
-    </md-card>
-
 
 </div>

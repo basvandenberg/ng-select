@@ -192,7 +192,7 @@ onEnableClick() {
 
     sample10html = `
 <pre><code class="html">&lt;div&gt;
-    Value: {{selectedValues}}
+    Value: &lt;strong&gt;{{selectedValues}}&lt;/strong&gt;
 &lt;/div&gt;
 &lt;ng-select
     [options]="options"
@@ -200,7 +200,6 @@ onEnableClick() {
     [(ngModel)]="selectedValues"&gt;
 &lt;/ng-select&gt;
 &lt;button
-    md-raised-button
     (click)="selectedValues=['1','3']"&gt;
     Select values 1 and 3
 &lt;/button&gt;
@@ -208,15 +207,34 @@ onEnableClick() {
 
     sample11html = `
 <pre><code class="html">&lt;div&gt;
-    {{lastEvent}}
+    Last event: &lt;strong&gt;{{lastEvent}}&lt;/strong&gt;
 &lt;/div&gt;
 &lt;ng-select
     [options]="options"
     [multiple]="true"
-    (selected)="lastEvent='selected:' + $event.label"
-    (deselected)="lastEvent='deselected:' + $event.label"&gt;
+    (selected)="lastEvent='selected ' + $event.label"
+    (deselected)="lastEvent='deselected ' + $event.label"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
+
+    sample12html = `
+<pre><code class="html">&lt;ng-select
+    [options]="characters"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
+    sample12ts = `
+<pre><code class="typescript">disabled: boolean = true;
+
+onDisableClick() {
+    this.disabled = true;
+}
+
+onEnableClick() {
+    this.disabled = false;
+}
+</code></pre>`;
+
 
     /** Sample data **/
 
