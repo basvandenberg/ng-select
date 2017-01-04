@@ -44,6 +44,52 @@
         </md-card-content>
     </md-card>
 
+    <h1>Getting the selection value</h1>
+
+    <md-card>
+        <md-card-title>
+            Bind to select value with ngModel
+        </md-card-title>
+        <md-card-content>
+            <div class="value-bar">
+                <div>Value: <strong>{{selectedValues}}</strong></div>
+            </div>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                [multiple]="true"
+                [(ngModel)]="selectedValues">
+            </ng-select>
+            <div class="button-bar">
+                <button
+                    md-raised-button
+                    (click)="selectedValues=['1','3']">
+                    Select values 1 and 3
+                </button>
+            </div>
+            <p>TODO</p>
+            <section [innerHTML]="sample10html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
+            Detect selected and deselected events
+        </md-card-title>
+        <md-card-content>
+            <div class="event-log-bar">
+                Last event: <strong>{{lastEvent}}</strong>
+            </div>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                [multiple]="true"
+                (selected)="lastEvent='selected ' + $event.label"
+                (deselected)="lastEvent='deselected ' + $event.label">
+            </ng-select>
+            <p>TODO</p>
+            <section [innerHTML]="sample11html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
     <h1>Disable</h1>
 
     <md-card>

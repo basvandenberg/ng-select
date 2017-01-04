@@ -7,8 +7,23 @@
         max-width: 800px;
     }
 
-    .button-bar {
+    .button-bar,
+    .event-log-bar,
+    .value-bar{
         margin: 14px 0;
+    }
+
+    .event-log-bar,
+    .value-bar {
+        font-size: 16px;
+    }
+
+    .event-log-bar {
+        color: #7CB342;
+    }
+
+    .value-bar {
+        color: #2196F3;
     }
 
     p {
