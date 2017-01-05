@@ -39,11 +39,12 @@ export class SelectComponent
 
     @Input() allowClear: boolean = false;
     @Input() disabled: boolean = false;
+    @Input() highlightColor: string = '#2196f3';
+    @Input() highlightTextColor: string = '#fff';
     @Input() multiple: boolean = false;
-    @Input() noSearch: number = 0; // TODO
+    @Input() noFilter: number = 0;
     @Input() notFoundMsg: string = 'No results found';
     @Input() placeholder: string = '';
-    @Input() highlightColor: string = '#2196f3';
 
     @Output() opened: EventEmitter<null> = new EventEmitter<null>();
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();
@@ -62,6 +63,7 @@ export class SelectComponent
     hasSelected: boolean = false;
 
     // View state variables.
+    filterEnabled: boolean = true;
     filterInputWidth: number = 1;
     hasFocus: boolean = false;
     isBelow: boolean = true;
@@ -98,6 +100,11 @@ export class SelectComponent
     ngOnChanges(changes: any) {
         if (changes.hasOwnProperty('options')) {
             this.updateOptionsList(changes['options'].isFirstChange());
+        }
+        if (changes.hasOwnProperty('noFilter')) {
+            let numOptions: number = this.optionList.options.length;
+            let minNumOptions: number = changes['noFilter'].currentValue;
+            this.filterEnabled = numOptions >= minNumOptions;
         }
     }
 
@@ -295,7 +302,7 @@ export class SelectComponent
             this.updateWidth();
             this.updatePosition();
             this.isOpen = true;
-            if (this.multiple) {
+            if (this.multiple && this.filterEnabled) {
                 this.filterInput.nativeElement.focus();
             }
             this.opened.emit(null);
@@ -386,7 +393,7 @@ export class SelectComponent
     /** Filter. **/
 
     private clearFilterInput() {
-        if (this.multiple) {
+        if (this.multiple && this.filterEnabled) {
             this.filterInput.nativeElement.value = '';
         }
         else {
@@ -395,7 +402,9 @@ export class SelectComponent
     }
 
     private setMultipleFilterInput(value: string) {
-        this.filterInput.nativeElement.value = value;
+        if (this.filterEnabled) {
+            this.filterInput.nativeElement.value = value;
+        }
     }
 
     /** Keys. **/
@@ -447,7 +456,7 @@ export class SelectComponent
             }
         }
         else if (key === this.KEYS.BACKSPACE) {
-            if (this.hasSelected &&
+            if (this.hasSelected && this.filterEnabled &&
                     this.filterInput.nativeElement.value === '') {
                 this.deselectLast();
             }
@@ -494,7 +503,7 @@ export class SelectComponent
 
     focus() {
         this.hasFocus = true;
-        if (this.multiple) {
+        if (this.multiple && this.filterEnabled) {
             this.filterInput.nativeElement.focus();
         }
         else {

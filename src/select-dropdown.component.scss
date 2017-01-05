@@ -40,29 +40,29 @@ select-dropdown {
                     padding: 4px 8px;
                     cursor: pointer;
                     user-select: none;
-
-                    &.selected {
-                        background-color: #bdbdbd;
-
-                        &.highlighted {
-                            background-color: #2196F3;
-                            color: #fff;
-                        }
-                    }
-
-                    &.highlighted {
-                        background-color: #2196F3;
-                        color: #fff;
-                    }
-
-                    &.disabled {
-                        background-color: #fff;
-                        color: #9e9e9e;
-                        cursor: default;
-                        pointer-events: none;
-                    }
                 }
             }
         }
+    }
+        
+    .selected {
+        background-color: #e0e0e0;
+
+        &.highlighted {
+            background-color: #2196F3;
+            color: #fff;
+        }
+    }
+
+    .highlighted {
+        background-color: #2196F3;
+        color: #fff;
+    }
+
+    .disabled {
+        background-color: #fff;
+        color: #9e9e9e;
+        cursor: default;
+        pointer-events: none;
     }
 }

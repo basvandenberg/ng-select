@@ -25,14 +25,15 @@ import {OptionList} from './option-list';
 export class SelectDropdownComponent
         implements AfterViewInit, OnChanges, OnInit {
 
-    @Input() optionList: OptionList;
+    @Input() filterEnabled: boolean;
+    @Input() highlightColor: string;
+    @Input() highlightTextColor: string;
+    @Input() left: number;
     @Input() multiple: boolean;
     @Input() notFoundMsg: string;
-    @Input() highlightColor: string;
-    @Input() selectedColor: string;
-    @Input() width: number;
+    @Input() optionList: OptionList;
     @Input() top: number;
-    @Input() left: number;
+    @Input() width: number;
 
     @Output() close = new EventEmitter<boolean>();
     @Output() optionClicked = new EventEmitter<Option>();
@@ -42,6 +43,9 @@ export class SelectDropdownComponent
 
     @ViewChild('filterInput') filterInput: any;
     @ViewChild('optionsList') optionsList: any;
+
+    disabledColor: string = '#fff';
+    disabledTextColor: string = '9e9e9e';
 
     /** Event handlers. **/
 
@@ -59,7 +63,7 @@ export class SelectDropdownComponent
 
     ngAfterViewInit() {
         this.moveHighlightedIntoView();
-        if (!this.multiple) {
+        if (!this.multiple && this.filterEnabled) {
             this.filterInput.nativeElement.focus();
         }
     }
@@ -101,8 +105,22 @@ export class SelectDropdownComponent
 
     /** View. **/
 
+    getOptionStyle(option: Option): any {
+        if (option.highlighted) {
+            return {
+                'background-color': this.highlightColor,
+                'color': this.highlightTextColor
+            };
+        }
+        else {
+            return {};
+        }
+    }
+
     clearFilterInput() {
-        this.filterInput.nativeElement.value = '';
+        if (this.filterEnabled) {
+            this.filterInput.nativeElement.value = '';
+        }
     }
 
     moveHighlightedIntoView() {

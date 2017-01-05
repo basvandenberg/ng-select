@@ -45,6 +45,7 @@
             {{option.label}}
         </div>
         <input
+            *ngIf="filterEnabled"
             #filterInput
             tabindex="-1"
             [placeholder]="placeholderView"
@@ -61,6 +62,8 @@
     [optionList]="optionList"
     [notFoundMsg]="notFoundMsg"
     [highlightColor]="highlightColor"
+    [highlightTextColor]="highlightTextColor"
+    [filterEnabled]="filterEnabled"
     [width]="width"
     [top]="top"
     [left]="left"
