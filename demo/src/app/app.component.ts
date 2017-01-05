@@ -238,7 +238,9 @@ onEnableClick() {
     sample13html = `
 <pre><code class="html">&lt;ng-select
     [options]="characters"
-    highlightColor="#00ff00"&gt;
+    [multiple]="true"
+    highlightColor="#B39DDB"
+    highlightTextColor="#4527A0"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 

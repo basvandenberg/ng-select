@@ -213,7 +213,6 @@
 
     <h1>Custom text</h1>
 
-
     <md-card>
         <md-card-title>
             Placeholder single select
@@ -262,7 +261,7 @@
 
     <md-card>
         <md-card-title>
-            Modify select container width
+            Set select container width
         </md-card-title>
         <md-card-content>
             <ng-select
@@ -276,32 +275,47 @@
 
     <md-card>
         <md-card-title>
-            Modify select container width
+            Set highlight color
         </md-card-title>
         <md-card-content>
-            <ng-select
+            <ng-select class="custom-styled"
                 [options]="OPTIONS_BASIC"
-                highlightColor="#00ff00">
+                [multiple]="true"
+                highlightColor="#B39DDB"
+                highlightTextColor="#4527A0">
             </ng-select>
-            <p></p>
+            <p>The color of the highlighted option in the dropdown can be changed with the <code>highlightColor</code> and <code>highlightTextColor</code> properties.</p>
             <section [innerHTML]="sample13html" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 
-    <!-- TODO Override CSS rules -->
-
-    <h1>(Pre)select options</h1>
+    <h1>Filter</h1>
 
     <md-card>
         <md-card-title>
-            Change list of options
+            No filter single select
         </md-card-title>
         <md-card-content>
             <ng-select
                 [options]="OPTIONS_BASIC"
-                [ngStyle]="{'width': '300px'}">
+                [noFilter]="3">
             </ng-select>
-            <p>You can use Angular's <code>ngStyle</code> to modify the width of the select container.</p>
+            <p></p>
+            <section [innerHTML]="sample09html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
+            No filter multiple select
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                [multiple]="true"
+                [noFilter]="6">
+            </ng-select>
+            <p></p>
             <section [innerHTML]="sample09html" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
