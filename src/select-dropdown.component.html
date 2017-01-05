@@ -16,6 +16,7 @@
             (wheel)="onOptionsWheel($event)">
             <li *ngFor="let option of optionList.filtered"
                 [ngClass]="{'highlighted': option.highlighted, 'selected': option.selected, 'disabled': option.disabled}"
+                [ngStyle]="{'background-color': option.highlighted ? highlightColor : 'transparent'}"
                 [attr.data-option-index]="option.index"
                 (click)="onOptionClick(option)"
                 (mouseover)="onOptionMouseover(option)">

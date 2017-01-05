@@ -235,6 +235,13 @@ onEnableClick() {
 }
 </code></pre>`;
 
+    sample13html = `
+<pre><code class="html">&lt;ng-select
+    [options]="characters"
+    highlightColor="#00ff00"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
 
     /** Sample data **/
 

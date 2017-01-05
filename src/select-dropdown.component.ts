@@ -28,6 +28,8 @@ export class SelectDropdownComponent
     @Input() optionList: OptionList;
     @Input() multiple: boolean;
     @Input() notFoundMsg: string;
+    @Input() highlightColor: string;
+    @Input() selectedColor: string;
     @Input() width: number;
     @Input() top: number;
     @Input() left: number;

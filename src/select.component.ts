@@ -43,6 +43,7 @@ export class SelectComponent
     @Input() noSearch: number = 0; // TODO
     @Input() notFoundMsg: string = 'No results found';
     @Input() placeholder: string = '';
+    @Input() highlightColor: string = '#2196f3';
 
     @Output() opened: EventEmitter<null> = new EventEmitter<null>();
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();
@@ -197,6 +198,7 @@ export class SelectComponent
 
     /** API. **/
 
+    // TODO fix issues with global click/key handler that closes the dropdown.
     open() {
         this.openDropdown();
     }
@@ -233,7 +235,7 @@ export class SelectComponent
         this.disabled = isDisabled;
     }
 
-    /** Getters/setters. **/
+    /** Value. **/
 
     get value(): any {
         if (this._value.length === 0) {
@@ -488,7 +490,7 @@ export class SelectComponent
         }
     }
 
-    /** Layout. **/
+    /** View. **/
 
     focus() {
         this.hasFocus = true;

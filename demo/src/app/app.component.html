@@ -274,7 +274,20 @@
         </md-card-content>
     </md-card>
 
-    <!-- TODO Set highlight color -->
+    <md-card>
+        <md-card-title>
+            Modify select container width
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                highlightColor="#00ff00">
+            </ng-select>
+            <p></p>
+            <section [innerHTML]="sample13html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
     <!-- TODO Override CSS rules -->
 
     <h1>(Pre)select options</h1>
