@@ -1,8 +1,4 @@
-index.d.ts
-index.js
-src/**/*.d.ts
-src/**/*.js
+demo
+dist
+node_modules
 
-
-/node_modules
-npm-debug.log
