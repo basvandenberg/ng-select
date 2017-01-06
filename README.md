@@ -1,8 +1,8 @@
 # Angular 2 select component
 
-A native select component for angular 2, based on the select2 JQuery plugin. The
-component is currently in beta, so please don't use it for production yet. See
-the angular2-select page for example uses, or try it out with this [plunker].
+A native select component for angular 2, based on the select2 JQuery plugin.
+The component is currently in alpha, so please don't use it for production yet.
+See the [angular2-select] page for example uses.
 
 - [Getting started](#getting-started)
 - [Input properties](#input-properties)
@@ -11,17 +11,18 @@ the angular2-select page for example uses, or try it out with this [plunker].
 - [Use in forms](#use-in-forms)
 - [Develop](#develop)
 
-## Demo
-
-Try it out with this [plunker] or by cloning [angular2-select-demo].
-
-
 ## Getting started
 
 ### Install
 
+For npm users:
 ```
 npm install --save angular2-select
+```
+
+For yarn users:
+```
+yarn add --save angular2-select
 ```
 
 ### Configuration
@@ -173,6 +174,7 @@ yarn install
 gulp build
 ```
 
+[angular2-select]: https://basvandenberg.github.io/angular2-select
 [plunker]: https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview
 [angular2-select-demo]: https://github.com/basvandenberg/angular2-select-demo
 [ControlValueAccessor]: https://angular.io/docs/ts/latest/api/common/index/ControlValueAccessor-interface.html
