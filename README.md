@@ -22,7 +22,7 @@ npm install --save angular2-select
 
 For yarn users:
 ```
-yarn add --save angular2-select
+yarn add angular2-select
 ```
 
 ### Configuration
@@ -40,34 +40,32 @@ import {SelectModule} from 'angular2-select';
 import {AppComponent} from './app.component';
 
 @NgModule({
+    declarations: [
+        AppComponent
+    ],
     imports: [
         BrowserModule
         SelectModule
-    ],
-    declarations: [
-        AppComponent
     ],
     bootstrap: [
         AppComponent
     ]
 })
-export class AppModule { }
+export class AppModule {}
 ```
 
 #### Systemjs
 
-This is not yet tested for the beta version!
+*Not yet tested for the beta version.*
 
 In `systemjs.config.js` add `angular2-select` to map and package:
 
 ```javascript
 var map = {
-	// others...,
 	'angular2-select': 'node_modules/angular2-select'
 };
 
 var packages = {
-	// others...,
 	'angular2-select': {
 		main: 'index.js',
 		defaultExtension: 'js'
@@ -79,9 +77,13 @@ var packages = {
 
 | Name          | Type      | Default               | Description      |
 | ------------- | --------- | --------------------- | ---------------- |
+| options       | Array<any>| []                    | Required list of option objects. |
 | allowClear    | boolean   | false                 | Only applies to single select. If set to true, a clickable clear selection cross is shown. |
 | disabled      | boolean   | false                 | If set to true, the select component is disabled. |
+| highlightColor| string    | #2196f3               | Background color of highlighted option. |
+| highlightTextColor | string | #fff                | Text color of highlighted option. |
 | multiple      | boolean   | false                 | If set to true, the select component is multi-select, otherwise single select. |
+| noFilter      | number    | 0                     | ... |
 | notFoundMsg   | string    | "No results found"    | The message shown if no options are found for the current filter input value. |
 | placeholder   | string    | ""                    | Placeholder text that is shown if no options are selected.
 
@@ -89,85 +91,26 @@ var packages = {
 
 | Name          | Value                 | Description   |
 | ------------- | --------------------- | ------------- | 
-| opened        | null                  |               |
-| closed        | null                  |               |
-| selected      | option                |               |
-| deselected    | option or [option]    |               |
+| opened        | null                  | Triggered if the select dropdown is opened. |
+| closed        | null                  | Triggered if the select dropdown is closed. |
+| selected      | option\*              | Triggered if an options is selected, providing the selected option. |
+| deselected    | option\* or [option\*]| Triggered if one or more options are deselected, providing the selected option(s). |
+
+\* Object with value and label (`{value: string, label: string}`)
 
 ## Methods
 
 | Name          | Parameters            | Description   |
 | ------------- | --------------------- | ------------- |
-| open          | -                     |               |
-| close         | -                     |               |
-| clear         | -                     |               |
-| select        | value: string         |
-
-## Use in forms
-
-TODO Move to examples
-
-The component can be used in an angular 2 form, just like you would use regular
-`input` or `select` elements (the `angular2-select` component implements the
-[ControlValueAccessor] interface).
-
-```typescript
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-
-@Component({
-    selector: 'my-app',
-    template: `
-<h1>Angular 2 select demo app</h1>
-<form
-    [formGroup]="form">
-    <ng-select
-        [options]="options"
-        placeholder="Select one"
-		multiple="false"
-        [allowClear]="true"
-        formControlName="select">
-    </ng-select>
-</form>
-<hr>
-<div>
-    Selected option id: {{form.value.select}}
-</div>`
-})
-
-export class App implements OnInit {
-
-    form: FormGroup;
-
-    options = [];
-        
-    constructor() {
-        this.options = [
-            {
-                value: 'a',
-                label: 'Alpha'
-            },
-            {
-                value: 'b',
-                label: 'Beta'
-            },
-            {
-                value: 'c',
-                label: 'Gamma'
-            }
-        ];
-    }
-
-    ngOnInit() {
-        this.form = new FormGroup({});
-        this.form.addControl('select', new FormControl(''));
-    }
-}
-```
+| open          | -                     | Not yet supported.                        |
+| close         | -                     | Not yet supported.                        |
+| clear         | -                     | Deselects all selected options.           |
+| select        | value: string         | Selects the option with the given value.  |
 
 ## Develop
 
-Clone or fork the repository and run:
+Global installation of `gulp` and `yarn` are required for development. Clone or
+fork the repository and run:
 
 ```
 yarn install
@@ -176,8 +119,4 @@ gulp build
 
 [angular2-select]: https://basvandenberg.github.io/angular2-select
 [plunker]: https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview
-[angular2-select-demo]: https://github.com/basvandenberg/angular2-select-demo
-[ControlValueAccessor]: https://angular.io/docs/ts/latest/api/common/index/ControlValueAccessor-interface.html
-[issue]: https://gitlab.com/pushrocks/beautylog/issues/7
-[beautylog]: https://gitlab.com/pushrocks/beautylog
 
