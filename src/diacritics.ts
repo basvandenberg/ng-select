@@ -1,9 +1,6 @@
-import {Injectable} from '@angular/core';
+export class Diacritics {
 
-@Injectable()
-export class DiacriticsService {
-
-    DIACRITICS = {
+    static DIACRITICS = {
         '\u24B6': 'A',
         '\uFF21': 'A',
         '\u00C0': 'A',
@@ -845,7 +842,7 @@ export class DiacriticsService {
         '\u03C2': '\u03C3'
     };
 
-    stripDiacritics(text: string): string {
+    static strip(text: string): string {
 
         let match = (a: string): string => {
             return this.DIACRITICS[a] || a;

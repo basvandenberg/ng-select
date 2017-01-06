@@ -1,0 +1,23 @@
+<<<<<<< HEAD
+index.d.ts
+index.js
+index.metadata.json
+index.ngfactory.ts
+src/**/*.css.ts
+src/**/*.d.ts
+src/**/*.js
+src/**/*.metadata.json
+src/**/*.ngfactory.ts
+
+
+=======
+/dist
+>>>>>>> beta
+/node_modules
+
+npm-debug.log
+yarn-error.log
+
+*.swp
+*.tgz
+*.sh

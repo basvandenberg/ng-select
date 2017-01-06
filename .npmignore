@@ -1,11 +1,18 @@
-*.ts
-!*.d.ts
-!*.ngfactory.ts
+/.git
+/demo
+/docs
+/node_modules
+/src
 
+yarn.lock
 gulpfile.js
 tslint.json
 .editorconfig
-
 .npmignore
+
 npm-debug.log
+yarn-error.log
+
 *.swp
+*.tgz
+*.sh

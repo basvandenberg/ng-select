@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "lib": ["es6", "dom"],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": false,
+        "outDir": "../dist",
+        "removeComments": false,
+        "sourceMap": false,
+        "target": "es5",
+        "typeRoots": [
+            "../node_modules/@types"
+        ]
+    },
+    "files": [
+        "angular2-select.ts"
+    ],
+    "angularCompilerOptions": {
+        "genDir": "../aot",
+        "skipMetadataEmit": false
+    }
+}

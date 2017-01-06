@@ -1,5 +1,20 @@
 # Changelog
 
+<a name="1.0.0-beta.0"></a>
+## [1.0.0-beta.0](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.12...1.0.0-beta.0) ()
+
+### Breaking changes
+
+### Features
+
+### Improvements
+
+- Switched from using [npm](https://www.npmjs.com/) to [yarn](https://yarnpkg.com/) for package management.
+
+### Bug fixes
+
+
+
 <a name="1.0.0-alpha.12"></a>
 ## [1.0.0-alpha.12](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.11...1.0.0-alpha.12) ()
 
