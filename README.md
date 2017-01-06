@@ -8,7 +8,6 @@ See the [angular2-select] page for example uses.
 - [Input properties](#input-properties)
 - [Output events](#output-events)
 - [Methods](#methods)
-- [Use in forms](#use-in-forms)
 - [Develop](#develop)
 
 ## Getting started
@@ -77,7 +76,7 @@ var packages = {
 
 | Name          | Type      | Default               | Description      |
 | ------------- | --------- | --------------------- | ---------------- |
-| options       | `Array<option>`\*|          | Required list of option objects. |
+| options       | `Array<option>`\*|                | List of select option. |
 | allowClear    | `boolean`   | `false`             | Only applies to single select. If set to true, a clickable clear selection cross is shown. |
 | disabled      | `boolean`   | `false`             | If set to true, the select component is disabled. |
 | highlightColor| `string`    | `#2196f3`           | Background color of highlighted option. |
@@ -93,8 +92,8 @@ var packages = {
 
 | Name          | Value                 | Description   |
 | ------------- | --------------------- | ------------- | 
-| opened        | `null`                  | If the select dropdown is opened. |
-| closed        | `null`                  | If the select dropdown is closed. |
+| opened        | `null`                  | If the select drop down is opened. |
+| closed        | `null`                  | If the select drop down is closed. |
 | selected      | `option`\*              | If an options is selected, providing the selected option. |
 | deselected    | `option`\* or `[option]`\*| If one or more options are deselected, providing the selected option(s). |
 
