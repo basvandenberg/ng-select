@@ -1,4 +1,5 @@
 demo
 dist
 node_modules
+*.map
 
