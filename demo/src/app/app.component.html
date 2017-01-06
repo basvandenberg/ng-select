@@ -5,14 +5,23 @@
 
 <div class="main-container">
 
-    <h1>The basics</h1>
+    <p>
+        <a href="#basics">The basics</a>,
+        <a href="#value">Get the select value</a>,
+        <a href="#selection">Selection</a>
+        <a href="#text">Customized text</a>
+        <a href="#style">Customized style</a>
+        <a href="#filter">Hide filter</a>
+        <a href="#dropdown">Open/close dropdown</a>
+    </p>
+    <h1 id="basics">The basics</h1>
 
     <md-card>
         <md-card-title>
             Options
         </md-card-title>
         <md-card-content>
-            <p>Define options in your component class as an array of objects. Each object should have a <code>value</code> and a <code>label</code>. The following small set of options is used in the examples below.</p>
+            <p>Define options in the component class as an array of objects. Each object should have a <code>value</code> and a <code>label</code>. The following small set of options is used in the examples below.</p>
             <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
@@ -44,7 +53,7 @@
         </md-card-content>
     </md-card>
 
-    <h1>Get the select value</h1>
+    <h1 id="value">Get the select value</h1>
 
     <md-card>
         <md-card-title>
@@ -95,16 +104,17 @@
             Use the select component in a form
         </md-card-title>
         <md-card-content>
-            <ng-select
+            TODO
+            <!--ng-select
                 [options]="OPTIONS_BASIC">
             </ng-select>
             <p></p>
             <section [innerHTML]="sample12html" highlight-js-content=".highlight"></section>
-            <section [innerHTML]="sample12ts" highlight-js-content=".highlight"></section>
+            <section [innerHTML]="sample12ts" highlight-js-content=".highlight"></section-->
         </md-card-content>
     </md-card>
 
-    <h1>Disable</h1>
+    <h1 id="disable">Disable</h1>
 
     <md-card>
         <md-card-title>
@@ -129,7 +139,7 @@
                     Enable
                 </button>
             </div>
-            <p>TODO</p>
+            <p>Use the boolean <code>disabled</code> property to disable the select component</p>
             <section [innerHTML]="sample02html" highlight-js-content=".highlight"></section>
             <section [innerHTML]="sample02ts" highlight-js-content=".highlight"></section>
         </md-card-content>
@@ -173,7 +183,7 @@
     </md-card>
     -->
 
-    <h1>Clear selection</h1>
+    <h1 id="selection">Selection</h1>
 
     <md-card>
         <md-card-title>
@@ -211,7 +221,16 @@
         </md-card-content>
     </md-card>
 
-    <h1>Custom text</h1>
+    <md-card>
+        <md-card-title>
+            Limit the number of selected options
+        </md-card-title>
+        <md-card-content>
+            <p>Not yet supported.</p>
+        </md-card-content>
+    </md-card>
+
+    <h1 id="text">Customized text</h1>
 
     <md-card>
         <md-card-title>
@@ -257,7 +276,7 @@
         </md-card-content>
     </md-card>
 
-    <h1>Custom style</h1>
+    <h1 id="style">Customized style</h1>
 
     <md-card>
         <md-card-title>
@@ -289,7 +308,7 @@
         </md-card-content>
     </md-card>
 
-    <h1>Filter</h1>
+    <h1 id="filter">Hide filter</h1>
 
     <md-card>
         <md-card-title>
@@ -298,10 +317,10 @@
         <md-card-content>
             <ng-select
                 [options]="OPTIONS_BASIC"
-                [noFilter]="3">
+                [noFilter]="10">
             </ng-select>
-            <p></p>
-            <section [innerHTML]="sample09html" highlight-js-content=".highlight"></section>
+            <p>Use the <code>noFilter</code> property to have the filter hidden if the number of options is less then the specified number. In this example, the filter is not shown because the number of options (5) is less then the <code>noFilter</code> value (10).</p>
+            <section [innerHTML]="sample14html" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 
@@ -313,21 +332,21 @@
             <ng-select
                 [options]="OPTIONS_BASIC"
                 [multiple]="true"
-                [noFilter]="6">
+                [noFilter]="10">
             </ng-select>
-            <p></p>
-            <section [innerHTML]="sample09html" highlight-js-content=".highlight"></section>
+            <p>The same as for the single select example above.</p>
+            <section [innerHTML]="sample15html" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 
-    <h1>Open/close dropdown</h1>
+    <h1 id="dropdown">Open/close dropdown</h1>
 
     <md-card>
         <md-card-title>
-            Open/close dropdown
+            Open/close dropdown function
         </md-card-title>
         <md-card-content>
-            <p>Not yet available, some issues need te be fixed first.</p>
+            <p>Not yet supported.</p>
         </md-card-content>
     </md-card>
     <!--md-card>

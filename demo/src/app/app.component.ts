@@ -39,7 +39,6 @@ export class AppComponent implements AfterViewInit, OnInit {
             .querySelectorAll('.typescript, .html, .css');
 
         e.forEach((element) => {
-            console.log(element);
             hljs.highlightBlock(element);
         });
     }
@@ -60,21 +59,6 @@ export class AppComponent implements AfterViewInit, OnInit {
     onEnableOptionsClick() {
         this.optionsWithDisabled = this.OPTIONS_BASIC;
         this.disabledOptions = false;
-    }
-
-    onOpened() {
-
-    }
-
-    onClosed() {
-
-    }
-
-    onSelected(item) {
-
-    }
-
-    onDeselected(item) {
     }
 
     /** Code strings **/
@@ -244,6 +228,20 @@ onEnableClick() {
 &lt;/ng-select&gt;
 </code></pre>`;
 
+    sample14html = `
+<pre><code class="html">&lt;ng-select
+    [options]="characters"
+    [noFilter]="10"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
+    sample15html = `
+<pre><code class="html">&lt;ng-select
+    [options]="characters"
+    [multiple]="true"
+    [noFilter]="10"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
 
     /** Sample data **/
 

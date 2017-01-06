@@ -74,9 +74,6 @@ export class SelectComponent
     clearClicked: boolean = false;
     selectContainerClicked: boolean = false;
 
-    multipleFilterEnterPressed: boolean = false;
-    selectContainerEnterPressed: boolean = false;
-
     // Width and position for the dropdown container.
     width: number;
     top: number;
@@ -116,14 +113,6 @@ export class SelectComponent
         }
         this.clearClicked = false;
         this.selectContainerClicked = false;
-    }
-
-    onWindowEnterKeyDown() {
-        if (!this.selectContainerEnterPressed) {
-            this.closeDropdown();
-        }
-        this.multipleFilterEnterPressed = false;
-        this.selectContainerEnterPressed = false;
     }
 
     onWindowResize() {
@@ -425,77 +414,59 @@ export class SelectComponent
         if (key === this.KEYS.ESC || (key === this.KEYS.UP && event.altKey)) {
             this.closeDropdown(true);
         }
+        else if (key === this.KEYS.TAB) {
+            this.closeDropdown();
+        }
         else if (key === this.KEYS.ENTER || key === this.KEYS.SPACE ||
             (key === this.KEYS.DOWN && event.altKey)) {
 
-            this.selectContainerEnterPressed = true;
-            if (!this.multipleFilterEnterPressed) {
-
-                /* FIREFOX HACK:
-                 *
-                 * The setTimeout is added to prevent the enter keydown event
-                 * to be triggered for the filter input field, which causes
-                 * the dropdown to be closed again.
-                 */
+            /* FIREFOX HACK:
+             *
+             * The setTimeout is added to prevent the enter keydown event
+             * to be triggered for the filter input field, which causes
+             * the dropdown to be closed again.
+             */
+            this.isOpen ? this.selectHighlightedOption() :
                 setTimeout(() => { this.openDropdown(); });
-            }
-        }
-    }
-
-    private handleMultipleFilterKeydown(event: any) {
-
-        let key = event.which;
-
-        if (key === this.KEYS.ENTER) {
-            this.multipleFilterEnterPressed = true;
-            this.isOpen ? this.selectHighlightedOption() : this.openDropdown();
-        }
-        else if (key === this.KEYS.TAB) {
-            if (this.isOpen) {
-                this.closeDropdown();
-            }
-        }
-        else if (key === this.KEYS.BACKSPACE) {
-            if (this.hasSelected && this.filterEnabled &&
-                    this.filterInput.nativeElement.value === '') {
-                this.deselectLast();
-            }
         }
         else if (key === this.KEYS.UP) {
             if (this.isOpen) {
                 this.optionList.highlightPreviousOption();
                 this.dropdown.moveHighlightedIntoView();
+                if (!this.filterEnabled) {
+                    event.preventDefault();
+                }
             }
         }
         else if (key === this.KEYS.DOWN) {
             if (this.isOpen) {
                 this.optionList.highlightNextOption();
                 this.dropdown.moveHighlightedIntoView();
+                if (!this.filterEnabled) {
+                    event.preventDefault();
+                }
+            }
+        }
+    }
+
+    private handleMultipleFilterKeydown(event: any) {
+        let key = event.which;
+
+        if (key === this.KEYS.BACKSPACE) {
+            if (this.hasSelected && this.filterEnabled &&
+                    this.filterInput.nativeElement.value === '') {
+                this.deselectLast();
             }
         }
     }
 
     private handleSingleFilterKeydown(event: any) {
-
         let key = event.which;
 
-        if (key === this.KEYS.ESC) {
-            this.closeDropdown(true);
-        }
-        else if (key === this.KEYS.TAB) {
-            this.closeDropdown();
-        }
-        else if (key === this.KEYS.ENTER) {
-            this.selectHighlightedOption();
-        }
-        else if (key === this.KEYS.UP) {
-            this.optionList.highlightPreviousOption();
-            this.dropdown.moveHighlightedIntoView();
+        if (key === this.KEYS.ESC || key === this.KEYS.TAB
+                || key === this.KEYS.UP || key === this.KEYS.DOWN
+                || key === this.KEYS.ENTER) {
             this.handleSelectContainerKeydown(event);
-        }
-        else if (key === this.KEYS.DOWN) {
-            this.optionList.highlightNextOption();
-            this.dropdown.moveHighlightedIntoView();
         }
     }
 
