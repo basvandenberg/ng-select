@@ -77,24 +77,26 @@ var packages = {
 
 | Name          | Type      | Default               | Description      |
 | ------------- | --------- | --------------------- | ---------------- |
-| options       | Array<any>| []                    | Required list of option objects. |
-| allowClear    | boolean   | false                 | Only applies to single select. If set to true, a clickable clear selection cross is shown. |
-| disabled      | boolean   | false                 | If set to true, the select component is disabled. |
-| highlightColor| string    | #2196f3               | Background color of highlighted option. |
-| highlightTextColor | string | #fff                | Text color of highlighted option. |
-| multiple      | boolean   | false                 | If set to true, the select component is multi-select, otherwise single select. |
-| noFilter      | number    | 0                     | ... |
-| notFoundMsg   | string    | "No results found"    | The message shown if no options are found for the current filter input value. |
-| placeholder   | string    | ""                    | Placeholder text that is shown if no options are selected.
+| options       | `Array&lt;option\*&gt;`|          | Required list of option objects. |
+| allowClear    | `boolean`   | `false`             | Only applies to single select. If set to true, a clickable clear selection cross is shown. |
+| disabled      | `boolean`   | `false`             | If set to true, the select component is disabled. |
+| highlightColor| `string`    | `#2196f3`           | Background color of highlighted option. |
+| highlightTextColor | `string` | `#fff`            | Text color of highlighted option. |
+| multiple      | `boolean`   | `false`             | If set to true, the select component is multi-select, otherwise single select. |
+| noFilter      | `number`    | `0`                 | Filter is hidden if the number of options is less than the given number. |
+| notFoundMsg   | `string`    | `"No results found"`| The message shown if no options are found for the current filter input value. |
+| placeholder   | `string`    | `""`                | Placeholder text that is shown if no options are selected.
+
+\* Object with value and label (`{value: string, label: string}`)
 
 ## Output events
 
 | Name          | Value                 | Description   |
 | ------------- | --------------------- | ------------- | 
-| opened        | null                  | Triggered if the select dropdown is opened. |
-| closed        | null                  | Triggered if the select dropdown is closed. |
-| selected      | option\*              | Triggered if an options is selected, providing the selected option. |
-| deselected    | option\* or [option\*]| Triggered if one or more options are deselected, providing the selected option(s). |
+| opened        | `null`                  | If the select dropdown is opened. |
+| closed        | `null`                  | If the select dropdown is closed. |
+| selected      | `option`\*              | If an options is selected, providing the selected option. |
+| deselected    | `option`\* or `[option]`| If one or more options are deselected, providing the selected option(s). |
 
 \* Object with value and label (`{value: string, label: string}`)
 
@@ -105,7 +107,7 @@ var packages = {
 | open          | -                     | Not yet supported.                        |
 | close         | -                     | Not yet supported.                        |
 | clear         | -                     | Deselects all selected options.           |
-| select        | value: string         | Selects the option with the given value.  |
+| select        | `value: string`       | Selects the option with the given value.  |
 
 ## Develop
 
