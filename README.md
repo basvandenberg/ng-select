@@ -77,7 +77,7 @@ var packages = {
 
 | Name          | Type      | Default               | Description      |
 | ------------- | --------- | --------------------- | ---------------- |
-| options       | `Array&lt;option\*&gt;`|          | Required list of option objects. |
+| options       | `Array<option>`\*|          | Required list of option objects. |
 | allowClear    | `boolean`   | `false`             | Only applies to single select. If set to true, a clickable clear selection cross is shown. |
 | disabled      | `boolean`   | `false`             | If set to true, the select component is disabled. |
 | highlightColor| `string`    | `#2196f3`           | Background color of highlighted option. |
@@ -87,7 +87,7 @@ var packages = {
 | notFoundMsg   | `string`    | `"No results found"`| The message shown if no options are found for the current filter input value. |
 | placeholder   | `string`    | `""`                | Placeholder text that is shown if no options are selected.
 
-\* Object with value and label (`{value: string, label: string}`)
+\* `option` is an object with value and label (`{value: string, label: string}`)
 
 ## Output events
 
@@ -96,9 +96,9 @@ var packages = {
 | opened        | `null`                  | If the select dropdown is opened. |
 | closed        | `null`                  | If the select dropdown is closed. |
 | selected      | `option`\*              | If an options is selected, providing the selected option. |
-| deselected    | `option`\* or `[option]`| If one or more options are deselected, providing the selected option(s). |
+| deselected    | `option`\* or `[option]`\*| If one or more options are deselected, providing the selected option(s). |
 
-\* Object with value and label (`{value: string, label: string}`)
+\* `option` is an object with value and label (`{value: string, label: string}`)
 
 ## Methods
 
