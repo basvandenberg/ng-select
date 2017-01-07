@@ -1,22 +1,39 @@
 # Changelog
 
 <a name="1.0.0-beta.0"></a>
-## [1.0.0-beta.0](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.12...1.0.0-beta.0) ()
+## [1.0.0-beta.0](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.12...1.0.0-beta.0) (2017-01-07)
 
 ### Breaking changes
 
+- Simplified HTML structure with more intuitive classes.
+- Changed styling, Sass stylesheet for select and dropdown component instead of the original select2 CSS file.
+
 ### Features
+
+- Set background color and text color of highlighted option (#61).
+- Set width of select component with `ngStyle` (#59).
+- Hide filter if number of options is less than given number (#44).
+- Set custom text for 'No results found' (#9).
+- Functions `open` and `close` to open/close drop down from ts (#43).
+- Disable select component.
+- Clear selection function.
 
 ### Improvements
 
 - Switched from using [npm](https://www.npmjs.com/) to [yarn](https://yarnpkg.com/) for package management.
+- Call `onTouched` when focus on select component (#24).
+- Added demo page with examples.
+- Moved logic to separate option and option-list classes.
 
 ### Bug fixes
+
+- Greyed out placeholder text for singe select (#48).
+- Close all drop downs on click outside, close drop down when pressing tab key (#58).
 
 
 
 <a name="1.0.0-alpha.12"></a>
-## [1.0.0-alpha.12](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.11...1.0.0-alpha.12) ()
+## [1.0.0-alpha.12](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.11...1.0.0-alpha.12)
 
 ### Breaking changes
 
@@ -28,14 +45,14 @@
 - Typo fixes.
 
 <a name="1.0.0-alpha.11"></a>
-## [1.0.0-alpha.11](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.10...1.0.0-alpha.11) ()
+## [1.0.0-alpha.11](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.10...1.0.0-alpha.11)
 
 - Update to Angular 2.1.0.
 
 
 
 <a name="1.0.0-alpha.10"></a>
-## [1.0.0-alpha.10](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.9...1.0.0-alpha.10) ()
+## [1.0.0-alpha.10](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.9...1.0.0-alpha.10)
 
 ### Bug fixes
 

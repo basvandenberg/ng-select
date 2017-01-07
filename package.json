@@ -1,7 +1,7 @@
 {
   "name": "angular2-select",
-  "version": "1.0.0-alpha.12",
-  "description": "Select component for Angular2 (based on Select2 JQuery plugin).",
+  "version": "1.0.0-beta.0",
+  "description": "Select component for Angular2.",
   "main": "index.js",
   "repository": "git@github.com:basvandenberg/angular2-select.git",
   "keywords": [
