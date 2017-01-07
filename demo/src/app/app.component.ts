@@ -17,19 +17,19 @@ declare var hljs: any;
 
 export class AppComponent implements AfterViewInit, OnInit {
 
-    options: Array<any>;
-    optionsWithDisabled: Array<any>;
-
+    delayedOptions: Array<any>;
+    updatedOptions: Array<any>;
     disabled: boolean = true;
-    disabledOptions: boolean = true;
 
     constructor(
         private elementRef: ElementRef
     ) {}
 
     ngOnInit() {
-        this.options = this.OPTIONS_BASIC;
-        this.optionsWithDisabled = this.OPTIONS_BASIC_WITH_DISABLED;
+        this.updatedOptions = this.OPTIONS_BASIC;
+        setTimeout(() => {
+            this.delayedOptions = this.OPTIONS_BASIC;
+        }, 5000);
     }
 
     ngAfterViewInit() {
@@ -49,16 +49,6 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     onEnableClick() {
         this.disabled = false;
-    }
-
-    onDisableOptionsClick() {
-        this.optionsWithDisabled = this.OPTIONS_BASIC_WITH_DISABLED;
-        this.disabledOptions = true;
-    }
-
-    onEnableOptionsClick() {
-        this.optionsWithDisabled = this.OPTIONS_BASIC;
-        this.disabledOptions = false;
     }
 
     /** Code strings **/
@@ -92,7 +82,7 @@ ngOnInit() {
 
     sample02html = `
 <pre><code class="html">&lt;ng-select
-    [options]="options"
+    [options]="characters"
     [disabled]="disabled"&gt;
 &lt;/ng-select&gt;
 &lt;button
@@ -121,13 +111,13 @@ onEnableClick() {
 
     sample03html = `
 <pre><code class="html">&lt;ng-select
-    [options]="options"&gt;
+    [options]="characters"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
     sample04html = `
 <pre><code class="html">&lt;ng-select
-    [options]="options"
+    [options]="characters"
     [allowClear]="true"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
@@ -135,7 +125,7 @@ onEnableClick() {
     sample05html = `
 <pre><code class="html">&lt;ng-select
     #clearSelectExample
-    [options]="options"
+    [options]="characters"
     [multiple]="true"&gt;
 &lt;/ng-select&gt;
 &lt;button
@@ -146,7 +136,7 @@ onEnableClick() {
 
     sample06html = `
 <pre><code class="html">&lt;ng-select
-    [options]="options"
+    [options]="characters"
     [allowClear]="true"
     placeholder="Select one of the characters"&gt;
 &lt;/ng-select&gt;
@@ -154,7 +144,7 @@ onEnableClick() {
 
     sample07html = `
 <pre><code class="html">&lt;ng-select
-    [options]="options"
+    [options]="characters"
     [multiple]="true"
     placeholder="Select characters"&gt;
 &lt;/ng-select&gt;
@@ -162,14 +152,14 @@ onEnableClick() {
 
     sample08html = `
 <pre><code class="html">&lt;ng-select
-    [options]="options"
+    [options]="characters"
     notFoundMsg="None of the characters match your search"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
     sample09html = `
 <pre><code class="html">&lt;ng-select
-    [options]="options"
+    [options]="characters"
     [ngStyle]="{'width': '300px'}"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
@@ -179,7 +169,7 @@ onEnableClick() {
     Value: &lt;strong&gt;{{selectedValues}}&lt;/strong&gt;
 &lt;/div&gt;
 &lt;ng-select
-    [options]="options"
+    [options]="characters"
     [multiple]="true"
     [(ngModel)]="selectedValues"&gt;
 &lt;/ng-select&gt;
@@ -194,7 +184,7 @@ onEnableClick() {
     Last event: &lt;strong&gt;{{lastEvent}}&lt;/strong&gt;
 &lt;/div&gt;
 &lt;ng-select
-    [options]="options"
+    [options]="characters"
     [multiple]="true"
     (selected)="lastEvent='selected ' + $event.label"
     (deselected)="lastEvent='deselected ' + $event.label"&gt;
@@ -243,6 +233,58 @@ onEnableClick() {
 &lt;/ng-select&gt;
 </code></pre>`;
 
+    sample16html = `
+<pre><code class="html">&lt;ng-select
+    [options]="delayedCharacters"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
+    sample16ts = `
+<pre><code class="typescript">delayedCharacters: Array<any>;
+
+onInit() {
+    setTimeout(() => {
+        this.delayedCharacters = [
+            {value: '0', label: 'Aech'},
+            {value: '1', label: 'Art3mis'},
+            {value: '2', label: 'Daito'},
+            {value: '3', label: 'Parzival'},
+            {value: '4', label: 'Shoto'}
+        ];
+    }, 5000);
+}
+</code></pre>`;
+
+    sample17html = `
+<pre><code class="html">&lt;ng-select
+    [options]="updatedCharacters"
+    [multiple]="true"&gt;
+&lt;/ng-select&gt;
+&lt;button
+    (click)="updatedCharacters=characters"&gt;
+    All options
+&lt;/button&gt;
+&lt;button
+    (click)="updatedCharacters=characters.slice(0, 2)"&gt;
+    First two options
+&lt;/button&gt;
+</code></pre>`;
+
+    sample17ts = `
+<pre><code class="typescript">updatedCharacters: Array<any>;
+characters: Array<any> = [
+    {value: '0', label: 'Aech'},
+    {value: '1', label: 'Art3mis'},
+    {value: '2', label: 'Daito'},
+    {value: '3', label: 'Parzival'},
+    {value: '4', label: 'Shoto'}
+];
+
+onInit() {
+    this.updatedCharacters = this.characters;
+}
+</code></pre>`;
+
     /** Sample data **/
 
     OPTIONS_BASIC = [
@@ -251,6 +293,11 @@ onEnableClick() {
         {value: '2', label: 'Daito'},
         {value: '3', label: 'Parzival'},
         {value: '4', label: 'Shoto'}
+    ];
+
+    OPTIONS_BASIC_FIRST_TWO = [
+        {value: '0', label: 'Aech'},
+        {value: '1', label: 'Art3mis'}
     ];
 
     OPTIONS_BASIC_WITH_DISABLED = [

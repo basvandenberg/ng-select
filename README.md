@@ -1,13 +1,21 @@
 # Angular 2 select component
 
 A native select component for angular 2, based on the select2 JQuery plugin.
-The component is currently in alpha, so please don't use it for production yet.
+
 See the [angular2-select] page for example uses.
+
+The beta version is here! With new features and bug fixes. See the [changelog]
+for more details.
+
+*Disclaimer*: The beta version is a complete rewrite of the alpha version, so
+new bugs are to be expected. Please do not yet rely on this beta version for
+production releases.
 
 - [Getting started](#getting-started)
 - [Input properties](#input-properties)
 - [Output events](#output-events)
 - [Methods](#methods)
+- [Limitations](#limitations)
 - [Develop](#develop)
 
 ## Getting started
@@ -94,8 +102,8 @@ var packages = {
 | ------------- | --------------------- | ------------- | 
 | opened        | `null`                  | If the select drop down is opened. |
 | closed        | `null`                  | If the select drop down is closed. |
-| selected      | `option`\*              | If an options is selected, providing the selected option. |
-| deselected    | `option`\* or `[option]`\*| If one or more options are deselected, providing the selected option(s). |
+| selected      | `option`\*              | If an options is selected, returning the selected option. |
+| deselected    | `option`\* or `[option]`\*| If one or more options are deselected, returning the selected option(s). |
 
 \* `option` is an object with value and label (`{value: string, label: string}`)
 
@@ -103,15 +111,28 @@ var packages = {
 
 | Name          | Parameters            | Description   |
 | ------------- | --------------------- | ------------- |
-| open          | -                     | Not yet supported.                        |
-| close         | -                     | Not yet supported.                        |
-| clear         | -                     | Deselects all selected options.           |
-| select        | `value: string`       | Selects the option with the given value.  |
+| open          | -                     | Open the select drop down.               |
+| close         | -                     | Close the select drop down.              |
+| clear         | -                     | Deselect all selected options.           |
+| select        | `value: string`       | Select the option with the given value.  |
+
+## Limitations
+
+### Scalability
+
+For now, this component is not suitable for large numbers of options. If the
+dropdown is opened, all options are added to the DOM, which will cause browser
+performance issues for large numbers of options. Therefore, if you have more
+that a few hundred options, then you will be better of with another solution. 
+
+### Drop down positioning
+
+TODO
 
 ## Develop
 
-Global installation of `gulp` and `yarn` are required for development. Clone or
-fork the repository and run:
+Global installations of `gulp` and `yarn` are required for development. Clone
+or fork the repository and run:
 
 ```
 yarn install
@@ -120,4 +141,5 @@ gulp build
 
 [angular2-select]: https://basvandenberg.github.io/angular2-select
 [plunker]: https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview
+[changelog]: https://github.com/basvandenberg/angular2-select/releases
 

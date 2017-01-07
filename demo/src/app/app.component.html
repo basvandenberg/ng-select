@@ -5,15 +5,6 @@
 
 <div class="main-container">
 
-    <p>
-        <a href="#basics">The basics</a>,
-        <a href="#value">Get the select value</a>,
-        <a href="#selection">Selection</a>
-        <a href="#text">Customized text</a>
-        <a href="#style">Customized style</a>
-        <a href="#filter">Hide filter</a>
-        <a href="#dropdown">Open/close dropdown</a>
-    </p>
     <h1 id="basics">The basics</h1>
 
     <md-card>
@@ -111,6 +102,49 @@
             <p></p>
             <section [innerHTML]="sample12html" highlight-js-content=".highlight"></section>
             <section [innerHTML]="sample12ts" highlight-js-content=".highlight"></section-->
+        </md-card-content>
+    </md-card>
+
+    <h1 id="options">Change options</h1>
+
+    <md-card>
+        <md-card-title>
+            Set options after delay
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="delayedOptions">
+            </ng-select>
+            <p>In thise example the list of characters is set after five seconds. Before that, no options will show up in the drop down.</p>
+            <section [innerHTML]="sample16html" highlight-js-content=".highlight"></section>
+            <section [innerHTML]="sample16ts" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
+            Update list of options
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="updatedOptions"
+                [multiple]="true">
+            </ng-select>
+            <div class="button-bar">
+                <button
+                    md-raised-button
+                    (click)="updatedOptions=OPTIONS_BASIC">
+                    All options
+                </button>
+                <button
+                    md-raised-button
+                    (click)="updatedOptions=OPTIONS_BASIC.slice(0, 2)">
+                    First two options
+                </button>
+            </div>
+            <p>You can update options by changing the list of options that is bound to the select component. Notice that selected options will remain selected if you update the list of options, given that this option is still in the updated list of options.</p>
+            <section [innerHTML]="sample17html" highlight-js-content=".highlight"></section>
+            <section [innerHTML]="sample17ts" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 
