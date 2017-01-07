@@ -5,7 +5,6 @@
 
 ### Breaking changes
 
-- Simplified HTML structure with more intuitive classes.
 - Changed styling, Sass stylesheet for select and dropdown component instead of the original select2 CSS file.
 
 ### Features
@@ -23,6 +22,7 @@
 - Switched from using [npm](https://www.npmjs.com/) to [yarn](https://yarnpkg.com/) for package management.
 - Call `onTouched` when focus on select component (#24).
 - Added demo page with examples.
+- Simplified HTML structure with more intuitive classes.
 - Moved logic to separate option and option-list classes.
 
 ### Bug fixes
