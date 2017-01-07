@@ -5,6 +5,7 @@
 npm-debug.log
 yarn-error.log
 
+*.orig
 *.swp
 *.tgz
 *.sh
