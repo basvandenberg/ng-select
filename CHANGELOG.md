@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.0.0-beta.1"></a>
+## [1.0.0-beta.1](https://github.com/basvandenberg/angular2-select/compare/1.0.0-beta.0...1.0.0-beta.1) (2017-01-08)
+
+### Bug fixes
+
+- Removed accidentally included `console.log`'s in published npm package. (#64).
+
+
 <a name="1.0.0-beta.0"></a>
 ## [1.0.0-beta.0](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.12...1.0.0-beta.0) (2017-01-07)
 
@@ -43,6 +51,8 @@
 
 - Trigger `deselected` event on clear single select click (#23).
 - Typo fixes.
+
+
 
 <a name="1.0.0-alpha.11"></a>
 ## [1.0.0-alpha.11](https://github.com/basvandenberg/angular2-select/compare/1.0.0-alpha.10...1.0.0-alpha.11)
