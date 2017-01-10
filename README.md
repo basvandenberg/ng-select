@@ -2,7 +2,7 @@
 
 A native select component for angular 2, based on the select2 JQuery plugin.
 
-See the [angular2-select] page for example uses.
+See the [angular2-select] page for example uses or try it with this [plunker].
 
 The beta version is here! With new features and bug fixes. See the [changelog]
 for more details.
