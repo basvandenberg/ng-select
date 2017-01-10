@@ -82,39 +82,39 @@ var packages = {
 
 ## Input properties
 
-| Name          | Type      | Default               | Description      |
-| ------------- | --------- | --------------------- | ---------------- |
-| options       | `Array<option>`\*|                | List of select option. |
-| allowClear    | `boolean`   | `false`             | Only applies to single select. If set to true, a clickable clear selection cross is shown. |
-| disabled      | `boolean`   | `false`             | If set to true, the select component is disabled. |
-| highlightColor| `string`    | `#2196f3`           | Background color of highlighted option. |
-| highlightTextColor | `string` | `#fff`            | Text color of highlighted option. |
-| multiple      | `boolean`   | `false`             | If set to true, the select component is multi-select, otherwise single select. |
-| noFilter      | `number`    | `0`                 | Filter is hidden if the number of options is less than the given number. |
-| notFoundMsg   | `string`    | `"No results found"`| The message shown if no options are found for the current filter input value. |
-| placeholder   | `string`    | `""`                | Placeholder text that is shown if no options are selected.
+| Name               | Type              | Default               | Description                                                                                |
+| ------------------ | ----------------- | --------------------- | ------------------------------------------------------------------------------------------ |
+| options            | `Array<option>`\* |                       | List of select option.                                                                     |
+| allowClear         | `boolean`         | `false`               | Only applies to single select. If set to true, a clickable clear selection cross is shown. |
+| disabled           | `boolean`         | `false`               | If set to true, the select component is disabled.                                          |
+| highlightColor     | `string`          | `#2196f3`             | Background color of highlighted option.                                                    |
+| highlightTextColor | `string`          | `#fff`                | Text color of highlighted option.                                                          |
+| multiple           | `boolean`         | `false`               | If set to true, the select component is multi-select, otherwise single select.             |
+| noFilter           | `number`          | `0`                   | Filter is hidden if the number of options is less than the given number.                   |
+| notFoundMsg        | `string`          | `"No results found"`  | The message shown if no options are found for the current filter input value.              |
+| placeholder        | `string`          | `""`                  | Placeholder text that is shown if no options are selected.
 
 \* `option` is an object with value and label (`{value: string, label: string}`)
 
 ## Output events
 
-| Name          | Value                 | Description   |
-| ------------- | --------------------- | ------------- | 
-| opened        | `null`                  | If the select drop down is opened. |
-| closed        | `null`                  | If the select drop down is closed. |
-| selected      | `option`\*              | If an options is selected, returning the selected option. |
-| deselected    | `option`\* or `[option]`\*| If one or more options are deselected, returning the selected option(s). |
+| Name          | Value                      | Description                                                              |
+| ------------- | -------------------------- | ------------------------------------------------------------------------ |
+| opened        | `null`                     | If the select drop down is opened.                                       |
+| closed        | `null`                     | If the select drop down is closed.                                       |
+| selected      | `option`\*                 | If an options is selected, returning the selected option.                |
+| deselected    | `option`\* or `[option]`\* | If one or more options are deselected, returning the selected option(s). |
 
 \* `option` is an object with value and label (`{value: string, label: string}`)
 
 ## Methods
 
-| Name          | Parameters            | Description   |
-| ------------- | --------------------- | ------------- |
-| open          | -                     | Open the select drop down.               |
-| close         | -                     | Close the select drop down.              |
-| clear         | -                     | Deselect all selected options.           |
-| select        | `value: string`       | Select the option with the given value.  |
+| Name          | Parameters            | Description                             |
+| ------------- | --------------------- | --------------------------------------- |
+| open          | -                     | Open the select drop down.              |
+| close         | -                     | Close the select drop down.             |
+| clear         | -                     | Deselect all selected options.          |
+| select        | `value: string`       | Select the option with the given value. |
 
 ## Limitations
 
@@ -123,7 +123,7 @@ var packages = {
 For now, this component is not suitable for large numbers of options. If the
 dropdown is opened, all options are added to the DOM, which will cause browser
 performance issues for large numbers of options. Therefore, if you have more
-that a few hundred options, then you will be better of with another solution. 
+that a few hundred options, then you will be better of with another solution.
 
 ### Drop down positioning
 
@@ -139,7 +139,9 @@ yarn install
 gulp build
 ```
 
-[angular2-select]: https://basvandenberg.github.io/angular2-select
-[plunker]: https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview
-[changelog]: https://github.com/basvandenberg/angular2-select/releases
+You can test this library in [plunker](https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview).
+
+[angular2-select](https://basvandenberg.github.io/angular2-select)
+[plunker](https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview)
+[changelog](https://github.com/basvandenberg/angular2-select/releases)
 
