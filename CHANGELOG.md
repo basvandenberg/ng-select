@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.0.0-beta.2"></a>
+## [1.0.0-beta.2](https://github.com/basvandenberg/angular2-select/compare/1.0.0-beta.1...1.0.0-beta.2) (2017-01-..)
+
+### Bug fixes
+
+- Single select returns value as string instead of array (#66).
+
+
 <a name="1.0.0-beta.1"></a>
 ## [1.0.0-beta.1](https://github.com/basvandenberg/angular2-select/compare/1.0.0-beta.0...1.0.0-beta.1) (2017-01-08)
 
