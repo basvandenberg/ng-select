@@ -55,7 +55,7 @@ export class SelectComponent
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
     @ViewChild('filterInput') filterInput: any;
 
-    private _value: '';
+    private _value: Array<any> = [];
 
     optionList: OptionList;
 
@@ -249,8 +249,9 @@ export class SelectComponent
         else if (typeof v === 'string') {
             v = [v];
         }
+        // TODO throw TypeError if v is not an Array.
 
-        if (v !== this._value) {
+        if (v !== this._value) { // TODO cannot compare Arrays like this...
             this._value = v;
             this.optionList.value = v;
 
@@ -258,7 +259,7 @@ export class SelectComponent
             this.placeholderView = this.hasSelected ? '' : this.placeholder;
             this.updateFilterWidth();
 
-            this.onChange(v);
+            this.onChange(this.value);
         }
     }
 
