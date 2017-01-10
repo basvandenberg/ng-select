@@ -143,5 +143,5 @@ You can test this library in [plunker](https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0
 
 [angular2-select](https://basvandenberg.github.io/angular2-select)
 [plunker](https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview)
-[changelog](https://github.com/basvandenberg/angular2-select/releases)
+[releases](https://github.com/basvandenberg/angular2-select/releases)
 

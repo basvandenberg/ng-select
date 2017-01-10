@@ -258,7 +258,9 @@ export class SelectComponent
             this.placeholderView = this.hasSelected ? '' : this.placeholder;
             this.updateFilterWidth();
 
-            this.onChange(v);
+            // Emit single or multiple (array) value depending on 'multiple'
+            // property
+            this.onChange(this.value);
         }
     }
 
