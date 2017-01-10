@@ -139,7 +139,6 @@ yarn install
 gulp build
 ```
 
-[angular2-select](https://basvandenberg.github.io/angular2-select)
-[plunker](https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview)
-[releases](https://github.com/basvandenberg/angular2-select/releases)
-
+[angular2-select]: https://basvandenberg.github.io/angular2-select
+[plunker]: https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview
+[changelog]: https://github.com/basvandenberg/angular2-select/releases
