@@ -34,13 +34,13 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     ngAfterViewInit() {
         hljs.initHighlighting();
-        let e = this.elementRef
+        let nodes: NodeList = this.elementRef
             .nativeElement
             .querySelectorAll('.typescript, .html, .css');
 
-        e.forEach((element) => {
-            hljs.highlightBlock(element);
-        });
+        for (let i = 0; i < nodes.length; i++) {
+            hljs.highlightBlock(nodes[i]);
+        }
     }
 
     onDisableClick() {
