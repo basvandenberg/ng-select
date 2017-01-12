@@ -1,7 +1,7 @@
 # Changelog
 
 <a name="1.0.0-beta.2"></a>
-## [1.0.0-beta.2](https://github.com/basvandenberg/angular2-select/compare/1.0.0-beta.1...1.0.0-beta.2) (2017-01-..)
+## [1.0.0-beta.2](https://github.com/basvandenberg/angular2-select/compare/1.0.0-beta.1...1.0.0-beta.2) (2017-01-12)
 
 ### Bug fixes
 
