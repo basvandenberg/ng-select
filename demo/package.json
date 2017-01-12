@@ -22,7 +22,7 @@
     "@angular/platform-browser": "^2.3.1",
     "@angular/platform-browser-dynamic": "^2.3.1",
     "@angular/router": "^3.3.1",
-    "angular2-select": "file:../angular2-select-1.0.0-beta.1.tgz",
+    "angular2-select": "file:../angular2-select-1.0.0-beta.2.tgz",
     "core-js": "^2.4.1",
     "normalize.css": "^5.0.0",
     "rxjs": "^5.0.1",
