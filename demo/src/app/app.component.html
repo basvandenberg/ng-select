@@ -92,16 +92,29 @@
 
     <md-card>
         <md-card-title>
-            Use the select component in a form
+            Use the select component with a reactive form
         </md-card-title>
         <md-card-content>
-            TODO
-            <!--ng-select
-                [options]="OPTIONS_BASIC">
-            </ng-select>
+            <div class="value-bar">
+                <div>Value: <strong>{{form.value.select}}</strong></div>
+            </div>
+            <div class="value-bar">
+                <div>Control touched: <strong>{{form.controls['select'].touched}}</strong></div>
+            </div>
+            <div class="value-bar">
+                <div>Form valid: <strong>{{form.valid}}</strong></div>
+            </div>
+            <form
+                [formGroup]="form">
+                <ng-select
+                    formControlName="select"
+                    [options]="OPTIONS_BASIC"
+                    [multiple]="true">
+                </ng-select>
+            </form>
             <p></p>
-            <section [innerHTML]="sample12html" highlight-js-content=".highlight"></section>
-            <section [innerHTML]="sample12ts" highlight-js-content=".highlight"></section-->
+            <section [innerHTML]="sample18html" highlight-js-content=".highlight"></section>
+            <section [innerHTML]="sample18ts" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 

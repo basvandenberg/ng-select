@@ -5,7 +5,7 @@ import {
     OnInit,
     ViewChild
 } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 declare var hljs: any;
 
@@ -20,13 +20,19 @@ export class AppComponent implements AfterViewInit, OnInit {
     delayedOptions: Array<any>;
     updatedOptions: Array<any>;
     disabled: boolean = true;
+    form: FormGroup;
 
     constructor(
         private elementRef: ElementRef
     ) {}
 
     ngOnInit() {
+        this.form = new FormGroup({});
+        let c: FormControl = new FormControl('', Validators.required);
+        this.form.addControl('select', c);
+        
         this.updatedOptions = this.OPTIONS_BASIC;
+        
         setTimeout(() => {
             this.delayedOptions = this.OPTIONS_BASIC;
         }, 5000);
@@ -282,6 +288,29 @@ characters: Array<any> = [
 
 onInit() {
     this.updatedCharacters = this.characters;
+}
+</code></pre>`;
+
+    sample18html = `
+<pre><code class="html">&lt;div&gt;Value: &lt;strong&gt;{{form.value.select}}&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;Control touched: &lt;strong&gt;{{form.controls['select'].touched}}&lt;/strong&gt;&lt;/div&gt;
+&lt;div&gt;Form valid: &lt;strong&gt;{{form.valid}}&lt;/strong&gt;&lt;/div&gt;
+&lt;form&gt;
+    &lt;ng-select
+        formControlName="select"
+        [options]="characters"
+        [multiple]="true"&gt;
+    &lt;/ng-select&gt;
+&lt;/form&gt;
+</code></pre>`;
+
+    sample18ts = `
+<pre><code class="typescript">form: FormGroup;
+
+ngOnInit() {
+    this.form = new FormGroup({});
+    let c: FormControl = new FormControl('', Validators.required);
+    this.form.addControl('select', c);
 }
 </code></pre>`;
 
