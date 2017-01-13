@@ -1,5 +1,16 @@
 # Changelog
 
+
+
+<a name="1.0.0-beta.3"></a>
+## [1.0.0-beta.3](https://github.com/basvandenberg/angular2-select/compare/1.0.0-beta.2...1.0.0-beta.3) (2017-01-..)
+
+### Bug fixes
+
+- Same placeholder styling single and multiple select (#67).
+
+
+
 <a name="1.0.0-beta.2"></a>
 ## [1.0.0-beta.2](https://github.com/basvandenberg/angular2-select/compare/1.0.0-beta.1...1.0.0-beta.2) (2017-01-12)
 
@@ -8,12 +19,14 @@
 - Single select returns value as string instead of array (#66).
 
 
+
 <a name="1.0.0-beta.1"></a>
 ## [1.0.0-beta.1](https://github.com/basvandenberg/angular2-select/compare/1.0.0-beta.0...1.0.0-beta.1) (2017-01-08)
 
 ### Bug fixes
 
 - Removed accidentally included `console.log`'s in published npm package. (#64).
+
 
 
 <a name="1.0.0-beta.0"></a>
