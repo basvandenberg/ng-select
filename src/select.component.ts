@@ -35,7 +35,7 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
 export class SelectComponent
         implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit {
 
-    @Input() options: Array<{ value: string; label: string; }>;
+    @Input() options: Array<any>;
 
     @Input() allowClear: boolean = false;
     @Input() disabled: boolean = false;
@@ -56,7 +56,6 @@ export class SelectComponent
     @ViewChild('filterInput') filterInput: any;
 
     private _value: Array<any> = [];
-
     optionList: OptionList;
 
     // Selection state variables.
@@ -251,16 +250,20 @@ export class SelectComponent
         }
         // TODO throw TypeError if v is not an Array.
 
-        if (v !== this._value) { // TODO cannot compare Arrays like this...
-            this._value = v;
+        if (!OptionList.equalValues(v, this._value)) {
             this.optionList.value = v;
-
-            this.hasSelected = v.length > 0;
-            this.placeholderView = this.hasSelected ? '' : this.placeholder;
-            this.updateFilterWidth();
-
-            this.onChange(this.value);
+            this.valueChanged();
         }
+    }
+
+    private valueChanged() {
+        this._value = this.optionList.value;
+
+        this.hasSelected = this._value.length > 0;
+        this.placeholderView = this.hasSelected ? '' : this.placeholder;
+        this.updateFilterWidth();
+
+        this.onChange(this.value);
     }
 
     /** Initialization. **/
@@ -276,6 +279,7 @@ export class SelectComponent
 
         if (!firstTime) {
             this.optionList.value = v;
+            this.valueChanged();
         }
     }
 
@@ -315,24 +319,25 @@ export class SelectComponent
     private selectOption(option: Option) {
         if (!option.selected) {
             this.optionList.select(option, this.multiple);
-            this.value = this.optionList.value;
+            this.valueChanged();
             this.selected.emit(option.undecoratedCopy());
-            setTimeout(() => {
+            // Is this not allready done when setting the value??
+            /*setTimeout(() => {
                 if (this.multiple) {
                     this.updateFilterWidth();
                 }
-            });
+            });*/
         }
     }
 
     private deselectOption(option: Option) {
         if (option.selected) {
             this.optionList.deselect(option);
-            this.value = this.optionList.value;
+            this.valueChanged();
             this.deselected.emit(option.undecoratedCopy());
             setTimeout(() => {
                 if (this.multiple) {
-                    this.updateFilterWidth();
+                    // this.updateFilterWidth();
                     this.updatePosition();
                     this.optionList.highlight();
                     if (this.isOpen) {
@@ -347,7 +352,7 @@ export class SelectComponent
         let selection: Array<Option> = this.optionList.selection;
         if (selection.length > 0) {
             this.optionList.clearSelection();
-            this.value = this.optionList.value;
+            this.valueChanged();
 
             if (selection.length === 1) {
                 this.deselected.emit(selection[0].undecoratedCopy());

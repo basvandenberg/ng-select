@@ -1,29 +1,23 @@
-import {ReflectiveInjector} from '@angular/core';
-
 import {Option} from './option';
 import {Diacritics} from './diacritics';
 
 export class OptionList {
 
     private _options: Array<Option>;
-    private _selection: Array<Option>;
-    private _filtered: Array<Option>;
-    private _value: Array<string>;
+
+    /* Consider using these for performance improvement. */
+    // private _selection: Array<Option>;
+    // private _filtered: Array<Option>;
+    // private _value: Array<string>;
 
     private _highlightedOption: Option = null;
 
     constructor(options: Array<any>) {
-        // Array<{ value: string; label: string;>) {
-
-        // Inject diacritics service.
-        // let inj = ReflectiveInjector.resolveAndCreate([DiacriticsService]);
-        // this.diacriticsService = inj.get(DiacriticsService);
 
         if (typeof options === 'undefined' || options === null) {
             options = [];
         }
 
-        // Initialize array of option objects.
         this._options = options.map((option) => {
             let o: Option = new Option(option.value, option.label);
             if (option.disabled) {
@@ -35,9 +29,7 @@ export class OptionList {
         this.highlight();
     }
 
-    /**************************************************************************
-     * Options.
-     *************************************************************************/
+    /** Options. **/
 
     get options(): Array<Option> {
         return this._options;
@@ -49,9 +41,7 @@ export class OptionList {
         });
     }
 
-    /**************************************************************************
-     * Value.
-     *************************************************************************/
+    /** Value. **/
 
     get value(): Array<string> {
         return this.selection.map((selectedOption) => {
@@ -67,9 +57,7 @@ export class OptionList {
         });
     }
 
-    /**************************************************************************
-     * Selection.
-     *************************************************************************/
+    /** Selection. **/
 
     get selection(): Array<Option> {
         return this.options.filter((option) => {
@@ -94,9 +82,7 @@ export class OptionList {
         });
     }
 
-    /**************************************************************************
-     * Filter.
-     *************************************************************************/
+    /** Filter. **/
 
     get filtered(): Array<Option> {
         return this.options.filter((option) => {
@@ -111,15 +97,8 @@ export class OptionList {
         }
         else {
             this.options.forEach((option) => {
-                // let strip: any = this.diacriticsService.stripDiacritics;
-
-
-                // let l: string = strip.call(null, option.label).toUpperCase();
-                // let t: string = strip.call(null, term).toUpperCase();
-
                 let l: string = Diacritics.strip(option.label).toUpperCase();
                 let t: string = Diacritics.strip(term).toUpperCase();
-
                 option.shown = l.indexOf(t) > -1;
             });
         }
@@ -133,9 +112,7 @@ export class OptionList {
         });
     }
 
-    /**************************************************************************
-     * Highlight.
-     *************************************************************************/
+    /** Highlight. **/
 
     get highlightedOption(): Option {
         return this._highlightedOption;
@@ -176,7 +153,7 @@ export class OptionList {
 
     private clearHighlightedOption() {
         if (this.highlightedOption !== null) {
-            this._highlightedOption.highlighted = false;
+            this.highlightedOption.highlighted = false;
             this._highlightedOption = null;
         }
     }
@@ -194,9 +171,7 @@ export class OptionList {
         return this.getHighlightedIndexFromList(this.filtered);
     }
 
-    /**************************************************************************
-     * Util.
-     *************************************************************************/
+    /** Util. **/
 
     hasShown() {
         return this.options.some((option) => {
@@ -217,7 +192,7 @@ export class OptionList {
     }
 
     private getFirstShown(): Option {
-        for (let option of this._options) {
+        for (let option of this.options) {
             if (option.shown) {
                 return option;
             }
@@ -226,11 +201,26 @@ export class OptionList {
     }
 
     private getFirstShownSelected(): Option {
-        for (let option of this._options) {
+        for (let option of this.options) {
             if (option.shown && option.selected) {
                 return option;
             }
         }
         return null;
+    }
+
+    // v0 and v1 are assumed not to be undefined or null.
+    static equalValues(v0: Array<string>, v1: Array<string>): boolean {
+
+        if (v0.length !== v1.length) {
+            return false;
+        }
+
+        let a: Array<string> = v0.slice().sort();
+        let b: Array<string> = v1.slice().sort();
+
+        return a.every((v, i) => {
+            return v === b[i];
+        });
     }
 }
