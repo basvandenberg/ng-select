@@ -139,9 +139,13 @@
             Update list of options
         </md-card-title>
         <md-card-content>
+            <div class="value-bar">
+                <div>Value: <strong>{{updatedOptionsValue}}</strong></div>
+            </div>
             <ng-select
                 [options]="updatedOptions"
-                [multiple]="true">
+                [multiple]="true"
+                [(ngModel)]="updatedOptionsValue">
             </ng-select>
             <div class="button-bar">
                 <button

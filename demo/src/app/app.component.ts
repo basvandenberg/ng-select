@@ -262,9 +262,13 @@ onInit() {
 </code></pre>`;
 
     sample17html = `
-<pre><code class="html">&lt;ng-select
+<pre><code class="html">&lt;div class="value-bar"&gt;
+    &lt;div&gt;Value: &lt;strong&gt;{{updatedOptionsValue}}&lt;/strong&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;ng-select
     [options]="updatedCharacters"
-    [multiple]="true"&gt;
+    [multiple]="true"
+    [(ngModel)]="updatedOptionsValue"&gt;
 &lt;/ng-select&gt;
 &lt;button
     (click)="updatedCharacters=characters"&gt;
