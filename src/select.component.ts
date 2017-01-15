@@ -248,7 +248,9 @@ export class SelectComponent
         else if (typeof v === 'string') {
             v = [v];
         }
-        // TODO throw TypeError if v is not an Array.
+        else if (!Array.isArray(v)) {
+            throw new TypeError('Value must be a string or an array.');
+        }
 
         if (!OptionList.equalValues(v, this._value)) {
             this.optionList.value = v;
