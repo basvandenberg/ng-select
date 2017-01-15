@@ -8,6 +8,16 @@
 ### Bug fixes
 
 - Same placeholder styling single and multiple select (#67).
+- Prevent selecting option if filter shows 'No results found' (#74).
+- Update value after deselecting options that are not present in updated list
+  of options (#75).
+- Fixed test if new value is different from current value (#76).
+- Fixed key handlers, prevent selecting multi-select option when pressing space
+  key (#78).
+
+### Improvements
+
+- Throw `TypeError` when trying to set a non-string or non-Array value.
 
 
 
