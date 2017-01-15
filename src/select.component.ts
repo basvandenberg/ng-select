@@ -373,8 +373,11 @@ export class SelectComponent
     }
 
     private selectHighlightedOption() {
-        this.selectOption(this.optionList.highlightedOption);
-        this.closeDropdown(true);
+        let option: Option = this.optionList.highlightedOption;
+        if (option !== null) {
+            this.selectOption(option);
+            this.closeDropdown(true);
+        }
     }
 
     private deselectLast() {
@@ -419,35 +422,25 @@ export class SelectComponent
     private handleSelectContainerKeydown(event: any) {
         let key = event.which;
 
-        if (key === this.KEYS.ESC || (key === this.KEYS.UP && event.altKey)) {
-            this.closeDropdown(true);
-        }
-        else if (key === this.KEYS.TAB) {
-            this.closeDropdown();
-        }
-        else if (key === this.KEYS.ENTER || key === this.KEYS.SPACE ||
-            (key === this.KEYS.DOWN && event.altKey)) {
-
-            /* FIREFOX HACK:
-             *
-             * The setTimeout is added to prevent the enter keydown event
-             * to be triggered for the filter input field, which causes
-             * the dropdown to be closed again.
-             */
-            this.isOpen ? this.selectHighlightedOption() :
-                setTimeout(() => { this.openDropdown(); });
-        }
-        else if (key === this.KEYS.UP) {
-            if (this.isOpen) {
+        if (this.isOpen) {
+            if (key === this.KEYS.ESC ||
+                    (key === this.KEYS.UP && event.altKey)) {
+                this.closeDropdown(true);
+            }
+            else if (key === this.KEYS.TAB) {
+                this.closeDropdown();
+            }
+            else if (key === this.KEYS.ENTER) {
+                this.selectHighlightedOption();
+            }
+            else if (key === this.KEYS.UP) {
                 this.optionList.highlightPreviousOption();
                 this.dropdown.moveHighlightedIntoView();
                 if (!this.filterEnabled) {
                     event.preventDefault();
                 }
             }
-        }
-        else if (key === this.KEYS.DOWN) {
-            if (this.isOpen) {
+            else if (key === this.KEYS.DOWN) {
                 this.optionList.highlightNextOption();
                 this.dropdown.moveHighlightedIntoView();
                 if (!this.filterEnabled) {
@@ -455,6 +448,20 @@ export class SelectComponent
                 }
             }
         }
+        else {
+            if (key === this.KEYS.ENTER || key === this.KEYS.SPACE ||
+                    (key === this.KEYS.DOWN && event.altKey)) {
+
+                /* FIREFOX HACK:
+                 *
+                 * The setTimeout is added to prevent the enter keydown event
+                 * to be triggered for the filter input field, which causes
+                 * the dropdown to be closed again.
+                 */
+                setTimeout(() => { this.openDropdown(); });
+            }
+        }
+
     }
 
     private handleMultipleFilterKeydown(event: any) {
