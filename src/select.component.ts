@@ -279,7 +279,7 @@ implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit {
             v = this.optionList.value;
         }
 
-        this.optionList = new OptionList(this.options,this.showValueAsLabel);
+        this.optionList = new OptionList(this.options, this.showValueAsLabel);
 
         if (!firstTime) {
             this.optionList.value = v;
