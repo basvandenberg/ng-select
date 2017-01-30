@@ -33,10 +33,12 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
 })
 
 export class SelectComponent
-        implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit {
+implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit {
 
     @Input() options: Array<any>;
 
+    @Input() showValueAsLabel:boolean = false;
+    @Input() selectedValue : string;
     @Input() allowClear: boolean = false;
     @Input() disabled: boolean = false;
     @Input() highlightColor: string = '#2196f3';
@@ -277,7 +279,7 @@ export class SelectComponent
             v = this.optionList.value;
         }
 
-        this.optionList = new OptionList(this.options);
+        this.optionList = new OptionList(this.options,this.showValueAsLabel);
 
         if (!firstTime) {
             this.optionList.value = v;
@@ -325,10 +327,10 @@ export class SelectComponent
             this.selected.emit(option.undecoratedCopy());
             // Is this not allready done when setting the value??
             /*setTimeout(() => {
-                if (this.multiple) {
-                    this.updateFilterWidth();
-                }
-            });*/
+             if (this.multiple) {
+             this.updateFilterWidth();
+             }
+             });*/
         }
     }
 
@@ -424,7 +426,7 @@ export class SelectComponent
 
         if (this.isOpen) {
             if (key === this.KEYS.ESC ||
-                    (key === this.KEYS.UP && event.altKey)) {
+                (key === this.KEYS.UP && event.altKey)) {
                 this.closeDropdown(true);
             }
             else if (key === this.KEYS.TAB) {
@@ -450,7 +452,7 @@ export class SelectComponent
         }
         else {
             if (key === this.KEYS.ENTER || key === this.KEYS.SPACE ||
-                    (key === this.KEYS.DOWN && event.altKey)) {
+                (key === this.KEYS.DOWN && event.altKey)) {
 
                 /* FIREFOX HACK:
                  *
@@ -469,7 +471,7 @@ export class SelectComponent
 
         if (key === this.KEYS.BACKSPACE) {
             if (this.hasSelected && this.filterEnabled &&
-                    this.filterInput.nativeElement.value === '') {
+                this.filterInput.nativeElement.value === '') {
                 this.deselectLast();
             }
         }
@@ -479,8 +481,8 @@ export class SelectComponent
         let key = event.which;
 
         if (key === this.KEYS.ESC || key === this.KEYS.TAB
-                || key === this.KEYS.UP || key === this.KEYS.DOWN
-                || key === this.KEYS.ENTER) {
+            || key === this.KEYS.UP || key === this.KEYS.DOWN
+            || key === this.KEYS.ENTER) {
             this.handleSelectContainerKeydown(event);
         }
     }

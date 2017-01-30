@@ -7,10 +7,12 @@ export class Option {
     highlighted: boolean;
     selected: boolean;
     shown: boolean;
+    extraData:any;
 
-    constructor(value: string, label: string) {
+    constructor(value: string, label: string,extraData:any) {
         this.value = value;
         this.label = label;
+        this.extraData=extraData;
 
         this.disabled = false;
         this.highlighted = false;
@@ -37,7 +39,8 @@ export class Option {
     undecoratedCopy() {
         return {
             label: this.label,
-            value: this.value
+            value: this.value,
+            extraData: this.extraData
         };
     }
 }
