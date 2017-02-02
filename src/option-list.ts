@@ -51,6 +51,7 @@ export class OptionList {
 
     set value(v: Array<string>) {
         v = typeof v === 'undefined' || v === null ? [] : v;
+        v = [].concat(v);
 
         this.options.forEach((option) => {
             option.selected = v.indexOf(option.value) > -1;
