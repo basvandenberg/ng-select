@@ -104,6 +104,7 @@ var packages = {
 | closed        | `null`                     | If the select drop down is closed.                                       |
 | selected      | `option`\*                 | If an options is selected, returning the selected option.                |
 | deselected    | `option`\* or `[option]`\* | If one or more options are deselected, returning the selected option(s). |
+| noOptionsFound| `null`                     | When the filter result changes to 'no results found'.                    |
 
 \* `option` is an object with value and label (`{value: string, label: string}`)
 
