@@ -50,6 +50,7 @@ export class SelectComponent
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();
     @Output() selected: EventEmitter<any> = new EventEmitter<any>();
     @Output() deselected: EventEmitter<any> = new EventEmitter<any>();
+    @Output() noOptionsFound: EventEmitter<null> = new EventEmitter<null>();
 
     @ViewChild('selection') selectionSpan: any;
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
@@ -153,7 +154,10 @@ export class SelectComponent
     }
 
     onSingleFilterInput(term: string) {
-        this.optionList.filter(term);
+        let toEmpty: boolean = this.optionList.filter(term);
+        if (toEmpty) {
+            this.noOptionsFound.emit(null);
+        }
     }
 
     onSingleFilterKeydown(event: any) {
@@ -168,7 +172,10 @@ export class SelectComponent
         }
         this.updateFilterWidth();
         setTimeout(() => {
-            this.optionList.filter(event.target.value);
+            let toEmpty: boolean = this.optionList.filter(event.target.value);
+            if (toEmpty) {
+                this.noOptionsFound.emit(null);
+            }
         });
     }
 
