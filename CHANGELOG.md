@@ -14,6 +14,7 @@
 - Fixed test if new value is different from current value (#76).
 - Fixed key handlers, prevent selecting multi-select option when pressing space
   key (#78).
+- Hide clear button when nothing is selected (#90).
 
 ### Improvements
 
