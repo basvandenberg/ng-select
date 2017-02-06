@@ -274,6 +274,21 @@
 
     <md-card>
         <md-card-title>
+            Customize Filter
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                [filterFunction]="startsWith">
+            </ng-select>
+            <p>You can customize the filter function to handle complex objects or tests. Here only results starting with the value presented are displayed.</p>
+            <section [innerHTML]="sample21html" highlight-js-content=".highlight"></section>
+            <section [innerHTML]="sample21ts" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
             Limit the number of selected options
         </md-card-title>
         <md-card-content>

@@ -45,6 +45,7 @@ export class SelectComponent
     @Input() noFilter: number = 0;
     @Input() notFoundMsg: string = 'No results found';
     @Input() placeholder: string = '';
+    @Input() filterFunction: (term: string, option: any) => boolean;
 
     @Output() opened: EventEmitter<null> = new EventEmitter<null>();
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();
@@ -102,6 +103,10 @@ export class SelectComponent
             let numOptions: number = this.optionList.options.length;
             let minNumOptions: number = changes['noFilter'].currentValue;
             this.filterEnabled = numOptions >= minNumOptions;
+        }
+        if (changes.hasOwnProperty('filterFunction')) {
+            this.optionList.test = changes['filterFunction'].currentValue;
+            this.valueChanged();
         }
     }
 

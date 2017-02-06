@@ -1,6 +1,6 @@
 export class Option {
 
-    value: string;
+    value: any;
     label: string;
 
     disabled: boolean;
@@ -8,7 +8,7 @@ export class Option {
     selected: boolean;
     shown: boolean;
 
-    constructor(value: string, label: string) {
+    constructor(value: any, label: string) {
         this.value = value;
         this.label = label;
 

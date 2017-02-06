@@ -92,6 +92,24 @@ export class OptionList {
         });
     }
 
+    private _defaultTest (term, option): boolean {
+        let l: string = Diacritics.strip(option.label).toUpperCase();
+        let t: string = Diacritics.strip(term).toUpperCase();
+        return l.indexOf(t) > -1;
+    }
+
+    private _test = this._defaultTest;
+
+    get test () {
+        return this._test;
+    }
+
+    set test (v: (term: string, option: any) => boolean) {
+        v = typeof v !== 'function' ? this._defaultTest : v;
+
+        this._test = v;
+    }
+
     filter(term: string): boolean {
         let anyShown: boolean = false;
 
@@ -101,9 +119,7 @@ export class OptionList {
         }
         else {
             this.options.forEach((option) => {
-                let l: string = Diacritics.strip(option.label).toUpperCase();
-                let t: string = Diacritics.strip(term).toUpperCase();
-                option.shown = l.indexOf(t) > -1;
+                option.shown = this.test(term, option);
 
                 if (option.shown) {
                     anyShown = true;

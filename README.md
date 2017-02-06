@@ -82,19 +82,20 @@ var packages = {
 
 ## Input properties
 
-| Name               | Type              | Default               | Description                                                                                |
-| ------------------ | ----------------- | --------------------- | ------------------------------------------------------------------------------------------ |
-| options            | `Array<option>`\* |                       | List of select option.                                                                     |
-| allowClear         | `boolean`         | `false`               | Only applies to single select. If set to true, a clickable clear selection cross is shown. |
-| disabled           | `boolean`         | `false`               | If set to true, the select component is disabled.                                          |
-| highlightColor     | `string`          | `#2196f3`             | Background color of highlighted option.                                                    |
-| highlightTextColor | `string`          | `#fff`                | Text color of highlighted option.                                                          |
-| multiple           | `boolean`         | `false`               | If set to true, the select component is multi-select, otherwise single select.             |
-| noFilter           | `number`          | `0`                   | Filter is hidden if the number of options is less than the given number.                   |
-| notFoundMsg        | `string`          | `"No results found"`  | The message shown if no options are found for the current filter input value.              |
-| placeholder        | `string`          | `""`                  | Placeholder text that is shown if no options are selected.
+| Name               | Type                                   | Default               | Description                                                                                |
+| ------------------ | -------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------ |
+| options            | `Array<Option>`\*                      |                       | List of select option.                                                                     |
+| allowClear         | `boolean`                              | `false`               | Only applies to single select. If set to true, a clickable clear selection cross is shown. |
+| disabled           | `boolean`                              | `false`               | If set to true, the select component is disabled.                                          |
+| highlightColor     | `string`                               | `#2196f3`             | Background color of highlighted option.                                                    |
+| highlightTextColor | `string`                               | `#fff`                | Text color of highlighted option.                                                          |
+| multiple           | `boolean`                              | `false`               | If set to true, the select component is multi-select, otherwise single select.             |
+| noFilter           | `number`                               | `0`                   | Filter is hidden if the number of options is less than the given number.                   |
+| notFoundMsg        | `string`                               | `"No results found"`  | The message shown if no options are found for the current filter input value.              |
+| placeholder        | `string`                               | `""`                  | Placeholder text that is shown if no options are selected.                                 |
+| filterFunction     | `(string, Option) => boolean`          | `undefined`           | Filter function applied to each option. If defined replaces default functionality.         |
 
-\* `option` is an object with value and label (`{value: string, label: string}`)
+\* `Option` is an object with value and label (`{value: any, label: string}`)
 
 ## Output events
 
@@ -102,11 +103,11 @@ var packages = {
 | ------------- | -------------------------- | ------------------------------------------------------------------------ |
 | opened        | `null`                     | If the select drop down is opened.                                       |
 | closed        | `null`                     | If the select drop down is closed.                                       |
-| selected      | `option`\*                 | If an options is selected, returning the selected option.                |
-| deselected    | `option`\* or `[option]`\* | If one or more options are deselected, returning the selected option(s). |
+| selected      | `Option`\*                 | If an options is selected, returning the selected option.                |
+| deselected    | `Option`\* or `[option]`\* | If one or more options are deselected, returning the selected option(s). |
 | noOptionsFound| `null`                     | When the filter result changes to 'no results found'.                    |
 
-\* `option` is an object with value and label (`{value: string, label: string}`)
+\* `Option` is an object with value and label (`{value: any, label: string}`)
 
 ## Methods
 
