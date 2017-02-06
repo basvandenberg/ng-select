@@ -359,6 +359,51 @@
         </md-card-content>
     </md-card>
 
+    <h1 id="items">Customized items</h1>
+
+    <md-card>
+        <md-card-title>
+            Using template
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC">
+                <template selectOptionTemplate let-option="option">
+                    <b>"{{option?.value}}"</b> with a label of <i>"{{option?.label}}"</i>
+                </template>
+                <template selectionTemplate let-option="option">
+                    <b>"{{option?.value}}"</b> with a label of <i>"{{option?.label}}"</i> SELECTED!
+                </template>
+            </ng-select>
+            <p>Add a select component to your template using the <code>ng-select</code> tag, and use the <code>options</code> property to bind it to your list of options.
+            <section [innerHTML]="sample19html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
+            Using template on Multiple select
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                [multiple]="true">
+                <template selectOptionTemplate let-option="option">
+                    <b>"{{option?.value}}"</b> with a label of <i>"{{option?.label}}"</i>
+                </template>
+                <template selectionTemplate let-option="option" let-onDeselectOptionClick="onDeselectOptionClick">
+                    <span class="deselect-option"
+                        (click)=onDeselectOptionClick(option)>
+                        &#x2715;
+                    </span>
+                    <b>"{{option?.value}}"</b> with a label of <i>"{{option?.label}}"</i> SELECTED!
+                </template>
+            </ng-select>
+            <p>Set the <code>multiple</code> property to <code>true</code> to get a multiple select component.
+            <section [innerHTML]="sample20html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
     <h1 id="filter">Hide filter</h1>
 
     <md-card>

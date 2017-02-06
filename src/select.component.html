@@ -12,7 +12,8 @@
         *ngIf="!multiple">
         <div class="value"
             *ngIf="optionList.hasSelected()">
-            {{optionList.selection[0].label}}
+            <template [ngOutletContext]="{option: optionList.selection[0], onDeselectOptionClick: onDeselectOptionClick}" [ngTemplateOutlet]="selectionTemplate"></template>
+            <span *ngIf="!selectionTemplate">{{optionList.selection[0].label}}</span>
         </div>
         <div class="placeholder"
             *ngIf="!optionList.hasSelected()">
@@ -37,11 +38,14 @@
         *ngIf="multiple">
         <div class="option"
             *ngFor="let option of optionList.selection">
-            <span class="deselect-option"
-                (click)=onDeselectOptionClick(option)>
-                &#x2715;
+            <template [ngOutletContext]="{option: option, onDeselectOptionClick: onDeselectOptionClick}" [ngTemplateOutlet]="selectionTemplate"></template>
+            <span *ngIf="!selectionTemplate">
+                <span class="deselect-option"
+                    (click)=onDeselectOptionClick(option)>
+                    &#x2715;
+                </span>
+                {{option.label}}    
             </span>
-            {{option.label}}
         </div>
         <input
             *ngIf="filterEnabled"
@@ -66,6 +70,7 @@
     [width]="width"
     [top]="top"
     [left]="left"
+    [optionTemplate]="selectOptionTemplate"
     (close)="onDropdownClose($event)"
     (optionClicked)="onDropdownOptionClicked($event)"
     (singleFilterClick)="onSingleFilterClick()"

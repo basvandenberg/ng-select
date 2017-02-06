@@ -4,14 +4,20 @@ import {FormsModule} from '@angular/forms';
 
 import {SelectComponent} from './select.component';
 import {SelectDropdownComponent} from './select-dropdown.component';
+import {SelectOptionTemplate} from './select-option-template';
+import {SelectionTemplate} from './selection-template';
 
 @NgModule({
     declarations: [
         SelectComponent,
-        SelectDropdownComponent
+        SelectDropdownComponent,
+        SelectOptionTemplate,
+        SelectionTemplate
     ],
     exports: [
-        SelectComponent
+        SelectComponent,
+        SelectOptionTemplate,
+        SelectionTemplate
     ],
     imports: [
         CommonModule,

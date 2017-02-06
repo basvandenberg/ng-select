@@ -7,6 +7,7 @@ import {
     OnInit,
     Output,
     ViewChild,
+    TemplateRef,
     ViewEncapsulation
 } from '@angular/core';
 
@@ -34,6 +35,7 @@ export class SelectDropdownComponent
     @Input() optionList: OptionList;
     @Input() top: number;
     @Input() width: number;
+    @Input() optionTemplate: TemplateRef<any>;
 
     @Output() close = new EventEmitter<boolean>();
     @Output() optionClicked = new EventEmitter<Option>();

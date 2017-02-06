@@ -9,6 +9,8 @@ import {
     ExistingProvider,
     ViewChild,
     ViewEncapsulation,
+    TemplateRef,
+    Optional,
     forwardRef
 } from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
@@ -81,6 +83,9 @@ export class SelectComponent
 
     private onChange = (_: any) => {};
     private onTouched = () => {};
+
+    selectOptionTemplate: TemplateRef<any>;
+    selectionTemplate: TemplateRef<any>;
 
     /** Event handlers. **/
 
@@ -193,7 +198,7 @@ export class SelectComponent
 
     // Multiple deselect option.
 
-    onDeselectOptionClick(option: Option) {
+    onDeselectOptionClick = (option: Option) => {
         this.clearClicked = true;
         this.deselectOption(option);
     }
