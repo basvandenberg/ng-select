@@ -37,7 +37,7 @@ export class OptionList {
         return this._options;
     }
 
-    getOptionsByValue(value: string): Array<Option> {
+    getOptionsByValue(value: any): Array<Option> {
         return this.options.filter((option) => {
             return option.value === value;
         });
@@ -45,13 +45,13 @@ export class OptionList {
 
     /** Value. **/
 
-    get value(): Array<string> {
+    get value(): Array<any> {
         return this.selection.map((selectedOption) => {
             return selectedOption.value;
         });
     }
 
-    set value(v: Array<string>) {
+    set value(v: Array<any>) {
         v = typeof v === 'undefined' || v === null ? [] : v;
 
         this.options.forEach((option) => {
