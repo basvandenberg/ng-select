@@ -9,6 +9,7 @@ gulpfile.js
 tslint.json
 .editorconfig
 .npmignore
+.vscode
 
 npm-debug.log
 yarn-error.log
