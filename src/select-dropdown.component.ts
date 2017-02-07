@@ -99,7 +99,7 @@ export class SelectDropdownComponent
     /** Initialization. **/
 
     private optionsReset() {
-        this.optionList.resetFilter();
+        this.optionList.filter('');
         this.optionList.highlight();
     }
 

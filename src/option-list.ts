@@ -11,6 +11,7 @@ export class OptionList {
     // private _value: Array<string>;
 
     private _highlightedOption: Option = null;
+    private _hasShown: boolean;
 
     constructor(options: Array<any>,showValueAsLabel:boolean) {
 
@@ -27,6 +28,7 @@ export class OptionList {
             return o;
         });
 
+        this._hasShown = this._options.length > 0;
         this.highlight();
     }
 
@@ -91,23 +93,34 @@ export class OptionList {
         });
     }
 
-    filter(term: string) {
+    filter(term: string): boolean {
+        let anyShown: boolean = false;
 
         if (term.trim() === '') {
             this.resetFilter();
+            anyShown = this.options.length > 0;
         }
         else {
             this.options.forEach((option) => {
                 let l: string = Diacritics.strip(option.label).toUpperCase();
                 let t: string = Diacritics.strip(term).toUpperCase();
                 option.shown = l.indexOf(t) > -1;
+
+                if (option.shown) {
+                    anyShown = true;
+                }
             });
+
         }
+        let toEmpty: boolean = this.hasShown && !anyShown;
 
         this.highlight();
+        this._hasShown = anyShown;
+
+        return toEmpty;
     }
 
-    resetFilter() {
+    private resetFilter() {
         this.options.forEach((option) => {
             option.shown = true;
         });
@@ -174,10 +187,8 @@ export class OptionList {
 
     /** Util. **/
 
-    hasShown() {
-        return this.options.some((option) => {
-            return option.shown;
-        });
+    get hasShown(): boolean {
+        return this._hasShown;
     }
 
     hasSelected() {

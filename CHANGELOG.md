@@ -5,6 +5,9 @@
 <a name="1.0.0-beta.3"></a>
 ## [1.0.0-beta.3](https://github.com/basvandenberg/angular2-select/compare/1.0.0-beta.2...1.0.0-beta.3) (2017-01-..)
 
+### Features
+- Trigger `onOptionsFound` event if no options found after filter (#73).
+
 ### Bug fixes
 
 - Same placeholder styling single and multiple select (#67).
@@ -14,6 +17,7 @@
 - Fixed test if new value is different from current value (#76).
 - Fixed key handlers, prevent selecting multi-select option when pressing space
   key (#78).
+- Hide clear button when nothing is selected (#90).
 
 ### Improvements
 
