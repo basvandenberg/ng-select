@@ -8,6 +8,7 @@ import {
     EventEmitter,
     ExistingProvider,
     ViewChild,
+    ContentChild,
     ViewEncapsulation,
     TemplateRef,
     Optional,
@@ -58,6 +59,10 @@ export class SelectComponent
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
     @ViewChild('filterInput') filterInput: any;
 
+    @ContentChild('selectionTemplate') selectionTemplate: TemplateRef<any>;
+    @ContentChild('selectOptionTemplate') selectOptionTemplate: TemplateRef<any>;
+    @ContentChild('placeholderTemplate') placeholderTemplate: TemplateRef<any>;
+
     private _value: Array<any> = [];
     optionList: OptionList;
 
@@ -83,9 +88,6 @@ export class SelectComponent
 
     private onChange = (_: any) => {};
     private onTouched = () => {};
-
-    selectOptionTemplate: TemplateRef<any>;
-    selectionTemplate: TemplateRef<any>;
 
     /** Event handlers. **/
 

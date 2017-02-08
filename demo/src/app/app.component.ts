@@ -321,10 +321,10 @@ ngOnInit() {
     sample19html = `
 <pre><code class="html">&lt;ng-select
     [options]=&quot;characters&quot;&gt;
-    &lt;template selectOptionTemplate let-option=&quot;option&quot;&gt;
+    &lt;template #selectOptionTemplate let-option=&quot;option&quot;&gt;
         &lt;b&gt;&quot;{{option?.value}}&quot;&lt;/b&gt; with a label of &lt;i&gt;&quot;{{option?.label}}&quot;&lt;/i&gt;
     &lt;/template&gt;
-    &lt;template selectionTemplate let-option=&quot;option&quot;&gt;
+    &lt;template #selectionTemplate let-option=&quot;option&quot;&gt;
         &lt;b&gt;&quot;{{option?.value}}&quot;&lt;/b&gt; with a label of &lt;i&gt;&quot;{{option?.label}}&quot;&lt;/i&gt; SELECTED!
     &lt;/template&gt;
 &lt;/ng-select&gt;
@@ -334,10 +334,10 @@ ngOnInit() {
 <pre><code class="html">&lt;ng-select
     [options]=&quot;characters&quot;
     [multiple]=&quot;true&quot;&gt;
-    &lt;template selectOptionTemplate let-option=&quot;option&quot;&gt;
+    &lt;template #selectOptionTemplate let-option=&quot;option&quot;&gt;
         &lt;b&gt;&quot;{{option?.value}}&quot;&lt;/b&gt; with a label of &lt;i&gt;&quot;{{option?.label}}&quot;&lt;/i&gt;
     &lt;/template&gt;
-    &lt;template selectionTemplate let-option=&quot;option&quot; let-selection=&quot;selection&quot;&gt;
+    &lt;template #selectionTemplate let-option=&quot;option&quot; let-selection=&quot;selection&quot;&gt;
         &lt;span class=&quot;deselect-option&quot;
             (click)=onDeselectOptionClick(option)&gt;
             &amp;#x2715;

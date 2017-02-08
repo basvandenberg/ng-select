@@ -17,7 +17,10 @@
         </div>
         <div class="placeholder"
             *ngIf="!optionList.hasSelected()">
-            {{placeholderView}}
+            <template [ngTemplateOutlet]="placeholderTemplate"></template>
+            <span *ngIf="!placeholderTemplate">
+                {{placeholderView}}  
+            </span>
         </div>
         <div class="clear"
             *ngIf="allowClear && hasSelected"
