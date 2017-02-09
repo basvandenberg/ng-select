@@ -35,7 +35,8 @@ export class SelectDropdownComponent
     @Input() optionList: OptionList;
     @Input() top: number;
     @Input() width: number;
-    @Input() optionTemplate: TemplateRef<any>;
+    @Input() selectOptionTemplate: TemplateRef<any>;
+    @Input() notFoundTemplate: TemplateRef<any>;
 
     @Output() close = new EventEmitter<boolean>();
     @Output() optionClicked = new EventEmitter<Option>();

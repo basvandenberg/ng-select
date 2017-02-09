@@ -132,6 +132,7 @@ The following blocks can be replaced with templates inside the `ng-select` compo
 | selectionTemplate      | `option: Option`                                        | Template for selection in dropdown.     |
 | selectOptionTemplate   | `option: Option` <br> `onDeselectOptionClick: Function` | Select option(s) template.              |
 | placeholderTemplate    | -                                                       | Placeholder template.                   |
+| notFoundTemplate       | -                                                       | Not Found template.                     |
 
 ## Limitations
 

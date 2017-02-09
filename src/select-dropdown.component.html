@@ -20,13 +20,14 @@
                 [ngStyle]="getOptionStyle(option)"
                 (click)="onOptionClick(option)"
                 (mouseover)="onOptionMouseover(option)">
-                <template [ngOutletContext]="{option: option}" [ngTemplateOutlet]="optionTemplate"></template>
-                <span *ngIf="!optionTemplate">{{option.label}}</span>
+                <template [ngOutletContext]="{option: option}" [ngTemplateOutlet]="selectOptionTemplate"></template>
+                <span *ngIf="!selectOptionTemplate">{{option.label}}</span>
             </li>
             <li
                 *ngIf="!optionList.hasShown"
                 class="message">
-                {{notFoundMsg}}
+                <template [ngTemplateOutlet]="notFoundTemplate"></template>
+                <span *ngIf="!notFoundTemplate">{{notFoundMsg}}</span>
             </li>
         </ul>
     </div>

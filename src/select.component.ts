@@ -62,6 +62,7 @@ export class SelectComponent
     @ContentChild('selectionTemplate') selectionTemplate: TemplateRef<any>;
     @ContentChild('selectOptionTemplate') selectOptionTemplate: TemplateRef<any>;
     @ContentChild('placeholderTemplate') placeholderTemplate: TemplateRef<any>;
+    @ContentChild('notFoundTemplate') notFoundTemplate: TemplateRef<any>;
 
     private _value: Array<any> = [];
     optionList: OptionList;
