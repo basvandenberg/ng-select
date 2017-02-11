@@ -6,6 +6,7 @@ import {
     ViewChild
 } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { Option } from 'angular2-select';
 
 declare var hljs: any;
 
@@ -55,6 +56,10 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     onEnableClick() {
         this.disabled = false;
+    }
+
+    startsWith(term: string, option: Option) {
+        return option.label.toLowerCase().startsWith(term.toLowerCase());
     }
 
     /** Code strings **/
@@ -315,6 +320,19 @@ ngOnInit() {
     this.form = new FormGroup({});
     let c: FormControl = new FormControl('', Validators.required);
     this.form.addControl('select', c);
+}
+</code></pre>`;
+
+    sample21html = `
+<pre><code class="html">&lt;ng-select
+    [options]=&quot;characters&quot;
+    [filterFunction]=&quot;startsWith&quot;&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
+    sample21ts = `
+<pre><code class="typescript">startsWith(term: string, option: Option) {
+    return option.label.toLowerCase().startsWith(term.toLowerCase());
 }
 </code></pre>`;
 
