@@ -22,7 +22,7 @@ import {OptionList} from './option-list';
     encapsulation: ViewEncapsulation.None
 })
 
-export class SelectDropdownComponent
+export class SelectDropdownComponent<T>
         implements AfterViewInit, OnChanges, OnInit {
 
     @Input() filterEnabled: boolean;
@@ -31,12 +31,12 @@ export class SelectDropdownComponent
     @Input() left: number;
     @Input() multiple: boolean;
     @Input() notFoundMsg: string;
-    @Input() optionList: OptionList;
+    @Input() optionList: OptionList<T>;
     @Input() top: number;
     @Input() width: number;
 
     @Output() close = new EventEmitter<boolean>();
-    @Output() optionClicked = new EventEmitter<Option>();
+    @Output() optionClicked = new EventEmitter<Option<T>>();
     @Output() singleFilterClick = new EventEmitter<null>();
     @Output() singleFilterInput = new EventEmitter<string>();
     @Output() singleFilterKeydown = new EventEmitter<any>();
@@ -88,11 +88,11 @@ export class SelectDropdownComponent
         this.handleOptionsWheel(event);
     }
 
-    onOptionMouseover(option: Option) {
+    onOptionMouseover(option: Option<T>) {
         this.optionList.highlightOption(option);
     }
 
-    onOptionClick(option: Option) {
+    onOptionClick(option: Option<T>) {
         this.optionClicked.emit(option);
     }
 
@@ -105,7 +105,7 @@ export class SelectDropdownComponent
 
     /** View. **/
 
-    getOptionStyle(option: Option): any {
+    getOptionStyle(option: Option<T>): any {
         if (option.highlighted) {
             let style: any = {};
 

@@ -1,16 +1,16 @@
 import {Option} from './option';
 import {Diacritics} from './diacritics';
 
-export class OptionList {
+export class OptionList<T> {
 
-    private _options: Array<Option>;
+    private _options: Array<Option<T>>;
 
     /* Consider using these for performance improvement. */
     // private _selection: Array<Option>;
     // private _filtered: Array<Option>;
     // private _value: Array<string>;
 
-    private _highlightedOption: Option = null;
+    private _highlightedOption: Option<T> = null;
     private _hasShown: boolean;
 
     constructor(options: Array<any>) {
@@ -20,7 +20,7 @@ export class OptionList {
         }
 
         this._options = options.map((option) => {
-            let o: Option = new Option(option.value, option.label);
+            let o: Option<T> = new Option(option.value, option.label);
             if (option.disabled) {
                 o.disable();
             }
@@ -33,11 +33,11 @@ export class OptionList {
 
     /** Options. **/
 
-    get options(): Array<Option> {
+    get options(): Array<Option<T>> {
         return this._options;
     }
 
-    getOptionsByValue(value: string): Array<Option> {
+    getOptionsByValue(value: T): Array<Option<T>> {
         return this.options.filter((option) => {
             return option.value === value;
         });
@@ -45,13 +45,13 @@ export class OptionList {
 
     /** Value. **/
 
-    get value(): Array<string> {
+    get value(): Array<any> | any {
         return this.selection.map((selectedOption) => {
             return selectedOption.value;
         });
     }
 
-    set value(v: Array<string>) {
+    set value(v: Array<any> | any) {
         v = typeof v === 'undefined' || v === null ? [] : v;
 
         this.options.forEach((option) => {
@@ -61,20 +61,20 @@ export class OptionList {
 
     /** Selection. **/
 
-    get selection(): Array<Option> {
+    get selection(): Array<Option<T>> {
         return this.options.filter((option) => {
             return option.selected;
         });
     }
 
-    select(option: Option, multiple: boolean) {
+    select(option: Option<T>, multiple: boolean) {
         if (!multiple) {
             this.clearSelection();
         }
         option.selected = true;
     }
 
-    deselect(option: Option) {
+    deselect(option: Option<T>) {
         option.selected = false;
     }
 
@@ -86,7 +86,7 @@ export class OptionList {
 
     /** Filter. **/
 
-    get filtered(): Array<Option> {
+    get filtered(): Array<Option<T>> {
         return this.options.filter((option) => {
             return option.shown;
         });
@@ -127,17 +127,17 @@ export class OptionList {
 
     /** Highlight. **/
 
-    get highlightedOption(): Option {
+    get highlightedOption(): Option<T> {
         return this._highlightedOption;
     }
 
     highlight() {
-        let option: Option = this.hasShownSelected() ?
+        let option: Option<T> = this.hasShownSelected() ?
             this.getFirstShownSelected() : this.getFirstShown();
         this.highlightOption(option);
     }
 
-    highlightOption(option: Option) {
+    highlightOption(option: Option<T>) {
         this.clearHighlightedOption();
 
         if (option !== null) {
@@ -171,7 +171,7 @@ export class OptionList {
         }
     }
 
-    private getHighlightedIndexFromList(options: Array<Option>) {
+    private getHighlightedIndexFromList(options: Array<Option<T>>) {
         for (let i = 0; i < options.length; i++) {
             if (options[i].highlighted) {
                 return i;
@@ -202,7 +202,7 @@ export class OptionList {
         });
     }
 
-    private getFirstShown(): Option {
+    private getFirstShown(): Option<T> {
         for (let option of this.options) {
             if (option.shown) {
                 return option;
@@ -211,7 +211,7 @@ export class OptionList {
         return null;
     }
 
-    private getFirstShownSelected(): Option {
+    private getFirstShownSelected(): Option<T> {
         for (let option of this.options) {
             if (option.shown && option.selected) {
                 return option;
@@ -221,14 +221,14 @@ export class OptionList {
     }
 
     // v0 and v1 are assumed not to be undefined or null.
-    static equalValues(v0: Array<string>, v1: Array<string>): boolean {
+    static equalValues<T>(v0: Array<T>, v1: Array<T>): boolean {
 
         if (v0.length !== v1.length) {
             return false;
         }
 
-        let a: Array<string> = v0.slice().sort();
-        let b: Array<string> = v1.slice().sort();
+        let a: Array<T> = v0.slice().sort();
+        let b: Array<T> = v1.slice().sort();
 
         return a.every((v, i) => {
             return v === b[i];

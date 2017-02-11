@@ -1,6 +1,6 @@
-export class Option {
+export class Option<T> {
 
-    value: string;
+    value: T;
     label: string;
 
     disabled: boolean;
@@ -8,7 +8,7 @@ export class Option {
     selected: boolean;
     shown: boolean;
 
-    constructor(value: string, label: string) {
+    constructor(value: T, label: string) {
         this.value = value;
         this.label = label;
 
