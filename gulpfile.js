@@ -8,6 +8,8 @@ var os = require('os');
 var sass = require('gulp-sass');
 var tslint = require('gulp-tslint');
 
+gulp.task('default', ['build']);
+
 // Build.
 
 gulp.task('build', ['transpile:ts'], function() {
