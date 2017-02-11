@@ -3,5 +3,5 @@ node_js:
     - "6"
 cache: yarn
 before_script:
-    - yarn globall add gulp
+    - yarn global add gulp
 script: gulp
