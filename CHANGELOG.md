@@ -18,10 +18,12 @@
 - Fixed key handlers, prevent selecting multi-select option when pressing space
   key (#78).
 - Hide clear button when nothing is selected (#90).
+- Remove padding above option list if filter is disabled (#98).
 
 ### Improvements
 
 - Throw `TypeError` when trying to set a non-string or non-Array value.
+- For empty multiselect, return empty array instead of empty string (#104).
 
 
 
