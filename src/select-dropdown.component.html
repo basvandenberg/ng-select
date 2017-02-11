@@ -2,9 +2,8 @@
     [ngStyle]="{'top.px': top, 'left.px': left, 'width.px': width}">
 
     <div class="filter"
-        *ngIf="!multiple">
+        *ngIf="!multiple && filterEnabled">
         <input
-            *ngIf="filterEnabled"
             #filterInput
             (click)="onSingleFilterClick($event)"
             (input)="onSingleFilterInput($event)"
