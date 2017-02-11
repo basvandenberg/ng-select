@@ -325,12 +325,6 @@ export class SelectComponent
             this.optionList.select(option, this.multiple);
             this.valueChanged();
             this.selected.emit(option.undecoratedCopy());
-            // Is this not allready done when setting the value??
-            /*setTimeout(() => {
-                if (this.multiple) {
-                    this.updateFilterWidth();
-                }
-            });*/
         }
     }
 
@@ -341,7 +335,6 @@ export class SelectComponent
             this.deselected.emit(option.undecoratedCopy());
             setTimeout(() => {
                 if (this.multiple) {
-                    // this.updateFilterWidth();
                     this.updatePosition();
                     this.optionList.highlight();
                     if (this.isOpen) {
