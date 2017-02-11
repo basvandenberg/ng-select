@@ -39,8 +39,8 @@ export class SelectComponent
 
     @Input() allowClear: boolean = false;
     @Input() disabled: boolean = false;
-    @Input() highlightColor: string = '#2196f3';
-    @Input() highlightTextColor: string = '#fff';
+    @Input() highlightColor: string;
+    @Input() highlightTextColor: string;
     @Input() multiple: boolean = false;
     @Input() noFilter: number = 0;
     @Input() notFoundMsg: string = 'No results found';
