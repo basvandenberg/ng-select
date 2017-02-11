@@ -24,6 +24,7 @@
 
 - Throw `TypeError` when trying to set a non-string or non-Array value.
 - For empty multiselect, return empty array instead of empty string (#104).
+- Don't force color/highlight styles when not directly set (#97).
 
 
 
