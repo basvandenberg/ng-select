@@ -240,12 +240,7 @@ export class SelectComponent
     /** Value. **/
 
     get value(): any {
-        if (this._value.length === 0) {
-            return '';
-        }
-        else {
-            return this.multiple ? this._value : this._value[0];
-        }
+        return this.multiple ? this._value : this._value[0];
     }
 
     set value(v: any) {
