@@ -1,4 +1,5 @@
 # Angular 2 select component
+[![Build Status](https://travis-ci.org/basvandenberg/angular2-select.svg?branch=master)](https://travis-ci.org/basvandenberg/angular2-select)
 
 A native select component for angular 2, based on the select2 JQuery plugin.
 
