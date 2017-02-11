@@ -10,7 +10,7 @@
 
 ### Features
 
-- Trigger `onOptionsFound` event if no options found after filter (#73).
+- Trigger `noOptionsFound` event if no options found after filter (#73).
 
 ### Bug fixes
 

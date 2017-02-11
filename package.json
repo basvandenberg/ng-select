@@ -1,6 +1,6 @@
 {
   "name": "angular2-select",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "Select component for Angular2.",
   "main": "index.js",
   "repository": "git@github.com:basvandenberg/angular2-select.git",
