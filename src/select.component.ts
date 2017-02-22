@@ -250,6 +250,9 @@ export class SelectComponent
         else if (typeof v === 'string') {
             v = [v];
         }
+        else if (typeof v === 'number') {
+            v = [v.toString()];
+        }
         else if (!Array.isArray(v)) {
             throw new TypeError('Value must be a string or an array.');
         }
