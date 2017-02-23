@@ -95,6 +95,7 @@ var packages = {
 | noFilter           | `number`          | `0`                   | Filter is hidden if the number of options is less than the given number.                   |
 | notFoundMsg        | `string`          | `"No results found"`  | The message shown if no options are found for the current filter input value.              |
 | placeholder        | `string`          | `""`                  | Placeholder text that is shown if no options are selected.
+| filterPlaceholder  | `string`          | `""`                  | Placeholder text that is shown on the filter input.
 
 \* `option` is an object with value and label (`{value: string, label: string}`)
 

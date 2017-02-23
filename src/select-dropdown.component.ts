@@ -34,6 +34,7 @@ export class SelectDropdownComponent
     @Input() optionList: OptionList;
     @Input() top: number;
     @Input() width: number;
+    @Input() placeholder: string;
 
     @Output() close = new EventEmitter<boolean>();
     @Output() optionClicked = new EventEmitter<Option>();

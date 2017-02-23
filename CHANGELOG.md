@@ -1,5 +1,10 @@
 # Changelog
 
+<a name="vNEXT"></a>
+## [vNEXT]()
+
+### Features
+- Add `filterPlaceholder` input to set the filter placeholder.
 
 <a name="1.0.0-beta.3"></a>
 ## [1.0.0-beta.3](https://github.com/basvandenberg/angular2-select/compare/1.0.0-beta.2...1.0.0-beta.3) (2017-02-11)
@@ -114,7 +119,7 @@
 
 ### Improvements
 
-- Set ViewEncapsulation to None to enable style override ([#16] (https://github.com/basvandenberg/angular2-select/issues/16)). 
+- Set ViewEncapsulation to None to enable style override ([#16] (https://github.com/basvandenberg/angular2-select/issues/16)).
 
 
 
