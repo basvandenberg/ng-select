@@ -8,16 +8,16 @@ A select component for angular, based on the select2 JQuery plugin. See the
 *Disclaimer*: This is a beta version, not yet intended for production release.
 
 -------------------------------------------------------------------------------
-**IMPORTANT NOTICE** Breaking change
+**IMPORTANT NOTICE**
 
 *The angular [press kit](https://angular.io/presskit.html) states that 3rd party
 projects should avoid the use of version numbers in their names. The name of
 this project will therefore be changed from angular2-select to ng-select (since 
-angular-select was not available on npm anymore).
+angular-select was not available on npm anymore).*
 
-The npm package `angular2-select` will be deprecated, the beta.4 version will
-only be available as `ng-select`. Therefore, for upgrading to beta.4 (*not yet
-released*) you will need to reinstall the npm package:*
+*The npm package `angular2-select` will be deprecated, the beta.4 version will
+only be available as `ng-select`. Therefore, for upgrading to beta.4 (not yet
+released) you will need to reinstall the npm package:*
 ```
 npm uninstall --save angular2-select
 npm install --save ng-select
