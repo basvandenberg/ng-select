@@ -2,16 +2,29 @@
 [![npm version](https://badge.fury.io/js/angular2-select.svg)](https://badge.fury.io/js/angular2-select)
 [![Build Status](https://travis-ci.org/basvandenberg/angular2-select.svg?branch=master)](https://travis-ci.org/basvandenberg/angular2-select)
 
-A native select component for angular 2, based on the select2 JQuery plugin.
+A select component for angular, based on the select2 JQuery plugin. See the
+[angular2-select] page for example uses or try it with this [plunker].
 
-See the [angular2-select] page for example uses or try it with this [plunker].
+*Disclaimer*: This is a beta version, not yet intended for production release.
 
-The beta version is here! With new features and bug fixes. See the [changelog]
-for more details.
+### **IMPORTANT NOTICE** Breaking change
 
-*Disclaimer*: The beta version is a complete rewrite of the alpha version, so
-new bugs are to be expected. Please do not yet rely on this beta version for
-production releases.
+The angular [press kit](https://angular.io/presskit.html) states that 3rd party
+projects should avoid the use of version numbers in their names. The name of
+this project will therefore be changed from angular2-select to ng-select (since 
+angular-select was not available on npm anymore).
+
+The npm package `angular2-select` will be deprecated, the beta.4 version will
+only be available as `ng-select`. Therefore, for upgrading to beta.4 (*not yet
+released*) you will need to reinstall the npm package:
+```
+npm uninstall --save angular2-select
+npm install --save ng-select
+```
+And your module import needs to be changed to:
+```
+import {SelectModule} from 'ng-select';
+```
 
 - [Getting started](#getting-started)
 - [Input properties](#input-properties)
