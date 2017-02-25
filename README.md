@@ -158,5 +158,5 @@ gulp build
 ```
 
 [ng-select]: https://basvandenberg.github.io/ng-select
-[plunker]: https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview
+[plunker]: https://plnkr.co/edit/vxwV6zxEwZGVUVR5V6tg?p=preview
 [changelog]: https://github.com/basvandenberg/ng-select/releases
