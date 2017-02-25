@@ -1,4 +1,4 @@
-# Angular 2 select component
+# Select component for angular
 [![npm version](https://badge.fury.io/js/angular2-select.svg)](https://badge.fury.io/js/angular2-select)
 [![Build Status](https://travis-ci.org/basvandenberg/angular2-select.svg?branch=master)](https://travis-ci.org/basvandenberg/angular2-select)
 
@@ -8,7 +8,7 @@ A select component for angular, based on the select2 JQuery plugin. See the
 *Disclaimer*: This is a beta version, not yet intended for production release.
 
 -------------------------------------------------------------------------------
-**IMPORTANT NOTICE**
+***IMPORTANT NOTICE***
 
 *The angular [press kit](https://angular.io/presskit.html) states that 3rd party
 projects should avoid the use of version numbers in their names. The name of
