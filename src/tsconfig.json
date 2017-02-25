@@ -16,7 +16,7 @@
         ]
     },
     "files": [
-        "angular2-select.ts"
+        "ng-select.ts"
     ],
     "angularCompilerOptions": {
         "genDir": "../aot",

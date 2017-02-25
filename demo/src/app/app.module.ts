@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
-import { SelectModule } from 'angular2-select';
+import { SelectModule } from 'ng-select';
 
 import { AppComponent } from './app.component';
 

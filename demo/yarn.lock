@@ -150,13 +150,9 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
 
-amdefine@1.0.0:
+amdefine@1.0.0, amdefine@>=0.0.4:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.0.tgz#fd17474700cb5cc9c2b709f0be9d23ce3c198c33"
-
-amdefine@>=0.0.4:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
 angular-cli@1.0.0-beta.24:
   version "1.0.0-beta.24"
@@ -242,10 +238,6 @@ angular-cli@1.0.0-beta.24:
     webpack-sources "^0.1.3"
     yam "0.0.18"
     zone.js "^0.7.2"
-
-angular2-select@1.0.0-beta.2:
-  version "1.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/angular2-select/-/angular2-select-1.0.0-beta.2.tgz#1f28801f2c36c53d1f39657210226b7d1164cb36"
 
 ansi-align@^1.1.0:
   version "1.1.0"
@@ -3579,6 +3571,10 @@ negotiator@0.4.9:
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+
+ng-select@^1.0.0-beta.3:
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/ng-select/-/ng-select-1.0.0-beta.3.tgz#4e14022ae502f13e743ccc1101bf9d4c4ad00cc1"
 
 no-case@^2.2.0:
   version "2.3.1"

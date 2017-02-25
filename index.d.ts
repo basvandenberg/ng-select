@@ -1,1 +1,1 @@
-export * from './dist/angular2-select';
+export * from './dist/ng-select';

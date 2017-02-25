@@ -1,10 +1,10 @@
-import { Angular2SelectDocsPage } from './app.po';
+import { NgSelectDocsPage } from './app.po';
 
-describe('angular2-select-docs App', function() {
+describe('ng-select-docs App', function() {
   let page: Angular2SelectDocsPage;
 
   beforeEach(() => {
-    page = new Angular2SelectDocsPage();
+    page = new NgSelectDocsPage();
   });
 
   it('should display message saying app works', () => {

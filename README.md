@@ -1,17 +1,32 @@
-# Angular 2 select component
-[![npm version](https://badge.fury.io/js/angular2-select.svg)](https://badge.fury.io/js/angular2-select)
-[![Build Status](https://travis-ci.org/basvandenberg/angular2-select.svg?branch=master)](https://travis-ci.org/basvandenberg/angular2-select)
+# Select component for angular
+[![npm version](https://badge.fury.io/js/ng-select.svg)](https://badge.fury.io/js/ng-select)
+[![Build Status](https://travis-ci.org/basvandenberg/ng-select.svg?branch=master)](https://travis-ci.org/basvandenberg/ng-select)
 
-A native select component for angular 2, based on the select2 JQuery plugin.
+A select component for angular, based on the select2 JQuery plugin. See the
+[ng-select] page for example uses or try it with this [plunker].
 
-See the [angular2-select] page for example uses or try it with this [plunker].
+*Disclaimer*: This is a beta version, not yet intended for production release.
 
-The beta version is here! With new features and bug fixes. See the [changelog]
-for more details.
+-------------------------------------------------------------------------------
+***IMPORTANT NOTICE***
 
-*Disclaimer*: The beta version is a complete rewrite of the alpha version, so
-new bugs are to be expected. Please do not yet rely on this beta version for
-production releases.
+*The angular [press kit](https://angular.io/presskit.html) states that 3rd party
+projects should avoid the use of version numbers in their names. The name of
+this project is therefore changed from angular2-select to ng-select (since 
+angular-select was not available on npm anymore).*
+
+*The npm package `angular2-select` will be deprecated, the upcoming beta.4
+version will only be available as `ng-select`. Therefore, for upgrading to
+beta.4 (which is not yet released) you will need to reinstall the npm package:*
+```
+npm uninstall --save angular2-select
+npm install --save ng-select
+```
+*And your module import needs to be changed to:*
+```
+import {SelectModule} from 'ng-select';
+```
+-------------------------------------------------------------------------------
 
 - [Getting started](#getting-started)
 - [Input properties](#input-properties)
@@ -26,12 +41,12 @@ production releases.
 
 For npm users:
 ```
-npm install --save angular2-select
+npm install --save ng-select
 ```
 
 For yarn users:
 ```
-yarn add angular2-select
+yarn add ng-select
 ```
 
 ### Configuration
@@ -44,7 +59,7 @@ After installation, no additional configuration is needed. Import the
 ```typescript
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {SelectModule} from 'angular2-select';
+import {SelectModule} from 'ng-select';
 
 import {AppComponent} from './app.component';
 
@@ -67,15 +82,15 @@ export class AppModule {}
 
 *Not yet tested for the beta version.*
 
-In `systemjs.config.js` add `angular2-select` to map and package:
+In `systemjs.config.js` add `ng-select` to map and package:
 
 ```javascript
 var map = {
-	'angular2-select': 'node_modules/angular2-select'
+	'ng-select': 'node_modules/ng-select'
 };
 
 var packages = {
-	'angular2-select': {
+	'ng-select': {
 		main: 'index.js',
 		defaultExtension: 'js'
 	}
@@ -142,6 +157,6 @@ yarn install
 gulp build
 ```
 
-[angular2-select]: https://basvandenberg.github.io/angular2-select
+[ng-select]: https://basvandenberg.github.io/ng-select
 [plunker]: https://plnkr.co/edit/JcG8uO9nIfSGMEKdLf0Y?p=preview
-[changelog]: https://github.com/basvandenberg/angular2-select/releases
+[changelog]: https://github.com/basvandenberg/ng-select/releases

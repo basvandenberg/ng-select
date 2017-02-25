@@ -1,12 +1,11 @@
 {
-  "name": "angular2-select",
+  "name": "ng-select",
   "version": "1.0.0-beta.3",
-  "description": "Select component for Angular2.",
+  "description": "Select component for angular.",
   "main": "index.js",
-  "repository": "git@github.com:basvandenberg/angular2-select.git",
+  "repository": "git@github.com:basvandenberg/ng-select.git",
   "keywords": [
     "angular",
-    "angular2",
     "select",
     "select2",
     "selectize",
@@ -15,9 +14,9 @@
   "author": "Bastiaan van den Berg <b.a.vandenberg@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/basvandenberg/angular2-select/issues"
+    "url": "https://github.com/basvandenberg/ng-select/issues"
   },
-  "homepage": "https://basvandenberg.github.io/angular2-select",
+  "homepage": "https://basvandenberg.github.io/ng-select",
   "dependencies": {},
   "devDependencies": {
     "@angular/common": "^2.4.1",
