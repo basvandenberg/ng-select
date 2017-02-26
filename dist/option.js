@@ -1,43 +1,31 @@
-export class Option<T> {
-
-    value: T;
-    label: string;
-
-    disabled: boolean;
-    highlighted: boolean;
-    selected: boolean;
-    shown: boolean;
-
-    constructor(value: T, label: string) {
+"use strict";
+var Option = (function () {
+    function Option(value, label) {
         this.value = value;
         this.label = label;
-
         this.disabled = false;
         this.highlighted = false;
         this.selected = false;
         this.shown = true;
     }
-
-    show() {
+    Option.prototype.show = function () {
         this.shown = true;
-    }
-
-    hide() {
+    };
+    Option.prototype.hide = function () {
         this.shown = false;
-    }
-
-    disable() {
+    };
+    Option.prototype.disable = function () {
         this.disabled = true;
-    }
-
-    enable() {
+    };
+    Option.prototype.enable = function () {
         this.disabled = false;
-    }
-
-    undecoratedCopy() {
+    };
+    Option.prototype.undecoratedCopy = function () {
         return {
             label: this.label,
             value: this.value
         };
-    }
-}
+    };
+    return Option;
+}());
+exports.Option = Option;

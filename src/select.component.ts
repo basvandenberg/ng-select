@@ -32,7 +32,7 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
     encapsulation: ViewEncapsulation.None
 })
 
-export class SelectComponent
+export class SelectComponent<T>
         implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit {
 
     @Input() options: Array<any>;
@@ -53,11 +53,11 @@ export class SelectComponent
     @Output() noOptionsFound: EventEmitter<null> = new EventEmitter<null>();
 
     @ViewChild('selection') selectionSpan: any;
-    @ViewChild('dropdown') dropdown: SelectDropdownComponent;
+    @ViewChild('dropdown') dropdown: SelectDropdownComponent<T>;
     @ViewChild('filterInput') filterInput: any;
 
     private _value: Array<any> = [];
-    optionList: OptionList;
+    optionList: OptionList<T>;
 
     // Selection state variables.
     hasSelected: boolean = false;
@@ -138,7 +138,7 @@ export class SelectComponent
 
     // Dropdown container.
 
-    onDropdownOptionClicked(option: Option) {
+    onDropdownOptionClicked(option: Option<T>) {
         this.multiple ?
             this.toggleSelectOption(option) : this.selectOption(option);
     }
@@ -193,7 +193,7 @@ export class SelectComponent
 
     // Multiple deselect option.
 
-    onDeselectOptionClick(option: Option) {
+    onDeselectOptionClick(option: Option<T>) {
         this.clearClicked = true;
         this.deselectOption(option);
     }
@@ -213,7 +213,7 @@ export class SelectComponent
         this.clearSelection();
     }
 
-    select(value: string) {
+    select(value: T) {
         this.optionList.getOptionsByValue(value).forEach((option) => {
             this.selectOption(option);
         });
@@ -239,19 +239,16 @@ export class SelectComponent
 
     /** Value. **/
 
-    get value(): any {
+    get value(): T | T[] {
         return this.multiple ? this._value : this._value[0];
     }
 
-    set value(v: any) {
-        if (typeof v === 'undefined' || v === null || v === '') {
+    set value(v: T | T[]) {
+        if (typeof v === 'undefined' || v === null || !!!v) {
             v = [];
         }
-        else if (typeof v === 'string') {
-            v = [v];
-        }
         else if (!Array.isArray(v)) {
-            throw new TypeError('Value must be a string or an array.');
+            v = [v];
         }
 
         if (!OptionList.equalValues(v, this._value)) {
@@ -279,7 +276,7 @@ export class SelectComponent
             v = this.optionList.value;
         }
 
-        this.optionList = new OptionList(this.options);
+        this.optionList = new OptionList<T>(this.options);
 
         if (!firstTime) {
             this.optionList.value = v;
@@ -320,7 +317,7 @@ export class SelectComponent
 
     /** Select. **/
 
-    private selectOption(option: Option) {
+    private selectOption(option: Option<T>) {
         if (!option.selected) {
             this.optionList.select(option, this.multiple);
             this.valueChanged();
@@ -328,7 +325,7 @@ export class SelectComponent
         }
     }
 
-    private deselectOption(option: Option) {
+    private deselectOption(option: Option<T>) {
         if (option.selected) {
             this.optionList.deselect(option);
             this.valueChanged();
@@ -346,7 +343,7 @@ export class SelectComponent
     }
 
     private clearSelection() {
-        let selection: Array<Option> = this.optionList.selection;
+        let selection: Array<Option<T>> = this.optionList.selection;
         if (selection.length > 0) {
             this.optionList.clearSelection();
             this.valueChanged();
@@ -362,13 +359,13 @@ export class SelectComponent
         }
     }
 
-    private toggleSelectOption(option: Option) {
+    private toggleSelectOption(option: Option<T>) {
         option.selected ?
             this.deselectOption(option) : this.selectOption(option);
     }
 
     private selectHighlightedOption() {
-        let option: Option = this.optionList.highlightedOption;
+        let option: Option<T> = this.optionList.highlightedOption;
         if (option !== null) {
             this.selectOption(option);
             this.closeDropdown(true);
@@ -376,10 +373,10 @@ export class SelectComponent
     }
 
     private deselectLast() {
-        let sel: Array<Option> = this.optionList.selection;
+        let sel: Array<Option<T>> = this.optionList.selection;
 
         if (sel.length > 0) {
-            let option: Option = sel[sel.length - 1];
+            let option: Option<T> = sel[sel.length - 1];
             this.deselectOption(option);
             this.setMultipleFilterInput(option.label + ' ');
         }
