@@ -315,6 +315,20 @@
 
     <md-card>
         <md-card-title>
+            Placeholder for filter input (single select only)
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                filterPlaceholder="Type to filter">
+            </ng-select>
+            <p>If you set the <code>filterPlaceholder</code> property, this text will be shown in an empty filter input field.</p>
+            <section [innerHTML]="sample19html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
             No results found text
         </md-card-title>
         <md-card-content>

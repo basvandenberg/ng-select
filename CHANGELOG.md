@@ -5,6 +5,9 @@
 
 ### Breaking changes
 ### Features
+
+- Add `filterPlaceholder` input to set the filter placeholder.
+
 ### Bug fixes
 ### Improvements
 
