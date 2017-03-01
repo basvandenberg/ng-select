@@ -5,6 +5,7 @@
         *ngIf="!multiple && filterEnabled">
         <input
             #filterInput
+            autocomplete="off"
             (click)="onSingleFilterClick($event)"
             (input)="onSingleFilterInput($event)"
             (keydown)="onSingleFilterKeydown($event)">

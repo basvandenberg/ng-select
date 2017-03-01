@@ -1,5 +1,15 @@
 # Changelog
 
+<a name="1.0.0-beta.4"></a>
+## [1.0.0-beta.4](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.3...1.0.0-beta.4) (2017-..-..)
+
+### Breaking changes
+### Features
+### Bug fixes
+### Improvements
+
+- Disable autocomplete for filter inputs (#126).
+
 
 <a name="1.0.0-beta.3"></a>
 ## [1.0.0-beta.3](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.2...1.0.0-beta.3) (2017-02-11)
