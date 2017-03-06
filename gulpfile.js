@@ -1,12 +1,13 @@
 "use strict";
 
-var del = require('del');
-var exec = require('child_process').exec;
-var fs = require('fs');
-var gulp = require('gulp');
-var os = require('os');
-var sass = require('gulp-sass');
-var tslint = require('gulp-tslint');
+const del = require('del');
+const exec = require('child_process').exec;
+const fs = require('fs');
+const gulp = require('gulp');
+const jasmine = require('gulp-jasmine');
+const os = require('os');
+const sass = require('gulp-sass');
+const tslint = require('gulp-tslint');
 
 gulp.task('default', ['build']);
 
@@ -32,6 +33,13 @@ gulp.task('clean', function() {
     return del(['./aot', './dist/**/*']);
 });
 
+// Test.
+
+gulp.task('test', function() {
+    gulp.src('./dist/**/*.spec.js')
+        .pipe(jasmine());
+});
+
 // Typescript --> Javascript.
 
 gulp.task('lint:ts', function() {
@@ -39,7 +47,7 @@ gulp.task('lint:ts', function() {
         .pipe(tslint({
             formatter: "verbose"
         }))
-        .pipe(tslint.report())
+        .pipe(tslint.report());
 });
 
 gulp.task('transpile:ts', ['clean', 'templates', 'styles'], function (cb) {

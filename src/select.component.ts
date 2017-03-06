@@ -1,16 +1,4 @@
-import {
-    AfterViewInit,
-    Component,
-    Input,
-    OnChanges,
-    OnInit,
-    Output,
-    EventEmitter,
-    ExistingProvider,
-    ViewChild,
-    ViewEncapsulation,
-    forwardRef
-} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 import {STYLE} from './select.component.css';
 import {TEMPLATE} from './select.component.html';

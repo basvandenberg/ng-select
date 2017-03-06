@@ -22,7 +22,7 @@ export class OptionList {
         this._options = options.map((option) => {
             let o: Option = new Option(option.value, option.label);
             if (option.disabled) {
-                o.disable();
+                o.disabled = true;
             }
             return o;
         });

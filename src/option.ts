@@ -18,22 +18,6 @@ export class Option {
         this.shown = true;
     }
 
-    show() {
-        this.shown = true;
-    }
-
-    hide() {
-        this.shown = false;
-    }
-
-    disable() {
-        this.disabled = true;
-    }
-
-    enable() {
-        this.disabled = false;
-    }
-
     undecoratedCopy() {
         return {
             label: this.label,
