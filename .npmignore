@@ -4,6 +4,10 @@
 /node_modules
 /src
 
+/dist/ng-select.js
+/dist/ng-select.d.ts
+/dist/ng-select.metadata.json
+
 yarn.lock
 gulpfile.js
 tslint.json

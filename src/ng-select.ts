@@ -5,6 +5,8 @@ import {FormsModule} from '@angular/forms';
 import {SelectComponent} from './select.component';
 import {SelectDropdownComponent} from './select-dropdown.component';
 
+export * from './select.component';
+
 @NgModule({
     declarations: [
         SelectComponent,
