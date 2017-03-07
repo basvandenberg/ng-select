@@ -1,11 +1,7 @@
-import {
-    AfterViewInit,
-    Component,
-    ElementRef,
-    OnInit,
-    ViewChild
-} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+
+import {SelectComponent} from 'ng-select';
 
 declare var hljs: any;
 
@@ -21,6 +17,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     updatedOptions: Array<any>;
     disabled: boolean = true;
     form: FormGroup;
+
+    @ViewChild('clearSelectExample') clearSelectExample: SelectComponent;
 
     constructor(
         private elementRef: ElementRef
@@ -55,6 +53,10 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     onEnableClick() {
         this.disabled = false;
+    }
+
+    onClearSelectionClick() {
+        this.clearSelectExample.clear();   
     }
 
     /** Code strings **/
