@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
-import {SelectComponent} from 'ng-select';
+import {SelectComponent, IOption} from 'ng-select';
 
 declare var hljs: any;
 
@@ -329,7 +329,7 @@ ngOnInit() {
 
     /** Sample data **/
 
-    OPTIONS_BASIC = [
+    OPTIONS_BASIC: Array<IOption> = [
         {value: '0', label: 'Aech'},
         {value: '1', label: 'Art3mis'},
         {value: '2', label: 'Daito'},

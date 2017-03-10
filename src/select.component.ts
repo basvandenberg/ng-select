@@ -3,6 +3,7 @@ import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 import {STYLE} from './select.component.css';
 import {TEMPLATE} from './select.component.html';
 import {SelectDropdownComponent} from './select-dropdown.component';
+import {IOption} from './option.interface';
 import {Option} from './option';
 import {OptionList} from './option-list';
 
@@ -23,7 +24,7 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
 export class SelectComponent
         implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit {
 
-    @Input() options: Array<any>;
+    @Input() options: Array<IOption>;
 
     @Input() allowClear: boolean = false;
     @Input() disabled: boolean = false;
@@ -46,27 +47,27 @@ export class SelectComponent
     @ViewChild('filterInput') filterInput: any;
 
     private _value: Array<any> = [];
-    optionList: OptionList;
+    private optionList: OptionList;
 
     // Selection state variables.
     hasSelected: boolean = false;
 
     // View state variables.
-    filterEnabled: boolean = true;
-    filterInputWidth: number = 1;
-    hasFocus: boolean = false;
-    isBelow: boolean = true;
-    isDisabled: boolean = false;
-    isOpen: boolean = false;
-    placeholderView: string = '';
+    private filterEnabled: boolean = true;
+    private filterInputWidth: number = 1;
+    private hasFocus: boolean = false;
+    private isBelow: boolean = true;
+    private isDisabled: boolean = false;
+    private isOpen: boolean = false;
+    private placeholderView: string = '';
 
-    clearClicked: boolean = false;
-    selectContainerClicked: boolean = false;
+    private clearClicked: boolean = false;
+    private selectContainerClicked: boolean = false;
 
     // Width and position for the dropdown container.
-    width: number;
-    top: number;
-    left: number;
+    private width: number;
+    private top: number;
+    private left: number;
 
     private onChange = (_: any) => {};
     private onTouched = () => {};
@@ -486,17 +487,17 @@ export class SelectComponent
         this.selectionSpan.nativeElement.blur();
     }
 
-    updateWidth() {
+    private updateWidth() {
         this.width = this.selectionSpan.nativeElement.offsetWidth;
     }
 
-    updatePosition() {
+    private updatePosition() {
         let e = this.selectionSpan.nativeElement;
         this.left = e.offsetLeft;
         this.top = e.offsetTop + e.offsetHeight;
     }
 
-    updateFilterWidth() {
+    private updateFilterWidth() {
         if (typeof this.filterInput !== 'undefined') {
             let value: string = this.filterInput.nativeElement.value;
             this.filterInputWidth = value.length === 0 ?
