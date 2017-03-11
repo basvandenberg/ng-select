@@ -1,4 +1,5 @@
 import {Option} from './option';
+import {IOption} from './option.interface';
 import {Diacritics} from './diacritics';
 
 export class OptionList {
@@ -13,14 +14,14 @@ export class OptionList {
     private _highlightedOption: Option = null;
     private _hasShown: boolean;
 
-    constructor(options: Array<any>) {
+    constructor(options: Array<IOption>) {
 
         if (typeof options === 'undefined' || options === null) {
             options = [];
         }
 
         this._options = options.map((option) => {
-            let o: Option = new Option(option.value, option.label);
+            let o: Option = new Option(option);
             if (option.disabled) {
                 o.disabled = true;
             }

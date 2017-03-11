@@ -38,9 +38,11 @@ export class SelectComponent
 
     @Output() opened: EventEmitter<null> = new EventEmitter<null>();
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();
-    @Output() selected: EventEmitter<any> = new EventEmitter<any>();
-    @Output() deselected: EventEmitter<any> = new EventEmitter<any>();
-    @Output() noOptionsFound: EventEmitter<null> = new EventEmitter<null>();
+    @Output() selected: EventEmitter<IOption> = new EventEmitter<IOption>();
+    @Output() deselected: EventEmitter<IOption | IOption[]> =
+        new EventEmitter<IOption | IOption[]>();
+    @Output() noOptionsFound: EventEmitter<string> =
+        new EventEmitter<string>();
 
     @ViewChild('selection') selectionSpan: any;
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
@@ -146,7 +148,7 @@ export class SelectComponent
     onSingleFilterInput(term: string) {
         let toEmpty: boolean = this.optionList.filter(term);
         if (toEmpty) {
-            this.noOptionsFound.emit(null);
+            this.noOptionsFound.emit(term);
         }
     }
 
@@ -162,9 +164,10 @@ export class SelectComponent
         }
         this.updateFilterWidth();
         setTimeout(() => {
-            let toEmpty: boolean = this.optionList.filter(event.target.value);
+            let term: string = event.target.value;
+            let toEmpty: boolean = this.optionList.filter(term);
             if (toEmpty) {
-                this.noOptionsFound.emit(null);
+                this.noOptionsFound.emit(term);
             }
         });
     }
@@ -229,11 +232,11 @@ export class SelectComponent
 
     /** Value. **/
 
-    get value(): any {
+    get value(): string | string[] {
         return this.multiple ? this._value : this._value[0];
     }
 
-    set value(v: any) {
+    set value(v: string | string[]) {
         if (typeof v === 'undefined' || v === null || v === '') {
             v = [];
         }
@@ -314,7 +317,7 @@ export class SelectComponent
         if (!option.selected) {
             this.optionList.select(option, this.multiple);
             this.valueChanged();
-            this.selected.emit(option.undecoratedCopy());
+            this.selected.emit(option.wrappedOption);
         }
     }
 
@@ -322,7 +325,7 @@ export class SelectComponent
         if (option.selected) {
             this.optionList.deselect(option);
             this.valueChanged();
-            this.deselected.emit(option.undecoratedCopy());
+            this.deselected.emit(option.wrappedOption);
             setTimeout(() => {
                 if (this.multiple) {
                     this.updatePosition();
@@ -342,11 +345,11 @@ export class SelectComponent
             this.valueChanged();
 
             if (selection.length === 1) {
-                this.deselected.emit(selection[0].undecoratedCopy());
+                this.deselected.emit(selection[0].wrappedOption);
             }
             else {
                 this.deselected.emit(selection.map((option) => {
-                    return option.undecoratedCopy();
+                    return option.wrappedOption;
                 }));
             }
         }

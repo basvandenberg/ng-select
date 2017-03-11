@@ -47,7 +47,7 @@ describe('An OptionList\'s getOptionsByValue function', () => {
     });
 
     it('returns all options with requested value', () => {
-        optionList.options[4].value = '3';
+        optionList.options[4].wrappedOption.value = '3';
         let result: Array<Option> = optionList.getOptionsByValue('3');
 
         expect(result.length).toBe(2);
