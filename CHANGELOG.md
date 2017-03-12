@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="1.0.0-beta.5"></a>
+## [1.0.0-beta.5](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.4...1.0.0-beta.5) (2017-..-..)
+
+### Features
+### Bug fixes
+### Improvements
+
+
+
 <a name="1.0.0-beta.4"></a>
 ## [1.0.0-beta.4](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.3...1.0.0-beta.4) (2017-03-12)
 
@@ -19,6 +28,7 @@
 - Disable autocomplete for filter inputs (#126).
 - The NoOptionsFound output event returns filter term instead of null (#109).
 - Setup unit testing.
+
 
 
 <a name="1.0.0-beta.3"></a>
