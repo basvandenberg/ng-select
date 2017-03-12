@@ -112,12 +112,11 @@ export class OptionList {
             });
 
         }
-        let toEmpty: boolean = this.hasShown && !anyShown;
 
         this.highlight();
         this._hasShown = anyShown;
 
-        return toEmpty;
+        return anyShown;
     }
 
     private resetFilter() {

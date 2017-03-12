@@ -146,8 +146,8 @@ export class SelectComponent
     }
 
     onSingleFilterInput(term: string) {
-        let toEmpty: boolean = this.optionList.filter(term);
-        if (toEmpty) {
+        let hasShown: boolean = this.optionList.filter(term);
+        if (!hasShown) {
             this.noOptionsFound.emit(term);
         }
     }
@@ -165,8 +165,8 @@ export class SelectComponent
         this.updateFilterWidth();
         setTimeout(() => {
             let term: string = event.target.value;
-            let toEmpty: boolean = this.optionList.filter(term);
-            if (toEmpty) {
+            let hasShown: boolean = this.optionList.filter(term);
+            if (!hasShown) {
                 this.noOptionsFound.emit(term);
             }
         });
