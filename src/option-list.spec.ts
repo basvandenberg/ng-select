@@ -2,11 +2,43 @@ import {OptionList} from './option-list';
 import {Option} from './option';
 import {IOption} from './option.interface';
 
-let numbers = [0, 1, 2, 3, 4];
+const numbers = [0, 1, 2, 3, 4];
 
-describe('An OptionList object', () => {
-    it('is true', () => {
-        expect(true).toBe(true);
+describe('An OptionList\'s constructor', () => {
+
+    let options: Array<IOption>;
+    let invalidOptions: Array<any>;
+
+    beforeEach(() => {
+        let options: Array<IOption> = numbers.map((i) => {
+            return {
+                label: `Option ${i}`,
+                value: `${i}`
+            };
+        });
+        let invalidOptions: Array<any> = [{
+            label: 'Option 1',
+            value: '1'
+        }, {
+            view: 'Invalid option label',
+            value: '2'
+        }];
+    });
+
+    it('creates empty list if undefined is provided as parameter', () => {
+        let optionList: OptionList = new OptionList(undefined);
+
+        expect(optionList.options.length).toBe(0);
+        expect(optionList.hasShown).toBe(false);
+        expect(optionList.highlightedOption).toBe(null);
+    });
+
+    it('creates empty list if null is provided as parameter', () => {
+        let optionList: OptionList = new OptionList(null);
+
+        expect(optionList.options.length).toBe(0);
+        expect(optionList.hasShown).toBe(false);
+        expect(optionList.highlightedOption).toBe(null);
     });
 });
 
@@ -102,5 +134,83 @@ describe('An OptionList\'s get value function', () => {
         expect(value.length).toBe(2);
         expect(value[0]).toBe('2');
         expect(value[1]).toBe('4');
+    });
+});
+
+describe('An OptionList\'s set value function', () => {
+
+    let optionList: OptionList;
+
+    beforeEach(() => {
+        let options: Array<IOption> = numbers.map((i) => {
+            return {
+                label: `Option ${i}`,
+                value: `${i}`
+            };
+        });
+        optionList = new OptionList(options);
+    });
+
+    it('has unchanged value if list of options is empty', () => {
+        optionList = new OptionList([]);
+
+        optionList.value = [];
+        expect(optionList.value.length).toBe(0);
+
+        optionList.value = ['2'];
+        expect(optionList.value.length).toBe(0);
+
+        optionList.value = ['0', '4'];
+        expect(optionList.value.length).toBe(0);
+    });
+
+    it('has unchanged value when setting non-existing option value', () => {
+        optionList.value = ['a'];
+        expect(optionList.value.length).toBe(0);
+
+        optionList.value = ['2'];
+        expect(optionList.value.length).toBe(1);
+        expect(optionList.value[0]).toBe('2');
+
+        optionList.value = ['b', 'c'];
+        expect(optionList.value.length).toBe(0);
+
+        optionList.value = ['d', '3'];
+        expect(optionList.value.length).toBe(1);
+        expect(optionList.value[0]).toBe('3');
+    });
+
+    it('has unchanged value when setting value that is already set', () => {
+        optionList.value = ['0', '4'];
+        expect(optionList.value.length).toBe(2);
+        expect(optionList.value[0]).toBe('0');
+        expect(optionList.value[1]).toBe('4');
+
+        optionList.value = ['0', '4'];
+        expect(optionList.value.length).toBe(2);
+        expect(optionList.value[0]).toBe('0');
+        expect(optionList.value[1]).toBe('4');
+    });
+
+    it('selects single set value', () => {
+        optionList.value = ['4'];
+        expect(optionList.value.length).toBe(1);
+        expect(optionList.value[0]).toBe('4');
+    });
+
+    it('selects multiple set values', () => {
+        optionList.value = ['0', '2', '4'];
+        expect(optionList.value.length).toBe(3);
+        expect(optionList.value[0]).toBe('0');
+        expect(optionList.value[1]).toBe('2');
+        expect(optionList.value[2]).toBe('4');
+    });
+
+    it('selects values in the order of the option list', () => {
+        optionList.value = ['2', '4', '0'];
+        expect(optionList.value.length).toBe(3);
+        expect(optionList.value[0]).toBe('0');
+        expect(optionList.value[1]).toBe('2');
+        expect(optionList.value[2]).toBe('4');
     });
 });
