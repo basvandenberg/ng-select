@@ -10,9 +10,9 @@ A select component for angular, based on the select2 JQuery plugin. See the
 -------------------------------------------------------------------------------
 ***IMPORTANT NOTICE***
 
-*The angular [press kit](https://angular.io/presskit.html) states that 3rd party
-projects should avoid the use of version numbers in their names. The name of
-this project is therefore changed from angular2-select to ng-select (since 
+*The angular [press kit](https://angular.io/presskit.html) states that 3rd
+party projects should avoid the use of version numbers in their names. The name
+of this project is therefore changed from angular2-select to ng-select (since
 angular-select was not available on npm anymore).*
 
 *The npm package `angular2-select` will be deprecated, the upcoming beta.4
@@ -43,7 +43,6 @@ For npm users:
 ```
 npm install --save ng-select
 ```
-
 For yarn users:
 ```
 yarn add ng-select
@@ -80,8 +79,6 @@ export class AppModule {}
 
 #### Systemjs
 
-*Not yet tested for the beta version.*
-
 In `systemjs.config.js` add `ng-select` to map and package:
 
 ```javascript
@@ -101,7 +98,7 @@ var packages = {
 
 | Name               | Type              | Default               | Description                                                                                |
 | ------------------ | ----------------- | --------------------- | ------------------------------------------------------------------------------------------ |
-| options            | `Array<option>`\* |                       | List of select option.                                                                     |
+| options            | `Array<IOption>`\* |                       | List of select option.                                                                     |
 | allowClear         | `boolean`         | `false`               | Only applies to single select. If set to true, a clickable clear selection cross is shown. |
 | disabled           | `boolean`         | `false`               | If set to true, the select component is disabled.                                          |
 | highlightColor     | `string`          | `#2196f3`             | Background color of highlighted option.                                                    |
@@ -112,19 +109,19 @@ var packages = {
 | placeholder        | `string`          | `""`                  | Placeholder text that is shown if no options are selected.
 | filterPlaceholder  | `string`          | `""`                  | Placeholder text that is shown on the filter input (**single select only**).
 
-\* `option` is an object with value and label (`{value: string, label: string}`)
+\* Object that implements the IOption interface (`{value: string, label: string}`)
 
 ## Output events
 
-| Name          | Value                      | Description                                                              |
-| ------------- | -------------------------- | ------------------------------------------------------------------------ |
-| opened        | `null`                     | If the select drop down is opened.                                       |
-| closed        | `null`                     | If the select drop down is closed.                                       |
-| selected      | `option`\*                 | If an options is selected, returning the selected option.                |
-| deselected    | `option`\* or `[option]`\* | If one or more options are deselected, returning the selected option(s). |
-| noOptionsFound| `null`                     | When the filter result changes to 'no results found'.                    |
+| Name          | Value                       | Description                                                              |
+| ------------- | --------------------------- | ------------------------------------------------------------------------ |
+| opened        | `null`                      | If the select drop down is opened.                                       |
+| closed        | `null`                      | If the select drop down is closed.                                       |
+| selected      | `IOption`\*                 | Returns selected option object.                                          |
+| deselected    | `IOption`\* or `[IOption]`\*| Returns deselected option object(s).                                     |
+| noOptionsFound| `string`                    | Returns search term if filter does not return any results.               |
 
-\* `option` is an object with value and label (`{value: string, label: string}`)
+\* Object that implements the IOption interface (`{value: string, label: string}`)
 
 ## Methods
 
@@ -137,16 +134,21 @@ var packages = {
 
 ## Limitations
 
+This component has limitations, which will be handled in future versions.
+Currently the goal is to work towards a stable 1.0 release version.
+
 ### Scalability
 
-For now, this component is not suitable for large numbers of options. If the
+The component is currently not suitable for large numbers of options. If the
 dropdown is opened, all options are added to the DOM, which will cause browser
 performance issues for large numbers of options. Therefore, if you have more
 that a few hundred options, then you will be better of with another solution.
 
-### Drop down positioning
+### Custom option view (using an option template)
 
-TODO
+In version 1.0 it will only be possible to define an option label that will be
+shown in the select dropdown. Customizing the option's view (adding an icon for
+example) is not possible. Also grouping of options is not supported.
 
 ## Develop
 
