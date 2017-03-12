@@ -56,7 +56,11 @@ export class AppComponent implements AfterViewInit, OnInit {
     }
 
     onClearSelectionClick() {
-        this.clearSelectExample.clear();   
+        this.clearSelectExample.clear();
+    }
+
+    onNoOptionsFound(term: string) {
+        console.log(term);
     }
 
     /** Code strings **/

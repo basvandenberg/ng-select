@@ -82,6 +82,7 @@
             <ng-select
                 [options]="OPTIONS_BASIC"
                 [multiple]="true"
+                (noOptionsFound)="onNoOptionsFound($event)"
                 (selected)="lastEvent='selected ' + $event.label"
                 (deselected)="lastEvent='deselected ' + $event.label">
             </ng-select>
