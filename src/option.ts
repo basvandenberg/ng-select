@@ -1,16 +1,16 @@
+import {IOption} from './option.interface';
+
 export class Option {
 
-    value: string;
-    label: string;
+    wrappedOption: IOption;
 
     disabled: boolean;
     highlighted: boolean;
     selected: boolean;
     shown: boolean;
 
-    constructor(value: string, label: string) {
-        this.value = value;
-        this.label = label;
+    constructor(option: IOption) {
+        this.wrappedOption = option;
 
         this.disabled = false;
         this.highlighted = false;
@@ -18,26 +18,11 @@ export class Option {
         this.shown = true;
     }
 
-    show() {
-        this.shown = true;
+    get value(): string {
+        return this.wrappedOption.value;
     }
 
-    hide() {
-        this.shown = false;
-    }
-
-    disable() {
-        this.disabled = true;
-    }
-
-    enable() {
-        this.disabled = false;
-    }
-
-    undecoratedCopy() {
-        return {
-            label: this.label,
-            value: this.value
-        };
+    get label(): string {
+        return this.wrappedOption.label;
     }
 }

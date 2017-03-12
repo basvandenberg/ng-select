@@ -1,20 +1,9 @@
-import {
-    AfterViewInit,
-    Component,
-    Input,
-    OnChanges,
-    OnInit,
-    Output,
-    EventEmitter,
-    ExistingProvider,
-    ViewChild,
-    ViewEncapsulation,
-    forwardRef
-} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 import {STYLE} from './select.component.css';
 import {TEMPLATE} from './select.component.html';
 import {SelectDropdownComponent} from './select-dropdown.component';
+import {IOption} from './option.interface';
 import {Option} from './option';
 import {OptionList} from './option-list';
 
@@ -35,7 +24,7 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
 export class SelectComponent
         implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit {
 
-    @Input() options: Array<any>;
+    @Input() options: Array<IOption>;
 
     @Input() allowClear: boolean = false;
     @Input() disabled: boolean = false;
@@ -45,39 +34,43 @@ export class SelectComponent
     @Input() noFilter: number = 0;
     @Input() notFoundMsg: string = 'No results found';
     @Input() placeholder: string = '';
+    @Input() filterPlaceholder: string = '';
+    @Input() label: string = '';
 
     @Output() opened: EventEmitter<null> = new EventEmitter<null>();
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();
-    @Output() selected: EventEmitter<any> = new EventEmitter<any>();
-    @Output() deselected: EventEmitter<any> = new EventEmitter<any>();
-    @Output() noOptionsFound: EventEmitter<null> = new EventEmitter<null>();
+    @Output() selected: EventEmitter<IOption> = new EventEmitter<IOption>();
+    @Output() deselected: EventEmitter<IOption | IOption[]> =
+        new EventEmitter<IOption | IOption[]>();
+    @Output() noOptionsFound: EventEmitter<string> =
+        new EventEmitter<string>();
 
     @ViewChild('selection') selectionSpan: any;
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
     @ViewChild('filterInput') filterInput: any;
 
     private _value: Array<any> = [];
-    optionList: OptionList;
+    private optionList: OptionList;
 
     // Selection state variables.
     hasSelected: boolean = false;
 
     // View state variables.
-    filterEnabled: boolean = true;
-    filterInputWidth: number = 1;
-    hasFocus: boolean = false;
-    isBelow: boolean = true;
-    isDisabled: boolean = false;
-    isOpen: boolean = false;
-    placeholderView: string = '';
+    private filterEnabled: boolean = true;
+    private filterInputWidth: number = 1;
+    private hasFocus: boolean = false;
+    private isBelow: boolean = true;
+    private isDisabled: boolean = false;
+    private isOpen: boolean = false;
+    private placeholderView: string = '';
 
-    clearClicked: boolean = false;
-    selectContainerClicked: boolean = false;
+    private clearClicked: boolean = false;
+    private selectContainerClicked: boolean = false;
 
     // Width and position for the dropdown container.
-    width: number;
-    top: number;
-    left: number;
+    private width: number;
+    private top: number;
+    private left: number;
 
     private onChange = (_: any) => {};
     private onTouched = () => {};
@@ -154,9 +147,9 @@ export class SelectComponent
     }
 
     onSingleFilterInput(term: string) {
-        let toEmpty: boolean = this.optionList.filter(term);
-        if (toEmpty) {
-            this.noOptionsFound.emit(null);
+        let hasShown: boolean = this.optionList.filter(term);
+        if (!hasShown) {
+            this.noOptionsFound.emit(term);
         }
     }
 
@@ -172,9 +165,10 @@ export class SelectComponent
         }
         this.updateFilterWidth();
         setTimeout(() => {
-            let toEmpty: boolean = this.optionList.filter(event.target.value);
-            if (toEmpty) {
-                this.noOptionsFound.emit(null);
+            let term: string = event.target.value;
+            let hasShown: boolean = this.optionList.filter(term);
+            if (!hasShown) {
+                this.noOptionsFound.emit(term);
             }
         });
     }
@@ -239,11 +233,11 @@ export class SelectComponent
 
     /** Value. **/
 
-    get value(): any {
+    get value(): string | string[] {
         return this.multiple ? this._value : this._value[0];
     }
 
-    set value(v: any) {
+    set value(v: string | string[]) {
         if (typeof v === 'undefined' || v === null || v === '') {
             v = [];
         }
@@ -324,7 +318,7 @@ export class SelectComponent
         if (!option.selected) {
             this.optionList.select(option, this.multiple);
             this.valueChanged();
-            this.selected.emit(option.undecoratedCopy());
+            this.selected.emit(option.wrappedOption);
         }
     }
 
@@ -332,7 +326,7 @@ export class SelectComponent
         if (option.selected) {
             this.optionList.deselect(option);
             this.valueChanged();
-            this.deselected.emit(option.undecoratedCopy());
+            this.deselected.emit(option.wrappedOption);
             setTimeout(() => {
                 if (this.multiple) {
                     this.updatePosition();
@@ -352,11 +346,11 @@ export class SelectComponent
             this.valueChanged();
 
             if (selection.length === 1) {
-                this.deselected.emit(selection[0].undecoratedCopy());
+                this.deselected.emit(selection[0].wrappedOption);
             }
             else {
                 this.deselected.emit(selection.map((option) => {
-                    return option.undecoratedCopy();
+                    return option.wrappedOption;
                 }));
             }
         }
@@ -497,17 +491,17 @@ export class SelectComponent
         this.selectionSpan.nativeElement.blur();
     }
 
-    updateWidth() {
+    private updateWidth() {
         this.width = this.selectionSpan.nativeElement.offsetWidth;
     }
 
-    updatePosition() {
+    private updatePosition() {
         let e = this.selectionSpan.nativeElement;
         this.left = e.offsetLeft;
         this.top = e.offsetTop + e.offsetHeight;
     }
 
-    updateFilterWidth() {
+    private updateFilterWidth() {
         if (typeof this.filterInput !== 'undefined') {
             let value: string = this.filterInput.nativeElement.value;
             this.filterInputWidth = value.length === 0 ?

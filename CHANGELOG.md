@@ -1,5 +1,25 @@
 # Changelog
 
+<a name="1.0.0-beta.4"></a>
+## [1.0.0-beta.4](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.3...1.0.0-beta.4) (2017-03-12)
+
+### Features
+
+- Add `filterPlaceholder` input to set the filter placeholder (#121, #124).
+- Add `label` input to show persistent label above select container (#106).
+
+### Bug fixes
+
+- Re-enable AoT compilation (#113).
+
+### Improvements
+
+- Enable import of SelectComponent and IOption interface (#118).
+- Selected and deselected events return original option object.
+- Disable autocomplete for filter inputs (#126).
+- The NoOptionsFound output event returns filter term instead of null (#109).
+- Setup unit testing.
+
 
 <a name="1.0.0-beta.3"></a>
 ## [1.0.0-beta.3](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.2...1.0.0-beta.3) (2017-02-11)

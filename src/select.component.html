@@ -1,3 +1,7 @@
+<label
+    *ngIf="label !== ''">
+    {{label}}
+</label>
 <div
     #selection
     [attr.tabindex]="disabled ? null : 0"
@@ -46,6 +50,7 @@
         <input
             *ngIf="filterEnabled"
             #filterInput
+            autocomplete="off"
             tabindex="-1"
             [placeholder]="placeholderView"
             [ngStyle]="{'width.px': filterInputWidth}"
@@ -63,6 +68,7 @@
     [highlightColor]="highlightColor"
     [highlightTextColor]="highlightTextColor"
     [filterEnabled]="filterEnabled"
+    [placeholder]="filterPlaceholder"
     [width]="width"
     [top]="top"
     [left]="left"

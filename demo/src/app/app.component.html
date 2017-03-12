@@ -82,6 +82,7 @@
             <ng-select
                 [options]="OPTIONS_BASIC"
                 [multiple]="true"
+                (noOptionsFound)="onNoOptionsFound($event)"
                 (selected)="lastEvent='selected ' + $event.label"
                 (deselected)="lastEvent='deselected ' + $event.label">
             </ng-select>
@@ -263,7 +264,7 @@
             <div class="button-bar">
                 <button
                     md-raised-button
-                    (click)="clearSelectExample.clear()">
+                    (click)="onClearSelectionClick()">
                     Clear selection
                 </button>
             </div>
@@ -315,6 +316,20 @@
 
     <md-card>
         <md-card-title>
+            Placeholder for filter input (single select only)
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                filterPlaceholder="Type to filter">
+            </ng-select>
+            <p>If you set the <code>filterPlaceholder</code> property, this text will be shown in an empty filter input field.</p>
+            <section [innerHTML]="sample19html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
             No results found text
         </md-card-title>
         <md-card-content>
@@ -356,6 +371,20 @@
             </ng-select>
             <p>The color of the highlighted option in the dropdown can be changed with the <code>highlightColor</code> and <code>highlightTextColor</code> properties.</p>
             <section [innerHTML]="sample13html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
+    <md-card>
+        <md-card-title>
+            Show a label
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                label="Favorite character">
+            </ng-select>
+            <p>Set label property to show a label above the select container</p>
+            <section [innerHTML]="sample20html" highlight-js-content=".highlight"></section>
         </md-card-content>
     </md-card>
 
