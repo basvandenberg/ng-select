@@ -98,12 +98,13 @@ var packages = {
 
 | Name               | Type              | Default               | Description                                                                                |
 | ------------------ | ----------------- | --------------------- | ------------------------------------------------------------------------------------------ |
-| options            | `Array<IOption>`\* |                       | List of select option.                                                                     |
+| options            | `Array<IOption>`\* |                      | List of select option.                                                                     |
+| multiple           | `boolean`         | `false`               | If set to true, the select component is multi-select, otherwise single select.             |
 | allowClear         | `boolean`         | `false`               | Only applies to single select. If set to true, a clickable clear selection cross is shown. |
 | disabled           | `boolean`         | `false`               | If set to true, the select component is disabled.                                          |
 | highlightColor     | `string`          | `#2196f3`             | Background color of highlighted option.                                                    |
 | highlightTextColor | `string`          | `#fff`                | Text color of highlighted option.                                                          |
-| multiple           | `boolean`         | `false`               | If set to true, the select component is multi-select, otherwise single select.             |
+| label              | `string`          | ''                    | Label above select container. |
 | noFilter           | `number`          | `0`                   | Filter is hidden if the number of options is less than the given number.                   |
 | notFoundMsg        | `string`          | `"No results found"`  | The message shown if no options are found for the current filter input value.              |
 | placeholder        | `string`          | `""`                  | Placeholder text that is shown if no options are selected.

@@ -331,6 +331,14 @@ ngOnInit() {
 &lt;/ng-select&gt;
 </code></pre>`;
 
+    sample20html = `
+<pre><code class="html">&lt;ng-select
+    [options]="characters"
+    label="Favorite character"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
+
     /** Sample data **/
 
     OPTIONS_BASIC: Array<IOption> = [

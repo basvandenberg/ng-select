@@ -35,6 +35,7 @@ export class SelectComponent
     @Input() notFoundMsg: string = 'No results found';
     @Input() placeholder: string = '';
     @Input() filterPlaceholder: string = '';
+    @Input() label: string = '';
 
     @Output() opened: EventEmitter<null> = new EventEmitter<null>();
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();

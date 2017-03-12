@@ -1,3 +1,7 @@
+<label
+    *ngIf="label !== ''">
+    {{label}}
+</label>
 <div
     #selection
     [attr.tabindex]="disabled ? null : 0"

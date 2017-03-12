@@ -374,6 +374,20 @@
         </md-card-content>
     </md-card>
 
+    <md-card>
+        <md-card-title>
+            Show a label
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                label="Favorite character">
+            </ng-select>
+            <p>Set label property to show a label above the select container</p>
+            <section [innerHTML]="sample20html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
     <h1 id="filter">Hide filter</h1>
 
     <md-card>

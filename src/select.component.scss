@@ -123,4 +123,12 @@ ng-select {
             }
         }
     }
+
+    // Label.
+    label {
+        color: rgba(0, 0, 0, 0.38);
+        display: block;
+        font-size: 13px;
+        padding: 4px 0;
+    }
 }

@@ -6,6 +6,7 @@
 ### Features
 
 - Add `filterPlaceholder` input to set the filter placeholder (#121, #124).
+- Add `label` input to show persistent label above select container (#106).
 
 ### Bug fixes
 
@@ -17,6 +18,7 @@
 - Selected and deselected events return original option object.
 - Disable autocomplete for filter inputs (#126).
 - The NoOptionsFound output event returns filter term instead of null (#109).
+- Setup unit testing.
 
 
 <a name="1.0.0-beta.3"></a>
