@@ -25,6 +25,9 @@ export class OptionList {
             if (option.disabled) {
                 o.disabled = true;
             }
+			if (option.selected) {
+                o.selected = true;
+            }
             return o;
         });
 
