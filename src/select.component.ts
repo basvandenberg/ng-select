@@ -86,11 +86,9 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         if (changes.hasOwnProperty('options')) {
             this.updateOptionsList(changes['options'].isFirstChange());
         }
-        if (changes.hasOwnProperty('noFilter')) {
-            let numOptions: number = this.optionList.options.length;
-            let minNumOptions: number = changes['noFilter'].currentValue;
-            this.filterEnabled = numOptions >= minNumOptions;
-        }
+        let numOptions: number = this.optionList.options.length;
+        let minNumOptions: number = this.noFilter;
+        this.filterEnabled = numOptions >= minNumOptions;
     }
 
     // Window.
