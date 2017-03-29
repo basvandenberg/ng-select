@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 import {STYLE} from './select.component.css';
 import {TEMPLATE} from './select.component.html';
@@ -21,8 +21,7 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
     encapsulation: ViewEncapsulation.None
 })
 
-export class SelectComponent
-        implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit {
+export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit {
 
     @Input() options: Array<IOption>;
 
@@ -81,10 +80,6 @@ export class SelectComponent
 
     ngOnInit() {
         this.placeholderView = this.placeholder;
-    }
-
-    ngAfterViewInit() {
-        this.updateFilterWidth();
     }
 
     ngOnChanges(changes: any) {
