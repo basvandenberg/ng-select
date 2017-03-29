@@ -56,12 +56,12 @@ export class SelectComponent
     hasSelected: boolean = false;
 
     // View state variables.
+    hasFocus: boolean = false;
+    isOpen: boolean = false;
+    isBelow: boolean = true;
     private filterEnabled: boolean = true;
     private filterInputWidth: number = 1;
-    private hasFocus: boolean = false;
-    private isBelow: boolean = true;
     private isDisabled: boolean = false;
-    private isOpen: boolean = false;
     private placeholderView: string = '';
 
     private clearClicked: boolean = false;
