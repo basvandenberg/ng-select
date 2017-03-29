@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="1.0.0-beta.6"></a>
+## [1.0.0-beta.6](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.5...1.0.0-beta.6) (2017-..-..)
+
+### Features
+### Bug fixes
+### Improvements
+
+
+
 <a name="1.0.0-beta.5"></a>
 ## [1.0.0-beta.5](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.4...1.0.0-beta.5) (2017-03-29)
 
