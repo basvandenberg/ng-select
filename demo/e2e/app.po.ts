@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class Angular2SelectDocsPage {
+export class Demo4Page {
   navigateTo() {
     return browser.get('/');
   }
