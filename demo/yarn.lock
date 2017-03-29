@@ -2998,9 +2998,9 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-ng-select@1.0.0-beta.4:
-  version "1.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/ng-select/-/ng-select-1.0.0-beta.4.tgz#01c2c9afea1169c37d348e17b2fe5bf29c80f1e7"
+ng-select@1.0.0-beta.5:
+  version "1.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/ng-select/-/ng-select-1.0.0-beta.5.tgz#1ba39ed4f5aaac2b132c8f7672e3040d78ef0739"
 
 no-case@^2.2.0:
   version "2.3.1"
