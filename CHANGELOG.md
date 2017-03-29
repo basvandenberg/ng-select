@@ -4,7 +4,10 @@
 ## [1.0.0-beta.5](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.4...1.0.0-beta.5) (2017-..-..)
 
 ### Features
+
 ### Bug fixes
+- Make view properties public, fix for angular4 (#144, 145).
+
 ### Improvements
 
 
