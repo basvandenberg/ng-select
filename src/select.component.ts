@@ -35,6 +35,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     @Input() placeholder: string = '';
     @Input() filterPlaceholder: string = '';
     @Input() label: string = '';
+    @Input() autoClose: boolean = true;
 
     @Output() opened: EventEmitter<null> = new EventEmitter<null>();
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();
@@ -96,7 +97,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     // Window.
 
     onWindowClick() {
-        if (!this.selectContainerClicked) {
+        if (!this.selectContainerClicked && this.autoClose) {
             this.closeDropdown();
         }
         this.clearClicked = false;
