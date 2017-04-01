@@ -109,7 +109,7 @@ var packages = {
 | notFoundMsg        | `string`          | `"No results found"`  | The message shown if no options are found for the current filter input value.              |
 | placeholder        | `string`          | `""`                  | Placeholder text that is shown if no options are selected.
 | filterPlaceholder  | `string`          | `""`                  | Placeholder text that is shown on the filter input (**single select only**).
-| autoClose          | `boolean`         | `true`                | If set to true, the select window won't close on selecting/deselecting options.            |
+| autoClose          | `boolean`         | `true`                | If set to false, the select window won't close on selecting/deselecting options.            |
 
 \* Object that implements the IOption interface (`{value: string, label: string}`)
 
