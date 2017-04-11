@@ -419,6 +419,24 @@
         </md-card-content>
     </md-card>
 
+    <h1 id="filter">Add Separator</h1>
+
+    <md-card>
+        <md-card-title>
+            Add a separator
+        </md-card-title>
+        <md-card-content>
+            <ng-select
+                [options]="OPTIONS_BASIC"
+                separator="+"
+                [multiple]="true"
+                [noFilter]="10">
+            </ng-select>
+            <p>Use the <code>separator</code> property to have the separator text added in between options</p>
+            <section [innerHTML]="sample21html" highlight-js-content=".highlight"></section>
+        </md-card-content>
+    </md-card>
+
     <h1 id="dropdown">Open/close dropdown</h1>
 
     <md-card>

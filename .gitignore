@@ -8,3 +8,4 @@ yarn-error.log
 *.orig
 *.swp
 *.tgz
+/.vscode

@@ -84,6 +84,11 @@ ng-select {
             padding: 0 10px;
             width: 100%;
 
+            >div.select-separator {
+                margin-right: 4px;
+                font-size: 25px;
+            }
+
             >div.option {
                 background-color: #eee;
                 border: 1px solid #aaa;

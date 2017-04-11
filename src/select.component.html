@@ -39,14 +39,16 @@
 
     <div class="multiple"
         *ngIf="multiple">
-        <div class="option"
-            *ngFor="let option of optionList.selection">
-            <span class="deselect-option"
-                (click)=onDeselectOptionClick(option)>
-                &#x2715;
-            </span>
-            {{option.label}}
-        </div>
+        <ng-template ngFor let-option let-last="last" [ngForOf]="optionList.selection">
+            <div class="option">
+                <span class="deselect-option"
+                    (click)=onDeselectOptionClick(option)>
+                    &#x2715;
+                </span>
+                {{option.label}}
+            </div>
+            <div class="select-separator" *ngIf="!last">{{separator}}</div>
+        </ng-template>
         <input
             *ngIf="filterEnabled"
             #filterInput

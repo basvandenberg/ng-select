@@ -338,6 +338,14 @@ ngOnInit() {
 &lt;/ng-select&gt;
 </code></pre>`;
 
+    sample21html = `
+<pre><code class="html">&lt;ng-select
+    [options]="characters"
+    [multiple]="true"
+    [separator]="+"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
 
     /** Sample data **/
 
