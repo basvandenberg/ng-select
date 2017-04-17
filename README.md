@@ -109,6 +109,7 @@ var packages = {
 | notFoundMsg        | `string`          | `"No results found"`  | The message shown if no options are found for the current filter input value.              |
 | placeholder        | `string`          | `""`                  | Placeholder text that is shown if no options are selected.
 | filterPlaceholder  | `string`          | `""`                  | Placeholder text that is shown on the filter input (**single select only**).
+| separator          | `string`          | `""`                  | Separator text that is shown between the selected fields (**multiple select only**).
 
 \* Object that implements the IOption interface (`{value: string, label: string}`)
 
