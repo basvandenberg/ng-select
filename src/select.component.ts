@@ -380,9 +380,6 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         if (this.multiple && this.filterEnabled) {
             this.filterInput.nativeElement.value = '';
         }
-        else {
-            this.dropdown.clearFilterInput();
-        }
     }
 
     private setMultipleFilterInput(value: string) {

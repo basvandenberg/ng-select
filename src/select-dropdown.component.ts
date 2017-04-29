@@ -123,12 +123,6 @@ export class SelectDropdownComponent
         }
     }
 
-    clearFilterInput() {
-        if (this.filterEnabled) {
-            this.filterInput.nativeElement.value = '';
-        }
-    }
-
     moveHighlightedIntoView() {
 
         let list = this.optionsList.nativeElement;
