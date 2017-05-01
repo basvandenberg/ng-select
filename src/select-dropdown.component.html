@@ -16,17 +16,20 @@
         #optionsList>
         <ul
             (wheel)="onOptionsWheel($event)">
-            <li *ngFor="let option of optionList.filtered"
-                [ngClass]="{'highlighted': option.highlighted, 'selected': option.selected, 'disabled': option.disabled}"
-                [ngStyle]="getOptionStyle(option)"
-                (click)="onOptionClick(option)"
-                (mouseover)="onOptionMouseover(option)">
-                {{option.label}}
-            </li>
-            <li
-                *ngIf="!optionList.hasShown"
-                class="message">
-                {{notFoundMsg}}
+            <li *ngFor="let option of optionList.filtered">
+                <div [ngClass]="{'not-allowed-cursor': option.disabled}">
+                    <div [ngClass]="{'highlighted': option.highlighted, 'selected': option.selected, 'disabled': option.disabled}"
+                        [ngStyle]="getOptionStyle(option)"
+                        (click)="onOptionClick(option)"
+                        (mouseover)="onOptionMouseover(option)">
+                        {{option.label}}
+                    </div>
+                    <div
+                        *ngIf="!optionList.hasShown"
+                        class="message">
+                        {{notFoundMsg}}
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

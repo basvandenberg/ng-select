@@ -12,113 +12,115 @@ ng-select {
 
     // Container.
     >div {
-        border: 1px solid #ddd;
-        box-sizing: border-box;
-        cursor: pointer;
-        user-select: none;
-        width: 100%;
-
-        &.open {
-
-        }
-
-        &.focus {
-
-        }
-
-        &.below {
-
-        }
-
-        &.disabled {
-            background-color: #eee;
-            color: #aaa;
-            cursor: default;
-            pointer-events: none;
-        }
-
-        >div.single {
-            display: flex;
-            height: 30px;
+        >div {
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            cursor: pointer;
+            user-select: none;
             width: 100%;
 
-            >div.value,
-            >div.placeholder {
-                flex: 1;
-                line-height: 30px;
-                overflow: hidden;
-                padding: 0 10px;
-                white-space: nowrap;
+            &.open {
+
             }
 
-            >div.placeholder {
-                color: #a9a9a9;
+            &.focus {
+
             }
 
-            >div.clear,
-            >div.toggle {
-                color: #aaa;
-                line-height: 30px;
-                text-align: center;
-                width: 30px;
+            &.below {
 
-                &:hover {
-                    background-color: #ececec;
-                }
             }
 
-            >div.clear {
-                font-size:18px;
-            }
-
-            >div.toggle {
-                font-size:14px;
-            }
-        }
-
-        >div.multiple {
-            display: flex;
-            flex-flow: row wrap;
-            height: 100%;
-            min-height: 30px;
-            padding: 0 10px;
-            width: 100%;
-
-            >div.option {
+            &.disabled {
                 background-color: #eee;
-                border: 1px solid #aaa;
-                border-radius: 4px;
-                color: #333;
+                color: #aaa;
                 cursor: default;
-                display: inline-block;
-                flex-shrink: 0;
-                font-size: 14px;
-                line-height: 22px;
-                margin: 3px 5px 3px 0;
-                padding: 0 4px;
+                pointer-events: none;
+            }
 
-                span.deselect-option {
+            >div.single {
+                display: flex;
+                height: 30px;
+                width: 100%;
+
+                >div.value,
+                >div.placeholder {
+                    flex: 1;
+                    line-height: 30px;
+                    overflow: hidden;
+                    padding: 0 10px;
+                    white-space: nowrap;
+                }
+
+                >div.placeholder {
+                    color: #a9a9a9;
+                }
+
+                >div.clear,
+                >div.toggle {
                     color: #aaa;
-                    cursor: pointer;
-                    font-size: 14px;
-                    height: 20px;
-                    line-height: 20px;
+                    line-height: 30px;
+                    text-align: center;
+                    width: 30px;
 
                     &:hover {
-                        color: #555;
+                        background-color: #ececec;
                     }
+                }
+
+                >div.clear {
+                    font-size:18px;
+                }
+
+                >div.toggle {
+                    font-size:14px;
                 }
             }
 
-            input {
-                background-color: transparent;
-                border: none;
-                height: 30px;
-                line-height: 30px;
-                padding: 0;
+            >div.multiple {
+                display: flex;
+                flex-flow: row wrap;
+                height: 100%;
+                min-height: 30px;
+                padding: 0 10px;
+                width: 100%;
 
-                &:focus {
-                    outline: none;
+                >div.option {
+                    background-color: #eee;
+                    border: 1px solid #aaa;
+                    border-radius: 4px;
+                    color: #333;
+                    cursor: default;
+                    display: inline-block;
+                    flex-shrink: 0;
+                    font-size: 14px;
+                    line-height: 22px;
+                    margin: 3px 5px 3px 0;
+                    padding: 0 4px;
+
+                    span.deselect-option {
+                        color: #aaa;
+                        cursor: pointer;
+                        font-size: 14px;
+                        height: 20px;
+                        line-height: 20px;
+
+                        &:hover {
+                            color: #555;
+                        }
+                    }
+                }
+
+                input {
+                    background-color: transparent;
+                    border: none;
+                    height: 30px;
+                    line-height: 30px;
+                    padding: 0;
+
+                    &:focus {
+                        outline: none;
+                    }
                 }
             }
         }
@@ -130,5 +132,9 @@ ng-select {
         display: block;
         font-size: 13px;
         padding: 4px 0;
+    }
+
+    .not-allowed-cursor {
+        cursor: not-allowed;
     }
 }
