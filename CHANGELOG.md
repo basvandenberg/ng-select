@@ -10,7 +10,7 @@
 - Enable/disable filter (based on noFilter) if list of options changes (#146).
 
 ### Improvements
-
+- Updated dependencies.
 
 
 <a name="1.0.0-beta.5"></a>
