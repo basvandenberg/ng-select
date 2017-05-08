@@ -1,6 +1,21 @@
 <md-toolbar
     color="primary">
-    <span>Select component for angular</span>
+	<button
+		md-icon-button
+		(click)="sidenav.toggle()">
+        <md-icon>menu</md-icon>
+	</button>
+    <a
+        md-button
+        routerLink="/home">
+        ng-select
+    </a>
+    <a
+        md-button
+        routerLink="/examples"
+        routerLinkActive="active">
+        Examples
+    </a>
 </md-toolbar>
 
 <div class="main-container">

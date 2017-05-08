@@ -6,7 +6,7 @@ import {SelectComponent, IOption} from 'ng-select';
 declare var hljs: any;
 
 @Component({
-  selector: 'app-root',
+  selector: 'ng-select-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
@@ -503,4 +503,3 @@ ngOnInit() {
         {label: 'Zem', value: '137'}
     ];
 }
-
