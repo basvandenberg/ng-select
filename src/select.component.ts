@@ -310,7 +310,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     /** Select. **/
 
     private selectOption(option: Option) {
-        if (!option.selected) {
+        if (!option.selected && !option.disabled) {
             this.optionList.select(option, this.multiple);
             this.valueChanged();
             this.selected.emit(option.wrappedOption);
