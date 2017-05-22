@@ -12,7 +12,7 @@ select-dropdown {
         border: 1px solid #ccc;
         border-top: none;
         box-sizing: border-box;
-        position: fixed;
+        position: absolute;
         z-index: 1;
 
         .filter {
