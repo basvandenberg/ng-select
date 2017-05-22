@@ -482,13 +482,13 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     private updateWidth() {
-        this.width = this.selectionSpan.nativeElement.offsetWidth;
+        this.width = this.selectionSpan.nativeElement.getBoundingClientRect().width;
     }
 
     private updatePosition() {
-        let e = this.selectionSpan.nativeElement;
-        this.left = e.offsetLeft;
-        this.top = e.offsetTop + e.offsetHeight;
+        let boundingClientRect = this.selectionSpan.nativeElement.getBoundingClientRect();
+        this.left = boundingClientRect.left;
+        this.top = boundingClientRect.top + boundingClientRect.height;
     }
 
     private updateFilterWidth() {
