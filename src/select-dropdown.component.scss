@@ -12,7 +12,7 @@ select-dropdown {
         border: 1px solid #ccc;
         border-top: none;
         box-sizing: border-box;
-        position: absolute;
+        position: fixed;
         z-index: 1;
 
         .filter {
@@ -44,7 +44,7 @@ select-dropdown {
             }
         }
     }
-        
+
     .selected {
         background-color: #e0e0e0;
 
