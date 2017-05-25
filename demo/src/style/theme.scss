@@ -2,7 +2,7 @@
 
 @include mat-core();
 
-$bd-app-primary: mat-palette($mat-light-green, 800, 400, 900);
+$bd-app-primary: mat-palette($mat-indigo, 800, 400, 900);
 $bd-app-accent: mat-palette($mat-amber, 600, A100, 800);
 $bd-app-warn: mat-palette($mat-orange);
 

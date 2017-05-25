@@ -1,6 +1,6 @@
 @import './variables';
 
-html, body, bd-app {
+html, body, ng-select-app {
   margin: 0;
   width: 100%;
   height: 100%;
@@ -18,6 +18,7 @@ html {
 }
 
 body {
+    background-color: #f5f5f5;
     font-family: $open-sans;
     font-size: 1em;
 }

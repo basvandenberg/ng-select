@@ -1,0 +1,28 @@
+<h2>Basic example</h2>
+
+<md-card>
+    <md-card-title>
+        Single select
+    </md-card-title>
+    <md-card-content>
+        <ng-select
+            [options]="characters">
+        </ng-select>
+        <p>Add a select component to your template using the <code>ng-select</code> tag, and use the <code>options</code> property to bind it to your list of options.
+        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
+    </md-card-content>
+</md-card>
+
+<md-card>
+    <md-card-title>
+        Multiple select
+    </md-card-title>
+    <md-card-content>
+        <ng-select
+            [options]="characters"
+            [multiple]="true">
+        </ng-select>
+        <p>Set the <code>multiple</code> property to <code>true</code> to get a multiple select component.
+        <section [innerHTML]="sample01html" highlight-js-content=".highlight"></section>
+    </md-card-content>
+</md-card>
