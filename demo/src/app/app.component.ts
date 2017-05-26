@@ -13,7 +13,7 @@ declare var hljs: any;
 export class AppComponent {
 
     static readonly SCREEN_BREAKPOINT: number = 600;
-    private smallScreen: boolean = false;
+    smallScreen: boolean = false;
 
     /** Event listeners **/
 

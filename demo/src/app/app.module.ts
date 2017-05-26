@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 
 import { Basic} from './components/examples/basic.component';
 
+import { OptionService } from './services/option.service';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -27,6 +29,7 @@ import { Basic} from './components/examples/basic.component';
         SelectModule
     ],
     providers: [
+        OptionService
     ],
     bootstrap: [
         AppComponent
