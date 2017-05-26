@@ -49,7 +49,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     @ViewChild('filterInput') filterInput: any;
 
     private _value: Array<any> = [];
-    private optionList: OptionList;
+    private optionList: OptionList = new OptionList([]);
 
     // Selection state variables.
     hasSelected: boolean = false;
@@ -83,12 +83,14 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     ngOnChanges(changes: any) {
-        if (changes.hasOwnProperty('options')) {
-            this.updateOptionsList(changes['options'].isFirstChange());
-        }
-        let numOptions: number = this.optionList.options.length;
-        let minNumOptions: number = this.noFilter;
-        this.filterEnabled = numOptions >= minNumOptions;
+        setTimeout(() => {
+            if (changes.hasOwnProperty('options')) {
+                this.updateOptionsList(changes['options'].isFirstChange());
+            }
+            let numOptions: number = this.optionList.options.length;
+            let minNumOptions: number = this.noFilter;
+            this.filterEnabled = numOptions >= minNumOptions;
+        });
     }
 
     // Window.
@@ -201,15 +203,19 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     select(value: string) {
-        this.optionList.getOptionsByValue(value).forEach((option) => {
-            this.selectOption(option);
+        setTimeout(() => {
+            this.optionList.getOptionsByValue(value).forEach((option) => {
+                this.selectOption(option);
+            });
         });
     }
 
     /** ControlValueAccessor interface methods. **/
 
     writeValue(value: any) {
-        this.value = value;
+        setTimeout(() => {
+            this.value = value;
+        });
     }
 
     registerOnChange(fn: (_: any) => void) {
