@@ -1,5 +1,4 @@
-import {Component, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef, ElementRef
-} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef, ElementRef} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 import {STYLE} from './select.component.css';
 import {TEMPLATE} from './select.component.html';
@@ -75,8 +74,9 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     private onChange = (_: any) => {};
     private onTouched = () => {};
 
-    constructor(private hostElement: ElementRef) {
-    }
+    constructor(
+        private hostElement: ElementRef
+    ) {}
 
     /** Event handlers. **/
 
@@ -496,10 +496,10 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     private updatePosition() {
-        const hostBoundingClientRect = this.hostElement.nativeElement.getBoundingClientRect();
-        const spanBoundingClientRect = this.selectionSpan.nativeElement.getBoundingClientRect();
-        this.left = spanBoundingClientRect.left - hostBoundingClientRect.left;
-        this.top = (spanBoundingClientRect.top - hostBoundingClientRect.top) + spanBoundingClientRect.height;
+        const hostRect = this.hostElement.nativeElement.getBoundingClientRect();
+        const spanRect = this.selectionSpan.nativeElement.getBoundingClientRect();
+        this.left = spanRect.left - hostRect.left;
+        this.top = (spanRect.top - hostRect.top) + spanRect.height;
     }
 
     private updateFilterWidth() {
