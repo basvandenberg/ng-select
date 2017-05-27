@@ -1,3 +1,26 @@
-.hljs {
-    padding: .8em;
+@import './variables';
+
+code {
+    font-size: 0.9em;
+
+    &.hljs {
+        font-size: 0.9em;
+        line-height: 1rem;
+        padding: .8em;
+    }
+
+    /*&::after,
+    &::before {
+        letter-spacing: -0.2em;
+        content: "\00a0";
+    }*/
+}
+
+p {
+    color: mat-color($mat-grey, 900);
+    font-family: $roboto-slab;
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 1rem 0;
 }

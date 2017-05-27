@@ -1,23 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
-import { RouterModule } from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {MaterialModule} from '@angular/material';
+import {RouterModule} from '@angular/router';
 
-import { SelectModule } from 'ng-select';
+import {SelectModule} from 'ng-select';
 
-import { appRoutes } from './app.router';
-import { AppComponent } from './app.component';
+import {appRoutes} from './app.router';
+import {AppComponent} from './app.component';
 
-import { Basic} from './components/examples/basic.component';
+import {Basic} from './components/examples/basic.component';
+import {LoadOptions} from './components/examples/load-options.component';
 
-import { OptionService } from './services/option.service';
+import {OptionService} from './services/option.service';
 
 @NgModule({
     declarations: [
         AppComponent,
-        Basic
+        Basic,
+        LoadOptions
     ],
     imports: [
         BrowserModule,

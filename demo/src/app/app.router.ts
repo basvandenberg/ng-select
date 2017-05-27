@@ -1,6 +1,7 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
-import { Basic } from './components/examples/basic.component';
+import {Basic} from './components/examples/basic.component';
+import {LoadOptions} from './components/examples/load-options.component';
 
 export const appRoutes: Routes = [{
     path: '',
@@ -9,4 +10,10 @@ export const appRoutes: Routes = [{
 }, {
     path: 'home',
     component: Basic
+}, {
+    path: 'examples/getting-started',
+    component: Basic
+}, {
+    path: 'examples/load-options',
+    component: LoadOptions
 }];

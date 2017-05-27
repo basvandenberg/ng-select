@@ -23,7 +23,25 @@
         #sidenav
 		[mode]="smallScreen ? 'over' : 'side'"
         [opened]="smallScreen ? false : true">
-		Drawer content
+		<nav>
+            <h3>Header</h3>
+            <ul>
+                <li>
+                    <a
+                        routerLink="/examples/getting-started"
+                        routerLinkActive="active">
+                        Link
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/load-options"
+                        routerLinkActive="active">
+                        Link
+                    </a>
+                </li>
+            </ul>
+        </nav>
 	</md-sidenav>
 
     <div class="content-container">
