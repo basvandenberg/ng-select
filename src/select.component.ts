@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef, ElementRef} from '@angular/core';
+import {Component, HostListener, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef, ElementRef} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 import {STYLE} from './select.component.css';
 import {TEMPLATE} from './select.component.html';
@@ -23,30 +23,35 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
 
 export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit {
 
-    @Input() options: Array<IOption>;
+    // Data input.
+    @Input() options: Array<IOption> = [];
 
+    // Functionality settings.
     @Input() allowClear: boolean = false;
     @Input() disabled: boolean = false;
-    @Input() highlightColor: string;
-    @Input() highlightTextColor: string;
     @Input() multiple: boolean = false;
     @Input() noFilter: number = 0;
+
+    // Style settings.
+    @Input() highlightColor: string;
+    @Input() highlightTextColor: string;
+
+    // Text settings.
     @Input() notFoundMsg: string = 'No results found';
     @Input() placeholder: string = '';
     @Input() filterPlaceholder: string = '';
     @Input() label: string = '';
 
-    @Output() opened: EventEmitter<null> = new EventEmitter<null>();
-    @Output() closed: EventEmitter<null> = new EventEmitter<null>();
-    @Output() selected: EventEmitter<IOption> = new EventEmitter<IOption>();
-    @Output() deselected: EventEmitter<IOption | IOption[]> =
-        new EventEmitter<IOption | IOption[]>();
-    @Output() noOptionsFound: EventEmitter<string> =
-        new EventEmitter<string>();
+    // Output events.
+    @Output() opened = new EventEmitter<null>();
+    @Output() closed = new EventEmitter<null>();
+    @Output() selected = new EventEmitter<IOption>();
+    @Output() deselected = new EventEmitter<IOption | IOption[]>();
+    @Output() noOptionsFound = new EventEmitter<string>();
 
-    @ViewChild('selection') selectionSpan: any;
+    @ViewChild('selection') selectionSpan: ElementRef;
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
-    @ViewChild('filterInput') filterInput: any;
+    @ViewChild('filterInput') filterInput: ElementRef;
 
     private _value: Array<any> = [];
     private optionList: OptionList = new OptionList([]);
@@ -80,8 +85,6 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
     /** Event handlers. **/
 
-    // Angular lifecycle hooks.
-
     ngOnInit() {
         this.placeholderView = this.placeholder;
     }
@@ -97,8 +100,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         });
     }
 
-    // Window.
-
+    @HostListener('window:click')
     onWindowClick() {
         if (!this.selectContainerClicked) {
             this.closeDropdown();
@@ -107,11 +109,10 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         this.selectContainerClicked = false;
     }
 
+    @HostListener('window:resize')
     onWindowResize() {
         this.updateWidth();
     }
-
-    // Select container.
 
     onSelectContainerClick(event: any) {
         this.selectContainerClicked = true;
@@ -128,63 +129,35 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         this.handleSelectContainerKeydown(event);
     }
 
-    // Dropdown container.
-
     onDropdownOptionClicked(option: Option) {
-        this.multiple ?
-            this.toggleSelectOption(option) : this.selectOption(option);
+        this.multiple ? this.toggleSelectOption(option) : this.selectOption(option);
     }
 
     onDropdownClose(focus: any) {
         this.closeDropdown(focus);
     }
 
-    // Single filter input.
-
     onSingleFilterClick() {
         this.selectContainerClicked = true;
     }
 
-    onSingleFilterInput(term: string) {
-        let hasShown: boolean = this.optionList.filter(term);
-        if (!hasShown) {
-            this.noOptionsFound.emit(term);
-        }
+    onFilterInput(term: string) {
+        this.filter(term);
     }
 
     onSingleFilterKeydown(event: any) {
         this.handleSingleFilterKeydown(event);
     }
 
-    // Multiple filter input.
-
-    onMultipleFilterInput(event: any) {
-        if (!this.isOpen) {
-            this.openDropdown();
-        }
-        this.updateFilterWidth();
-        setTimeout(() => {
-            let term: string = event.target.value;
-            let hasShown: boolean = this.optionList.filter(term);
-            if (!hasShown) {
-                this.noOptionsFound.emit(term);
-            }
-        });
-    }
-
     onMultipleFilterKeydown(event: any) {
         this.handleMultipleFilterKeydown(event);
     }
-
-    // Single clear select.
 
     onClearSelectionClick(event: any) {
         this.clearClicked = true;
         this.clearSelection();
         this.closeDropdown(true);
     }
-
-    // Multiple deselect option.
 
     onDeselectOptionClick(option: Option) {
         this.clearClicked = true;
@@ -267,7 +240,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         this.onChange(this.value);
     }
 
-    /** Initialization. **/
+    /** Options. **/
 
     private updateOptionsList(firstTime: boolean) {
         let v: Array<string>;
@@ -383,6 +356,21 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     /** Filter. **/
+
+    private filter(term: string) {
+        if (this.multiple) {
+            if (!this.isOpen) {
+                this.openDropdown();
+            }
+            this.updateFilterWidth();
+        }
+        setTimeout(() => {
+            let hasShown: boolean = this.optionList.filter(term);
+            if (!hasShown) {
+                this.noOptionsFound.emit(term);
+            }
+        });
+    }
 
     private clearFilterInput() {
         if (this.multiple && this.filterEnabled) {

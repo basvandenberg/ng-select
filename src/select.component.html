@@ -8,9 +8,7 @@
     [ngClass]="{'open': isOpen, 'focus': hasFocus, 'below': isBelow, 'disabled': disabled}"
     (click)="onSelectContainerClick($event)"
     (focus)="onSelectContainerFocus()"
-    (keydown)="onSelectContainerKeydown($event)"
-    (window:click)="onWindowClick()"
-    (window:resize)="onWindowResize()">
+    (keydown)="onSelectContainerKeydown($event)">
 
     <div class="single"
         *ngIf="!multiple">
@@ -54,7 +52,7 @@
             tabindex="-1"
             [placeholder]="placeholderView"
             [ngStyle]="{'width.px': filterInputWidth}"
-            (input)="onMultipleFilterInput($event)"
+            (input)="onFilterInput($event.target.value)"
             (keydown)="onMultipleFilterKeydown($event)"/>
     </div>
 
@@ -75,6 +73,6 @@
     (close)="onDropdownClose($event)"
     (optionClicked)="onDropdownOptionClicked($event)"
     (singleFilterClick)="onSingleFilterClick()"
-    (singleFilterInput)="onSingleFilterInput($event)"
+    (singleFilterInput)="onFilterInput($event)"
     (singleFilterKeydown)="onSingleFilterKeydown($event)">
 </select-dropdown>
