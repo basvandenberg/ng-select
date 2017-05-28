@@ -12,6 +12,7 @@ import {AppComponent} from './app.component';
 
 import {Basic} from './components/examples/basic.component';
 import {LoadOptions} from './components/examples/load-options.component';
+import {LoadOptionsAsyncPipe} from './components/examples/load-options-async-pipe.component';
 
 import {OptionService} from './services/option.service';
 
@@ -19,7 +20,8 @@ import {OptionService} from './services/option.service';
     declarations: [
         AppComponent,
         Basic,
-        LoadOptions
+        LoadOptions,
+        LoadOptionsAsyncPipe
     ],
     imports: [
         BrowserModule,

@@ -1,3 +1,4 @@
+<!-- HEADER -->
 <md-toolbar
     color="primary">
 	<button
@@ -19,6 +20,8 @@
 </md-toolbar>
 
 <md-sidenav-container>
+
+    <!-- SIDEBAR -->
     <md-sidenav
         #sidenav
 		[mode]="smallScreen ? 'over' : 'side'"
@@ -37,16 +40,26 @@
                     <a
                         routerLink="/examples/load-options"
                         routerLinkActive="active">
-                        Link
+                        Load options
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/load-options-async-pipe"
+                        routerLinkActive="active">
+                        Load options async pipe
                     </a>
                 </li>
             </ul>
         </nav>
 	</md-sidenav>
 
-    <div class="content-container">
+    <!-- CONTENT -->
+    <div class="main-container">
         <div class="center-container">
-            <router-outlet></router-outlet>
+            <div class="content-container">
+                <router-outlet></router-outlet>
+            </div>
         </div>
 	</div>
 </md-sidenav-container>

@@ -8,12 +8,11 @@
 
     /** Content container **/
 
-    .content-container {
+    .main-container {
         background-color: mat-color($mat-grey, 50);
         height: 100%;
         left: 0px;
         overflow-y: auto;
-        position: relative;
         top: 0px;
         width: 100%;
 
@@ -23,7 +22,16 @@
             min-width: 320px;
             margin-left: auto;
             margin-right: auto;
-            padding: 0 20px;
+            position: relative;
+
+            .content-container {
+                height: 100%;
+                left: 0;
+                width: 100%;
+                padding: 0 20px;
+                position: absolute;
+                top: 0;
+            }
         }
     }
 }
