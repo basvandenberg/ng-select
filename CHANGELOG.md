@@ -4,6 +4,7 @@
 ## [1.0.0-beta.6](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.5...1.0.0-beta.6) (2017-..-..)
 
 ### Features
+- Blur and focus output events (#170).
 
 ### Bug fixes
 - Stop clearing the (single select) filter input in the drop down (#162).
