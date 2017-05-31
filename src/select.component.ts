@@ -47,6 +47,8 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     @Output() closed = new EventEmitter<null>();
     @Output() selected = new EventEmitter<IOption>();
     @Output() deselected = new EventEmitter<IOption | IOption[]>();
+    @Output() focus = new EventEmitter<null>();
+    @Output() blur = new EventEmitter<null>();
     @Output() noOptionsFound = new EventEmitter<string>();
 
     @ViewChild('selection') selectionSpan: ElementRef;
@@ -63,6 +65,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     hasFocus: boolean = false;
     isOpen: boolean = false;
     isBelow: boolean = true;
+
     private filterEnabled: boolean = true;
     private filterInputWidth: number = 1;
     private isDisabled: boolean = false;
@@ -70,6 +73,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
     private clearClicked: boolean = false;
     private selectContainerClicked: boolean = false;
+    private selectOptionClicked: boolean = false;
 
     // Width and position for the dropdown container.
     private width: number;
@@ -100,13 +104,22 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         });
     }
 
+    @HostListener('window:blur')
+    onWindowBlur() {
+        this._blur();
+    }
+
     @HostListener('window:click')
     onWindowClick() {
         if (!this.selectContainerClicked) {
-            this.closeDropdown();
+            this.closeDropdown(this.selectOptionClicked);
+            if (!this.selectOptionClicked) {
+                this._blur();
+            }
         }
         this.clearClicked = false;
         this.selectContainerClicked = false;
+        this.selectOptionClicked = false;
     }
 
     @HostListener('window:resize')
@@ -122,7 +135,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     onSelectContainerFocus() {
-        this.onTouched();
+        this._focus();
     }
 
     onSelectContainerKeydown(event: any) {
@@ -130,15 +143,16 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     onDropdownOptionClicked(option: Option) {
+        this.selectOptionClicked = true;
         this.multiple ? this.toggleSelectOption(option) : this.selectOption(option);
-    }
-
-    onDropdownClose(focus: any) {
-        this.closeDropdown(focus);
     }
 
     onSingleFilterClick() {
         this.selectContainerClicked = true;
+    }
+
+    onSingleFilterFocus() {
+        this._focus();
     }
 
     onFilterInput(term: string) {
@@ -151,6 +165,10 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
     onMultipleFilterKeydown(event: any) {
         this.handleMultipleFilterKeydown(event);
+    }
+
+    onMultipleFilterFocus() {
+        this._focus();
     }
 
     onClearSelectionClick(event: any) {
@@ -172,7 +190,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     close() {
-        this.closeDropdown();
+        this.closeDropdown(false);
     }
 
     clear() {
@@ -277,12 +295,12 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         }
     }
 
-    private closeDropdown(focus: boolean = false) {
+    private closeDropdown(focus: boolean) {
         if (this.isOpen) {
             this.clearFilterInput();
             this.isOpen = false;
             if (focus) {
-                this.focus();
+                this._focusSelectContainer();
             }
             this.closed.emit(null);
         }
@@ -400,12 +418,12 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         let key = event.which;
 
         if (this.isOpen) {
-            if (key === this.KEYS.ESC ||
-                    (key === this.KEYS.UP && event.altKey)) {
+            if (key === this.KEYS.ESC || (key === this.KEYS.UP && event.altKey)) {
                 this.closeDropdown(true);
             }
             else if (key === this.KEYS.TAB) {
-                this.closeDropdown();
+                this.closeDropdown(event.shiftKey);
+                this._blur();
             }
             else if (key === this.KEYS.ENTER) {
                 this.selectHighlightedOption();
@@ -437,6 +455,9 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
                  */
                 setTimeout(() => { this.openDropdown(); });
             }
+            else if (key === this.KEYS.TAB) {
+                this._blur();
+            }
         }
 
     }
@@ -464,19 +485,23 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
     /** View. **/
 
-    focus() {
-        this.hasFocus = true;
-        if (this.multiple && this.filterEnabled) {
-            this.filterInput.nativeElement.focus();
-        }
-        else {
-            this.selectionSpan.nativeElement.focus();
+    _blur() {
+        if (this.hasFocus) {
+            this.hasFocus = false;
+            this.onTouched();
+            this.blur.emit(null);
         }
     }
 
-    blur() {
-        this.hasFocus = false;
-        this.selectionSpan.nativeElement.blur();
+    _focus() {
+        if (!this.hasFocus) {
+            this.hasFocus = true;
+            this.focus.emit(null);
+        }
+    }
+
+    _focusSelectContainer() {
+        this.selectionSpan.nativeElement.focus();
     }
 
     private updateWidth() {

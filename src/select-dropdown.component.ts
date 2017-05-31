@@ -36,9 +36,9 @@ export class SelectDropdownComponent
     @Input() width: number;
     @Input() placeholder: string;
 
-    @Output() close = new EventEmitter<boolean>();
     @Output() optionClicked = new EventEmitter<Option>();
     @Output() singleFilterClick = new EventEmitter<null>();
+    @Output() singleFilterFocus = new EventEmitter<null>();
     @Output() singleFilterInput = new EventEmitter<string>();
     @Output() singleFilterKeydown = new EventEmitter<any>();
 
@@ -49,8 +49,6 @@ export class SelectDropdownComponent
     disabledTextColor: string = '9e9e9e';
 
     /** Event handlers. **/
-
-    // Angular life cycle hooks.
 
     ngOnInit() {
         this.optionsReset();
@@ -69,8 +67,6 @@ export class SelectDropdownComponent
         }
     }
 
-    // Filter input (single select).
-
     onSingleFilterClick(event: any) {
         this.singleFilterClick.emit(null);
     }
@@ -83,7 +79,9 @@ export class SelectDropdownComponent
         this.singleFilterKeydown.emit(event);
     }
 
-    // Options list.
+    onSingleFilterFocus() {
+        this.singleFilterFocus.emit(null);
+    }
 
     onOptionsWheel(event: any) {
         this.handleOptionsWheel(event);

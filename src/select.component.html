@@ -7,6 +7,7 @@
     [attr.tabindex]="disabled ? null : 0"
     [ngClass]="{'open': isOpen, 'focus': hasFocus, 'below': isBelow, 'disabled': disabled}"
     (click)="onSelectContainerClick($event)"
+    (blur)="onSelectContainerBlur()"
     (focus)="onSelectContainerFocus()"
     (keydown)="onSelectContainerKeydown($event)">
 
@@ -53,7 +54,8 @@
             [placeholder]="placeholderView"
             [ngStyle]="{'width.px': filterInputWidth}"
             (input)="onFilterInput($event.target.value)"
-            (keydown)="onMultipleFilterKeydown($event)"/>
+            (keydown)="onMultipleFilterKeydown($event)"
+            (focus)="onMultipleFilterFocus()"/>
     </div>
 
 </div>
@@ -70,9 +72,9 @@
     [width]="width"
     [top]="top"
     [left]="left"
-    (close)="onDropdownClose($event)"
     (optionClicked)="onDropdownOptionClicked($event)"
     (singleFilterClick)="onSingleFilterClick()"
+    (singleFilterFocus)="onSingleFilterFocus()"
     (singleFilterInput)="onFilterInput($event)"
     (singleFilterKeydown)="onSingleFilterKeydown($event)">
 </select-dropdown>
