@@ -1,0 +1,34 @@
+<h2>Basic example</h2>
+
+<md-card>
+    <md-card-title>
+        Single select
+    </md-card-title>
+    <md-card-content>
+        <div *ngIf="hasFocus">Focus</div>
+        <div *ngIf="!hasFocus">No focus</div>
+        <div>{{msg}}</div>
+        <ng-select
+            [options]="characters"
+            [(ngModel)]="selectedCharacter"
+            (blur)="onBlur()"
+            (focus)="onFocus()">
+        </ng-select>
+        <p>Test</p>
+        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
+        <p>Test</p>
+        <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
+    </md-card-content>
+</md-card>
+
+<md-card>
+    <md-card-title>
+        Multiple select
+    </md-card-title>
+    <md-card-content>
+        <ng-select
+            [options]="characters"
+            [multiple]="true">
+        </ng-select>
+    </md-card-content>
+</md-card>
