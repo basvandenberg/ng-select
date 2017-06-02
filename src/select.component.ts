@@ -94,14 +94,14 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     ngOnChanges(changes: any) {
-        setTimeout(() => {
+        // setTimeout(() => {
             if (changes.hasOwnProperty('options')) {
                 this.updateOptionsList(changes['options'].isFirstChange());
             }
             let numOptions: number = this.optionList.options.length;
             let minNumOptions: number = this.noFilter;
             this.filterEnabled = numOptions >= minNumOptions;
-        });
+        // });
     }
 
     @HostListener('window:blur')
@@ -198,19 +198,19 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     select(value: string) {
-        setTimeout(() => {
+        // setTimeout(() => {
             this.optionList.getOptionsByValue(value).forEach((option) => {
                 this.selectOption(option);
             });
-        });
+        // });
     }
 
     /** ControlValueAccessor interface methods. **/
 
     writeValue(value: any) {
-        setTimeout(() => {
+        // setTimeout(() => {
             this.value = value;
-        });
+        // });
     }
 
     registerOnChange(fn: (_: any) => void) {
@@ -242,18 +242,24 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
             throw new TypeError('Value must be a string or an array.');
         }
 
-        if (!OptionList.equalValues(v, this._value)) {
-            this.optionList.value = v;
-            this.valueChanged();
-        }
-    }
+        // if (!OptionList.equalValues(v, this._value)) {
+            // this.optionList.value = v;
+            // Wrong, only if it was user action select...
+            // this.valueChanged();
+        // }
 
-    private valueChanged() {
+        this.optionList.value = v;
         this._value = this.optionList.value;
 
         this.hasSelected = this._value.length > 0;
         this.placeholderView = this.hasSelected ? '' : this.placeholder;
         this.updateFilterWidth();
+
+    }
+
+    private valueChanged() {
+        // Simply ignore it if the value is not in the option list.
+        // this._value = this.optionList.value;
 
         this.onChange(this.value);
     }
@@ -261,18 +267,19 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     /** Options. **/
 
     private updateOptionsList(firstTime: boolean) {
-        let v: Array<string>;
+        // let v: Array<string>;
 
-        if (!firstTime) {
-            v = this.optionList.value;
-        }
+        // if (!firstTime) {
+        //    v = this.optionList.value;
+        // }
 
         this.optionList = new OptionList(this.options);
+        this.optionList.value = this._value;
 
-        if (!firstTime) {
-            this.optionList.value = v;
-            this.valueChanged();
-        }
+        // if (!firstTime) {
+        //    this.optionList.value = v;
+        //    this.valueChanged();
+        // }
     }
 
     /** Dropdown. **/
@@ -311,6 +318,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     private selectOption(option: Option) {
         if (!option.selected && !option.disabled) {
             this.optionList.select(option, this.multiple);
+            // TODO set value...
             this.valueChanged();
             this.selected.emit(option.wrappedOption);
         }
@@ -319,6 +327,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     private deselectOption(option: Option) {
         if (option.selected) {
             this.optionList.deselect(option);
+            // TODO set value...
             this.valueChanged();
             this.deselected.emit(option.wrappedOption);
             setTimeout(() => {
@@ -337,6 +346,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         let selection: Array<Option> = this.optionList.selection;
         if (selection.length > 0) {
             this.optionList.clearSelection();
+            // TODO set value...
             this.valueChanged();
 
             if (selection.length === 1) {
@@ -351,8 +361,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     private toggleSelectOption(option: Option) {
-        option.selected ?
-            this.deselectOption(option) : this.selectOption(option);
+        option.selected ? this.deselectOption(option) : this.selectOption(option);
     }
 
     private selectHighlightedOption() {
