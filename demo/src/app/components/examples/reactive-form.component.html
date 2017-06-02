@@ -1,0 +1,44 @@
+<h2>Basic example</h2>
+
+<md-card>
+    <md-card-title>
+        Single select
+    </md-card-title>
+    <md-card-content>
+        <div>Form dirty: {{form.get('characterSelect').dirty}}</div>
+        <div>Form pristine: {{form.get('characterSelect').pristine}}</div>
+        <div>Form touched: {{form.get('characterSelect').touched}}</div>
+        <div>Untouched: {{form.get('characterSelect').untouched}}</div>
+        <div>Valid: {{form.get('characterSelect').valid}}</div>
+        <form
+            novalidate
+            [formGroup]="form">
+            <ng-select
+                formControlName="characterSelect"
+                [allowClear]="true"
+                [options]="characters">
+            </ng-select>
+            <button
+                [disabled]="!form.valid"
+                md-button>
+                Submit
+            </button>
+        </form>
+        <p>Add a select component to your template using the <code>ng-select</code> tag, and use the <code>options</code> property to bind it to your list of options.</p>
+        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
+        <p>Test</p>
+        <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
+    </md-card-content>
+</md-card>
+
+<!--md-card>
+    <md-card-title>
+        Multiple select
+    </md-card-title>
+    <md-card-content>
+        <ng-select
+            [options]="characters"
+            [multiple]="true">
+        </ng-select>
+    </md-card-content>
+</md-card-->
