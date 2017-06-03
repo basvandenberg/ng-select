@@ -1,7 +1,7 @@
 {
     "rules": {
         "class-name": true,
-        "comment-format": [true, "check-space"],
+        "comment-format": [],
         "indent": [true, "spaces"],
         "no-duplicate-variable": true,
         "no-eval": true,
