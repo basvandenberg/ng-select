@@ -9,6 +9,7 @@
 ### Bug fixes
 - Stop clearing the (single select) filter input in the drop down (#162).
 - Enable/disable filter (based on noFilter) if list of options changes (#146).
+- Skip disabled options when navigating option list with up/down keys (#182).
 
 ### Improvements
 - Updated dependencies.
