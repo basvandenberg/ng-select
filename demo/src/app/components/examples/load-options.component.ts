@@ -23,7 +23,7 @@ import { OptionService } from '../../services/option.service';
 export class BasicExample implements OnInit {
 
     characters: Array&lt;IOption&gt;;
-    selectedCharacter: string;
+    selectedCharacter: string = '2';
 
     constructor(
         private optionService: OptionService
@@ -32,14 +32,13 @@ export class BasicExample implements OnInit {
     ngOnInit() {
         this.optionService.loadOptions().subscribe((options) => {
             this.characters = options;
-            this.selectedCharacter = '2';
         });
     }
 }
 </pre></code>`;
 
     characters: Array<IOption>;
-    selectedCharacter: string;
+    selectedCharacter: string = '2';
 
     private dataSub: Subscription = null;
 
@@ -51,7 +50,6 @@ export class BasicExample implements OnInit {
     ngOnInit() {
         this.dataSub = this.optionService.loadOptions().subscribe((options) => {
             this.characters = options;
-            this.selectedCharacter = '2';
         });
     }
 
