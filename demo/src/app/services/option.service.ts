@@ -9,6 +9,13 @@ export class OptionService {
         return this.clonedOptions();
     }
 
+    getOptionsDisabled(): Array<IOption> {
+        let options: Array<IOption> = this.clonedOptions();
+        options[1].disabled = true;
+        options[4].disabled = true;
+        return options;
+    }
+
     loadOptions(): Observable<Array<IOption>> {
         return new Observable((obs) => {
             setTimeout(() => {

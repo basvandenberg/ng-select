@@ -10,6 +10,7 @@
         <div>Form touched: {{form.get('characterSelect').touched}}</div>
         <div>Untouched: {{form.get('characterSelect').untouched}}</div>
         <div>Valid: {{form.get('characterSelect').valid}}</div>
+        <div>Form value: {{form.value | json}}</div>
         <form
             novalidate
             [formGroup]="form">

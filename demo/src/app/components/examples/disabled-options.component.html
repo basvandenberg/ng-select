@@ -1,0 +1,17 @@
+<h2>Disabled options</h2>
+
+<md-card>
+    <md-card-title>
+        Single select
+    </md-card-title>
+    <md-card-content>
+        <ng-select
+            [options]="characters"
+            [(ngModel)]="selectedCharacter">
+        </ng-select>
+        <p></p>
+        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
+        <p></p>
+        <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
+    </md-card-content>
+</md-card>

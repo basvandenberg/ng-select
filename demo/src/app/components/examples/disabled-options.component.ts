@@ -1,19 +1,17 @@
 import {AfterViewInit, Component, ElementRef} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs/Subscription';
 import {IOption} from 'ng-select';
 declare var hljs: any;
 import {OptionService} from '../../services/option.service';
 
 @Component({
-    selector: 'reactive-form',
-    templateUrl: 'reactive-form.component.html'
+    selector: 'basic',
+    templateUrl: 'basic.component.html'
 })
-export class ReactiveForm implements AfterViewInit {
+export class DisabledOptions implements AfterViewInit {
 
     html: string = `
 <pre><code class="html">&lt;ng-select
-    [options]="characters"
-    [(ngModel)]="selectedCharacter"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
     ts: string = `
@@ -21,7 +19,7 @@ export class ReactiveForm implements AfterViewInit {
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
-export class BasicExample {
+export class DisabledOptionsExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getOptions();
     selectedCharacter: string = '3';
@@ -32,24 +30,13 @@ export class BasicExample {
 }
 </pre></code>`;
 
-    characters: Array<IOption>; // = this.optionService.getOptions();
-    defaultCharacter: string = '3';
-
-    form: FormGroup;
+    characters: Array<IOption> = this.optionService.getOptionsDisabled();
+    selectedCharacter: string = '3';
 
     constructor(
         private elementRef: ElementRef,
         private optionService: OptionService
     ) {}
-
-    ngOnInit() {
-        this.form = new FormGroup({
-            characterSelect: new FormControl(this.defaultCharacter, Validators.required)
-        });
-        this.optionService.loadOptions().subscribe((options: Array<IOption>) => {
-            this.characters = options;
-        });
-    }
 
     ngAfterViewInit() {
         hljs.initHighlighting();
