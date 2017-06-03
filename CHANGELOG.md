@@ -10,9 +10,14 @@
 - Stop clearing the (single select) filter input in the drop down (#162).
 - Enable/disable filter (based on noFilter) if list of options changes (#146).
 - Skip disabled options when navigating option list with up/down keys (#182).
+- Set value, also if there is no option with this value present yet, this 
+  prevents having to use setTimeout when setting a value directly after 
+  setting/updating options (#169, #130).
+- Call the onChange only for user (de)select actions (#176).
 
 ### Improvements
 - Updated dependencies.
+
 
 
 <a name="1.0.0-beta.5"></a>

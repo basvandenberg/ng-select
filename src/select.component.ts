@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef, ElementRef} from '@angular/core';
+import {Component, HostListener, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef, ElementRef, SimpleChange, SimpleChanges} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 import {STYLE} from './select.component.css';
 import {TEMPLATE} from './select.component.html';
@@ -93,15 +93,8 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         this.placeholderView = this.placeholder;
     }
 
-    ngOnChanges(changes: any) {
-        // setTimeout(() => {
-            if (changes.hasOwnProperty('options')) {
-                this.updateOptionsList(changes['options'].isFirstChange());
-            }
-            let numOptions: number = this.optionList.options.length;
-            let minNumOptions: number = this.noFilter;
-            this.filterEnabled = numOptions >= minNumOptions;
-        // });
+    ngOnChanges(changes: SimpleChanges) {
+        this.handleInputChanges(changes);
     }
 
     @HostListener('window:blur')
@@ -197,20 +190,14 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         this.clearSelection();
     }
 
-    select(value: string) {
-        // setTimeout(() => {
-            this.optionList.getOptionsByValue(value).forEach((option) => {
-                this.selectOption(option);
-            });
-        // });
+    select(value: string | Array<string>) {
+        this.writeValue(value);
     }
 
     /** ControlValueAccessor interface methods. **/
 
     writeValue(value: any) {
-        // setTimeout(() => {
-            this.value = value;
-        // });
+        this.value = value;
     }
 
     registerOnChange(fn: (_: any) => void) {
@@ -223,6 +210,29 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
     setDisabledState(isDisabled: boolean) {
         this.disabled = isDisabled;
+    }
+
+    /** Input change handling. **/
+
+    private handleInputChanges(changes: SimpleChanges) {
+        let optionsChanged: boolean = changes.hasOwnProperty('options');
+        let noFilterChanged: boolean = changes.hasOwnProperty('noFilter');
+
+        if (optionsChanged) {
+            this.updateOptionList(changes.options.currentValue);
+        }
+        if (optionsChanged || noFilterChanged) {
+            this.updateFilterEnabled();
+        }
+    }
+
+    private updateOptionList(options: Array<IOption>) {
+        this.optionList = new OptionList(options);
+        this.optionList.value = this._value;
+    }
+
+    private updateFilterEnabled() {
+        this.filterEnabled = this.optionList.options.length >= this.noFilter;
     }
 
     /** Value. **/
@@ -242,44 +252,85 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
             throw new TypeError('Value must be a string or an array.');
         }
 
-        // if (!OptionList.equalValues(v, this._value)) {
-            // this.optionList.value = v;
-            // Wrong, only if it was user action select...
-            // this.valueChanged();
-        // }
-
         this.optionList.value = v;
-        this._value = this.optionList.value;
-
-        this.hasSelected = this._value.length > 0;
-        this.placeholderView = this.hasSelected ? '' : this.placeholder;
-        this.updateFilterWidth();
-
+        this._value = v;
+        this.updateState();
     }
 
     private valueChanged() {
-        // Simply ignore it if the value is not in the option list.
-        // this._value = this.optionList.value;
-
+        this._value = this.optionList.value;
         this.onChange(this.value);
     }
 
-    /** Options. **/
+    private updateState() {
+        this.hasSelected = this._value.length > 0;
+        this.placeholderView = this.hasSelected ? '' : this.placeholder;
+        this.updateFilterWidth();
+    }
 
-    private updateOptionsList(firstTime: boolean) {
-        // let v: Array<string>;
+    /** Select. **/
 
-        // if (!firstTime) {
-        //    v = this.optionList.value;
-        // }
+    private selectOption(option: Option) {
+        if (!option.selected && !option.disabled) {
+            this.optionList.select(option, this.multiple);
+            this.valueChanged();
+            this.selected.emit(option.wrappedOption);
+        }
+    }
 
-        this.optionList = new OptionList(this.options);
-        this.optionList.value = this._value;
+    private deselectOption(option: Option) {
+        if (option.selected) {
+            this.optionList.deselect(option);
+            this.valueChanged();
+            this.deselected.emit(option.wrappedOption);
 
-        // if (!firstTime) {
-        //    this.optionList.value = v;
-        //    this.valueChanged();
-        // }
+            setTimeout(() => {
+                if (this.multiple) {
+                    this.updatePosition();
+                    this.optionList.highlight();
+                    if (this.isOpen) {
+                        this.dropdown.moveHighlightedIntoView();
+                    }
+                }
+            });
+        }
+    }
+
+    private clearSelection() {
+        let selection: Array<Option> = this.optionList.selection;
+        if (selection.length > 0) {
+            this.optionList.clearSelection();
+            this.valueChanged();
+
+            if (selection.length === 1) {
+                this.deselected.emit(selection[0].wrappedOption);
+            }
+            else {
+                this.deselected.emit(selection.map(option => option.wrappedOption));
+            }
+        }
+    }
+
+    private toggleSelectOption(option: Option) {
+        option.selected ? this.deselectOption(option) : this.selectOption(option);
+    }
+
+    private selectHighlightedOption() {
+        let option: Option = this.optionList.highlightedOption;
+        if (option !== null) {
+            this.selectOption(option);
+            this.closeDropdown(true);
+        }
+    }
+
+    private deselectLast() {
+        let sel: Array<Option> = this.optionList.selection;
+
+        if (sel.length > 0) {
+            let option: Option = sel[sel.length - 1];
+            this.deselectOption(option);
+            this.setMultipleFilterInput(option.label + ' ');
+        }
     }
 
     /** Dropdown. **/
@@ -310,75 +361,6 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
                 this._focusSelectContainer();
             }
             this.closed.emit(null);
-        }
-    }
-
-    /** Select. **/
-
-    private selectOption(option: Option) {
-        if (!option.selected && !option.disabled) {
-            this.optionList.select(option, this.multiple);
-            // TODO set value...
-            this.valueChanged();
-            this.selected.emit(option.wrappedOption);
-        }
-    }
-
-    private deselectOption(option: Option) {
-        if (option.selected) {
-            this.optionList.deselect(option);
-            // TODO set value...
-            this.valueChanged();
-            this.deselected.emit(option.wrappedOption);
-            setTimeout(() => {
-                if (this.multiple) {
-                    this.updatePosition();
-                    this.optionList.highlight();
-                    if (this.isOpen) {
-                        this.dropdown.moveHighlightedIntoView();
-                    }
-                }
-            });
-        }
-    }
-
-    private clearSelection() {
-        let selection: Array<Option> = this.optionList.selection;
-        if (selection.length > 0) {
-            this.optionList.clearSelection();
-            // TODO set value...
-            this.valueChanged();
-
-            if (selection.length === 1) {
-                this.deselected.emit(selection[0].wrappedOption);
-            }
-            else {
-                this.deselected.emit(selection.map((option) => {
-                    return option.wrappedOption;
-                }));
-            }
-        }
-    }
-
-    private toggleSelectOption(option: Option) {
-        option.selected ? this.deselectOption(option) : this.selectOption(option);
-    }
-
-    private selectHighlightedOption() {
-        let option: Option = this.optionList.highlightedOption;
-        if (option !== null) {
-            this.selectOption(option);
-            this.closeDropdown(true);
-        }
-    }
-
-    private deselectLast() {
-        let sel: Array<Option> = this.optionList.selection;
-
-        if (sel.length > 0) {
-            let option: Option = sel[sel.length - 1];
-            this.deselectOption(option);
-            this.setMultipleFilterInput(option.label + ' ');
         }
     }
 
