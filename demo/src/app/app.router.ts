@@ -3,6 +3,7 @@ import {Routes} from '@angular/router';
 import {Basic} from './components/examples/basic.component';
 import {ReactiveForm} from './components/examples/reactive-form.component';
 import {TemplateDrivenForm} from './components/examples/template-driven-form.component';
+import {NoFilter} from './components/examples/no-filter.component';
 import {Focus} from './components/examples/focus.component';
 import {LoadOptions} from './components/examples/load-options.component';
 import {LoadOptionsAsyncPipe} from './components/examples/load-options-async-pipe.component';
@@ -24,6 +25,9 @@ export const appRoutes: Routes = [{
 }, {
     path: 'examples/template-driven-form',
     component: TemplateDrivenForm
+}, {
+    path: 'examples/no-filter',
+    component: NoFilter
 }, {
     path: 'examples/disabled-options',
     component: DisabledOptions

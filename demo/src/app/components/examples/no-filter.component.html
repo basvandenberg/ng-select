@@ -1,0 +1,40 @@
+<h2>No filter</h2>
+
+<md-card>
+    <md-card-title>
+        Single select
+    </md-card-title>
+    <md-card-content>
+        <ng-select
+            [options]="characters"
+            [allowClear]="true"
+            [noFilter]="10"
+            placeholder="Select your favorite character"
+            [(ngModel)]="selectedCharacter">
+        </ng-select>
+        <p></p>
+        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
+        <p></p>
+        <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
+    </md-card-content>
+</md-card>
+
+<md-card>
+    <md-card-title>
+        Multiple select
+    </md-card-title>
+    <md-card-content>
+        <ng-select
+            [options]="characters"
+            [multiple]="true"
+            [allowClear]="true"
+            [noFilter]="10"
+            placeholder="Select your favorite character"
+            [(ngModel)]="selectedCharacter">
+        </ng-select>
+        <p></p>
+        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
+        <p></p>
+        <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
+    </md-card-content>
+</md-card>
