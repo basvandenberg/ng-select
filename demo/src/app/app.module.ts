@@ -14,6 +14,7 @@ import {Basic} from './components/examples/basic.component';
 import {ReactiveForm} from './components/examples/reactive-form.component';
 import {TemplateDrivenForm} from './components/examples/template-driven-form.component';
 import {NoFilter} from './components/examples/no-filter.component';
+import {CloseOnSelect} from './components/examples/close-on-select.component';
 import {Focus} from './components/examples/focus.component';
 import {LoadOptions} from './components/examples/load-options.component';
 import {LoadOptionsAsyncPipe} from './components/examples/load-options-async-pipe.component';
@@ -28,6 +29,7 @@ import {OptionService} from './services/option.service';
         ReactiveForm,
         TemplateDrivenForm,
         NoFilter,
+        CloseOnSelect,
         Focus,
         LoadOptions,
         LoadOptionsAsyncPipe,
