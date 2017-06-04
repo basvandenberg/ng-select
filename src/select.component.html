@@ -13,15 +13,15 @@
     <div class="single"
         *ngIf="!multiple">
         <div class="value"
-            *ngIf="optionList.hasSelected()">
+            *ngIf="optionList.hasSelected">
             {{optionList.selection[0].label}}
         </div>
         <div class="placeholder"
-            *ngIf="!optionList.hasSelected()">
+            *ngIf="!optionList.hasSelected">
             {{placeholderView}}
         </div>
         <div class="clear"
-            *ngIf="allowClear && hasSelected"
+            *ngIf="allowClear && optionList.hasSelected"
             (click)="onClearSelectionClick($event)">
             &#x2715;
         </div>
@@ -44,6 +44,10 @@
                 &#x2715;
             </span>
             {{option.label}}
+        </div>
+        <div class="placeholder"
+            *ngIf="!filterEnabled && !optionList.hasSelected">
+            {{placeholderView}}
         </div>
         <input
             *ngIf="filterEnabled"

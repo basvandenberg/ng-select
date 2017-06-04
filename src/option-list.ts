@@ -13,6 +13,14 @@ export class OptionList {
 
     private _highlightedOption: Option = null;
     private _hasShown: boolean;
+    private _hasSelected: boolean;
+
+    get hasShown(): boolean {
+        return this._hasShown;
+    }
+    get hasSelected(): boolean {
+        return this._hasSelected;
+    }
 
     constructor(options: Array<IOption>) {
 
@@ -56,6 +64,7 @@ export class OptionList {
         this.options.forEach((option) => {
             option.selected = v.indexOf(option.value) > -1;
         });
+        this.updateHasSelected();
     }
 
     /** Selection. **/
@@ -69,16 +78,23 @@ export class OptionList {
             this.clearSelection();
         }
         option.selected = true;
+        this.updateHasSelected();
     }
 
     deselect(option: Option) {
         option.selected = false;
+        this.updateHasSelected();
     }
 
     clearSelection() {
         this.options.forEach((option) => {
             option.selected = false;
         });
+        this._hasSelected = false;
+    }
+
+    private updateHasSelected() {
+        this._hasSelected = this.options.some(option => option.selected);
     }
 
     /** Filter. **/
@@ -183,16 +199,6 @@ export class OptionList {
     }
 
     /** Util. **/
-
-    get hasShown(): boolean {
-        return this._hasShown;
-    }
-
-    hasSelected() {
-        return this.options.some((option) => {
-            return option.selected;
-        });
-    }
 
     hasShownSelected() {
         return this.options.some((option) => {

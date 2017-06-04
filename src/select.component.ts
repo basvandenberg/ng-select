@@ -58,9 +58,6 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     private _value: Array<any> = [];
     private optionList: OptionList = new OptionList([]);
 
-    // Selection state variables.
-    hasSelected: boolean = false;
-
     // View state variables.
     hasFocus: boolean = false;
     isOpen: boolean = false;
@@ -259,12 +256,12 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
     private valueChanged() {
         this._value = this.optionList.value;
+        this.updateState();
         this.onChange(this.value);
     }
 
     private updateState() {
-        this.hasSelected = this._value.length > 0;
-        this.placeholderView = this.hasSelected ? '' : this.placeholder;
+        this.placeholderView = this.optionList.hasSelected ? '' : this.placeholder;
         this.updateFilterWidth();
     }
 
@@ -457,7 +454,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         let key = event.which;
 
         if (key === this.KEYS.BACKSPACE) {
-            if (this.hasSelected && this.filterEnabled &&
+            if (this.optionList.hasSelected && this.filterEnabled &&
                     this.filterInput.nativeElement.value === '') {
                 this.deselectLast();
             }

@@ -10,10 +10,11 @@
 - Stop clearing the (single select) filter input in the drop down (#162).
 - Enable/disable filter (based on noFilter) if list of options changes (#146).
 - Skip disabled options when navigating option list with up/down keys (#182).
-- Set value, also if there is no option with this value present yet, this 
-  prevents having to use setTimeout when setting a value directly after 
+- Set value, also if there is no option with this value present yet, this
+  prevents having to use setTimeout when setting a value directly after
   setting/updating options (#169, #130).
 - Call the onChange only for user (de)select actions (#176).
+- Fix missing placeholder (multiple select) if filter is hidden (#110).
 
 ### Improvements
 - Updated dependencies.
@@ -166,7 +167,7 @@ Fixes for use with angular4.
 
 ### Improvements
 
-- Set ViewEncapsulation to None to enable style override ([#16] (https://github.com/basvandenberg/ng-select/issues/16)). 
+- Set ViewEncapsulation to None to enable style override ([#16] (https://github.com/basvandenberg/ng-select/issues/16)).
 
 
 
@@ -195,4 +196,3 @@ Fixes for use with angular4.
 - Update current selection when option list is changed ([#6] (https://github.com/basvandenberg/ng-select/issues/6)).
 - Prevent javascript error when list of options is empty ([#7] (https://github.com/basvandenberg/ng-select/issues/7)).
 - Prevent javascript error when clicking the 'No results found' option ([#8] (https://github.com/basvandenberg/ng-select/issues/8)).
-
