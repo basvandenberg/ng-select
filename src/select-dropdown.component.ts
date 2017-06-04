@@ -37,6 +37,7 @@ export class SelectDropdownComponent
     @Input() placeholder: string;
 
     @Output() optionClicked = new EventEmitter<Option>();
+    @Output() optionsListClick = new EventEmitter<null>();
     @Output() singleFilterClick = new EventEmitter<null>();
     @Output() singleFilterFocus = new EventEmitter<null>();
     @Output() singleFilterInput = new EventEmitter<string>();
@@ -67,7 +68,11 @@ export class SelectDropdownComponent
         }
     }
 
-    onSingleFilterClick(event: any) {
+    onOptionsListClick() {
+        this.optionsListClick.emit(null);
+    }
+
+    onSingleFilterClick() {
         this.singleFilterClick.emit(null);
     }
 

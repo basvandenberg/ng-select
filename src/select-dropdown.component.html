@@ -7,13 +7,14 @@
             #filterInput
             autocomplete="off"
             [placeholder]="placeholder"
-            (click)="onSingleFilterClick($event)"
+            (click)="onSingleFilterClick()"
             (input)="onSingleFilterInput($event)"
             (keydown)="onSingleFilterKeydown($event)"
             (focus)="onSingleFilterFocus()">
     </div>
 
     <div class="options"
+        (click)="onOptionsListClick()"
         #optionsList>
         <ul
             (wheel)="onOptionsWheel($event)">

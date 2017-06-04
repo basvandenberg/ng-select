@@ -70,7 +70,8 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
     private clearClicked: boolean = false;
     private selectContainerClicked: boolean = false;
-    private selectOptionClicked: boolean = false;
+    private optionListClicked: boolean = false;
+    private optionClicked: boolean = false;
 
     // Width and position for the dropdown container.
     private width: number;
@@ -101,15 +102,17 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
     @HostListener('window:click')
     onWindowClick() {
-        if (!this.selectContainerClicked) {
-            this.closeDropdown(this.selectOptionClicked);
-            if (!this.selectOptionClicked) {
+        if (!this.selectContainerClicked &&
+            (!this.optionListClicked || (this.optionListClicked && this.optionClicked))) {
+            this.closeDropdown(this.optionClicked);
+            if (!this.optionClicked) {
                 this._blur();
             }
         }
         this.clearClicked = false;
         this.selectContainerClicked = false;
-        this.selectOptionClicked = false;
+        this.optionListClicked = false;
+        this.optionClicked = false;
     }
 
     @HostListener('window:resize')
@@ -132,8 +135,12 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         this.handleSelectContainerKeydown(event);
     }
 
+    onOptionsListClick() {
+        this.optionListClicked = true;
+    }
+
     onDropdownOptionClicked(option: Option) {
-        this.selectOptionClicked = true;
+        this.optionClicked = true;
         this.multiple ? this.toggleSelectOption(option) : this.selectOption(option);
     }
 
