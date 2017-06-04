@@ -20,6 +20,7 @@ ng-select-app {
             font-size: inherit;
             height: $toolbar-height;
             line-height: $toolbar-height;
+            min-width: 48px;
         }
     }
 }

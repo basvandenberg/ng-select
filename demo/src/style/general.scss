@@ -1,5 +1,9 @@
 @import './variables';
 
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
 code {
     font-size: 0.9em;
 

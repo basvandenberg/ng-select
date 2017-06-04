@@ -1,5 +1,6 @@
 import {Routes} from '@angular/router';
 
+import {Home} from './components/home.component';
 import {Basic} from './components/examples/basic.component';
 import {ReactiveForm} from './components/examples/reactive-form.component';
 import {TemplateDrivenForm} from './components/examples/template-driven-form.component';
@@ -16,7 +17,7 @@ export const appRoutes: Routes = [{
     pathMatch: 'full'
 }, {
     path: 'home',
-    component: Basic
+    component: Home
 }, {
     path: 'examples/getting-started',
     component: Basic

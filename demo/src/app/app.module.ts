@@ -10,6 +10,8 @@ import {SelectModule} from 'ng-select';
 import {appRoutes} from './app.router';
 import {AppComponent} from './app.component';
 
+import {Home} from './components/home.component';
+
 import {Basic} from './components/examples/basic.component';
 import {ReactiveForm} from './components/examples/reactive-form.component';
 import {TemplateDrivenForm} from './components/examples/template-driven-form.component';
@@ -25,6 +27,7 @@ import {OptionService} from './services/option.service';
 @NgModule({
     declarations: [
         AppComponent,
+        Home,
         Basic,
         ReactiveForm,
         TemplateDrivenForm,
