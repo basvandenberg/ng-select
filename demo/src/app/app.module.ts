@@ -11,6 +11,7 @@ import {appRoutes} from './app.router';
 import {AppComponent} from './app.component';
 
 import {Home} from './components/home.component';
+import {Footer} from './components/footer.component';
 
 import {Basic} from './components/examples/basic.component';
 import {ReactiveForm} from './components/examples/reactive-form.component';
@@ -28,6 +29,7 @@ import {OptionService} from './services/option.service';
     declarations: [
         AppComponent,
         Home,
+        Footer,
         Basic,
         ReactiveForm,
         TemplateDrivenForm,

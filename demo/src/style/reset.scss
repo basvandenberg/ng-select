@@ -28,6 +28,6 @@ p {
 }
 
 a {
-    color: $bd-black;
+    color: mat-color($mat-blue, 800);
     text-decoration: none;
 }
