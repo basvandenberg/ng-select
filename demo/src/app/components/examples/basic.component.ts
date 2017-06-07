@@ -32,7 +32,7 @@ export class BasicExample {
 }
 </pre></code>`;
 
-    characters: Array<IOption> = this.optionService.getOptions();
+    characters: Array<IOption> = this.optionService.getCharacters();
     selectedCharacter: string = '3';
 
     constructor(

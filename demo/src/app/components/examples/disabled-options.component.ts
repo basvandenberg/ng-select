@@ -30,7 +30,7 @@ export class DisabledOptionsExample {
 }
 </pre></code>`;
 
-    characters: Array<IOption> = this.optionService.getOptionsDisabled();
+    characters: Array<IOption> = this.optionService.getCharactersWithDisabled();
     selectedCharacter: string = '3';
 
     constructor(

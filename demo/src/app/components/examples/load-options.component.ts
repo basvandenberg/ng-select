@@ -48,7 +48,7 @@ export class BasicExample implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.dataSub = this.optionService.loadOptions().subscribe((options) => {
+        this.dataSub = this.optionService.loadCharacters().subscribe((options) => {
             this.characters = options;
         });
     }

@@ -4,7 +4,8 @@ import {OptionService} from '../services/option.service';
 
 @Component({
     selector: 'home',
-    templateUrl: 'home.component.html'
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 export class Home {
 

@@ -43,7 +43,7 @@ export class Focus {
 }
 </pre></code>`;
 
-    characters: Array<IOption> = this.optionService.getOptions();
+    characters: Array<IOption> = this.optionService.getCharacters();
     selectedCharacter: string = '3';
     hasFocus: boolean = false;
     msg: string = '';

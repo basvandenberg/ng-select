@@ -5,46 +5,40 @@ import { IOption } from 'ng-select';
 @Injectable()
 export class OptionService {
 
-    getOptions(): Array<IOption> {
-        return this.clonedOptions();
+    getCharacters(): Array<IOption> {
+        return this.cloneOptions(OptionService.PLAYER_ONE);
     }
 
-    getOptionsDisabled(): Array<IOption> {
-        let options: Array<IOption> = this.clonedOptions();
-        options[1].disabled = true;
-        options[4].disabled = true;
-        return options;
+    loadCharacters(): Observable<Array<IOption>> {
+        return this.loadOptions(OptionService.PLAYER_ONE);
     }
 
-    loadOptions(): Observable<Array<IOption>> {
+    getCharactersWithDisabled(): Array<IOption> {
+        let characters: Array<IOption> = this.cloneOptions(OptionService.PLAYER_ONE);
+        characters[1].disabled = true;
+        characters[4].disabled = true;
+        return characters;
+    }
+
+    getCountries(): Array<IOption> {
+        return this.cloneOptions(OptionService.COUNTRIES);
+    }
+
+    loadCountries(): Observable<Array<IOption>> {
+        return this.loadOptions(OptionService.COUNTRIES);
+    }
+
+    private loadOptions(options: Array<IOption>): Observable<Array<IOption>> {
         return new Observable((obs) => {
             setTimeout(() => {
-                obs.next(this.clonedOptions());
+                obs.next(this.cloneOptions(options));
                 obs.complete();
             }, 2000);
         });
     }
 
-    getCountries(): Array<IOption> {
-        return this.clonedCountries();
-    }
-
-    private clonedOptions(): Array<IOption> {
-        return OptionService.PLAYER_ONE.map((option) => {
-            return {
-                value: option.value,
-                label: option.label
-            }
-        });
-    }
-
-    private clonedCountries(): Array<IOption> {
-        return OptionService.COUNTRIES.map((option) => {
-            return {
-                value: option.value,
-                label: option.label
-            }
-        });
+    private cloneOptions(options: Array<IOption>): Array<IOption> {
+        return options.map(option => ({ value: option.value, label: option.label }));
     }
 
     private static readonly PLAYER_ONE: Array<IOption> = [
@@ -57,7 +51,7 @@ export class OptionService {
 
     private static readonly COUNTRIES: Array<IOption> = [
         {value: 'AF', label: 'Afghanistan'},
-        {value: 'AX', label: '&Aring;land Islands'},
+        {value: 'AX', label: 'Åland Islands'},
         {value: 'AL', label: 'Albania'},
         {value: 'DZ', label: 'Algeria'},
         {value: 'AS', label: 'American Samoa'},
@@ -109,7 +103,7 @@ export class OptionService {
         {value: 'CD', label: 'Congo, the Democratic Republic of the'},
         {value: 'CK', label: 'Cook Islands'},
         {value: 'CR', label: 'Costa Rica'},
-        {value: 'CI', label: 'C&ocirc;te d\'Ivoire'},
+        {value: 'CI', label: 'Côte d\'Ivoire'},
         {value: 'HR', label: 'Croatia'},
         {value: 'CU', label: 'Cuba'},
         {value: 'CY', label: 'Cyprus'},

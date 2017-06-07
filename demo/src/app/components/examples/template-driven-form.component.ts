@@ -43,7 +43,7 @@ export class Focus {
 }
 </pre></code>`;
 
-    characters: Array<IOption> = this.optionService.getOptions();
+    characters: Array<IOption> = this.optionService.getCharacters();
     model = {
         character: '3'
     };

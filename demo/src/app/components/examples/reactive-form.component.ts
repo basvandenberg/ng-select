@@ -46,7 +46,7 @@ export class BasicExample {
         this.form = new FormGroup({
             characterSelect: new FormControl(this.defaultCharacter, Validators.required)
         });
-        this.optionService.loadOptions().subscribe((options: Array<IOption>) => {
+        this.optionService.loadCharacters().subscribe((options: Array<IOption>) => {
             this.characters = options;
         });
     }

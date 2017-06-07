@@ -48,7 +48,7 @@ export class BasicExample implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.charactersObservable = this.optionService.loadOptions();
+        this.charactersObservable = this.optionService.loadCharacters();
     }
 
     ngAfterViewInit() {
