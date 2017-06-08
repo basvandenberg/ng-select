@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 import {SelectComponent, IOption} from 'ng-select';
 
@@ -14,6 +14,10 @@ export class AppComponent {
 
     static readonly SCREEN_BREAKPOINT: number = 600;
     smallScreen: boolean = false;
+
+    constructor(
+        private router: Router
+    ) {}
 
     /** Event listeners **/
 

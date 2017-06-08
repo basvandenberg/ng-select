@@ -3,20 +3,26 @@
     color="primary">
 	<button
 		md-icon-button
+        [disabled]="router.url !== '/documentation'"
 		(click)="sidenav.toggle()">
         <md-icon>menu</md-icon>
 	</button>
     <a
         md-button
         routerLink="/home">
-        <!--md-icon>home</md-icon-->
         <code>ng-select</code>
     </a>
     <a
         md-button
-        routerLink="/examples"
+        routerLink="/getting-started"
         routerLinkActive="active">
-        Examples
+        {{smallScreen ? 'Start' : 'Getting started'}}
+    </a>
+    <a
+        md-button
+        routerLink="/documentation"
+        routerLinkActive="active">
+        {{smallScreen ? 'Doc' : 'Documentation'}}
     </a>
     <div class="fill-remaining-space"></div>
     <a
@@ -37,7 +43,7 @@
     <md-sidenav
         #sidenav
 		[mode]="smallScreen ? 'over' : 'side'"
-        [opened]="smallScreen ? false : true">
+        [opened]="router.url !== '/documentation' ? false : smallScreen ? false : true">
 		<nav>
             <ul>
                 <li>Getting started</li>

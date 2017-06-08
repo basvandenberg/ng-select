@@ -9,7 +9,11 @@ import {OptionService} from '../services/option.service';
 })
 export class Home {
 
+    version: string = 'v1.0.0';
+
     countries: Array<IOption> = this.optionService.getCountries();
+    singleSelectValue: string = 'NL';
+    multiSelectValue: Array<string> = ['BE', 'LU', 'NL'];
 
     constructor(
         private optionService: OptionService

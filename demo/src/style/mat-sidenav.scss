@@ -2,12 +2,12 @@
 
 ng-select-app {
     .mat-sidenav {
-        background-color: mat-color($mat-light-green, 50);
+        background-color: $bd-white;
         width: $sidenav-width;
 
         h3 {
-            background-color: mat-color($mat-light-green, 200);
-            color: mat-color($mat-light-green, 900);
+            background-color: mat-color($mat-indigo, 200);
+            color: mat-color($mat-indigo, 900);
             font-weight: 400;
             font-size: 0.9em;
             font-variant: small-caps;
@@ -36,11 +36,11 @@ ng-select-app {
                     width: 100%;
 
                     &:hover {
-                        background-color: mat-color($mat-light-green, 100);
+                        background-color: mat-color($mat-indigo, 100);
                     }
 
                     &.active {
-                        color: mat-color($mat-light-green, 900);
+                        color: mat-color($mat-indigo, 900);
                         font-weight: 600;
                     }
                 }

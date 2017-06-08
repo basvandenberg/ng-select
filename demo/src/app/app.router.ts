@@ -19,7 +19,10 @@ export const appRoutes: Routes = [{
     path: 'home',
     component: Home
 }, {
-    path: 'examples/getting-started',
+    path: 'getting-started',
+    component: Basic
+}, {
+    path: 'documentation',
     component: Basic
 }, {
     path: 'examples/reactive-form',
