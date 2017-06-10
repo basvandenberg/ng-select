@@ -21,6 +21,10 @@ ng-select-app {
             height: $toolbar-height;
             line-height: $toolbar-height;
             min-width: 48px;
+
+            &.active {
+                text-decoration: underline;
+            }
         }
     }
 }

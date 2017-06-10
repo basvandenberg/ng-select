@@ -9,22 +9,53 @@
 	</button>
     <a
         md-button
+        *ngIf="!smallScreen"
         routerLink="/home">
-        <code>ng-select</code>
+        <code>
+            ng-select
+        </code>
     </a>
     <a
+        md-icon-button
+        *ngIf="smallScreen"
+        routerLink="/home">
+        <md-icon>home</md-icon>
+    </a>
+    <a
+        *ngIf="!smallScreen"
         md-button
         routerLink="/getting-started"
         routerLinkActive="active">
-        {{smallScreen ? 'Start' : 'Getting started'}}
+        Getting started
     </a>
     <a
+        *ngIf="!smallScreen"
         md-button
         routerLink="/documentation"
         routerLinkActive="active">
-        {{smallScreen ? 'Doc' : 'Documentation'}}
+        Documentation
     </a>
     <div class="fill-remaining-space"></div>
+    <button
+        *ngIf="smallScreen"
+        md-icon-button
+        [mdMenuTriggerFor]="menu">
+        <md-icon>more_vert</md-icon>
+    </button>
+    <md-menu #menu="mdMenu">
+        <a
+            md-menu-item
+            routerLink="/getting-started"
+            routerLinkActive="active">
+            Getting started
+        </a>
+        <a
+            md-menu-item
+            routerLink="/documentation"
+            routerLinkActive="active">
+            Documentation
+        </a>
+    </md-menu>
     <a
         md-button
         href="https://github.com/basvandenberg/ng-select"

@@ -22,7 +22,7 @@ export class AppComponent {
     /** Event listeners **/
 
     ngOnInit() {
-        this.updateScreen(window.screen.width);
+        this.updateScreen(window.innerWidth);
     }
 
     @HostListener('window:resize', ['$event'])
