@@ -10,6 +10,7 @@ import {Focus} from './components/examples/focus.component';
 import {LoadOptions} from './components/examples/load-options.component';
 import {LoadOptionsAsyncPipe} from './components/examples/load-options-async-pipe.component';
 import {DisabledOptions} from './components/examples/disabled-options.component';
+import {OptionTemplate} from './components/examples/option-template.component';
 
 export const appRoutes: Routes = [{
     path: '',
@@ -39,6 +40,9 @@ export const appRoutes: Routes = [{
 }, {
     path: 'examples/disabled-options',
     component: DisabledOptions
+}, {
+    path: 'examples/option-template',
+    component: OptionTemplate
 }, {
     path: 'examples/focus',
     component: Focus

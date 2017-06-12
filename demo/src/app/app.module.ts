@@ -25,6 +25,7 @@ import {Focus} from './components/examples/focus.component';
 import {LoadOptions} from './components/examples/load-options.component';
 import {LoadOptionsAsyncPipe} from './components/examples/load-options-async-pipe.component';
 import {DisabledOptions} from './components/examples/disabled-options.component';
+import {OptionTemplate} from './components/examples/option-template.component';
 
 import {OptionService} from './services/option.service';
 
@@ -41,7 +42,8 @@ import {OptionService} from './services/option.service';
         Focus,
         LoadOptions,
         LoadOptionsAsyncPipe,
-        DisabledOptions
+        DisabledOptions,
+        OptionTemplate
     ],
     imports: [
         BrowserModule,

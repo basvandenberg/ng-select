@@ -1,0 +1,20 @@
+<md-card>
+    <md-card-title>
+        Option template
+    </md-card-title>
+    <md-card-content>
+        <ng-select
+            [options]="characters"
+            [allowClear]="true"
+            placeholder="Select your favorite character"
+            [(ngModel)]="selectedCharacter">
+            <ng-template #optionTemplate let-option="option">
+                <md-icon>whatshot</md-icon> {{option.label}}
+            </ng-template>
+        </ng-select>
+        <p></p>
+        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
+        <p></p>
+        <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
+    </md-card-content>
+</md-card>
