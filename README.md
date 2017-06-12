@@ -138,14 +138,13 @@ The following blocks can be replaced with templates inside the `ng-select` compo
 
 ```html
 <ng-select>
-    <template templateName let-contextVariable="templateVariable">{{templateVariable}}</template>
+    <template #templateName let-contextVariable="templateVariable">{{templateVariable}}</template>
 </ng-select>
 ```
 
 | Template Name          | Context Variables                                       | Description                             |
 | ---------------------- | ------------------------------------------------------- | --------------------------------------- |
-| selectionTemplate      | `option: Option`                                        | Template for selection in dropdown.     |
-| selectOptionTemplate   | `option: Option` <br> `onDeselectOptionClick: Function` | Close the select drop down.             |
+| optionTemplate         | `option: Option`                                        | Template for options in dropdown.       |
 
 ## Limitations
 
