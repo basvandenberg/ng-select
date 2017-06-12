@@ -6,10 +6,10 @@
         <ng-select
             [options]="characters"
             [allowClear]="true"
-            placeholder="Select your favorite character"
+            placeholder="Select a country"
             [(ngModel)]="selectedCharacter">
             <ng-template #optionTemplate let-option="option">
-                <md-icon>whatshot</md-icon> {{option.label}}
+                <div class="famfamfam-flags {{option?.value.toLowerCase()}}"></div>{{option?.label}}
             </ng-template>
         </ng-select>
         <p></p>

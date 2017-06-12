@@ -1664,6 +1664,10 @@ extsprintf@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.0.2.tgz#e1080e0658e300b06294990cc70e1502235fd550"
 
+famfamfam-flags@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/famfamfam-flags/-/famfamfam-flags-1.0.0.tgz#cd78f776173a2c5962713310dd70c1b141d1103c"
+
 fastparse@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"

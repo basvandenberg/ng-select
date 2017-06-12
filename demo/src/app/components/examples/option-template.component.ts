@@ -6,7 +6,8 @@ import {OptionService} from '../../services/option.service';
 
 @Component({
     selector: 'option-template',
-    templateUrl: 'option-template.component.html'
+    templateUrl: 'option-template.component.html',
+    styleUrls: ['option-template.component.scss']
 })
 export class OptionTemplate implements AfterViewInit {
 
@@ -30,8 +31,8 @@ export class DisabledOptionsExample {
 }
 </pre></code>`;
 
-    characters: Array<IOption> = this.optionService.getCharacters();
-    selectedCharacter: string = '';
+    characters: Array<IOption> = this.optionService.getCountries();
+    selectedCharacter: string = 'NL';
 
     constructor(
         private elementRef: ElementRef,
