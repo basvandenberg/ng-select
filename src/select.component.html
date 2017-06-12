@@ -14,7 +14,8 @@
         *ngIf="!multiple">
         <div class="value"
             *ngIf="optionList.hasSelected">
-            {{optionList.selection[0].label}}
+            <ng-template [ngOutletContext]="{option: optionList.selection[0], onDeselectOptionClick: onDeselectOptionClick}" [ngTemplateOutlet]="optionTemplate"></ng-template>
+            <span *ngIf="!selectionTemplate">{{optionList.selection[0].label}}</span>
         </div>
         <div class="placeholder"
             *ngIf="!optionList.hasSelected">
@@ -75,6 +76,7 @@
     [width]="width"
     [top]="top"
     [left]="left"
+    [optionTemplate]="optionTemplate"
     (optionClicked)="onDropdownOptionClicked($event)"
     (optionsListClick)="onOptionsListClick()"
     (singleFilterClick)="onSingleFilterClick()"

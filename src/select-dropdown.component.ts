@@ -1,15 +1,4 @@
-import {
-    AfterViewInit,
-    Component,
-    EventEmitter,
-    Input,
-    OnChanges,
-    OnInit,
-    Output,
-    ViewChild,
-    ViewEncapsulation
-} from '@angular/core';
-
+import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild, TemplateRef, ViewEncapsulation} from '@angular/core';
 import {STYLE} from './select-dropdown.component.css';
 import {TEMPLATE} from './select-dropdown.component.html';
 import {Option} from './option';
@@ -35,6 +24,7 @@ export class SelectDropdownComponent
     @Input() top: number;
     @Input() width: number;
     @Input() placeholder: string;
+    @Input() optionTemplate: TemplateRef<any>;
 
     @Output() optionClicked = new EventEmitter<Option>();
     @Output() optionsListClick = new EventEmitter<null>();

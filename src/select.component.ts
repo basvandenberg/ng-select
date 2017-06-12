@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef, ElementRef, SimpleChange, SimpleChanges} from '@angular/core';
+import {Component, HostListener, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef, ElementRef, SimpleChange, SimpleChanges, ContentChild, TemplateRef} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 import {STYLE} from './select.component.css';
 import {TEMPLATE} from './select.component.html';
@@ -54,6 +54,8 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     @ViewChild('selection') selectionSpan: ElementRef;
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
     @ViewChild('filterInput') filterInput: ElementRef;
+
+    @ContentChild('optionTemplate') optionTemplate: TemplateRef<any>;
 
     private _value: Array<any> = [];
     private optionList: OptionList = new OptionList([]);
