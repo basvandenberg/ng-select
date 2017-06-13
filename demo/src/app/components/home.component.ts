@@ -9,7 +9,7 @@ import {OptionService} from '../services/option.service';
 })
 export class Home {
 
-    version: string = 'v1.0.0';
+    version: string = 'beta.6';
 
     countries: Array<IOption> = this.optionService.getCountries();
     singleSelectValue: string = 'NL';

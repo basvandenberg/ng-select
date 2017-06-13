@@ -1,6 +1,8 @@
 import {Routes} from '@angular/router';
 
 import {Home} from './components/home.component';
+import {GettingStarted} from './components/getting-started.component';
+
 import {Basic} from './components/examples/basic.component';
 import {ReactiveForm} from './components/examples/reactive-form.component';
 import {TemplateDrivenForm} from './components/examples/template-driven-form.component';
@@ -21,7 +23,7 @@ export const appRoutes: Routes = [{
     component: Home
 }, {
     path: 'getting-started',
-    component: Basic
+    component: GettingStarted
 }, {
     path: 'documentation',
     component: Basic
