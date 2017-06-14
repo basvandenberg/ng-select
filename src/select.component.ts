@@ -97,6 +97,10 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         this.handleInputChanges(changes);
     }
 
+    ngAfterViewInit() {
+        this.updateState();
+    }
+
     @HostListener('window:blur')
     onWindowBlur() {
         this._blur();
@@ -223,12 +227,16 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     private handleInputChanges(changes: SimpleChanges) {
         let optionsChanged: boolean = changes.hasOwnProperty('options');
         let noFilterChanged: boolean = changes.hasOwnProperty('noFilter');
+        let placeholderChanged: boolean = changes.hasOwnProperty('placeholder');
 
         if (optionsChanged) {
             this.updateOptionList(changes.options.currentValue);
         }
         if (optionsChanged || noFilterChanged) {
             this.updateFilterEnabled();
+        }
+        if (placeholderChanged) {
+            this.updateState();
         }
     }
 
