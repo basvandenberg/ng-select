@@ -2,6 +2,7 @@ import {Routes} from '@angular/router';
 
 import {Home} from './components/home.component';
 import {GettingStarted} from './components/getting-started.component';
+import {Documentation} from './components/documentation.component';
 
 import {Basic} from './components/examples/basic.component';
 import {ReactiveForm} from './components/examples/reactive-form.component';
@@ -27,6 +28,13 @@ export const appRoutes: Routes = [{
     component: GettingStarted
 }, {
     path: 'documentation',
+    component: Documentation
+}, {
+    path: 'examples',
+    redirectTo: 'examples/basic',
+    pathMatch: 'full'
+}, {
+    path: 'examples/basic',
     component: Basic
 }, {
     path: 'examples/reactive-form',
@@ -55,7 +63,10 @@ export const appRoutes: Routes = [{
 }, {
     path: 'examples/load-options',
     component: LoadOptions
-},{
+}, {
     path: 'examples/load-options-async-pipe',
     component: LoadOptionsAsyncPipe
+}, {
+    path: '**',
+    redirectTo: '/home'
 }];

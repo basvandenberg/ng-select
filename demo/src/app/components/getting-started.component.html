@@ -3,6 +3,17 @@
         Getting started
     </md-card-title>
     <md-card-content>
-
+        <p>Assuming that you use <a>angular cli</a> for creating and building your angular app, and <a href="https://www.npmjs.com" target="_blank">npm</a> or <a href="https://yarnpkg.com" target="_blank">yarn</a> as package manager.</p>
+        <p>Install the <code>ng-select</code> package:</p>
+        <section [innerHTML]="installNpm" highlight-js-content=".highlight"></section>
+        <p>or:</p>
+        <section [innerHTML]="installYarn" highlight-js-content=".highlight"></section>
+        <p>Import the <code>SelectModule</code> into your application module:</p>
+        <section [innerHTML]="moduleTypescript" highlight-js-content=".highlight"></section>
+        <p>Add an <code>ng-select</code> component to a template:</p>
+        <section [innerHTML]="componentTemplate" highlight-js-content=".highlight"></section>
+        <p>And define the bound list of options in the corresponding component class:</p>
+        <section [innerHTML]="componentClass" highlight-js-content=".highlight"></section>
+        <p>Consult the <a routerLink="/documentation">documentation</a> for available input options and output events, and have a look at the <a routerLink="/examples">examples</a> to see how this component can be used.</p>
     </md-card-content>
 </md-card>

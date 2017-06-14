@@ -16,6 +16,7 @@ import {Footer} from './components/footer.component';
 
 import {Home} from './components/home.component';
 import {GettingStarted} from './components/getting-started.component';
+import {Documentation} from './components/documentation.component';
 
 import {Basic} from './components/examples/basic.component';
 import {ReactiveForm} from './components/examples/reactive-form.component';
@@ -39,6 +40,7 @@ import {OptionService} from './services/option.service';
 
         Home,
         GettingStarted,
+        Documentation,
 
         Basic,
         ReactiveForm,
