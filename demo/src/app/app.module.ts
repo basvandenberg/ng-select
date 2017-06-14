@@ -27,6 +27,7 @@ import {LoadOptions} from './components/examples/load-options.component';
 import {LoadOptionsAsyncPipe} from './components/examples/load-options-async-pipe.component';
 import {DisabledOptions} from './components/examples/disabled-options.component';
 import {OptionTemplate} from './components/examples/option-template.component';
+import {Placeholder} from './components/examples/placeholder.component';
 
 import {OptionService} from './services/option.service';
 
@@ -48,7 +49,8 @@ import {OptionService} from './services/option.service';
         LoadOptions,
         LoadOptionsAsyncPipe,
         DisabledOptions,
-        OptionTemplate
+        OptionTemplate,
+        Placeholder
     ],
     imports: [
         BrowserModule,

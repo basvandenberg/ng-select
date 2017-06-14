@@ -9,17 +9,10 @@
 	</button>
     <a
         md-button
-        *ngIf="!smallScreen"
         routerLink="/home">
         <code>
             ng-select
         </code>
-    </a>
-    <a
-        md-icon-button
-        *ngIf="smallScreen"
-        routerLink="/home">
-        <md-icon>home</md-icon>
     </a>
     <a
         *ngIf="!smallScreen"
@@ -123,6 +116,13 @@
                         routerLink="/examples/disabled-options"
                         routerLinkActive="active">
                         Disabled options
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/placeholder"
+                        routerLinkActive="active">
+                        Placeholder
                     </a>
                 </li>
             </ul>
