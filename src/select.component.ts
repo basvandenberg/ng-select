@@ -449,6 +449,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
             }
         }
         else {
+            // DEPRICATED --> SPACE
             if (key === this.KEYS.ENTER || key === this.KEYS.SPACE ||
                     (key === this.KEYS.DOWN && event.altKey)) {
 
