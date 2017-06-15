@@ -7,6 +7,14 @@ declare var hljs: any;
 })
 export class Documentation {
 
+    optionTemplate: string = `
+<pre><code class="html">&lt;ng-template
+    #optionTemplate
+    let-option="option"&gt;
+    &lt;span class="{{option?.value}}"&gt;-->&lt;span&gt; {{option?.label}}
+&lt;/ng-template&gt;
+</code></pre>`;
+
     constructor(
         private elementRef: ElementRef,
     ) {}

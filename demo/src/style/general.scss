@@ -4,6 +4,11 @@
     flex: 1 1 auto;
 }
 
+p,
+section {
+    max-width: 592px;
+}
+
 code {
     font-size: 0.9em;
 
@@ -27,4 +32,47 @@ p {
     font-weight: 300;
     line-height: 1.5;
     margin: 1rem 0;
+}
+
+p,
+td {
+    code {
+        background-color: mat-color($mat-grey, 100);
+        border-radius: 2px;
+        color: mat-color($mat-grey, 800);
+        padding: 0.1em 0.3em;
+    }
+}
+
+table {
+    border-collapse: collapse;
+    font-family: $open-sans;
+    font-size: 1em;
+    font-weight: 300;
+
+    thead {
+        tr {
+            th {
+                border-bottom: 3px double mat-color($mat-grey, 500);
+                font-style: italic;
+                font-weight: 500;
+                text-align: left;
+                padding: 6px 12px;
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                border-bottom: 1px solid mat-color($mat-grey, 500);
+                font-weight: 300;
+                line-height: 1.2rem;
+                padding: 6px 12px;
+
+                &.description {
+                    font-size: 0.9em;
+                }
+            }
+        }
+    }
 }

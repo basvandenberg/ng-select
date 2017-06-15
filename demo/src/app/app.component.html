@@ -82,29 +82,46 @@
 		[mode]="smallScreen ? 'over' : 'side'"
         [opened]="!router.url.startsWith('/examples') ? false : smallScreen ? false : true">
 		<nav>
-            <h3>Header</h3>
+            <h3>Basic usage</h3>
             <ul>
                 <li>
                     <a
-                        routerLink="/examples/getting-started"
+                        routerLink="/examples/basic"
                         routerLinkActive="active">
-                        Link
+                        Basic example
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/ng-model"
+                        routerLinkActive="active">
+                        Use with ngModel
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/reactive-form"
+                        routerLinkActive="active">
+                        Use in reactive form
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/template-driven-form"
+                        routerLinkActive="active">
+                        Use in template driven form
                     </a>
                 </li>
                 <li>
                     <a
                         routerLink="/examples/load-options"
                         routerLinkActive="active">
-                        Load options
+                        Loading options
                     </a>
                 </li>
-                <li>
-                    <a
-                        routerLink="/examples/load-options-async-pipe"
-                        routerLinkActive="active">
-                        Load options async pipe
-                    </a>
-                </li>
+            </ul>
+            <h3>Change properties</h3>
+            <ul>
                 <li>
                     <a
                         routerLink="/examples/no-filter"
@@ -114,18 +131,14 @@
                 </li>
                 <li>
                     <a
-                        routerLink="/examples/close-on-select"
-                        routerLinkActive="active">
-                        Close on select
-                    </a>
-                </li>
-                <li>
-                    <a
                         routerLink="/examples/disabled-options"
                         routerLinkActive="active">
                         Disabled options
                     </a>
                 </li>
+            </ul>
+            <h3>Custom text settings</h3>
+            <ul>
                 <li>
                     <a
                         routerLink="/examples/placeholder"
@@ -134,7 +147,7 @@
                     </a>
                 </li>
             </ul>
-            <h3>Styling</h3>
+            <h3>Custom styling</h3>
             <ul>
                 <li>
                     <a
@@ -144,25 +157,8 @@
                     </a>
                 </li>
             </ul>
-            <h3>Use in forms</h3>
+            <h3>Output events</h3>
             <ul>
-                <li>
-                    <a
-                        routerLink="/examples/reactive-form"
-                        routerLinkActive="active">
-                        Reactive form
-                    </a>
-                </li>
-                <li>
-                    <a
-                        routerLink="/examples/template-driven-form"
-                        routerLinkActive="active">
-                        Template driven form
-                    </a>
-                </li>
-            </ul>
-            <ul>
-                <h3>Output events</h3>
                 <li>
                     <a
                         routerLink="/examples/focus"
@@ -171,13 +167,18 @@
                     </a>
                 </li>
             </ul>
+            <h3>Methods</h3>
         </nav>
 	</md-sidenav>
 
     <!-- CONTENT -->
-    <div class="main-container">
-        <div class="center-container">
-            <div class="content-container">
+    <div
+        class="main-container">
+        <div
+            class="center-container"
+            [ngStyle]="{'max-width': router.url === '/documentation' ? '860px' : '680px'}">
+            <div
+                class="content-container">
                 <router-outlet></router-outlet>
                 <footer></footer>
             </div>

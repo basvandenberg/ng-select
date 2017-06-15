@@ -6,11 +6,10 @@ ng-select-app {
         width: $sidenav-width;
 
         h3 {
-            background-color: mat-color($mat-indigo, 200);
+            background-color: $bd-white;
             color: mat-color($mat-indigo, 900);
-            font-weight: 400;
-            font-size: 0.9em;
-            font-variant: small-caps;
+            font-weight: 600;
+            font-size: 1em;
             line-height: $nav-link-height;
             margin: 10px 0 0 0;
             padding: 0 16px;
@@ -22,7 +21,6 @@ ng-select-app {
             padding: 0;
 
             li {
-                border-bottom: 1px solid mat-color($mat-grey, 200);
                 display: list-item;
                 font-size: 0.9em;
                 margin: 0;
@@ -36,12 +34,12 @@ ng-select-app {
                     width: 100%;
 
                     &:hover {
-                        background-color: mat-color($mat-indigo, 100);
+                        background-color: mat-color($mat-indigo, 50);
                     }
 
                     &.active {
+                        background-color: mat-color($mat-grey, 100);
                         color: mat-color($mat-indigo, 900);
-                        font-weight: 600;
                     }
                 }
             }
