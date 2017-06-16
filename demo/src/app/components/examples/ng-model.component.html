@@ -1,0 +1,33 @@
+<md-card>
+    <md-card-title>
+        Use with <code>ngModel</code>
+    </md-card-title>
+    <md-card-content>
+
+        <p>Use <code>ngModel</code> to keep track of the currently selected option.</p>
+
+        <h3>Single select</h3>
+
+        <p class="value">Selected option: {{selectedCharacter}}</p>
+        <ng-select
+            [options]="characters"
+            [(ngModel)]="selectedCharacter">
+        </ng-select>
+
+        <section [innerHTML]="singleHtml" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="singleTs" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <p class="value">Selected options: {{selectedCharacters}}</p>
+        <ng-select
+            [options]="characters"
+            [multiple]="true"
+            [(ngModel)]="selectedCharacters">
+        </ng-select>
+
+        <section [innerHTML]="multipleHtml" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="multipleTs" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

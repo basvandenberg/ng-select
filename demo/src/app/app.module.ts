@@ -17,8 +17,10 @@ import {Footer} from './components/footer.component';
 import {Home} from './components/home.component';
 import {GettingStarted} from './components/getting-started.component';
 import {Documentation} from './components/documentation.component';
+import {Faq} from './components/faq.component';
 
-import {Basic} from './components/examples/basic.component';
+import {Intro} from './components/examples/intro.component';
+import {NgModel} from './components/examples/ng-model.component';
 import {ReactiveForm} from './components/examples/reactive-form.component';
 import {TemplateDrivenForm} from './components/examples/template-driven-form.component';
 import {NoFilter} from './components/examples/no-filter.component';
@@ -41,8 +43,10 @@ import {OptionService} from './services/option.service';
         Home,
         GettingStarted,
         Documentation,
+        Faq,
 
-        Basic,
+        Intro,
+        NgModel,
         ReactiveForm,
         TemplateDrivenForm,
         NoFilter,

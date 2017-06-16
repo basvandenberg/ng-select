@@ -3,8 +3,10 @@ import {Routes} from '@angular/router';
 import {Home} from './components/home.component';
 import {GettingStarted} from './components/getting-started.component';
 import {Documentation} from './components/documentation.component';
+import {Faq} from './components/faq.component';
 
-import {Basic} from './components/examples/basic.component';
+import {Intro} from './components/examples/intro.component';
+import {NgModel} from './components/examples/ng-model.component';
 import {ReactiveForm} from './components/examples/reactive-form.component';
 import {TemplateDrivenForm} from './components/examples/template-driven-form.component';
 import {NoFilter} from './components/examples/no-filter.component';
@@ -30,12 +32,18 @@ export const appRoutes: Routes = [{
     path: 'documentation',
     component: Documentation
 }, {
+    path: 'faq',
+    component: Faq
+}, {
     path: 'examples',
     redirectTo: 'examples/basic',
     pathMatch: 'full'
 }, {
-    path: 'examples/basic',
-    component: Basic
+    path: 'examples/intro',
+    component: Intro
+}, {
+    path: 'examples/ng-model',
+    component: NgModel
 }, {
     path: 'examples/reactive-form',
     component: ReactiveForm

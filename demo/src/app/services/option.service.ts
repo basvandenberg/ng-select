@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { IOption } from 'ng-select';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {IOption} from 'ng-select';
 
 @Injectable()
 export class OptionService {

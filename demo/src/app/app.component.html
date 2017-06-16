@@ -26,7 +26,7 @@
         md-button
         routerLink="/documentation"
         routerLinkActive="active">
-        Documentation
+        Doc
     </a>
     <a
         *ngIf="!smallScreen"
@@ -34,6 +34,13 @@
         routerLink="/examples"
         routerLinkActive="active">
         Examples
+    </a>
+    <a
+        *ngIf="!smallScreen"
+        md-button
+        routerLink="/faq"
+        routerLinkActive="active">
+        FAQ
     </a>
     <div class="fill-remaining-space"></div>
     <button
@@ -61,6 +68,12 @@
             routerLinkActive="active">
             Examples
         </a>
+        <a
+            md-menu-item
+            routerLink="/faq"
+            routerLinkActive="active">
+            FAQ
+        </a>
     </md-menu>
     <a
         md-button
@@ -86,30 +99,30 @@
             <ul>
                 <li>
                     <a
-                        routerLink="/examples/basic"
+                        routerLink="/examples/intro"
                         routerLinkActive="active">
-                        Basic example
+                        Introduction
                     </a>
                 </li>
                 <li>
                     <a
                         routerLink="/examples/ng-model"
                         routerLinkActive="active">
-                        Use with ngModel
+                        With ngModel
                     </a>
                 </li>
                 <li>
                     <a
                         routerLink="/examples/reactive-form"
                         routerLinkActive="active">
-                        Use in reactive form
+                        In reactive form
                     </a>
                 </li>
                 <li>
                     <a
                         routerLink="/examples/template-driven-form"
                         routerLinkActive="active">
-                        Use in template driven form
+                        In template-driven form
                     </a>
                 </li>
                 <li>
@@ -124,9 +137,16 @@
             <ul>
                 <li>
                     <a
-                        routerLink="/examples/no-filter"
+                        routerLink="/examples/allow-clear"
                         routerLinkActive="active">
-                        No filter
+                        Allow clear (single select)
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/disabled"
+                        routerLinkActive="active">
+                        Disabled
                     </a>
                 </li>
                 <li>
@@ -136,8 +156,15 @@
                         Disabled options
                     </a>
                 </li>
+                <li>
+                    <a
+                        routerLink="/examples/no-filter"
+                        routerLinkActive="active">
+                        No filter
+                    </a>
+                </li>
             </ul>
-            <h3>Custom text settings</h3>
+            <h3>Text settings</h3>
             <ul>
                 <li>
                     <a
@@ -146,14 +173,49 @@
                         Placeholder
                     </a>
                 </li>
+                <li>
+                    <a
+                        routerLink="/examples/filter-placeholder"
+                        routerLinkActive="active">
+                        Filter placeholder
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/label"
+                        routerLinkActive="active">
+                        Label
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/not-found-msg"
+                        routerLinkActive="active">
+                        Not found message
+                    </a>
+                </li>
             </ul>
-            <h3>Custom styling</h3>
+            <h3>Styling</h3>
             <ul>
                 <li>
                     <a
                         routerLink="/examples/option-template"
                         routerLinkActive="active">
                         Option template
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/option-highlight-color"
+                        routerLinkActive="active">
+                        Highlight color
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/css-styling"
+                        routerLinkActive="active">
+                        CSS styling
                     </a>
                 </li>
             </ul>
@@ -166,8 +228,54 @@
                         Focus &amp; blur
                     </a>
                 </li>
+                <li>
+                    <a
+                        routerLink="/examples/opened-closed"
+                        routerLinkActive="active">
+                        Opened &amp; closed
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/selected-deselected"
+                        routerLinkActive="active">
+                        Selected &amp; deselected
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/no-options-found"
+                        routerLinkActive="active">
+                        No options found
+                    </a>
+                </li>
             </ul>
+
             <h3>Methods</h3>
+
+            <ul>
+                <li>
+                    <a
+                        routerLink="/examples/select"
+                        routerLinkActive="active">
+                        Select
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/open-close"
+                        routerLinkActive="active">
+                        Clear
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/open-close"
+                        routerLinkActive="active">
+                        Open &amp; close
+                    </a>
+                </li>
+            </ul>
         </nav>
 	</md-sidenav>
 

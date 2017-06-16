@@ -1,0 +1,29 @@
+<md-card>
+    <md-card-title>
+        Introduction
+    </md-card-title>
+    <md-card-content>
+        <p>Intro text</p>
+
+        <h3><code>OptionService</code></h3>
+
+        <section [innerHTML]="optionServiceTs" highlight-js-content=".highlight"></section>
+
+        <md-button-toggle-group
+            style="margin-bottom: 4px;"
+            value="characters"
+            [(ngModel)]="optionsId"
+            (change)="onToggleChange()">
+            <md-button-toggle
+                value="characters">
+                Characters
+            </md-button-toggle>
+            <md-button-toggle
+                value="countries">
+                Countries
+            </md-button-toggle>
+        </md-button-toggle-group>
+
+        <section style="max-height:400px; overflow-y:auto;" innerHTML="<pre><code class='json'>{{options | json}}</code></pre>" highlight-js-content=".highlight"></section>
+    </md-card-content>
+</md-card>

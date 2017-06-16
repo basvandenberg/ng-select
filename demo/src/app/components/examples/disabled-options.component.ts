@@ -5,8 +5,8 @@ declare var hljs: any;
 import {OptionService} from '../../services/option.service';
 
 @Component({
-    selector: 'basic',
-    templateUrl: 'basic.component.html'
+    selector: 'disabled-options',
+    templateUrl: 'disabled-options.component.html'
 })
 export class DisabledOptions implements AfterViewInit {
 
