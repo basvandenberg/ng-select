@@ -36,7 +36,7 @@ export const appRoutes: Routes = [{
     component: Faq
 }, {
     path: 'examples',
-    redirectTo: 'examples/basic',
+    redirectTo: '/examples/intro',
     pathMatch: 'full'
 }, {
     path: 'examples/intro',

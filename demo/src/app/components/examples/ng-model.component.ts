@@ -1,11 +1,10 @@
 import {AfterViewInit, Component, ElementRef} from '@angular/core';
-import {Subscription} from 'rxjs/Subscription';
 import {IOption} from 'ng-select';
 declare var hljs: any;
 import {OptionService} from '../../services/option.service';
 
 @Component({
-    selector: 'ngmodel',
+    selector: 'ng-model',
     templateUrl: './ng-model.component.html'
 })
 export class NgModel implements AfterViewInit {
@@ -31,7 +30,8 @@ export class NgModel implements AfterViewInit {
     }
 
     singleHtml: string = `
-<pre><code class="html">&lt;ng-select
+<pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
+&lt;ng-select
     [options]="characters"
     [(ngModel)]="selectedCharacter"&gt;
 &lt;/ng-select&gt;
@@ -42,9 +42,13 @@ export class NgModel implements AfterViewInit {
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
-export class NgModelSingle {
+@Component({
+    selector: 'ng-model',
+    templateUrl: './ng-model.component.html'
+})
+export class NgModelExample {
 
-    characters: Array&lt;IOption&gt; = this.optionService.getOptions();
+    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
     selectedCharacter: string = '3';
 
     constructor(
@@ -54,7 +58,7 @@ export class NgModelSingle {
 </pre></code>`;
 
     multipleHtml: string = `
-<pre><code class="html">&lt;ng-select
+<pre><code class="html">&lt;div&gt;Selected options: {{selectedCharacter}}&lt;/div&gt;
     [options]="characters"
     [multiple]="true"
     [(ngModel)]="selectedCharacters"&gt;
@@ -66,14 +70,19 @@ export class NgModelSingle {
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
-export class NgModelMultiple {
+@Component({
+    selector: 'ng-model',
+    templateUrl: './ng-model.component.html'
+})
+export class NgModelExample {
 
-    characters: Array&lt;IOption&gt; = this.optionService.getOptions();
-    selectedCharacter: Array&lt;string&gt; = ['1', '3'];
+    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
+    selectedCharacters: Array&lt;string&gt; = ['1', '3'];
 
     constructor(
         private optionService: OptionService
     ) {}
 }
 </pre></code>`;
+
 }

@@ -4,9 +4,24 @@
     flex: 1 1 auto;
 }
 
-p,
-section {
-    max-width: 592px;
+.select-value {
+    color: mat-color($mat-grey, 600);
+    font-family: $monospace;
+    font-size: 0.9em;
+    margin: 10px 0 2px 0;
+    padding: 5px 0;
+
+    code {
+        color: mat-color($mat-indigo, 600);
+        font-weight: 600;
+    }
+}
+
+.code-header {
+    color: mat-color($mat-grey, 400);
+    font-family: $monospace;
+    font-size: 0.9em;
+    margin: 18px 0 -12px 0;
 }
 
 code {
@@ -25,8 +40,13 @@ code {
     }*/
 }
 
+p,
+section {
+    max-width: 592px;
+}
+
 p {
-    color: mat-color($mat-grey, 900);
+    color: mat-color($mat-grey, 800);
     font-family: $open-sans;
     font-size: 1em;
     font-weight: 300;

@@ -5,12 +5,15 @@
         Single select
     </md-card-title>
     <md-card-content>
-        <div>Form dirty: {{form.get('characterSelect').dirty}}</div>
-        <div>Form pristine: {{form.get('characterSelect').pristine}}</div>
-        <div>Form touched: {{form.get('characterSelect').touched}}</div>
-        <div>Untouched: {{form.get('characterSelect').untouched}}</div>
-        <div>Valid: {{form.get('characterSelect').valid}}</div>
-        <div>Form value: {{form.value | json}}</div>
+        <div class="select-value"><pre style="line-height:1.2rem;"><strong>Form state:</strong>
+dirty:      {{form.get('characterSelect').dirty}}
+pristine:   {{form.get('characterSelect').pristine}}
+touched:    {{form.get('characterSelect').touched}}
+untouched:  {{form.get('characterSelect').untouched}}
+valid:      {{form.get('characterSelect').valid}}
+value:
+{{form.value | json}}</pre>
+        </div>
         <form
             novalidate
             [formGroup]="form">
