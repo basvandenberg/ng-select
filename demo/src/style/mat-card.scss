@@ -5,7 +5,11 @@ ng-select-app {
         margin-bottom: 15px;
 
         &:first-child {
-        margin-top: 20px;
+            margin-top: 20px;
+        }
+
+        h3 {
+            margin: 32px 0 8px 0;
         }
     }
 
@@ -23,9 +27,5 @@ ng-select-app {
         >:first-child {
             margin-top: 32px;
         }
-    }
-
-    h3 {
-        margin: 32px 0 8px 0;
     }
 }
