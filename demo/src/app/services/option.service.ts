@@ -33,7 +33,7 @@ export class OptionService {
             setTimeout(() => {
                 obs.next(this.cloneOptions(options));
                 obs.complete();
-            }, 2000);
+            }, 5000);
         });
     }
 

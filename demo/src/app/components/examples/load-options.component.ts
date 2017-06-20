@@ -10,35 +10,9 @@ import { OptionService } from '../../services/option.service';
 })
 export class LoadOptions implements AfterViewInit, OnInit {
 
-    html: string = `
-<pre><code class="html">&lt;ng-select
-    [options]="characters"&gt;
-&lt;/ng-select&gt;
-</code></pre>`;
-    ts: string = `
-<pre><code class="typescript">import { Component, OnInit } from '@angular/core;'
-import { IOption } from 'ng-select';
-import { OptionService } from '../../services/option.service';
-
-export class BasicExample implements OnInit {
-
-    characters: Array&lt;IOption&gt;;
-    selectedCharacter: string = '2';
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-
-    ngOnInit() {
-        this.optionService.loadOptions().subscribe((options) => {
-            this.characters = options;
-        });
-    }
-}
-</pre></code>`;
-
     characters: Array<IOption>;
-    selectedCharacter: string = '2';
+    selectedCharacter: string = '3';
+    timeLeft: number = 5;
 
     private dataSub: Subscription = null;
 
@@ -48,6 +22,7 @@ export class BasicExample implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.runTimer();
         this.dataSub = this.optionService.loadCharacters().subscribe((options) => {
             this.characters = options;
         });
@@ -67,4 +42,43 @@ export class BasicExample implements OnInit {
             hljs.highlightBlock(nodes[i]);
         }
     }
+
+    runTimer() {
+        let timer = setInterval(() => {
+            this.timeLeft -= 1;
+            if (this.timeLeft === 0) {
+                clearInterval(timer);
+            }
+        }, 1000);
+    }
+
+    html: string = `
+<pre><code class="html">&lt;ng-select
+    [options]="characters"
+    [(ngModel)]="selectedCharacter"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
+    ts: string = `
+<pre><code class="typescript">import { Component, OnInit } from '@angular/core;'
+import { IOption } from 'ng-select';
+import { OptionService } from '../../services/option.service';
+
+export class LoadOptionsExample implements OnInit {
+
+    characters: Array&lt;IOption&gt;;
+    selectedCharacter: string = '3';
+
+    constructor(
+        private optionService: OptionService
+    ) {}
+
+    ngOnInit() {
+        this.optionService.loadOptions().subscribe((options) => {
+            this.characters = options;
+        });
+    }
+}
+</pre></code>`;
+
 }

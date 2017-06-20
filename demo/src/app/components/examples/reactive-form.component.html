@@ -1,48 +1,59 @@
-<h2>Basic example</h2>
-
 <md-card>
     <md-card-title>
-        Single select
+        Use with reactive form
     </md-card-title>
     <md-card-content>
-        <div class="select-value"><pre style="line-height:1.2rem;"><strong>Form state:</strong>
-dirty:      {{form.get('characterSelect').dirty}}
-pristine:   {{form.get('characterSelect').pristine}}
-touched:    {{form.get('characterSelect').touched}}
-untouched:  {{form.get('characterSelect').untouched}}
-valid:      {{form.get('characterSelect').valid}}
-value:
-{{form.value | json}}</pre>
+
+        <p>This example shows how <code>ng-select</code> can be used as part of a <a href="https://angular.io/guide/reactive-forms" target="_blank">reactive form</a>.</p>
+
+        <h3>Single select</h3>
+
+        <div class="select-value">
+            <span>Form state: </span>
+            <span *ngIf="form0.get('character')?.dirty">dirty</span>
+            <span *ngIf="form0.get('character')?.pristine">pristine</span>
+            <span> &amp; </span>
+            <span *ngIf="form0.get('character')?.touched">touched</span>
+            <span *ngIf="form0.get('character')?.untouched">untouched</span>
+            <div>Form value: {{form0.value | json}}</div>
         </div>
         <form
             novalidate
-            [formGroup]="form">
+            [formGroup]="form0">
             <ng-select
-                formControlName="characterSelect"
+                formControlName="character"
                 [allowClear]="true"
                 [options]="characters">
             </ng-select>
-            <button
-                [disabled]="!form.valid"
-                md-button>
-                Submit
-            </button>
         </form>
-        <p>Add a select component to your template using the <code>ng-select</code> tag, and use the <code>options</code> property to bind it to your list of options.</p>
-        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
-        <p>Test</p>
-        <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
+
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <div class="select-value">
+            <span>Form state: </span>
+            <span *ngIf="form1.get('character')?.dirty">dirty</span>
+            <span *ngIf="form1.get('character')?.pristine">pristine</span>
+            <span> &amp; </span>
+            <span *ngIf="form1.get('character')?.touched">touched</span>
+            <span *ngIf="form1.get('character')?.untouched">untouched</span>
+            <div>Form value: {{form1.value | json}}</div>
+        </div>
+        <form
+            novalidate
+            [formGroup]="form1">
+            <ng-select
+                formControlName="character"
+                [multiple]="true"
+                [allowClear]="true"
+                [options]="characters">
+            </ng-select>
+        </form>
+
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="ts1" highlight-js-content=".highlight"></section>
     </md-card-content>
 </md-card>
 
-<!--md-card>
-    <md-card-title>
-        Multiple select
-    </md-card-title>
-    <md-card-content>
-        <ng-select
-            [options]="characters"
-            [multiple]="true">
-        </ng-select>
-    </md-card-content>
-</md-card-->

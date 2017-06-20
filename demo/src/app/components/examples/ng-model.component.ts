@@ -59,6 +59,7 @@ export class NgModelExample {
 
     multipleHtml: string = `
 <pre><code class="html">&lt;div&gt;Selected options: {{selectedCharacter}}&lt;/div&gt;
+&lt;ng-select
     [options]="characters"
     [multiple]="true"
     [(ngModel)]="selectedCharacters"&gt;

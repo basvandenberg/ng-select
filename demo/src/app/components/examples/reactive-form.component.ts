@@ -10,32 +10,11 @@ import {OptionService} from '../../services/option.service';
 })
 export class ReactiveForm implements AfterViewInit {
 
-    html: string = `
-<pre><code class="html">&lt;ng-select
-    [options]="characters"
-    [(ngModel)]="selectedCharacter"&gt;
-&lt;/ng-select&gt;
-</code></pre>`;
-    ts: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-export class BasicExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getOptions();
-    selectedCharacter: string = '3';
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
-
-    characters: Array<IOption>; // = this.optionService.getOptions();
+    characters: Array<IOption> = this.optionService.getCharacters();
     defaultCharacter: string = '3';
-
-    form: FormGroup;
+    defaultCharacters: Array<string> = ['1', '3'];
+    form0: FormGroup;
+    form1: FormGroup;
 
     constructor(
         private elementRef: ElementRef,
@@ -43,11 +22,11 @@ export class BasicExample {
     ) {}
 
     ngOnInit() {
-        this.form = new FormGroup({
-            characterSelect: new FormControl(this.defaultCharacter, Validators.required)
+        this.form0 = new FormGroup({
+            character: new FormControl(this.defaultCharacter)
         });
-        this.optionService.loadCharacters().subscribe((options: Array<IOption>) => {
-            this.characters = options;
+        this.form1 = new FormGroup({
+            character: new FormControl(this.defaultCharacters)
         });
     }
 
@@ -61,4 +40,90 @@ export class BasicExample {
             hljs.highlightBlock(nodes[i]);
         }
     }
+
+    html0: string = `
+<pre><code class="html">&lt;div&gt;
+    &lt;span&gt;Form state: &lt;/span&gt;
+    &lt;span *ngIf="form.get('character')?.dirty"&gt;dirty&lt;/span&gt;
+    &lt;span *ngIf="form.get('character')?.pristine"&gt;pristine&lt;/span&gt;
+    &lt;span&gt; &amp; &lt;/span&gt;
+    &lt;span *ngIf="form.get('character')?.touched"&gt;touched&lt;/span&gt;
+    &lt;span *ngIf="form.get('character')?.untouched"&gt;untouched&lt;/span&gt;
+    &lt;div&gt;Form value: {{form.value | json}}&lt;/div&gt;
+&lt;/div&gt;
+&lt;form
+    novalidate
+    [formGroup]="form"&gt;
+    &lt;ng-select
+        formControlName="character"
+        [allowClear]="true"
+        [options]="characters"&gt;
+    &lt;/ng-select&gt;
+&lt;/form&gt;
+</code></pre>`;
+
+    ts0: string = `
+<pre><code class="typescript">import {Component} from '@angular/core;'
+import {IOption} from 'ng-select';
+import {OptionService} from '../../services/option.service';
+
+export class ReactiveFormExample {
+
+    characters: Array&lt;IOption&gt; = this.optionService.getOptions();
+    defaultCharacter: string = '3';
+
+    constructor(
+        private optionService: OptionService
+    ) {}
+
+    ngOnInit() {
+        this.form = new FormGroup({
+            character: new FormControl(this.defaultCharacter)
+        });
+    }
+}
+</pre></code>`;
+
+    html1: string = `
+<pre><code class="html">&lt;div&gt;
+    &lt;span&gt;Form state: &lt;/span&gt;
+    &lt;span *ngIf="form.get('character')?.dirty"&gt;dirty&lt;/span&gt;
+    &lt;span *ngIf="form.get('character')?.pristine"&gt;pristine&lt;/span&gt;
+    &lt;span&gt; &amp; &lt;/span&gt;
+    &lt;span *ngIf="form.get('character')?.touched"&gt;touched&lt;/span&gt;
+    &lt;span *ngIf="form.get('character')?.untouched"&gt;untouched&lt;/span&gt;
+    &lt;div&gt;Form value: {{form.value | json}}&lt;/div&gt;
+&lt;/div&gt;
+&lt;form
+    novalidate
+    [formGroup]="form"&gt;
+    &lt;ng-select
+        formControlName="character"
+        [allowClear]="true"
+        [options]="characters"&gt;
+    &lt;/ng-select&gt;
+&lt;/form&gt;
+</code></pre>`;
+
+    ts1: string = `
+<pre><code class="typescript">import {Component} from '@angular/core;'
+import {IOption} from 'ng-select';
+import {OptionService} from '../../services/option.service';
+
+export class ReactiveFormExample {
+
+    characters: Array&lt;IOption&gt; = this.optionService.getOptions();
+    defaultCharacters: Array&lt;string&gt; = ['1', '3'];
+
+    constructor(
+        private optionService: OptionService
+    ) {}
+
+    ngOnInit() {
+        this.form = new FormGroup({
+            character: new FormControl(this.defaultCharacters)
+        });
+    }
+}
+</pre></code>`;
 }
