@@ -1,0 +1,37 @@
+<md-card>
+    <md-card-title>
+        Highlight color
+    </md-card-title>
+    <md-card-content>
+
+        <p>This example shows how to use <code>ngModel</code> to set a default selection and to keep track of the currently selected option(s).</p>
+
+        <h3>Single select</h3>
+
+        <div class="select-value">Selected option: {{selectedCharacter}}</div>
+        <ng-select
+            [options]="characters"
+            [(ngModel)]="selectedCharacter">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="singleHtml" highlight-js-content=".highlight"></section>
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="singleTs" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <p class="select-value">Selected options: {{selectedCharacters}}</p>
+        <ng-select
+            [options]="characters"
+            [multiple]="true"
+            [(ngModel)]="selectedCharacters">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="multipleHtml" highlight-js-content=".highlight"></section>
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="multipleTs" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

@@ -1,10 +1,11 @@
-<h2>Basic example</h2>
-
 <md-card>
     <md-card-title>
-        Single select
+        Placeholder
     </md-card-title>
+
     <md-card-content>
+
+        <h3>Single select</h3>
         <ng-select
             [options]="characters"
             [placeholder]="placeholder"
@@ -15,14 +16,8 @@
         <section [innerHTML]="html" highlight-js-content=".highlight"></section>
         <p>Test</p>
         <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
-    </md-card-content>
-</md-card>
 
-<md-card>
-    <md-card-title>
-        Multiple select
-    </md-card-title>
-    <md-card-content>
+        <h3>Multiple select</h3>
         <ng-select
             [options]="characters"
             [placeholder]="placeholder"

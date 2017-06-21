@@ -7,16 +7,27 @@ import {Faq} from './components/faq.component';
 
 import {Intro} from './components/examples/intro.component';
 import {NgModel} from './components/examples/ng-model.component';
-import {ReactiveForm} from './components/examples/reactive-form.component';
-import {TemplateDrivenForm} from './components/examples/template-driven-form.component';
-import {NoFilter} from './components/examples/no-filter.component';
-import {CloseOnSelect} from './components/examples/close-on-select.component';
-import {Focus} from './components/examples/focus.component';
 import {LoadOptions} from './components/examples/load-options.component';
-import {LoadOptionsAsyncPipe} from './components/examples/load-options-async-pipe.component';
+import {ReactiveForm} from './components/examples/reactive-form.component';
+import {FormValidation} from './components/examples/form-validation.component';
+import {AllowClear} from './components/examples/allow-clear.component';
+import {Disabled} from './components/examples/disabled.component';
 import {DisabledOptions} from './components/examples/disabled-options.component';
-import {OptionTemplate} from './components/examples/option-template.component';
+import {NoFilter} from './components/examples/no-filter.component';
 import {Placeholder} from './components/examples/placeholder.component';
+import {FilterPlaceholder} from './components/examples/filter-placeholder.component';
+import {Label} from './components/examples/label.component';
+import {NotFoundMsg} from './components/examples/not-found-msg.component';
+import {OptionTemplate} from './components/examples/option-template.component';
+import {HighlightColor} from './components/examples/highlight-color.component';
+import {Focus} from './components/examples/focus.component';
+import {Opened} from './components/examples/opened.component';
+import {Selected} from './components/examples/selected.component';
+import {NoOptionsFound} from './components/examples/no-options-found.component';
+import {SelectMethod} from './components/examples/select-method.component';
+import {ClearMethod} from './components/examples/clear-method.component';
+import {OpenMethod} from './components/examples/open-method.component';
+
 
 export const appRoutes: Routes = [{
     path: '',
@@ -45,35 +56,65 @@ export const appRoutes: Routes = [{
     path: 'examples/ng-model',
     component: NgModel
 }, {
+    path: 'examples/load-options',
+    component: LoadOptions
+}, {
     path: 'examples/reactive-form',
     component: ReactiveForm
 }, {
-    path: 'examples/template-driven-form',
-    component: TemplateDrivenForm
+    path: 'examples/form-validation',
+    component: FormValidation
 }, {
-    path: 'examples/no-filter',
-    component: NoFilter
+    path: 'examples/allow-clear',
+    component: AllowClear
 }, {
-    path: 'examples/close-on-select',
-    component: CloseOnSelect
+    path: 'examples/disabled',
+    component: Disabled
 }, {
     path: 'examples/disabled-options',
     component: DisabledOptions
 }, {
+    path: 'examples/no-filter',
+    component: NoFilter
+}, {
     path: 'examples/placeholder',
     component: Placeholder
+}, {
+    path: 'examples/filter-placeholder',
+    component: FilterPlaceholder
+}, {
+    path: 'examples/label',
+    component: Label
+}, {
+    path: 'examples/not-found-msg',
+    component: NotFoundMsg
 }, {
     path: 'examples/option-template',
     component: OptionTemplate
 }, {
+    path: 'examples/highlight-color',
+    component: HighlightColor
+}, {
     path: 'examples/focus',
     component: Focus
 }, {
-    path: 'examples/load-options',
-    component: LoadOptions
+    path: 'examples/opened',
+    component: Opened
 }, {
-    path: 'examples/load-options-async-pipe',
-    component: LoadOptionsAsyncPipe
+    path: 'examples/selected',
+    component: Selected
+}, {
+    path: 'examples/no-options-found',
+    component: NoOptionsFound
+}, {
+    path: 'examples/select-method',
+    component: SelectMethod
+}, {
+    path: 'examples/clear-method',
+    component: ClearMethod
+}, {
+    path: 'examples/open-method',
+    component: OpenMethod
 }, {
     path: '**',
     redirectTo: '/home'

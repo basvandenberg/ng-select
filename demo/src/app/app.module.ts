@@ -21,16 +21,32 @@ import {Faq} from './components/faq.component';
 
 import {Intro} from './components/examples/intro.component';
 import {NgModel} from './components/examples/ng-model.component';
-import {ReactiveForm} from './components/examples/reactive-form.component';
-import {TemplateDrivenForm} from './components/examples/template-driven-form.component';
-import {NoFilter} from './components/examples/no-filter.component';
-import {CloseOnSelect} from './components/examples/close-on-select.component';
-import {Focus} from './components/examples/focus.component';
 import {LoadOptions} from './components/examples/load-options.component';
-import {LoadOptionsAsyncPipe} from './components/examples/load-options-async-pipe.component';
+import {ReactiveForm} from './components/examples/reactive-form.component';
+import {FormValidation} from './components/examples/form-validation.component';
+import {AllowClear} from './components/examples/allow-clear.component';
+import {Disabled} from './components/examples/disabled.component';
 import {DisabledOptions} from './components/examples/disabled-options.component';
-import {OptionTemplate} from './components/examples/option-template.component';
+import {NoFilter} from './components/examples/no-filter.component';
 import {Placeholder} from './components/examples/placeholder.component';
+import {FilterPlaceholder} from './components/examples/filter-placeholder.component';
+import {Label} from './components/examples/label.component';
+import {NotFoundMsg} from './components/examples/not-found-msg.component';
+import {OptionTemplate} from './components/examples/option-template.component';
+import {HighlightColor} from './components/examples/highlight-color.component';
+import {Focus} from './components/examples/focus.component';
+import {Opened} from './components/examples/opened.component';
+import {Selected} from './components/examples/selected.component';
+import {NoOptionsFound} from './components/examples/no-options-found.component';
+import {SelectMethod} from './components/examples/select-method.component';
+import {ClearMethod} from './components/examples/clear-method.component';
+import {OpenMethod} from './components/examples/open-method.component';
+
+// TODOs
+// Styling with ngStyle...
+import {CloseOnSelect} from './components/examples/close-on-select.component';
+import {LoadOptionsAsyncPipe} from './components/examples/load-options-async-pipe.component';
+import {TemplateDrivenForm} from './components/examples/template-driven-form.component';
 
 import {OptionService} from './services/option.service';
 
@@ -47,16 +63,26 @@ import {OptionService} from './services/option.service';
 
         Intro,
         NgModel,
-        ReactiveForm,
-        TemplateDrivenForm,
-        NoFilter,
-        CloseOnSelect,
-        Focus,
         LoadOptions,
-        LoadOptionsAsyncPipe,
+        ReactiveForm,
+        FormValidation,
+        AllowClear,
+        Disabled,
         DisabledOptions,
+        NoFilter,
+        Placeholder,
+        FilterPlaceholder,
+        Label,
+        NotFoundMsg,
         OptionTemplate,
-        Placeholder
+        HighlightColor,
+        Focus,
+        Opened,
+        Selected,
+        NoOptionsFound,
+        SelectMethod,
+        ClearMethod,
+        OpenMethod
     ],
     imports: [
         BrowserModule,

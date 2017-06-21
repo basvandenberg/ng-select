@@ -95,7 +95,7 @@
 		[mode]="smallScreen ? 'over' : 'side'"
         [opened]="!router.url.startsWith('/examples') ? false : smallScreen ? false : true">
 		<nav>
-            <h3>Basic usage</h3>
+            <h3></h3>
             <ul>
                 <li>
                     <a
@@ -104,11 +104,21 @@
                         Introduction
                     </a>
                 </li>
+            </ul>
+            <h3>Basic usage</h3>
+            <ul>
                 <li>
                     <a
                         routerLink="/examples/ng-model"
                         routerLinkActive="active">
                         ngModel
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/load-options"
+                        routerLinkActive="active">
+                        Loading options
                     </a>
                 </li>
                 <li>
@@ -120,18 +130,18 @@
                 </li>
                 <li>
                     <a
+                        routerLink="/examples/form-validation"
+                        routerLinkActive="active">
+                        Form validation
+                    </a>
+                </li>
+                <!--li>
+                    <a
                         routerLink="/examples/template-driven-form"
                         routerLinkActive="active">
                         Template-driven form
                     </a>
-                </li>
-                <li>
-                    <a
-                        routerLink="/examples/load-options"
-                        routerLinkActive="active">
-                        Loading options
-                    </a>
-                </li>
+                </li-->
             </ul>
             <h3>Change properties</h3>
             <ul>
@@ -206,18 +216,18 @@
                 </li>
                 <li>
                     <a
-                        routerLink="/examples/option-highlight-color"
+                        routerLink="/examples/highlight-color"
                         routerLinkActive="active">
                         Highlight color
                     </a>
                 </li>
-                <li>
+                <!--li>
                     <a
                         routerLink="/examples/css-styling"
                         routerLinkActive="active">
                         CSS styling
                     </a>
-                </li>
+                </li-->
             </ul>
             <h3>Output events</h3>
             <ul>
@@ -230,14 +240,14 @@
                 </li>
                 <li>
                     <a
-                        routerLink="/examples/opened-closed"
+                        routerLink="/examples/opened"
                         routerLinkActive="active">
                         Opened &amp; closed
                     </a>
                 </li>
                 <li>
                     <a
-                        routerLink="/examples/selected-deselected"
+                        routerLink="/examples/selected"
                         routerLinkActive="active">
                         Selected &amp; deselected
                     </a>
@@ -256,21 +266,21 @@
             <ul>
                 <li>
                     <a
-                        routerLink="/examples/select"
+                        routerLink="/examples/select-method"
                         routerLinkActive="active">
                         Select
                     </a>
                 </li>
                 <li>
                     <a
-                        routerLink="/examples/open-close"
+                        routerLink="/examples/clear-method"
                         routerLinkActive="active">
                         Clear
                     </a>
                 </li>
                 <li>
                     <a
-                        routerLink="/examples/open-close"
+                        routerLink="/examples/open-method"
                         routerLinkActive="active">
                         Open &amp; close
                     </a>
@@ -284,7 +294,7 @@
         class="main-container">
         <div
             class="center-container"
-            [ngStyle]="{'max-width': router.url === '/documentation' ? '860px' : '680px'}">
+            [ngStyle]="{'max-width': router.url === '/documentation' ? '900px' : '720px'}">
             <div
                 class="content-container">
                 <router-outlet></router-outlet>

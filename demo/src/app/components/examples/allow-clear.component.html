@@ -1,15 +1,24 @@
 <md-card>
     <md-card-title>
-        Disabled options
+        Allow clear (single select only)
     </md-card-title>
     <md-card-content>
+
+        <p>The allow clear options...</p>
+
+        <h3>Single select</h3>
+
+        <div class="select-value">Selected option: {{selectedCharacter}}</div>
         <ng-select
             [options]="characters"
+            [allowClear]="true"
             [(ngModel)]="selectedCharacter">
         </ng-select>
-        <p></p>
+
+        <div class="code-header">Component template</div>
         <section [innerHTML]="html" highlight-js-content=".highlight"></section>
-        <p></p>
+        <div class="code-header">Component class</div>
         <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
+
     </md-card-content>
 </md-card>
