@@ -11,8 +11,9 @@ export class Disabled implements AfterViewInit {
 
     characters: Array<IOption> = this.optionService.getCharacters();
     isDisabled0: boolean = true;
-    selectedCharacter: string = '3';
-    selectedCharacters: Array<string> = ['1', '3'];
+    isDisabled1: boolean = true;
+    selectedCharacter0: string = '3';
+    selectedCharacter1: Array<string> = ['1', '3'];
 
     constructor(
         private elementRef: ElementRef,
@@ -30,19 +31,22 @@ export class Disabled implements AfterViewInit {
         }
     }
 
-    onToggleClick() {
+    onToggle0Click() {
         this.isDisabled0 = !this.isDisabled0;
     }
 
-    singleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
+    onToggle1Click() {
+        this.isDisabled1 = !this.isDisabled1;
+    }
+
+    html0: string = `
+<pre><code class="html">&lt;ng-select
     [options]="characters"
-    [(ngModel)]="selectedCharacter"&gt;
+    [disabled]="isDisabled"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
-    singleTs: string = `
+    ts0: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
@@ -54,7 +58,7 @@ import {OptionService} from '../../services/option.service';
 export class NgModelExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
+    isDisabled: boolean = true;
 
     constructor(
         private optionService: OptionService
@@ -62,16 +66,14 @@ export class NgModelExample {
 }
 </pre></code>`;
 
-    multipleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected options: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
+    html1: string = `
+<pre><code class="html">&lt;ng-select
     [options]="characters"
-    [multiple]="true"
-    [(ngModel)]="selectedCharacters"&gt;
+    [multiple]="true"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
-    multipleTs: string = `
+    ts1: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
@@ -83,7 +85,7 @@ import {OptionService} from '../../services/option.service';
 export class NgModelExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacters: Array&lt;string&gt; = ['1', '3'];
+    isDisabled: boolean = true;
 
     constructor(
         private optionService: OptionService

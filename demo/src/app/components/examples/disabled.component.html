@@ -8,40 +8,46 @@
 
         <h3>Single select</h3>
 
-        <div class="select-value">Selected option: {{selectedCharacter}}</div>
         <ng-select
             [options]="characters"
-            [disabled]="isDisabled0"
-            [(ngModel)]="selectedCharacter">
+            [disabled]="isDisabled0">
         </ng-select>
-        <!-- toggle-button -->
+
         <div style="margin-top: 4px;">
             <md-button-toggle
                 [checked]="true"
-                (click)="onToggleClick()"
+                (click)="onToggle0Click()"
                 style="padding:8px 0">
                 Disabled
             </md-button-toggle>
         </div>
 
         <div class="code-header">Component template</div>
-        <section [innerHTML]="singleHtml" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
         <div class="code-header">Component class</div>
-        <section [innerHTML]="singleTs" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
 
         <h3>Multiple select</h3>
 
-        <p class="select-value">Selected options: {{selectedCharacters}}</p>
         <ng-select
             [options]="characters"
             [multiple]="true"
-            [(ngModel)]="selectedCharacters">
+            [disabled]="isDisabled1">
         </ng-select>
 
+        <div style="margin-top: 4px;">
+            <md-button-toggle
+                [checked]="true"
+                (click)="onToggle1Click()"
+                style="padding:8px 0">
+                Disabled
+            </md-button-toggle>
+        </div>
+
         <div class="code-header">Component template</div>
-        <section [innerHTML]="multipleHtml" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
         <div class="code-header">Component class</div>
-        <section [innerHTML]="multipleTs" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="ts1" highlight-js-content=".highlight"></section>
 
     </md-card-content>
 </md-card>
