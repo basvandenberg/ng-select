@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 
 import {SelectComponent, IOption} from 'ng-select';
 
@@ -12,6 +12,8 @@ declare var hljs: any;
 })
 export class AppComponent {
 
+    @ViewChild('mainContainer') mainContainer: ElementRef;
+
     static readonly SCREEN_BREAKPOINT: number = 600;
     smallScreen: boolean = false;
 
@@ -23,6 +25,12 @@ export class AppComponent {
 
     ngOnInit() {
         this.updateScreen(window.innerWidth);
+        this.router.events.subscribe((evt) => {
+            if (!(evt instanceof NavigationEnd)) {
+                return;
+            }
+            this.mainContainer.nativeElement.scrollTop = 0;
+        });
     }
 
     @HostListener('window:resize', ['$event'])
