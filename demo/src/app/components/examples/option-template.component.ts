@@ -11,28 +11,9 @@ import {OptionService} from '../../services/option.service';
 })
 export class OptionTemplate implements AfterViewInit {
 
-    html: string = `
-<pre><code class="html">&lt;ng-select&gt;
-&lt;/ng-select&gt;
-</code></pre>`;
-    ts: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-export class DisabledOptionsExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getOptions();
-    selectedCharacter: string = '';
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
-
-    characters: Array<IOption> = this.optionService.getCountries();
-    selectedCharacter: string = 'NL';
+    countries: Array<IOption> = this.optionService.getCountries();
+    selectedCountry: string = 'NL';
+    selectedCountries: Array<string> = ['BE', 'LU', 'NL'];
 
     constructor(
         private elementRef: ElementRef,
@@ -49,4 +30,78 @@ export class DisabledOptionsExample {
             hljs.highlightBlock(nodes[i]);
         }
     }
+
+    html0: string = `
+<pre><code class="html">&lt;div&gt;Selected option: {{selectedCountry}}&lt;/div&gt;
+&lt;ng-select
+    placeholder="Select a country"
+    [options]="countries"
+    [allowClear]="true"
+    [(ngModel)]="selectedCountry"&gt;
+    &lt;ng-template
+        #optionTemplate
+        let-option="option"&gt;
+        &lt;div class="famfamfam-flags {{option?.value.toLowerCase()}}"&gt;&lt;/div&gt;
+        {{option?.label}}
+    &lt;/ng-template&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
+    ts0: string = `
+<pre><code class="typescript">import {Component} from '@angular/core;'
+import {IOption} from 'ng-select';
+import {OptionService} from '../../services/option.service';
+
+export class OptionTemplateExample {
+
+    countries: Array&lt;IOption&gt; = this.optionService.getCountries();
+    selectedCountry: string = 'NL';
+
+    constructor(
+        private optionService: OptionService
+    ) {}
+}
+</pre></code>`;
+
+    html1: string = `
+<pre><code class="html">&lt;div&gt;Selected options: {{selectedCountries}}&lt;/div&gt;
+&lt;ng-select
+    placeholder="Select countries"
+    [options]="countries"
+    [multiple]="true"
+    [allowClear]="true"
+    [(ngModel)]="selectedCountries"&gt;
+    &lt;ng-template
+        #optionTemplate
+        let-option="option"&gt;
+        &lt;div class="famfamfam-flags {{option?.value.toLowerCase()}}"&gt;&lt;/div&gt;
+        {{option?.label}}
+    &lt;/ng-template&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
+    ts1: string = `
+<pre><code class="typescript">import {Component} from '@angular/core;'
+import {IOption} from 'ng-select';
+import {OptionService} from '../../services/option.service';
+
+export class OptionTemplateExample {
+
+    countries: Array&lt;IOption&gt; = this.optionService.getCountries();
+    selectedCountries: Array&lt;string&gt; = ['BE', 'LU', 'NL'];
+
+    constructor(
+        private optionService: OptionService
+    ) {}
+}
+</pre></code>`;
+
+    css: string = `
+<pre><code class="css">.famfamfam-flags {
+    display: inline-block;
+    margin-right: 6px;
+    width: 16px;
+}
+</pre></code>`;
+
 }

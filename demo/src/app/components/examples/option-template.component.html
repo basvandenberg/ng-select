@@ -3,18 +3,59 @@
         Option template
     </md-card-title>
     <md-card-content>
+
+        <p><a href="http://www.famfamfam.com/lab/icons/flags" target="_blank">famfamfam flags</a></p>
+
+        <h3>Single select</h3>
+
+        <div class="select-value">Selected option: {{selectedCountry}}</div>
         <ng-select
-            [options]="characters"
-            [allowClear]="true"
             placeholder="Select a country"
-            [(ngModel)]="selectedCharacter">
-            <ng-template #optionTemplate let-option="option">
-                <div class="famfamfam-flags {{option?.value.toLowerCase()}}"></div>{{option?.label}}
+            [options]="countries"
+            [allowClear]="true"
+            [(ngModel)]="selectedCountry">
+            <ng-template
+                #optionTemplate
+                let-option="option">
+                <div class="famfamfam-flags {{option?.value.toLowerCase()}}"></div>
+                {{option?.label}}
             </ng-template>
         </ng-select>
-        <p></p>
-        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
-        <p></p>
-        <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Icon styling</div>
+        <section [innerHTML]="css" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <div class="select-value">Selected options: {{selectedCountries}}</div>
+        <ng-select
+            placeholder="Select countries"
+            [options]="countries"
+            [multiple]="true"
+            [allowClear]="true"
+            [(ngModel)]="selectedCountries">
+            <ng-template
+                #optionTemplate
+                let-option="option">
+                <div class="famfamfam-flags {{option?.value.toLowerCase()}}"></div>
+                {{option?.label}}
+            </ng-template>
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts1" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Icon styling</div>
+        <section [innerHTML]="css" highlight-js-content=".highlight"></section>
+
     </md-card-content>
 </md-card>
