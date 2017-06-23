@@ -29,6 +29,7 @@ code {
     font-size: 0.9em;
 
     &.hljs {
+        background-color: mat-color($mat-indigo, 50);
         font-size: 0.9em;
         line-height: 1rem;
         padding: .8em;
