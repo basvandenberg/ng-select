@@ -4,34 +4,63 @@
     </md-card-title>
     <md-card-content>
 
-        <p>TODO This example shows how to use <code>ngModel</code> to set a default selection and to keep track of the currently selected option(s).</p>
+        <p></p>
 
         <h3>Single select</h3>
 
-        <div class="select-value">Selected option: {{selectedCharacter}}</div>
-        <ng-select
-            [options]="characters"
-            [(ngModel)]="selectedCharacter">
-        </ng-select>
+        <div class="select-value">
+            Form valid: {{form0.valid}}
+        </div>
+        <form
+            novalidate
+            [formGroup]="form0">
+            <ng-select
+                formControlName="character"
+                [allowClear]="true"
+                [options]="characters">
+            </ng-select>
+            <div style="margin-top: 4px;">
+                <button
+                    md-raised-button
+                    [disabled]="!form0.valid">
+                    Submit
+                </button>
+            </div>
+        </form>
 
         <div class="code-header">Component template</div>
-        <section [innerHTML]="singleHtml" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
         <div class="code-header">Component class</div>
-        <section [innerHTML]="singleTs" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
 
         <h3>Multiple select</h3>
 
-        <p class="select-value">Selected options: {{selectedCharacters}}</p>
-        <ng-select
-            [options]="characters"
-            [multiple]="true"
-            [(ngModel)]="selectedCharacters">
-        </ng-select>
+        <div class="select-value">
+            Form valid: {{form1.valid}}
+        </div>
+        <form
+            novalidate
+            [formGroup]="form1">
+            <ng-select
+                formControlName="character"
+                [multiple]="true"
+                [allowClear]="true"
+                [options]="characters">
+            </ng-select>
+            <div style="margin-top: 4px;">
+                <button
+                    md-raised-button
+                    [disabled]="!form1.valid">
+                    Submit
+                </button>
+            </div>
+        </form>
 
         <div class="code-header">Component template</div>
-        <section [innerHTML]="multipleHtml" highlight-js-content=".highlight"></section>
-        <div class="code-header">Component class</div>
-        <section [innerHTML]="multipleTs" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
 
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts1" highlight-js-content=".highlight"></section>
     </md-card-content>
 </md-card>

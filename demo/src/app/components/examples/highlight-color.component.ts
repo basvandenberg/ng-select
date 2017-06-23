@@ -29,27 +29,26 @@ export class HighlightColor implements AfterViewInit {
         }
     }
 
-    singleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
-    [options]="characters"
-    [(ngModel)]="selectedCharacter"&gt;
+    html0: string = `
+<pre><code class="html">&lt;ng-select
+    highlightColor="#9575cd"
+    highlightTextColor="#fff"
+    [options]="characters"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
-    singleTs: string = `
+    ts0: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
 @Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
+    selector: 'highlight-color',
+    templateUrl: './highlight-color.component.html'
 })
-export class NgModelExample {
+export class HighlightColorExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
 
     constructor(
         private optionService: OptionService
@@ -57,33 +56,33 @@ export class NgModelExample {
 }
 </pre></code>`;
 
-    multipleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected options: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
+    html1: string = `
+<pre><code class="html">&lt;ng-select
+    highlightColor="#9575cd"
+    highlightTextColor="#fff"
     [options]="characters"
-    [multiple]="true"
-    [(ngModel)]="selectedCharacters"&gt;
+    [multiple]="true"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
-    multipleTs: string = `
+    ts1: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
 @Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
+    selector: 'highlight-color',
+    templateUrl: './highlight-color.component.html'
 })
-export class NgModelExample {
+export class HighlightColorExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacters: Array&lt;string&gt; = ['1', '3'];
 
     constructor(
         private optionService: OptionService
     ) {}
 }
 </pre></code>`;
+
 
 }

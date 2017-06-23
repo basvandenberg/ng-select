@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, ElementRef} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IOption} from 'ng-select';
 declare var hljs: any;
 import {OptionService} from '../../services/option.service';
@@ -10,13 +11,22 @@ import {OptionService} from '../../services/option.service';
 export class FormValidation implements AfterViewInit {
 
     characters: Array<IOption> = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
-    selectedCharacters: Array<string> = ['1', '3'];
+    form0: FormGroup;
+    form1: FormGroup;
 
     constructor(
         private elementRef: ElementRef,
         private optionService: OptionService
     ) {}
+
+    ngOnInit() {
+        this.form0 = new FormGroup({
+            character: new FormControl('', Validators.required)
+        });
+        this.form1 = new FormGroup({
+            character: new FormControl([], Validators.required)
+        });
+    }
 
     ngAfterViewInit() {
         hljs.initHighlighting();
@@ -29,61 +39,73 @@ export class FormValidation implements AfterViewInit {
         }
     }
 
-    singleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
-    [options]="characters"
-    [(ngModel)]="selectedCharacter"&gt;
-&lt;/ng-select&gt;
+    html0: string = `
+<pre><code class="html">&lt;div&gt;Form valid: {{form.valid}}&lt;/div&gt;
+&lt;form
+    novalidate
+    [formGroup]="form"&gt;
+    &lt;ng-select
+        formControlName="character"
+        [allowClear]="true"
+        [options]="characters"&gt;
+    &lt;/ng-select&gt;
+&lt;/form&gt;
 </code></pre>`;
 
-    singleTs: string = `
+    ts0: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
+export class ReactiveFormExample {
 
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
+    characters: Array&lt;IOption&gt; = this.optionService.getOptions();
 
     constructor(
         private optionService: OptionService
     ) {}
+
+    ngOnInit() {
+        this.form = new FormGroup({
+            character: new FormControl('', Validators.required)
+        });
+    }
 }
 </pre></code>`;
 
-    multipleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected options: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
-    [options]="characters"
-    [multiple]="true"
-    [(ngModel)]="selectedCharacters"&gt;
-&lt;/ng-select&gt;
+    html1: string = `
+<pre><code class="html">&lt;div&gt;Form valid: {{form.valid}}&lt;/div&gt;
+&lt;form
+    novalidate
+    [formGroup]="form"&gt;
+    &lt;ng-select
+        formControlName="character"
+        [allowClear]="true"
+        [options]="characters"&gt;
+    &lt;/ng-select&gt;
+&lt;/form&gt;
 </code></pre>`;
 
-    multipleTs: string = `
+    ts1: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
+export class ReactiveFormExample {
 
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacters: Array&lt;string&gt; = ['1', '3'];
+    characters: Array&lt;IOption&gt; = this.optionService.getOptions();
 
     constructor(
         private optionService: OptionService
     ) {}
+
+    ngOnInit() {
+        this.form = new FormGroup({
+            character: new FormControl('', Validators.required)
+        });
+    }
 }
 </pre></code>`;
-
 }

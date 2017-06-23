@@ -4,34 +4,36 @@
     </md-card-title>
     <md-card-content>
 
-        <p>This example shows how to use <code>ngModel</code> to set a default selection and to keep track of the currently selected option(s).</p>
+        <p></p>
 
         <h3>Single select</h3>
 
-        <div class="select-value">Selected option: {{selectedCharacter}}</div>
         <ng-select
-            [options]="characters"
-            [(ngModel)]="selectedCharacter">
+            highlightColor="#9575cd"
+            highlightTextColor="#fff"
+            [options]="characters">
         </ng-select>
 
         <div class="code-header">Component template</div>
-        <section [innerHTML]="singleHtml" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
         <div class="code-header">Component class</div>
-        <section [innerHTML]="singleTs" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
 
         <h3>Multiple select</h3>
 
-        <p class="select-value">Selected options: {{selectedCharacters}}</p>
         <ng-select
+            highlightColor="#9575cd"
+            highlightTextColor="#fff"
             [options]="characters"
-            [multiple]="true"
-            [(ngModel)]="selectedCharacters">
+            [multiple]="true">
         </ng-select>
 
         <div class="code-header">Component template</div>
-        <section [innerHTML]="multipleHtml" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
         <div class="code-header">Component class</div>
-        <section [innerHTML]="multipleTs" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="ts1" highlight-js-content=".highlight"></section>
 
     </md-card-content>
 </md-card>

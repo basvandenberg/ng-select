@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {IOption} from 'ng-select';
 declare var hljs: any;
 import {OptionService} from '../../services/option.service';
@@ -64,6 +64,7 @@ export class ReactiveForm implements AfterViewInit {
 
     ts0: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
+import {FormControl, FormGroup} from '@angular/forms';
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
@@ -107,6 +108,7 @@ export class ReactiveFormExample {
 
     ts1: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
+import {FormControl, FormGroup} from '@angular/forms';
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
@@ -126,4 +128,5 @@ export class ReactiveFormExample {
     }
 }
 </pre></code>`;
+
 }
