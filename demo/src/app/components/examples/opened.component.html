@@ -1,37 +1,39 @@
 <md-card>
     <md-card-title>
-        Opened and closed events
+        Opened &amp; closed event
     </md-card-title>
     <md-card-content>
 
-        <p>This example shows how to use <code>ngModel</code> to set a default selection and to keep track of the currently selected option(s).</p>
-
         <h3>Single select</h3>
 
-        <div class="select-value">Selected option: {{selectedCharacter}}</div>
+        <div class="select-value">Dropdown open: {{isOpen0}}</div>
         <ng-select
             [options]="characters"
-            [(ngModel)]="selectedCharacter">
+            (closed)="onClosed0()"
+            (opened)="onOpened0()">
         </ng-select>
 
         <div class="code-header">Component template</div>
-        <section [innerHTML]="singleHtml" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
         <div class="code-header">Component class</div>
-        <section [innerHTML]="singleTs" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
 
         <h3>Multiple select</h3>
 
-        <p class="select-value">Selected options: {{selectedCharacters}}</p>
+        <div class="select-value">Dropdown open: {{isOpen1}}</div>
         <ng-select
             [options]="characters"
             [multiple]="true"
-            [(ngModel)]="selectedCharacters">
+            (closed)="onClosed1()"
+            (opened)="onOpened1()">
         </ng-select>
 
         <div class="code-header">Component template</div>
-        <section [innerHTML]="multipleHtml" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
         <div class="code-header">Component class</div>
-        <section [innerHTML]="multipleTs" highlight-js-content=".highlight"></section>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
 
     </md-card-content>
 </md-card>

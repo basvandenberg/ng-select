@@ -1,34 +1,39 @@
-<h2>Basic example</h2>
-
 <md-card>
     <md-card-title>
-        Single select
+        Focus &amp; blur event
     </md-card-title>
     <md-card-content>
-        <div *ngIf="hasFocus">Focus</div>
-        <div *ngIf="!hasFocus">No focus</div>
-        <div>{{msg}}</div>
-        <ng-select
-            [options]="characters"
-            [(ngModel)]="selectedCharacter"
-            (blur)="onBlur()"
-            (focus)="onFocus()">
-        </ng-select>
-        <p>Test</p>
-        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
-        <p>Test</p>
-        <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
-    </md-card-content>
-</md-card>
 
-<md-card>
-    <md-card-title>
-        Multiple select
-    </md-card-title>
-    <md-card-content>
+        <h3>Single select</h3>
+
+        <div class="select-value">Focus: {{hasFocus0}}</div>
         <ng-select
             [options]="characters"
-            [multiple]="true">
+            (blur)="onBlur0()"
+            (focus)="onFocus0()">
         </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <div class="select-value">Focus: {{hasFocus1}}</div>
+        <ng-select
+            [options]="characters"
+            [multiple]="true"
+            (blur)="onBlur1()"
+            (focus)="onFocus1()">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
     </md-card-content>
 </md-card>

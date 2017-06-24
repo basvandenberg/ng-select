@@ -10,13 +10,29 @@ import {OptionService} from '../../services/option.service';
 export class Selected implements AfterViewInit {
 
     characters: Array<IOption> = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
-    selectedCharacters: Array<string> = ['1', '3'];
+    msg0: string = '...';
+    msg1: string = '...';
 
     constructor(
         private elementRef: ElementRef,
         private optionService: OptionService
     ) {}
+
+    onSelected0(option: IOption) {
+        this.msg0 = `Selected ${option.label}`;
+    }
+
+    onDeselected0(option: IOption) {
+        this.msg0 = `Deselected ${option.label}`;
+    }
+
+    onSelected1(option: IOption) {
+        this.msg1 = `Selected ${option.label}`;
+    }
+
+    onDeselected1(option: IOption) {
+        this.msg1 = `Deselected ${option.label}`;
+    }
 
     ngAfterViewInit() {
         hljs.initHighlighting();
@@ -29,27 +45,37 @@ export class Selected implements AfterViewInit {
         }
     }
 
-    singleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
+    html0: string = `
+<pre><code class="html">&lt;div&gt;{{msg}}&lt;/div&gt;
 &lt;ng-select
     [options]="characters"
-    [(ngModel)]="selectedCharacter"&gt;
+    [allowClear]="true"
+    (selected)="onSelected($event)"
+    (deselected)="onDeselected($event)"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
-    singleTs: string = `
+    ts0: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
 @Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
+    selector: 'selected-event',
+    templateUrl: './selected-event.component.html'
 })
-export class NgModelExample {
+export class SelectedEventExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
+    msg: string = '...';
+
+    onSelected(option: IOption) {
+        this.msg = \`Selected \${option.label}\`;
+    }
+
+    onDeselected(option: IOption) {
+        this.msg = \`Deselected \${option.label}\`;
+    }
 
     constructor(
         private optionService: OptionService
@@ -57,33 +83,14 @@ export class NgModelExample {
 }
 </pre></code>`;
 
-    multipleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected options: {{selectedCharacter}}&lt;/div&gt;
+    html1: string = `
+<pre><code class="html">&lt;div&gt;{{msg}}&lt;/div&gt;
 &lt;ng-select
     [options]="characters"
     [multiple]="true"
-    [(ngModel)]="selectedCharacters"&gt;
+    (selected)="onSelected($event)"
+    (deselected)="onDeselected($event)"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
-
-    multipleTs: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacters: Array&lt;string&gt; = ['1', '3'];
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
 
 }

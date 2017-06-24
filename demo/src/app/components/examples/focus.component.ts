@@ -10,23 +10,63 @@ import {OptionService} from '../../services/option.service';
 })
 export class Focus implements AfterViewInit {
 
-    html: string = `
-<pre><code class="html">&lt;ng-select
+    characters: Array<IOption> = this.optionService.getCharacters();
+    hasFocus0: boolean = false;
+    hasFocus1: boolean = false;
+
+    constructor(
+        private elementRef: ElementRef,
+        private optionService: OptionService
+    ) {}
+
+    onBlur0() {
+        this.hasFocus0 = false;
+    }
+
+    onFocus0() {
+        this.hasFocus0 = true;
+    }
+
+    onBlur1() {
+        this.hasFocus1 = false;
+    }
+
+    onFocus1() {
+        this.hasFocus1 = true;
+    }
+
+    ngAfterViewInit() {
+        hljs.initHighlighting();
+        let nodes: NodeList = this.elementRef
+            .nativeElement
+            .querySelectorAll('.typescript, .html, .css');
+
+        for (let i = 0; i < nodes.length; i++) {
+            hljs.highlightBlock(nodes[i]);
+        }
+    }
+
+    html0: string = `
+<pre><code class="html">&lt;div&gt;Focus: {{hasFocus}}&lt;/div&gt;
+&lt;ng-select
     [options]="characters"
-    [(ngSelect)]="selectedCharacter"
-    (blur)="onBlur()
+    (blur)="onBlur()"
     (focus)="onFocus()"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
-    ts: string = `
+
+    ts0: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
-export class Focus {
+@Component({
+    selector: 'focus',
+    templateUrl: './focus.component.html'
+})
+export class FocusExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getOptions();
-    selectedCharacter: string = '3';
     hasFocus: boolean = false;
 
     constructor(
@@ -43,36 +83,14 @@ export class Focus {
 }
 </pre></code>`;
 
-    characters: Array<IOption> = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
-    hasFocus: boolean = false;
-    msg: string = '';
+    html1: string = `
+<pre><code class="html">&lt;div&gt;Focus: {{hasFocus}}&lt;/div&gt;
+&lt;ng-select
+    [options]="characters"
+    [multiple]="true";
+    (blur)="onBlur()"
+    (focus)="onFocus()"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
 
-    constructor(
-        private elementRef: ElementRef,
-        private optionService: OptionService
-    ) {}
-
-    onBlur() {
-        console.log('BLUR!');
-        this.hasFocus = false;
-        this.msg += 'blur, ';
-    }
-
-    onFocus() {
-        console.log('focus');
-        this.hasFocus = true;
-        this.msg += 'focus, ';
-    }
-
-    ngAfterViewInit() {
-        hljs.initHighlighting();
-        let nodes: NodeList = this.elementRef
-            .nativeElement
-            .querySelectorAll('.typescript, .html, .css');
-
-        for (let i = 0; i < nodes.length; i++) {
-            hljs.highlightBlock(nodes[i]);
-        }
-    }
 }

@@ -4,14 +4,12 @@ declare var hljs: any;
 import {OptionService} from '../../services/option.service';
 
 @Component({
-    selector: 'ng-select-label',
+    selector: 'select-label',
     templateUrl: './label.component.html'
 })
 export class Label implements AfterViewInit {
 
     characters: Array<IOption> = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
-    selectedCharacters: Array<string> = ['1', '3'];
 
     constructor(
         private elementRef: ElementRef,
@@ -29,27 +27,25 @@ export class Label implements AfterViewInit {
         }
     }
 
-    singleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
-    [options]="characters"
-    [(ngModel)]="selectedCharacter"&gt;
+    html0: string = `
+<pre><code class="html">&lt;ng-select
+    label="Favorite character"
+    [options]="characters"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
-    singleTs: string = `
+    ts: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
 @Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
+    selector: 'select-label',
+    templateUrl: './select-label.component.html'
 })
-export class NgModelExample {
+export class LabelExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
 
     constructor(
         private optionService: OptionService
@@ -57,33 +53,12 @@ export class NgModelExample {
 }
 </pre></code>`;
 
-    multipleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected options: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
+    html1: string = `
+<pre><code class="html">&lt;ng-select
+    label="Favorite characters"
     [options]="characters"
-    [multiple]="true"
-    [(ngModel)]="selectedCharacters"&gt;
+    [multiple]="true"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
-
-    multipleTs: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacters: Array&lt;string&gt; = ['1', '3'];
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
 
 }

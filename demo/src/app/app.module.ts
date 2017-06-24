@@ -30,10 +30,10 @@ import {DisabledOptions} from './components/examples/disabled-options.component'
 import {NoFilter} from './components/examples/no-filter.component';
 import {Placeholder} from './components/examples/placeholder.component';
 import {FilterPlaceholder} from './components/examples/filter-placeholder.component';
-import {Label} from './components/examples/label.component';
 import {NotFoundMsg} from './components/examples/not-found-msg.component';
 import {OptionTemplate} from './components/examples/option-template.component';
 import {HighlightColor} from './components/examples/highlight-color.component';
+import {Label} from './components/examples/label.component';
 import {Focus} from './components/examples/focus.component';
 import {Opened} from './components/examples/opened.component';
 import {Selected} from './components/examples/selected.component';
@@ -72,10 +72,10 @@ import {OptionService} from './services/option.service';
         NoFilter,
         Placeholder,
         FilterPlaceholder,
-        Label,
         NotFoundMsg,
         OptionTemplate,
         HighlightColor,
+        Label,
         Focus,
         Opened,
         Selected,

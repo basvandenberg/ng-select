@@ -58,6 +58,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
+@Component({
+    selector: 'reactive-form',
+    templateUrl: './reaction-form.component.html'
+})
 export class ReactiveFormExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getOptions();
@@ -93,6 +97,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
+@Component({
+    selector: 'reactive-form',
+    templateUrl: './reaction-form.component.html'
+})
 export class ReactiveFormExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getOptions();

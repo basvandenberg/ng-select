@@ -10,8 +10,6 @@ import {OptionService} from '../../services/option.service';
 export class NotFoundMsg implements AfterViewInit {
 
     characters: Array<IOption> = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
-    selectedCharacters: Array<string> = ['1', '3'];
 
     constructor(
         private elementRef: ElementRef,
@@ -29,56 +27,26 @@ export class NotFoundMsg implements AfterViewInit {
         }
     }
 
-    singleHtml: string = `
+    html: string = `
 <pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
 &lt;ng-select
     [options]="characters"
-    [(ngModel)]="selectedCharacter"&gt;
+    [notFoundMsg]="No characters found"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
-    singleTs: string = `
+    ts: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
 @Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
+    selector: 'not-found-msg',
+    templateUrl: './not-found-msg.component.html'
 })
-export class NgModelExample {
+export class NotFoundMessageExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
-
-    multipleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected options: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
-    [options]="characters"
-    [multiple]="true"
-    [(ngModel)]="selectedCharacters"&gt;
-&lt;/ng-select&gt;
-</code></pre>`;
-
-    multipleTs: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacters: Array&lt;string&gt; = ['1', '3'];
 
     constructor(
         private optionService: OptionService

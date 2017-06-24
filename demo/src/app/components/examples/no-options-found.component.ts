@@ -10,13 +10,21 @@ import {OptionService} from '../../services/option.service';
 export class NoOptionsFound implements AfterViewInit {
 
     characters: Array<IOption> = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
-    selectedCharacters: Array<string> = ['1', '3'];
+    noResultsTerm0: string = '';
+    noResultsTerm1: string = '';
 
     constructor(
         private elementRef: ElementRef,
         private optionService: OptionService
     ) {}
+
+    onNoOptionsFound0(searchTerm: string) {
+        this.noResultsTerm0 = searchTerm;
+    }
+
+    onNoOptionsFound1(searchTerm: string) {
+        this.noResultsTerm1 = searchTerm;
+    }
 
     ngAfterViewInit() {
         hljs.initHighlighting();
@@ -29,15 +37,15 @@ export class NoOptionsFound implements AfterViewInit {
         }
     }
 
-    singleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
+    html0: string = `
+<pre><code class="html">&lt;div&gt;No options found for search term: {{noResultsTerm}}&lt;/div&gt;
 &lt;ng-select
     [options]="characters"
-    [(ngModel)]="selectedCharacter"&gt;
+    (noOptionsFound)="onNoOptionsFound($event)"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
-    singleTs: string = `
+    ts0: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
@@ -49,41 +57,26 @@ import {OptionService} from '../../services/option.service';
 export class NgModelExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
+    noResultsTerm: string = '';
 
     constructor(
         private optionService: OptionService
     ) {}
+
+    onNoOptionsFound(searchTerm: string) {
+        this.noResultsTerm = searchTerm;
+    }
 }
 </pre></code>`;
 
-    multipleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected options: {{selectedCharacter}}&lt;/div&gt;
+    html1: string = `
+<pre><code class="html">&lt;div&gt;No options found for search term: {{noResultsTerm}}&lt;/div&gt;
 &lt;ng-select
     [options]="characters"
     [multiple]="true"
-    [(ngModel)]="selectedCharacters"&gt;
+    (noOptionsFound)="onNoOptionsFound($event)"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
-    multipleTs: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacters: Array&lt;string&gt; = ['1', '3'];
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
 
 }

@@ -10,13 +10,29 @@ import {OptionService} from '../../services/option.service';
 export class Opened implements AfterViewInit {
 
     characters: Array<IOption> = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
-    selectedCharacters: Array<string> = ['1', '3'];
+    isOpen0: boolean = false;
+    isOpen1: boolean = false;
 
     constructor(
         private elementRef: ElementRef,
         private optionService: OptionService
     ) {}
+
+    onClosed0() {
+        this.isOpen0 = false;
+    }
+
+    onOpened0() {
+        this.isOpen0 = true;
+    }
+
+    onClosed1() {
+        this.isOpen1 = false;
+    }
+
+    onOpened1() {
+        this.isOpen1 = true;
+    }
 
     ngAfterViewInit() {
         hljs.initHighlighting();
@@ -29,61 +45,51 @@ export class Opened implements AfterViewInit {
         }
     }
 
-    singleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
+    html0: string = `
+<pre><code class="html">&lt;div&gt;Dropdown open: {{isOpen}}&lt;/div&gt;
 &lt;ng-select
     [options]="characters"
-    [(ngModel)]="selectedCharacter"&gt;
+    (closed)="onClosed()"
+    (opened)="onOpened()"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
-    singleTs: string = `
+    ts0: string = `
 <pre><code class="typescript">import {Component} from '@angular/core;'
 import {IOption} from 'ng-select';
 import {OptionService} from '../../services/option.service';
 
 @Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
+    selector: 'opened-closed',
+    templateUrl: './opened-closed.component.html'
 })
-export class NgModelExample {
+export class OpenedClosedExample {
 
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
+    characters: Array&lt;IOption&gt; = this.optionService.getOptions();
+    isOpen: boolean = false;
 
     constructor(
         private optionService: OptionService
     ) {}
+
+    onClosed() {
+        this.isOpen = false;
+    }
+
+    onOpened() {
+        this.isOpen = true;
+    }
 }
 </pre></code>`;
 
-    multipleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected options: {{selectedCharacter}}&lt;/div&gt;
+    html1: string = `
+<pre><code class="html">&lt;div&gt;Dropdown open: {{hasFocus}}&lt;/div&gt;
 &lt;ng-select
     [options]="characters"
-    [multiple]="true"
-    [(ngModel)]="selectedCharacters"&gt;
+    [multiple]="true";
+    (blur)="onBlur()"
+    (focus)="onFocus()"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
-
-    multipleTs: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacters: Array&lt;string&gt; = ['1', '3'];
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
 
 }
