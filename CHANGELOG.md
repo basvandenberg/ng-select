@@ -16,6 +16,7 @@
 - Call the onChange only for user (de)select actions (#176).
 - Fix missing placeholder (multiple select) if filter is hidden (#110).
 - Prevent drop down to close when clicking disabled option (#156).
+- Update filter input width when closing drop down (#198).
 
 ### Improvements
 - Updated dependencies.
