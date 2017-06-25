@@ -10,42 +10,12 @@ import {OptionService} from '../../services/option.service';
 })
 export class Placeholder implements AfterViewInit {
 
-    html: string = `
-<pre><code class="html">&lt;ng-select
-    [options]="characters"
-    [(ngModel)]="selectedCharacter"&gt;
-&lt;/ng-select&gt;
-</code></pre>`;
-    ts: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-export class BasicExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getOptions();
-    selectedCharacter: string = '3';
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
-
     characters: Array<IOption> = this.optionService.getCharacters();
-    selectedCharacter: string = '';
-    placeholder = "Select a character"
 
     constructor(
         private elementRef: ElementRef,
         private optionService: OptionService
     ) {}
-
-    ngOnInit() {
-        setTimeout(() => {
-            this.placeholder = "Kies een karakter"
-        }, 5000);
-    }
 
     ngAfterViewInit() {
         hljs.initHighlighting();
@@ -57,4 +27,21 @@ export class BasicExample {
             hljs.highlightBlock(nodes[i]);
         }
     }
+
+    html0: string = `
+<pre><code class="html">&lt;ng-select
+    placeholder="Choose your favorite character"
+    [options]="characters"
+    [allowClear]="true"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
+    html1: string = `
+<pre><code class="html">&lt;ng-select
+    placeholder="Choose your favorite character"
+    [options]="characters"
+    [mutliple]="true"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
 }
