@@ -17,6 +17,8 @@
 - Fix missing placeholder (multiple select) if filter is hidden (#110).
 - Prevent drop down to close when clicking disabled option (#156).
 - Update filter input width when closing drop down (#198).
+- Show pointer instead of text cursor when hovering placeholder in multiple 
+  select (#199).
 
 ### Improvements
 - Updated dependencies.

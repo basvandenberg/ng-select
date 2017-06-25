@@ -110,17 +110,10 @@ ng-select {
                 }
             }
 
-            >div.placeholder {
-                color: #a9a9a9;
-                flex: 1;
-                line-height: 30px;
-                overflow: hidden;
-                white-space: nowrap;
-            }
-
             input {
                 background-color: transparent;
                 border: none;
+                cursor: pointer;
                 height: 30px;
                 line-height: 30px;
                 padding: 0;
