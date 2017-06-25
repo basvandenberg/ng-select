@@ -370,6 +370,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     private closeDropdown(focus: boolean) {
         if (this.isOpen) {
             this.clearFilterInput();
+            this.updateFilterWidth();
             this.isOpen = false;
             if (focus) {
                 this._focusSelectContainer();
