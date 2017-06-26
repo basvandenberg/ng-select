@@ -29,7 +29,9 @@ export class AppComponent {
             if (!(evt instanceof NavigationEnd)) {
                 return;
             }
-            this.mainContainer.nativeElement.scrollTop = 0;
+            if (evt.url.indexOf('/faq') === -1) {
+                this.mainContainer.nativeElement.scrollTop = 0;
+            }
         });
     }
 

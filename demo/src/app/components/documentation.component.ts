@@ -7,14 +7,6 @@ declare var hljs: any;
 })
 export class Documentation {
 
-    optionTemplate: string = `
-<pre><code class="html">&lt;ng-template
-    #optionTemplate
-    let-option="option"&gt;
-    &lt;span class="{{option?.value}}"&gt;-->&lt;span&gt; {{option?.label}}
-&lt;/ng-template&gt;
-</code></pre>`;
-
     constructor(
         private elementRef: ElementRef,
     ) {}
@@ -29,4 +21,29 @@ export class Documentation {
             hljs.highlightBlock(nodes[i]);
         }
     }
+
+    iOptionInterface: string = `
+<pre><code class="typescript">interface IOption {
+    value: string;
+    label: string;
+    disabled?: boolean;
+}
+</code></pre>`;
+
+    optionClass: string = `
+<pre><code class="typescript">class MyOption implements IOption {
+    value: string;
+    label: string;
+    state: string;
+}
+</code></pre>`;
+
+    optionTemplate: string = `
+<pre><code class="html">&lt;ng-template
+    #optionTemplate
+    let-option="option"&gt;
+    &lt;span class="{{option.state}}"&gt;{{option.label}}&lt;/span&gt;
+&lt;/ng-template&gt;
+</code></pre>`;
+
 }

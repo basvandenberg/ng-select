@@ -6,7 +6,11 @@
 
         <h3 id="ioption">The IOption interface</h3>
 
-        <p>TODO</p>
+        <p>The select options can be any object that implements the <code>IOption</code> interface:</p>
+
+        <section [innerHTML]="iOptionInterface" highlight-js-content=".highlight"></section>
+
+        <p>The <code>label</code> is displayed in the drop down. If an option is selected, the select value will be set to the option's <code>value</code>. Finally, options can be disabled with the optional <code>disabled</code> property.</p>
 
         <h3 id="input">Input properties</h3>
 
@@ -103,9 +107,15 @@
 
         <h3 id="template">Option template</h3>
 
-        <p>By default the <code>label</code> values of the provided options are rendered in the select drop down. Alternatively, option rendering can be customized by providing an option template.</p>
+        <p>The option labels are by default shown in the select drop down. Alternatively, rendering can be customized by providing an option template. For custom rendering, other properties than the ones defined in the <code>IOption</code> interface can also be used. For example, an option class with a <code>state</code> property:</p>
+
+        <section [innerHTML]="optionClass" highlight-js-content=".highlight"></section>
+
+        <p>can be used for setting the class of the span that contains the option label:</p>
 
         <section [innerHTML]="optionTemplate" highlight-js-content=".highlight"></section>
+
+        <p>The <a routerLink="/examples/option-template">option template example</a> show how the option template can be used to show an icon in front of the option label.</p>
 
         <h3 id="output">Output events</h3>
 
