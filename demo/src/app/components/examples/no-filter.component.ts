@@ -19,6 +19,14 @@ export class NoFilter implements AfterViewInit {
         private optionService: OptionService
     ) {}
 
+    onNoFilterThresholdChange0(e) {
+        this.noFilterThreshold0 = parseInt(e.target.value);
+    }
+
+    onNoFilterThresholdChange1(e) {
+        this.noFilterThreshold1 = parseInt(e.target.value);
+    }
+
     ngAfterViewInit() {
         hljs.initHighlighting();
         let nodes: NodeList = this.elementRef
@@ -31,14 +39,15 @@ export class NoFilter implements AfterViewInit {
     }
 
     html0: string = `
-<pre><code class="html">
-&lt;div&gt;Hide filter if the number of options is less than:&lt;/div&gt;
-&lt;md-button-toggle-group
-    [(ngModel)]="noFilterThreshold"&gt;
-    &lt;md-button-toggle value="5"&gt;5&lt;/md-button-toggle&gt;
-    &lt;md-button-toggle value="6"&gt;6&lt;/md-button-toggle&gt;
-    &lt;md-button-toggle value="Infinity"&gt;Infinity&lt;/md-button-toggle&gt;
-&lt;/md-button-toggle-group&gt;
+<pre><code class="html">&lt;span class="select-value"&gt;Hide filter when there are less then&lt;/span&gt;
+&lt;select
+    (change)="onNoFilterThresholdChange($event)"&gt;
+    &lt;option value="5"&gt;5&lt;/option&gt;
+    &lt;option value="6" selected="selected"&gt;6&lt;/option&gt;
+    &lt;option value="Infinity"&gt;Infinity&lt;/option&gt;
+&lt;/select&gt;
+&lt;span class="select-value"&gt;options&lt;/span&gt;
+
 &lt;ng-select
     [options]="characters"
     [noFilter]="noFilterThreshold"&gt;
@@ -46,15 +55,7 @@ export class NoFilter implements AfterViewInit {
 </code></pre>`
 
     ts0: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'no-filter-example',
-    templateUrl: './no-filter-example.component.html'
-})
-export class NoFilterExample {
+<pre><code class="typescript">export class NoFilterExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getOptions();
     noFilterThreshold: number = 6;
@@ -62,43 +63,28 @@ export class NoFilterExample {
     constructor(
         private optionService: OptionService
     ) {}
+
+    onNoFilterThresholdChange(e) {
+        this.noFilterThreshold = parseInt(e.target.value);
+    }
 }
 </pre></code>`;
 
     html1: string = `
-<pre><code class="html">
-&lt;div&gt;Hide filter if the number of options is less than:&lt;/div&gt;
-&lt;md-button-toggle-group
-    [(ngModel)]="noFilterThreshold"&gt;
-    &lt;md-button-toggle value="5"&gt;5&lt;/md-button-toggle&gt;
-    &lt;md-button-toggle value="6"&gt;6&lt;/md-button-toggle&gt;
-    &lt;md-button-toggle value="Infinity"&gt;Infinity&lt;/md-button-toggle&gt;
-&lt;/md-button-toggle-group&gt;
+<pre><code class="html">&lt;span class="select-value"&gt;Hide filter when there are less then&lt;/span&gt;
+&lt;select
+    (change)="onNoFilterThresholdChange($event)"&gt;
+    &lt;option value="5"&gt;5&lt;/option&gt;
+    &lt;option value="6" selected="selected"&gt;6&lt;/option&gt;
+    &lt;option value="Infinity"&gt;Infinity&lt;/option&gt;
+&lt;/select&gt;
+&lt;span class="select-value"&gt;options&lt;/span&gt;
+
 &lt;ng-select
     [options]="characters"
     [multiple]="true"
     [noFilter]="noFilterThreshold"&gt;
 &lt;/ng-select&gt;
 </code></pre>`
-
-    ts1: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'no-filter-example',
-    templateUrl: './no-filter-example.component.html'
-})
-export class NoFilterExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getOptions();
-    noFilterThreshold: number = 6;
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
 
 }

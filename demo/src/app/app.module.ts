@@ -42,12 +42,6 @@ import {SelectMethod} from './components/examples/select-method.component';
 import {ClearMethod} from './components/examples/clear-method.component';
 import {OpenMethod} from './components/examples/open-method.component';
 
-// TODOs
-// Styling with ngStyle...
-import {CloseOnSelect} from './components/examples/close-on-select.component';
-import {LoadOptionsAsyncPipe} from './components/examples/load-options-async-pipe.component';
-import {TemplateDrivenForm} from './components/examples/template-driven-form.component';
-
 import {OptionService} from './services/option.service';
 
 @NgModule({

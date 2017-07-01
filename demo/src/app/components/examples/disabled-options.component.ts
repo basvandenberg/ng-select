@@ -9,29 +9,7 @@ import {OptionService} from '../../services/option.service';
     templateUrl: 'disabled-options.component.html'
 })
 export class DisabledOptions implements AfterViewInit {
-
-    html: string = `
-<pre><code class="html">&lt;ng-select
-&lt;/ng-select&gt;
-</code></pre>`;
-    ts: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-export class DisabledOptionsExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getOptions();
-    selectedCharacter: string = '3';
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
-
-    characters: Array<IOption> = this.optionService.getCharactersWithDisabled();
-    selectedCharacter: string = '3';
+    charactersWithDisabled: Array<IOption> = this.optionService.getCharactersWithDisabled();
 
     constructor(
         private elementRef: ElementRef,
@@ -48,4 +26,21 @@ export class DisabledOptionsExample {
             hljs.highlightBlock(nodes[i]);
         }
     }
+
+    data: string = `<pre><code class="typescript">charactersWithDisabled: Array&lt;IOption&gt; = [
+    {value: '0', label: 'Aech'},
+    {value: '1', label: 'Art3mis', disabled: true},
+    {value: '2', label: 'Daito'},
+    {value: '3', label: 'Parzival'},
+    {value: '4', label: 'Shoto', disabled: true}
+];
+</pre></code>
+`;
+
+    html: string = `
+<pre><code class="html">&lt;ng-select
+    [options]="charactersWithDisabled"&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
+
 }
