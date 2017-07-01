@@ -40,7 +40,7 @@ export class FormValidation implements AfterViewInit {
     }
 
     html0: string = `
-<pre><code class="html">&lt;div&gt;Form valid: {{form.valid}}&lt;/div&gt;
+<pre><code class="html">Form valid: {{form.valid}}
 &lt;form
     novalidate
     [formGroup]="form"&gt;
@@ -49,20 +49,15 @@ export class FormValidation implements AfterViewInit {
         [allowClear]="true"
         [options]="characters"&gt;
     &lt;/ng-select&gt;
+    &lt;button
+        [disabled]="!form.valid"&gt;
+        Submit
+    &lt;/button&gt;
 &lt;/form&gt;
 </code></pre>`;
 
     ts0: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'reactive-form',
-    templateUrl: './reaction-form.component.html'
-})
-export class ReactiveFormExample {
+<pre><code class="typescript">export class FormValidationExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getOptions();
 
@@ -79,29 +74,24 @@ export class ReactiveFormExample {
 </pre></code>`;
 
     html1: string = `
-<pre><code class="html">&lt;div&gt;Form valid: {{form.valid}}&lt;/div&gt;
+<pre><code class="html">Form valid: {{form.valid}}
 &lt;form
     novalidate
     [formGroup]="form"&gt;
     &lt;ng-select
         formControlName="character"
-        [allowClear]="true"
+        [multiple]="true"
         [options]="characters"&gt;
     &lt;/ng-select&gt;
+    &lt;button
+        [disabled]="!form.valid"&gt;
+        Submit
+    &lt;/button&gt;
 &lt;/form&gt;
 </code></pre>`;
 
     ts1: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'reactive-form',
-    templateUrl: './reaction-form.component.html'
-})
-export class ReactiveFormExample {
+<pre><code class="typescript">export class FormValidationExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getOptions();
 
@@ -111,7 +101,7 @@ export class ReactiveFormExample {
 
     ngOnInit() {
         this.form = new FormGroup({
-            character: new FormControl('', Validators.required)
+            character: new FormControl([], Validators.required)
         });
     }
 }

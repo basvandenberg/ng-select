@@ -29,8 +29,7 @@ export class AllowClear implements AfterViewInit {
     }
 
     html: string = `
-<pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
+<pre><code class="html">&lt;ng-select
     [options]="characters"
     [allowClear]="true"
     [(ngModel)]="selectedCharacter"&gt;
@@ -38,15 +37,7 @@ export class AllowClear implements AfterViewInit {
 </code></pre>`;
 
     ts: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
+<pre><code class="typescript">export class AllowClearExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
     selectedCharacter: string = '3';

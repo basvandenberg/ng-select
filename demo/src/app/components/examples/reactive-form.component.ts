@@ -63,12 +63,7 @@ export class ReactiveForm implements AfterViewInit {
 </code></pre>`;
 
     ts0: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {FormControl, FormGroup} from '@angular/forms';
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-export class ReactiveFormExample {
+<pre><code class="typescript">export class ReactiveFormExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getOptions();
     defaultCharacter: string = '3';
@@ -107,12 +102,7 @@ export class ReactiveFormExample {
 </code></pre>`;
 
     ts1: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {FormControl, FormGroup} from '@angular/forms';
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-export class ReactiveFormExample {
+<pre><code class="typescript">export class ReactiveFormExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getOptions();
     defaultCharacters: Array&lt;string&gt; = ['1', '3'];

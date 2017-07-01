@@ -29,24 +29,20 @@ export class NgModel implements AfterViewInit {
         }
     }
 
-    singleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
+    html0: string = `
+<pre><code class="html">Selected option: {{selectedCharacter}}
 &lt;ng-select
     [options]="characters"
     [(ngModel)]="selectedCharacter"&gt;
 &lt;/ng-select&gt;
+&lt;button
+    (click)="selectedCharacter='1'"&gt;
+    Select Art3mis
+&lt;/button&gt;
 </code></pre>`;
 
-    singleTs: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
+    ts0: string = `
+<pre><code class="typescript">export class NgModelExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
     selectedCharacter: string = '3';
@@ -57,25 +53,21 @@ export class NgModelExample {
 }
 </pre></code>`;
 
-    multipleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected options: {{selectedCharacter}}&lt;/div&gt;
+    html1: string = `
+<pre><code class="html">Selected options: {{selectedCharacter}}
 &lt;ng-select
     [options]="characters"
     [multiple]="true"
     [(ngModel)]="selectedCharacters"&gt;
 &lt;/ng-select&gt;
+&lt;button
+    (click)="selectedCharacters = ['2', '4']"&gt;
+    Select Daito and Shoto
+&lt;/button&gt;
 </code></pre>`;
 
-    multipleTs: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
+    ts1: string = `
+<pre><code class="typescript">export class NgModelExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
     selectedCharacters: Array&lt;string&gt; = ['1', '3'];

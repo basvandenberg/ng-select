@@ -60,11 +60,7 @@ export class LoadOptions implements AfterViewInit, OnInit {
 </code></pre>`;
 
     ts: string = `
-<pre><code class="typescript">import { Component, OnInit } from '@angular/core;'
-import { IOption } from 'ng-select';
-import { OptionService } from '../../services/option.service';
-
-export class LoadOptionsExample implements OnInit {
+<pre><code class="typescript">export class LoadOptionsExample implements OnInit {
 
     characters: Array&lt;IOption&gt;;
     selectedCharacter: string = '3';

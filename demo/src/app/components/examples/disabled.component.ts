@@ -44,53 +44,26 @@ export class Disabled implements AfterViewInit {
     [options]="characters"
     [disabled]="isDisabled"&gt;
 &lt;/ng-select&gt;
+&lt;button
+    (click)="isDisabled = !isDisabled"&gt;
+    &lt;span *ngIf="!isDisabled"&gt;Dis&lt;/span&gt;
+    &lt;span *ngIf="isDisabled"&gt;En&lt;/span&gt;
+    &lt;span&gt;able&lt;/span&gt;
+&lt;/button&gt;
 </code></pre>`;
-
-    ts0: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    isDisabled: boolean = true;
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
 
     html1: string = `
 <pre><code class="html">&lt;ng-select
     [options]="characters"
-    [multiple]="true"&gt;
+    [multiple]="true"
+    [disabled]="isDisabled"&gt;
 &lt;/ng-select&gt;
+&lt;button
+    (click)="isDisabled = !isDisabled"&gt;
+    &lt;span *ngIf="!isDisabled"&gt;Dis&lt;/span&gt;
+    &lt;span *ngIf="isDisabled"&gt;En&lt;/span&gt;
+    &lt;span&gt;able&lt;/span&gt;
+&lt;/button&gt;
 </code></pre>`;
-
-    ts1: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    isDisabled: boolean = true;
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
 
 }

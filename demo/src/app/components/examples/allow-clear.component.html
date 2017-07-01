@@ -4,11 +4,12 @@
     </md-card-title>
     <md-card-content>
 
-        <p>The allow clear options...</p>
+        <p>If the <code>allowClear</code> property is set to true, a cross
+        button is shown when an option is selected. This allows the user to
+        clear the selection by clicking the button.</p>
 
         <h3>Single select</h3>
 
-        <div class="select-value">Selected option: {{selectedCharacter}}</div>
         <ng-select
             [options]="characters"
             [allowClear]="true"
@@ -17,8 +18,9 @@
 
         <div class="code-header">Component template</div>
         <section [innerHTML]="html" highlight-js-content=".highlight"></section>
-        <div class="code-header">Component class</div>
-        <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
+
+        <!--div class="code-header">Component class</div>
+        <section [innerHTML]="ts" highlight-js-content=".highlight"></section-->
 
     </md-card-content>
 </md-card>
