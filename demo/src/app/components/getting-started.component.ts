@@ -47,7 +47,6 @@ export class MyExampleComponent {
         {label: 'Luxembourg', value: 'LU'},
         {label: 'Netherlands', value: 'NL'}
     ];
-
 }</code></pre>`;
 
     constructor(

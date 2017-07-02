@@ -5,6 +5,7 @@
 
 ### Features
 - Blur and focus output events (#170).
+- New ng-select web site.
 
 ### Bug fixes
 - Stop clearing the (single select) filter input in the drop down (#162).

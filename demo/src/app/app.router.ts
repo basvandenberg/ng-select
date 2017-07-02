@@ -26,7 +26,6 @@ import {Selected} from './components/examples/selected.component';
 import {NoOptionsFound} from './components/examples/no-options-found.component';
 import {SelectMethod} from './components/examples/select-method.component';
 import {ClearMethod} from './components/examples/clear-method.component';
-import {OpenMethod} from './components/examples/open-method.component';
 
 
 export const appRoutes: Routes = [{
@@ -112,9 +111,6 @@ export const appRoutes: Routes = [{
 }, {
     path: 'examples/clear-method',
     component: ClearMethod
-}, {
-    path: 'examples/open-method',
-    component: OpenMethod
 }, {
     path: '**',
     redirectTo: '/home'

@@ -28,30 +28,10 @@ export class NotFoundMsg implements AfterViewInit {
     }
 
     html: string = `
-<pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
-    [options]="characters"
-    [notFoundMsg]="No characters found"&gt;
+<pre><code class="html">&lt;ng-select
+    notFoundMsg="No characters found"
+    [options]="characters"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
-
-    ts: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'not-found-msg',
-    templateUrl: './not-found-msg.component.html'
-})
-export class NotFoundMessageExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
 
 }

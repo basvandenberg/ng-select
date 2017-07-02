@@ -38,7 +38,7 @@ export class Placeholder implements AfterViewInit {
 
     html1: string = `
 <pre><code class="html">&lt;ng-select
-    placeholder="Choose your favorite character"
+    placeholder="Choose your favorite characters"
     [options]="characters"
     [mutliple]="true"&gt;
 &lt;/ng-select&gt;

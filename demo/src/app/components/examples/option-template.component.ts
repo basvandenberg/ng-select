@@ -48,11 +48,7 @@ export class OptionTemplate implements AfterViewInit {
 </code></pre>`;
 
     ts0: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-export class OptionTemplateExample {
+<pre><code class="typescript">export class OptionTemplateExample {
 
     countries: Array&lt;IOption&gt; = this.optionService.getCountries();
     selectedCountry: string = 'NL';
@@ -81,11 +77,7 @@ export class OptionTemplateExample {
 </code></pre>`;
 
     ts1: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-export class OptionTemplateExample {
+<pre><code class="typescript">export class OptionTemplateExample {
 
     countries: Array&lt;IOption&gt; = this.optionService.getCountries();
     selectedCountries: Array&lt;string&gt; = ['BE', 'LU', 'NL'];

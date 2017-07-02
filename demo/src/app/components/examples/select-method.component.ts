@@ -10,8 +10,6 @@ import {OptionService} from '../../services/option.service';
 export class SelectMethod implements AfterViewInit {
 
     characters: Array<IOption> = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
-    selectedCharacters: Array<string> = ['1', '3'];
 
     constructor(
         private elementRef: ElementRef,
@@ -29,61 +27,27 @@ export class SelectMethod implements AfterViewInit {
         }
     }
 
-    singleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected option: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
-    [options]="characters"
-    [(ngModel)]="selectedCharacter"&gt;
+    html0: string = `
+<pre><code class="html">&lt;ng-select
+    #mySelect
+    [options]="characters"&gt;
 &lt;/ng-select&gt;
+&lt;button
+    (click)="mySelect.select('3')"&gt;
+    Select Parzival
+&lt;/button&gt;
 </code></pre>`;
 
-    singleTs: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacter: string = '3';
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
-
-    multipleHtml: string = `
-<pre><code class="html">&lt;div&gt;Selected options: {{selectedCharacter}}&lt;/div&gt;
-&lt;ng-select
+    html1: string = `
+<pre><code class="html">&lt;ng-select
+    #mySelect
     [options]="characters"
-    [multiple]="true"
-    [(ngModel)]="selectedCharacters"&gt;
+    [multiple]="true"&gt;
 &lt;/ng-select&gt;
+&lt;button
+    (click)="mySelect.select(['1', '3'])"&gt;
+    Select Art3mis and Parzival
+&lt;/button&gt;
 </code></pre>`;
-
-    multipleTs: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
-
-    characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    selectedCharacters: Array&lt;string&gt; = ['1', '3'];
-
-    constructor(
-        private optionService: OptionService
-    ) {}
-}
-</pre></code>`;
 
 }

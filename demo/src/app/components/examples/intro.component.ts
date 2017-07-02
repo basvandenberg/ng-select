@@ -10,48 +10,6 @@ import {OptionService} from '../../services/option.service';
 })
 export class Intro implements AfterViewInit {
 
-    optionsJson: string = '';
-
-    optionServiceTs: string = `
-<pre><code class="typescript">
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {IOption} from 'ng-select';
-
-@Injectable()
-export class OptionService {
-
-    getCharacters(): Array<IOption> {
-        return this.cloneOptions(OptionService.PLAYER_ONE);
-    }
-
-    loadCharacters(): Observable<Array<IOption>> {
-        return this.loadOptions(OptionService.PLAYER_ONE);
-    }
-
-    private loadOptions(options: Array<IOption>): Observable<Array<IOption>> {
-        return new Observable((obs) => {
-            setTimeout(() => {
-                obs.next(this.cloneOptions(options));
-                obs.complete();
-            }, 2000);
-        });
-    }
-
-    private cloneOptions(options: Array<IOption>): Array<IOption> {
-        return options.map(option => ({ value: option.value, label: option.label }));
-    }
-
-    private static readonly PLAYER_ONE: Array<IOption> = [
-        {value: '0', label: 'Aech'},
-        {value: '1', label: 'Art3mis'},
-        {value: '2', label: 'Daito'},
-        {value: '3', label: 'Parzival'},
-        {value: '4', label: 'Shoto'}
-    ];
-}
-</code></pre>`;
-
     optionsId: string = 'characters';
     options: Array<IOption> = this.optionService.getCharacters();
 
@@ -85,4 +43,49 @@ export class OptionService {
             hljs.highlightBlock(nodes[i]);
         }
     }
+
+    optionsJson: string = '';
+
+    optionServiceTs: string = `
+<pre><code class="typescript">import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {IOption} from 'ng-select';
+
+@Injectable()
+export class OptionService {
+
+    getCharacters(): Array&lt;IOption&gt; {
+        return this.cloneOptions(OptionService.PLAYER_ONE);
+    }
+
+    loadCharacters(): Observable&lt;Array&lt;IOption&gt;&gt; {
+        return this.loadOptions(OptionService.PLAYER_ONE);
+    }
+
+    private loadOptions(options: Array&lt;IOption&gt;): Observable&lt;Array&lt;IOption&gt;&gt; {
+        return new Observable((obs) =&gt; {
+            setTimeout(() =&gt; {
+                obs.next(this.cloneOptions(options));
+                obs.complete();
+            }, 5000);
+        });
+    }
+
+    private cloneOptions(options: Array&lt;IOption&gt;): Array&lt;IOption&gt; {
+        return options.map(option =&gt; ({
+            value: option.value,
+            label: option.label
+        }));
+    }
+
+    private static readonly PLAYER_ONE: Array&lt;IOption&gt; = [
+        {value: '0', label: 'Aech'},
+        {value: '1', label: 'Art3mis'},
+        {value: '2', label: 'Daito'},
+        {value: '3', label: 'Parzival'},
+        {value: '4', label: 'Shoto'}
+    ];
+}
+</code></pre>`;
+
 }

@@ -38,7 +38,7 @@ export class NoOptionsFound implements AfterViewInit {
     }
 
     html0: string = `
-<pre><code class="html">&lt;div&gt;No options found for search term: {{noResultsTerm}}&lt;/div&gt;
+<pre><code class="html">&lt;div&gt;No options found for: {{noResultsTerm}}&lt;/div&gt;
 &lt;ng-select
     [options]="characters"
     (noOptionsFound)="onNoOptionsFound($event)"&gt;
@@ -46,15 +46,7 @@ export class NoOptionsFound implements AfterViewInit {
 </code></pre>`;
 
     ts0: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'ng-model',
-    templateUrl: './ng-model.component.html'
-})
-export class NgModelExample {
+<pre><code class="typescript">export class NoOptionsFoundExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
     noResultsTerm: string = '';
@@ -70,7 +62,7 @@ export class NgModelExample {
 </pre></code>`;
 
     html1: string = `
-<pre><code class="html">&lt;div&gt;No options found for search term: {{noResultsTerm}}&lt;/div&gt;
+<pre><code class="html">&lt;div&gt;No options found for: {{noResultsTerm}}&lt;/div&gt;
 &lt;ng-select
     [options]="characters"
     [multiple]="true"

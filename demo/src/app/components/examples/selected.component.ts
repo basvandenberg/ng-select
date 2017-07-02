@@ -10,8 +10,8 @@ import {OptionService} from '../../services/option.service';
 export class Selected implements AfterViewInit {
 
     characters: Array<IOption> = this.optionService.getCharacters();
-    msg0: string = '...';
-    msg1: string = '...';
+    msg0: string = '';
+    msg1: string = '';
 
     constructor(
         private elementRef: ElementRef,
@@ -46,7 +46,7 @@ export class Selected implements AfterViewInit {
     }
 
     html0: string = `
-<pre><code class="html">&lt;div&gt;{{msg}}&lt;/div&gt;
+<pre><code class="html">Last event: {{msg}}
 &lt;ng-select
     [options]="characters"
     [allowClear]="true"
@@ -56,18 +56,10 @@ export class Selected implements AfterViewInit {
 </code></pre>`;
 
     ts0: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'selected-event',
-    templateUrl: './selected-event.component.html'
-})
-export class SelectedEventExample {
+<pre><code class="typescript">export class SelectedEventExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getCharacters();
-    msg: string = '...';
+    msg: string = '';
 
     onSelected(option: IOption) {
         this.msg = \`Selected \${option.label}\`;
@@ -84,7 +76,7 @@ export class SelectedEventExample {
 </pre></code>`;
 
     html1: string = `
-<pre><code class="html">&lt;div&gt;{{msg}}&lt;/div&gt;
+<pre><code class="html">Last event: {{msg}}
 &lt;ng-select
     [options]="characters"
     [multiple]="true"

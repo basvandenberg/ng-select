@@ -6,7 +6,7 @@
 
         <h3>Single select</h3>
 
-        <div class="select-value">No options found for search term: {{noResultsTerm0}}</div>
+        <div class="select-value">No options found for: {{noResultsTerm0}}</div>
         <ng-select
             [options]="characters"
             (noOptionsFound)="onNoOptionsFound0($event)">
@@ -20,7 +20,7 @@
 
         <h3>Multiple select</h3>
 
-        <p class="select-value">No options found for search term: {{noResultsTerm1}}</p>
+        <p class="select-value">No options found for: {{noResultsTerm1}}</p>
         <ng-select
             [options]="characters"
             [multiple]="true"

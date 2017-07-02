@@ -4,13 +4,16 @@
     </md-card-title>
     <md-card-content>
 
+        <p>Use the <code>focus</code> and <code>blur</code> events to keep
+        track if the select component has focus or not.</p>
+
         <h3>Single select</h3>
 
         <div class="select-value">Focus: {{hasFocus0}}</div>
         <ng-select
             [options]="characters"
-            (blur)="onBlur0()"
-            (focus)="onFocus0()">
+            (blur)="hasFocus0 = false"
+            (focus)="hasFocus0 = true">
         </ng-select>
 
         <div class="code-header">Component template</div>
@@ -25,15 +28,12 @@
         <ng-select
             [options]="characters"
             [multiple]="true"
-            (blur)="onBlur1()"
-            (focus)="onFocus1()">
+            (blur)="hasFocus1 = false()"
+            (focus)="hasFocus1 = true">
         </ng-select>
 
         <div class="code-header">Component template</div>
         <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
-
-        <div class="code-header">Component class</div>
-        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
 
     </md-card-content>
 </md-card>

@@ -4,7 +4,19 @@
     </md-card-title>
     <md-card-content>
 
-        <p><a href="http://www.famfamfam.com/lab/icons/flags" target="_blank">famfamfam flags</a></p>
+        <p>Option layout and styling can be customized with an option template.
+        To do this, add an <code>&lt;ng-template&gt;</code>
+        element with parameters <code>#optionTemplate</code> and
+        <code>let-option="option"</code> as child to the
+        <code>&lt;ng-select&gt;</code> element. The option template can now be
+        defined in the <code>&lt;ng-template&gt;</code> element, in which
+        <code>option</code> can be used to access the
+        <code>IOption</code> object.</p>
+
+        <p> In the example below, a template is defined to show a flag icon in
+        front of the country name using the <a
+            href="http://www.famfamfam.com/lab/icons/flags"
+            target="_blank">famfamfam flags</a> icon library.</p>
 
         <h3>Single select</h3>
 

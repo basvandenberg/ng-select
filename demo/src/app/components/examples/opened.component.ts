@@ -18,22 +18,6 @@ export class Opened implements AfterViewInit {
         private optionService: OptionService
     ) {}
 
-    onClosed0() {
-        this.isOpen0 = false;
-    }
-
-    onOpened0() {
-        this.isOpen0 = true;
-    }
-
-    onClosed1() {
-        this.isOpen1 = false;
-    }
-
-    onOpened1() {
-        this.isOpen1 = true;
-    }
-
     ngAfterViewInit() {
         hljs.initHighlighting();
         let nodes: NodeList = this.elementRef
@@ -46,24 +30,16 @@ export class Opened implements AfterViewInit {
     }
 
     html0: string = `
-<pre><code class="html">&lt;div&gt;Dropdown open: {{isOpen}}&lt;/div&gt;
+<pre><code class="html">Dropdown open: {{isOpen}}
 &lt;ng-select
     [options]="characters"
-    (closed)="onClosed()"
-    (opened)="onOpened()"&gt;
+    (closed)="isOpen = false"
+    (opened)="isOpen = true"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
     ts0: string = `
-<pre><code class="typescript">import {Component} from '@angular/core;'
-import {IOption} from 'ng-select';
-import {OptionService} from '../../services/option.service';
-
-@Component({
-    selector: 'opened-closed',
-    templateUrl: './opened-closed.component.html'
-})
-export class OpenedClosedExample {
+<pre><code class="typescript">export class OpenedClosedExample {
 
     characters: Array&lt;IOption&gt; = this.optionService.getOptions();
     isOpen: boolean = false;
@@ -71,24 +47,16 @@ export class OpenedClosedExample {
     constructor(
         private optionService: OptionService
     ) {}
-
-    onClosed() {
-        this.isOpen = false;
-    }
-
-    onOpened() {
-        this.isOpen = true;
-    }
 }
 </pre></code>`;
 
     html1: string = `
-<pre><code class="html">&lt;div&gt;Dropdown open: {{hasFocus}}&lt;/div&gt;
+<pre><code class="html">Dropdown open: {{hasFocus}}
 &lt;ng-select
     [options]="characters"
     [multiple]="true";
-    (blur)="onBlur()"
-    (focus)="onFocus()"&gt;
+    (blur)="isOpen = false"
+    (focus)="isOpen = true"&gt;
 &lt;/ng-select&gt;
 </code></pre>`;
 
