@@ -7,21 +7,23 @@ A select component for angular, based on the [select2] JQuery plugin. See the
 
 ## Develop
 
-Global installations of `gulp` and `yarn` are required for development. Clone
-the repository and run:
+Make sure that `gulp` and `yarn` are installed.
+
+Clone the repository and run:
 ```bash
-yarn install
-gulp build
+$ yarn install
+$ gulp build
 ```
 
 To install local modifications to the demo folder run:
 ```bash
-./copy_to_demo.sh
+$ ./copy_to_demo.sh
 ```
 
-To run the ng-select web site on your local maching, enter the demo folder and run:
+To run the ng-select web site on your local maching, enter the demo folder and
+run:
 ```bash
-ng serve
+$ ng serve
 ```
 
 [ng-select]: https://basvandenberg.github.io/ng-select
