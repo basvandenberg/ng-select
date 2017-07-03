@@ -18,7 +18,7 @@ export class AppComponent {
     smallScreen: boolean = false;
 
     constructor(
-        private router: Router
+        public router: Router
     ) {}
 
     /** Event listeners **/
