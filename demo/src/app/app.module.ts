@@ -81,7 +81,7 @@ import {OptionService} from './services/option.service';
         BrowserAnimationsModule,
         FormsModule,
         HttpModule,
-        MaterialModule.forRoot(),
+        MaterialModule,
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes),
         SelectModule
