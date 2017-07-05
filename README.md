@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/basvandenberg/ng-select.svg?branch=master)](https://travis-ci.org/basvandenberg/ng-select)
 
 A select component for angular, based on the [select2] JQuery plugin. See the
-[ng-select] for documentation and examples, or try it with this [plunker].
+[ng-select] web site for documentation and examples, or try it with this [plunker].
 
 ## Develop
 
