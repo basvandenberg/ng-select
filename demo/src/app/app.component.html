@@ -1,458 +1,755 @@
+<!-- HEADER -->
 <md-toolbar
     color="primary">
-    <span>Select component for angular</span>
+	<button
+		md-icon-button
+        [disabled]="!router.url.startsWith('/examples')"
+		(click)="sidenav.toggle()">
+        <md-icon>menu</md-icon>
+	</button>
+    <a
+        md-button
+        routerLink="/home">
+        <code>
+            ng-select
+        </code>
+    </a>
+    <a
+        *ngIf="!smallScreen"
+        md-button
+        routerLink="/getting-started"
+        routerLinkActive="active">
+        Getting started
+    </a>
+    <a
+        *ngIf="!smallScreen"
+        md-button
+        routerLink="/documentation"
+        routerLinkActive="active">
+        Documentation
+    </a>
+    <a
+        *ngIf="!smallScreen"
+        md-button
+        routerLink="/examples"
+        routerLinkActive="active">
+        Examples
+    </a>
+    <a
+        *ngIf="!smallScreen"
+        md-button
+        routerLink="/faq"
+        routerLinkActive="active">
+        FAQ
+    </a>
+    <div class="fill-remaining-space"></div>
+    <button
+        *ngIf="smallScreen"
+        md-icon-button
+        [mdMenuTriggerFor]="menu">
+        <md-icon>more_vert</md-icon>
+    </button>
+    <md-menu #menu="mdMenu">
+        <a
+            md-menu-item
+            routerLink="/getting-started"
+            routerLinkActive="active">
+            Getting started
+        </a>
+        <a
+            md-menu-item
+            routerLink="/documentation"
+            routerLinkActive="active">
+            Documentation
+        </a>
+        <a
+            md-menu-item
+            routerLink="/examples"
+            routerLinkActive="active">
+            Examples
+        </a>
+        <a
+            md-menu-item
+            routerLink="/faq"
+            routerLinkActive="active">
+            FAQ
+        </a>
+    </md-menu>
+    <a
+        md-button
+        href="https://github.com/basvandenberg/ng-select"
+        target="_blank">
+        <img
+            src="../assets/img/GitHub-Mark-Light-32px.png"
+            width="20px"
+            height="20px"
+            style="opacity:0.7;">
+    </a>
 </md-toolbar>
 
-<div class="main-container">
+<md-sidenav-container>
 
-    <h1 id="basics">The basics</h1>
+    <!-- SIDEBAR -->
+    <md-sidenav
+        #sidenav
+		[mode]="smallScreen ? 'over' : 'side'"
+        [opened]="!router.url.startsWith('/examples') ? false : smallScreen ? false : true">
+		<nav>
+            <h3></h3>
+            <ul>
+                <li>
+                    <a
+                        routerLink="/examples/intro"
+                        routerLinkActive="active">
+                        Introduction
+                    </a>
+                </li>
+            </ul>
+            <h3>Basic usage</h3>
+            <ul>
+                <li>
+                    <a
+                        routerLink="/examples/ng-model"
+                        routerLinkActive="active">
+                        ngModel
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/load-options"
+                        routerLinkActive="active">
+                        Loading options
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/reactive-form"
+                        routerLinkActive="active">
+                        Reactive form
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/form-validation"
+                        routerLinkActive="active">
+                        Form validation
+                    </a>
+                </li>
+                <!--li>
+                    <a
+                        routerLink="/examples/template-driven-form"
+                        routerLinkActive="active">
+                        Template-driven form
+                    </a>
+                </li-->
+            </ul>
+            <h3>Properties</h3>
+            <ul>
+                <li>
+                    <a
+                        routerLink="/examples/allow-clear"
+                        routerLinkActive="active">
+                        Allow clear (single select)
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/disabled"
+                        routerLinkActive="active">
+                        Disabled
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/disabled-options"
+                        routerLinkActive="active">
+                        Disabled options
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/no-filter"
+                        routerLinkActive="active">
+                        No filter
+                    </a>
+                </li>
+            </ul>
+            <h3>Text settings</h3>
+            <ul>
+                <li>
+                    <a
+                        routerLink="/examples/placeholder"
+                        routerLinkActive="active">
+                        Placeholder
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/filter-placeholder"
+                        routerLinkActive="active">
+                        Filter placeholder (single select)
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/not-found-msg"
+                        routerLinkActive="active">
+                        Not found message
+                    </a>
+                </li>
+            </ul>
+            <h3>Styling</h3>
+            <ul>
+                <li>
+                    <a
+                        routerLink="/examples/option-template"
+                        routerLinkActive="active">
+                        Option template
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/highlight-color"
+                        routerLinkActive="active">
+                        Highlight color
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/label"
+                        routerLinkActive="active">
+                        Label
+                    </a>
+                </li>
+                <!-- TODO ngStyle -->
+                <!--li>
+                    <a
+                        routerLink="/examples/css-styling"
+                        routerLinkActive="active">
+                        CSS styling
+                    </a>
+                </li-->
+            </ul>
+            <h3>Output events</h3>
+            <ul>
+                <li>
+                    <a
+                        routerLink="/examples/focus"
+                        routerLinkActive="active">
+                        Focus &amp; blur
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/opened"
+                        routerLinkActive="active">
+                        Opened &amp; closed
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/selected"
+                        routerLinkActive="active">
+                        Selected &amp; deselected
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/no-options-found"
+                        routerLinkActive="active">
+                        No options found
+                    </a>
+                </li>
+            </ul>
 
-    <md-card>
-        <md-card-title>
-            Options
-        </md-card-title>
-        <md-card-content>
-            <p>Define options in the component class as an array of objects. Each object should have a <code>value</code> and a <code>label</code>. The following small set of options is used in the examples below.</p>
-            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+            <h3>Methods</h3>
 
-    <md-card>
-        <md-card-title>
-            Single select
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC">
-            </ng-select>
-            <p>Add a select component to your template using the <code>ng-select</code> tag, and use the <code>options</code> property to bind it to your list of options.
-            <section [innerHTML]="sample00html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+            <ul>
+                <li>
+                    <a
+                        routerLink="/examples/select-method"
+                        routerLinkActive="active">
+                        Select
+                    </a>
+                </li>
+                <li>
+                    <a
+                        routerLink="/examples/clear-method"
+                        routerLinkActive="active">
+                        Clear
+                    </a>
+                </li>
+            </ul>
+        </nav>
+	</md-sidenav>
 
-    <md-card>
-        <md-card-title>
-            Multiple select
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                [multiple]="true">
-            </ng-select>
-            <p>Set the <code>multiple</code> property to <code>true</code> to get a multiple select component.
-            <section [innerHTML]="sample01html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
-
-    <h1 id="value">Get the select value</h1>
-
-    <md-card>
-        <md-card-title>
-            Bind to select value with ngModel
-        </md-card-title>
-        <md-card-content>
-            <div class="value-bar">
-                <div>Value: <strong>{{selectedValues}}</strong></div>
+    <!-- CONTENT -->
+    <div
+        #mainContainer
+        class="main-container">
+        <div
+            class="center-container"
+            [ngStyle]="{'max-width': router.url === '/documentation' ? '900px' : '720px'}">
+            <div
+                class="content-container">
+                <router-outlet></router-outlet>
+                <footer></footer>
             </div>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                [multiple]="true"
-                [(ngModel)]="selectedValues">
-            </ng-select>
-            <div class="button-bar">
-                <button
-                    md-raised-button
-                    (click)="selectedValues=['1','3']">
-                    Select values 1 and 3
-                </button>
-            </div>
-            <p>Use the <code>ngModel</code> property to (two-way) bind a variable to the select component's value. This means that the variable value will be updated as soon as options are (de)selected, and that the selected options will be updated if you change the variable value (by clicking the button in this example).</p>
-            <section [innerHTML]="sample10html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        </div>
+	</div>
+</md-sidenav-container>
 
-    <md-card>
-        <md-card-title>
-            Respond to (de)selected events
-        </md-card-title>
-        <md-card-content>
-            <div class="event-log-bar">
-                Last event: <strong>{{lastEvent}}</strong>
-            </div>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                [multiple]="true"
-                (noOptionsFound)="onNoOptionsFound($event)"
-                (selected)="lastEvent='selected ' + $event.label"
-                (deselected)="lastEvent='deselected ' + $event.label">
-            </ng-select>
-            <p>The <code>selected</code> and <code>deselected</code> output event enable you to keep track of what options are being (de)selected.</p>
-            <section [innerHTML]="sample11html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+<!--div class="main-container">
+    <div class="content-container">
 
-    <md-card>
-        <md-card-title>
-            Use the select component with a reactive form
-        </md-card-title>
-        <md-card-content>
-            <div class="value-bar">
-                <div>Value: <strong>{{form.value.select}}</strong></div>
-            </div>
-            <div class="value-bar">
-                <div>Control touched: <strong>{{form.controls['select'].touched}}</strong></div>
-            </div>
-            <div class="value-bar">
-                <div>Form valid: <strong>{{form.valid}}</strong></div>
-            </div>
-            <form
-                [formGroup]="form">
+        <h1 id="basics">The basics</h1>
+
+        <md-card>
+            <md-card-title>
+                Options
+            </md-card-title>
+            <md-card-content>
+                <p>Define options in the component class as an array of objects. Each object should have a <code>value</code> and a <code>label</code>. The following small set of options is used in the examples below.</p>
+                <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
+
+        <md-card>
+            <md-card-title>
+                Single select
+            </md-card-title>
+            <md-card-content>
                 <ng-select
-                    formControlName="select"
+                    [options]="OPTIONS_BASIC">
+                </ng-select>
+                <p>Add a select component to your template using the <code>ng-select</code> tag, and use the <code>options</code> property to bind it to your list of options.
+                <section [innerHTML]="sample00html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
+
+        <md-card>
+            <md-card-title>
+                Multiple select
+            </md-card-title>
+            <md-card-content>
+                <ng-select
                     [options]="OPTIONS_BASIC"
                     [multiple]="true">
                 </ng-select>
-            </form>
-            <p></p>
-            <section [innerHTML]="sample18html" highlight-js-content=".highlight"></section>
-            <section [innerHTML]="sample18ts" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+                <p>Set the <code>multiple</code> property to <code>true</code> to get a multiple select component.
+                <section [innerHTML]="sample01html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <h1 id="options">Change options</h1>
+        <h1 id="value">Get the select value</h1>
 
-    <md-card>
-        <md-card-title>
-            Set options after delay
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="delayedOptions">
-            </ng-select>
-            <p>In thise example the list of characters is set after five seconds. Before that, no options will show up in the drop down.</p>
-            <section [innerHTML]="sample16html" highlight-js-content=".highlight"></section>
-            <section [innerHTML]="sample16ts" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <md-card>
+            <md-card-title>
+                Bind to select value with ngModel
+            </md-card-title>
+            <md-card-content>
+                <div class="value-bar">
+                    <div>Value: <strong>{{selectedValues}}</strong></div>
+                </div>
+                <ng-select
+                    [options]="selectedValuesOptions"
+                    [multiple]="true"
+                    [(ngModel)]="selectedValues">
+                </ng-select>
+                <div class="button-bar">
+                    <button
+                        md-raised-button
+                        (click)="onSelectedValuesClick()">
+                        Select values 1 and 3
+                    </button>
+                </div>
+                <p>Use the <code>ngModel</code> property to (two-way) bind a variable to the select component's value. This means that the variable value will be updated as soon as options are (de)selected, and that the selected options will be updated if you change the variable value (by clicking the button in this example).</p>
+                <section [innerHTML]="sample10html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <md-card>
-        <md-card-title>
-            Update list of options
-        </md-card-title>
-        <md-card-content>
-            <div class="value-bar">
-                <div>Value: <strong>{{updatedOptionsValue}}</strong></div>
-            </div>
-            <ng-select
-                [options]="updatedOptions"
-                [multiple]="true"
-                [(ngModel)]="updatedOptionsValue">
-            </ng-select>
-            <div class="button-bar">
-                <button
-                    md-raised-button
-                    (click)="updatedOptions=OPTIONS_BASIC">
-                    All options
-                </button>
-                <button
-                    md-raised-button
-                    (click)="updatedOptions=OPTIONS_BASIC.slice(0, 2)">
-                    First two options
-                </button>
-            </div>
-            <p>You can update options by changing the list of options that is bound to the select component. Notice that selected options will remain selected if you update the list of options, given that this option is still in the updated list of options.</p>
-            <section [innerHTML]="sample17html" highlight-js-content=".highlight"></section>
-            <section [innerHTML]="sample17ts" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <md-card>
+            <md-card-title>
+                Respond to (de)selected events
+            </md-card-title>
+            <md-card-content>
+                <div class="event-log-bar">
+                    Last event: <strong>{{lastEvent}}</strong>
+                </div>
+                <ng-select
+                    [options]="OPTIONS_BASIC"
+                    [multiple]="true"
+                    (noOptionsFound)="onNoOptionsFound($event)"
+                    (selected)="lastEvent='selected ' + $event.label"
+                    (deselected)="lastEvent='deselected ' + $event.label">
+                </ng-select>
+                <p>The <code>selected</code> and <code>deselected</code> output event enable you to keep track of what options are being (de)selected.</p>
+                <section [innerHTML]="sample11html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <h1 id="disable">Disable</h1>
+        <md-card>
+            <md-card-title>
+                Use the select component with a reactive form
+            </md-card-title>
+            <md-card-content>
+                <div class="value-bar">
+                    <div>Value: <strong>{{form.value.select}}</strong></div>
+                </div>
+                <div class="value-bar">
+                    <div>Control touched: <strong>{{form.controls['select'].touched}}</strong></div>
+                </div>
+                <div class="value-bar">
+                    <div>Form valid: <strong>{{form.valid}}</strong></div>
+                </div>
+                <form
+                    [formGroup]="form">
+                    <ng-select
+                        formControlName="select"
+                        [options]="OPTIONS_BASIC"
+                        [multiple]="true">
+                    </ng-select>
+                </form>
+                <p></p>
+                <section [innerHTML]="sample18html" highlight-js-content=".highlight"></section>
+                <section [innerHTML]="sample18ts" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <md-card>
-        <md-card-title>
-            Disable select component
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                [disabled]="disabled">
-            </ng-select>
-            <div class="button-bar">
-                <button
-                    md-raised-button
-                    [disabled]="disabled"
-                    (click)="onDisableClick()">
-                    Disable
-                </button>
-                <button
-                    md-raised-button
-                    [disabled]="!disabled"
-                    (click)="onEnableClick()">
-                    Enable
-                </button>
-            </div>
-            <p>Use the boolean <code>disabled</code> property to disable the select component</p>
-            <section [innerHTML]="sample02html" highlight-js-content=".highlight"></section>
-            <section [innerHTML]="sample02ts" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <h1 id="options">Change options</h1>
 
-    <md-card>
-        <md-card-title>
-            Disable select options
-        </md-card-title>
-        <md-card-content>
-            <p>Not yet supported.</p>
-        </md-card-content>
-    </md-card>
-    <!-- TODO first fix issue, disabled options are still selectable.
-         TODO add possibility to dis/enable options through API method?
-    <md-card>
-        <md-card-title>
-            Disable select options
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="optionsWithDisabled">
-            </ng-select>
-            <div class="button-bar">
-                <button
-                    md-raised-button
-                    [disabled]="disabledOptions"
-                    (click)="onDisableOptionsClick()">
-                    Disable options
-                </button>
-                <button
-                    md-raised-button
-                    [disabled]="!disabledOptions"
-                    (click)="onEnableOptionsClick()">
-                    Enable options
-                </button>
-            </div>
-            <section [innerHTML]="sample03html" highlight-js-content=".highlight"></section>
-            <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
-    -->
+        <md-card>
+            <md-card-title>
+                Set options after delay
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    #delayed
+                    [options]="delayedOptions"
+                    [ngModel]="delayedDefault">
+                </ng-select>
+                <p>In thise example the list of characters is set after five seconds. Before that, no options will show up in the drop down.</p>
+                <section [innerHTML]="sample16html" highlight-js-content=".highlight"></section>
+                <section [innerHTML]="sample16ts" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <h1 id="selection">Selection</h1>
+        <md-card>
+            <md-card-title>
+                Update list of options
+            </md-card-title>
+            <md-card-content>
+                <div class="value-bar">
+                    <div>Value: <strong>{{updatedOptionsValue}}</strong></div>
+                </div>
+                <ng-select
+                    [options]="updatedOptions"
+                    [multiple]="false"
+                    [(ngModel)]="updatedOptionsValue">
+                </ng-select>
+                <div class="button-bar">
+                    <button
+                        md-raised-button
+                        (click)="onUpdateOptionsA()">
+                        All options
+                    </button>
+                    <button
+                        md-raised-button
+                        (click)="onUpdateOptionsB()">
+                        First two options
+                    </button>
+                </div>
+                <p>You can update options by changing the list of options that is bound to the select component. Notice that selected options will remain selected if you update the list of options, given that this option is still in the updated list of options.</p>
+                <section [innerHTML]="sample17html" highlight-js-content=".highlight"></section>
+                <section [innerHTML]="sample17ts" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <md-card>
-        <md-card-title>
-            Clear button (single select only)
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                [allowClear]="true">
-            </ng-select>
-            <p>Set the <code>allowClear</code> property to <code>true</code> to enable clearing the selected option by clicking the little cross on the right. This is only available for the single select component.
-            <section [innerHTML]="sample04html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <h1 id="disable">Disable</h1>
 
-    <md-card>
-        <md-card-title>
-            Clear function
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                #clearSelectExample
-                [options]="OPTIONS_BASIC"
-                [multiple]="true">
-            </ng-select>
-            <div class="button-bar">
-                <button
-                    md-raised-button
-                    (click)="onClearSelectionClick()">
-                    Clear selection
-                </button>
-            </div>
-            <p>Or use the <code>clear()</code> function to have all selected options cleared.</p>
-            <section [innerHTML]="sample05html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <md-card>
+            <md-card-title>
+                Disable select component
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    [options]="OPTIONS_BASIC"
+                    [disabled]="disabled">
+                </ng-select>
+                <div class="button-bar">
+                    <button
+                        md-raised-button
+                        [disabled]="disabled"
+                        (click)="onDisableClick()">
+                        Disable
+                    </button>
+                    <button
+                        md-raised-button
+                        [disabled]="!disabled"
+                        (click)="onEnableClick()">
+                        Enable
+                    </button>
+                </div>
+                <p>Use the boolean <code>disabled</code> property to disable the select component</p>
+                <section [innerHTML]="sample02html" highlight-js-content=".highlight"></section>
+                <section [innerHTML]="sample02ts" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <md-card>
-        <md-card-title>
-            Limit the number of selected options
-        </md-card-title>
-        <md-card-content>
-            <p>Not yet supported.</p>
-        </md-card-content>
-    </md-card>
+        <md-card>
+            <md-card-title>
+                Disable select options
+            </md-card-title>
+            <md-card-content>
+                <p>Not yet supported.</p>
+            </md-card-content>
+        </md-card>
 
-    <h1 id="text">Customized text</h1>
+        <md-card>
+            <md-card-title>
+                Disable select options
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    [options]="optionsWithDisabled">
+                </ng-select>
+                <div class="button-bar">
+                    <button
+                        md-raised-button
+                        [disabled]="disabledOptions"
+                        (click)="onDisableOptionsClick()">
+                        Disable options
+                    </button>
+                    <button
+                        md-raised-button
+                        [disabled]="!disabledOptions"
+                        (click)="onEnableOptionsClick()">
+                        Enable options
+                    </button>
+                </div>
+                <section [innerHTML]="sample03html" highlight-js-content=".highlight"></section>
+                <section [innerHTML]="sample00ts" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <md-card>
-        <md-card-title>
-            Placeholder single select
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                [allowClear]="true"
-                placeholder="Select one of the characters">
-            </ng-select>
-            <p>If you set the <code>placeholder</code> property, this text will be shown in the select container if no option is selected.</p>
-            <section [innerHTML]="sample06html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <h1 id="selection">Selection</h1>
 
-    <md-card>
-        <md-card-title>
-            Placeholder multiple select
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                [multiple]="true"
-                placeholder="Select characters">
-            </ng-select>
-            <p>Same as for the single select, the placeholder will be shown if no options are selected.</p>
-            <section [innerHTML]="sample07html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <md-card>
+            <md-card-title>
+                Clear button (single select only)
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    [options]="OPTIONS_BASIC"
+                    [allowClear]="true">
+                </ng-select>
+                <p>Set the <code>allowClear</code> property to <code>true</code> to enable clearing the selected option by clicking the little cross on the right. This is only available for the single select component.
+                <section [innerHTML]="sample04html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <md-card>
-        <md-card-title>
-            Placeholder for filter input (single select only)
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                filterPlaceholder="Type to filter">
-            </ng-select>
-            <p>If you set the <code>filterPlaceholder</code> property, this text will be shown in an empty filter input field.</p>
-            <section [innerHTML]="sample19html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <md-card>
+            <md-card-title>
+                Clear function
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    #clearSelectExample
+                    [options]="OPTIONS_BASIC"
+                    [multiple]="true">
+                </ng-select>
+                <div class="button-bar">
+                    <button
+                        md-raised-button
+                        (click)="onClearSelectionClick()">
+                        Clear selection
+                    </button>
+                </div>
+                <p>Or use the <code>clear()</code> function to have all selected options cleared.</p>
+                <section [innerHTML]="sample05html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <md-card>
-        <md-card-title>
-            No results found text
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                notFoundMsg="None of the characters match your search">
-            </ng-select>
-            <p>By default the message "No results found" is shown if no options match the given filter input. Use the <code>notFoundMsg</code> property to change this message.</p>
-            <section [innerHTML]="sample08html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <md-card>
+            <md-card-title>
+                Limit the number of selected options
+            </md-card-title>
+            <md-card-content>
+                <p>Not yet supported.</p>
+            </md-card-content>
+        </md-card>
 
-    <h1 id="style">Customized style</h1>
+        <h1 id="text">Customized text</h1>
 
-    <md-card>
-        <md-card-title>
-            Set select container width
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                [ngStyle]="{'width': '300px'}">
-            </ng-select>
-            <p>You can use Angular's <code>ngStyle</code> to modify the width of the select container.</p>
-            <section [innerHTML]="sample09html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <md-card>
+            <md-card-title>
+                Placeholder single select
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    [options]="OPTIONS_BASIC"
+                    [allowClear]="true"
+                    placeholder="Select one of the characters">
+                </ng-select>
+                <p>If you set the <code>placeholder</code> property, this text will be shown in the select container if no option is selected.</p>
+                <section [innerHTML]="sample06html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <md-card>
-        <md-card-title>
-            Set highlight color
-        </md-card-title>
-        <md-card-content>
-            <ng-select class="custom-styled"
-                [options]="OPTIONS_BASIC"
-                [multiple]="true"
-                highlightColor="#B39DDB"
-                highlightTextColor="#4527A0">
-            </ng-select>
-            <p>The color of the highlighted option in the dropdown can be changed with the <code>highlightColor</code> and <code>highlightTextColor</code> properties.</p>
-            <section [innerHTML]="sample13html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <md-card>
+            <md-card-title>
+                Placeholder multiple select
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    [options]="OPTIONS_BASIC"
+                    [multiple]="true"
+                    placeholder="Select characters">
+                </ng-select>
+                <p>Same as for the single select, the placeholder will be shown if no options are selected.</p>
+                <section [innerHTML]="sample07html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <md-card>
-        <md-card-title>
-            Show a label
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                label="Favorite character">
-            </ng-select>
-            <p>Set label property to show a label above the select container</p>
-            <section [innerHTML]="sample20html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <md-card>
+            <md-card-title>
+                Placeholder for filter input (single select only)
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    [options]="OPTIONS_BASIC"
+                    filterPlaceholder="Type to filter">
+                </ng-select>
+                <p>If you set the <code>filterPlaceholder</code> property, this text will be shown in an empty filter input field.</p>
+                <section [innerHTML]="sample19html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <h1 id="filter">Hide filter</h1>
+        <md-card>
+            <md-card-title>
+                No results found text
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    [options]="OPTIONS_BASIC"
+                    notFoundMsg="None of the characters match your search">
+                </ng-select>
+                <p>By default the message "No results found" is shown if no options match the given filter input. Use the <code>notFoundMsg</code> property to change this message.</p>
+                <section [innerHTML]="sample08html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <md-card>
-        <md-card-title>
-            No filter single select
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                [noFilter]="10">
-            </ng-select>
-            <p>Use the <code>noFilter</code> property to have the filter hidden if the number of options is less then the specified number. In this example, the filter is not shown because the number of options (5) is less then the <code>noFilter</code> value (10).</p>
-            <section [innerHTML]="sample14html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <h1 id="style">Customized style</h1>
 
-    <md-card>
-        <md-card-title>
-            No filter multiple select
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                [options]="OPTIONS_BASIC"
-                [multiple]="true"
-                [noFilter]="10">
-            </ng-select>
-            <p>The same as for the single select example above.</p>
-            <section [innerHTML]="sample15html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card>
+        <md-card>
+            <md-card-title>
+                Set select container width
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    [options]="OPTIONS_BASIC"
+                    [ngStyle]="{'width': '300px'}">
+                </ng-select>
+                <p>You can use Angular's <code>ngStyle</code> to modify the width of the select container.</p>
+                <section [innerHTML]="sample09html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <h1 id="dropdown">Open/close dropdown</h1>
+        <md-card>
+            <md-card-title>
+                Set highlight color
+            </md-card-title>
+            <md-card-content>
+                <ng-select class="custom-styled"
+                    [options]="OPTIONS_BASIC"
+                    [multiple]="true"
+                    highlightColor="#B39DDB"
+                    highlightTextColor="#4527A0">
+                </ng-select>
+                <p>The color of the highlighted option in the dropdown can be changed with the <code>highlightColor</code> and <code>highlightTextColor</code> properties.</p>
+                <section [innerHTML]="sample13html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-    <md-card>
-        <md-card-title>
-            Open/close dropdown function
-        </md-card-title>
-        <md-card-content>
-            <p>Not yet supported.</p>
-        </md-card-content>
-    </md-card>
-    <!--md-card>
-        <md-card-title>
-            Open/close dropdown
-        </md-card-title>
-        <md-card-content>
-            <ng-select
-                #openCloseSelectExample
-                [options]="OPTIONS_BASIC">
-            </ng-select>
-            <div class="button-bar">
-                <button
-                    md-raised-button
-                    (click)="openCloseSelectExample.open()">
-                    Open dropdown
-                </button>
-                <button
-                    md-raised-button
-                    (click)="openCloseSelectExample.close()">
-                    Close dropdown
-                </button>
-            </div>
-            <p></p>
-            <section [innerHTML]="sample05html" highlight-js-content=".highlight"></section>
-        </md-card-content>
-    </md-card-->
+        <md-card>
+            <md-card-title>
+                Show a label
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    [options]="OPTIONS_BASIC"
+                    label="Favorite character">
+                </ng-select>
+                <p>Set label property to show a label above the select container</p>
+                <section [innerHTML]="sample20html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
 
-</div>
+        <h1 id="filter">Hide filter</h1>
+
+        <md-card>
+            <md-card-title>
+                No filter single select
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    [options]="OPTIONS_BASIC"
+                    [noFilter]="10">
+                </ng-select>
+                <p>Use the <code>noFilter</code> property to have the filter hidden if the number of options is less then the specified number. In this example, the filter is not shown because the number of options (5) is less then the <code>noFilter</code> value (10). By setting the value to <code>Infinity</code> you can permanently hide the filter.</p>
+                <section [innerHTML]="sample14html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
+
+        <md-card>
+            <md-card-title>
+                No filter multiple select
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    [options]="OPTIONS_BASIC"
+                    [multiple]="true"
+                    [noFilter]="10">
+                </ng-select>
+                <p>The same as for the single select example above.</p>
+                <section [innerHTML]="sample15html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
+
+        <h1 id="dropdown">Open/close dropdown</h1>
+
+        <md-card>
+            <md-card-title>
+                Open/close dropdown function
+            </md-card-title>
+            <md-card-content>
+                <p>Not yet supported.</p>
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-card-title>
+                Open/close dropdown
+            </md-card-title>
+            <md-card-content>
+                <ng-select
+                    #openCloseSelectExample
+                    [options]="OPTIONS_BASIC">
+                </ng-select>
+                <div class="button-bar">
+                    <button
+                        md-raised-button
+                        (click)="openCloseSelectExample.open()">
+                        Open dropdown
+                    </button>
+                    <button
+                        md-raised-button
+                        (click)="openCloseSelectExample.close()">
+                        Close dropdown
+                    </button>
+                </div>
+                <p></p>
+                <section [innerHTML]="sample05html" highlight-js-content=".highlight"></section>
+            </md-card-content>
+        </md-card>
+    </div>
+</div-->

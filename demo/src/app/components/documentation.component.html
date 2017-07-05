@@ -1,0 +1,247 @@
+<md-card>
+    <md-card-title>
+        Documentation
+    </md-card-title>
+    <md-card-content>
+
+        <h3 id="ioption">The IOption interface</h3>
+
+        <p>Options must implement the <code>IOption</code> interface:</p>
+
+        <section [innerHTML]="iOptionInterface" highlight-js-content=".highlight"></section>
+
+        <p>The <code>label</code> contains the text that is displayed in the
+        drop-down. The <code>value</code> is the value to which the select
+        component is set if the option is selected. The (optional)
+        <code>disabled</code> property can be used to disable an option
+        (disabled options cannot be selected).</p>
+
+        <h3 id="input">Input properties</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>options</code></td>
+                    <td><code>Array&lt;IOption&gt;</code></td>
+                    <td><code>[]</code></td>
+                    <td class="description">Options that will populate the select drop down</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>multiple</code></td>
+                    <td><code>boolean</code></td>
+                    <td><code>false</code></td>
+                    <td class="description">Set to true for multi-select</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>allowClear</code></td>
+                    <td><code>boolean</code></td>
+                    <td><code>false</code></td>
+                    <td class="description">Only for single select, a clear selected button is shown if set to true</td>
+                    <td><a routerLink="/examples/allow-clear">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>disabled</code></td>
+                    <td><code>boolean</code></td>
+                    <td><code>false</code></td>
+                    <td class="description">Disables the select component if set to true</td>
+                    <td><a routerLink="/examples/disabled">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>noFilter</code></td>
+                    <td><code>number</code></td>
+                    <td><code>0</code></td>
+                    <td class="description">Filter is hidden if the number of options is smaller than the given number</td>
+                    <td><a routerLink="/examples/no-filter">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>label</code></td>
+                    <td><code>string</code></td>
+                    <td><code>''</code></td>
+                    <td class="description">Shows a label with the given text above the select container</td>
+                    <td><a routerLink="/examples/label">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>placeholder</code></td>
+                    <td><code>string</code></td>
+                    <td><code>''</code></td>
+                    <td class="description">Text that is shown if no options are selected</td>
+                    <td><a routerLink="/examples/placeholder">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>filterPlaceholder</code></td>
+                    <td><code>string</code></td>
+                    <td><code>''</code></td>
+                    <td class="description">Only for single select, text that is shown in empty filter input</td>
+                    <td><a routerLink="/examples/filter-placeholder">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>notFoundMsg</code></td>
+                    <td><code>string</code></td>
+                    <td><code>'No results found'</code></td>
+                    <td class="description">Text that is shown if there are no options found for the current filter input value</td>
+                    <td><a routerLink="/examples/not-found-msg">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>highlightColor</code></td>
+                    <td><code>string</code></td>
+                    <td><code>'#2196f3'</code></td>
+                    <td class="description">Background color of highlighted option</td>
+                    <td><a routerLink="/examples/highlight-color">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>highlightTextColor</code></td>
+                    <td><code>string</code></td>
+                    <td><code>'#fff'</code></td>
+                    <td class="description">Text color of highlighted option</td>
+                    <td>"</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="template">Option template</h3>
+
+        <p>The option labels are by default shown in the select drop-down.
+        Alternatively, options can be customized by providing an option
+        template. For custom rendering, other properties than the ones defined
+        in the <code>IOption</code> interface can also be used. For example, the
+        <code>state</code> property of the following option object:</p>
+
+        <section [innerHTML]="optionClass" highlight-js-content=".highlight"></section>
+
+        <p>can be used for setting a class value in the option template:</p>
+
+        <section [innerHTML]="optionTemplate" highlight-js-content=".highlight"></section>
+
+        <p>The <a routerLink="/examples/option-template">option template
+        example</a> shows how an icon can be added in front of the option
+        label.</p>
+
+        <h3 id="output">Output events</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>noOptionsFound</code></td>
+                    <td><code>string</code></td>
+                    <td>Returns search term if no options were found</td>
+                    <td><a routerLink="/examples/no-options-found">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>focus</code></td>
+                    <td>-</td>
+                    <td>Triggered when select component gets focus</td>
+                    <td><a routerLink="/examples/focus">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>blur</code></td>
+                    <td>-</td>
+                    <td>Triggered when select component loses focus</td>
+                    <td>"</td>
+                </tr>
+                <tr>
+                    <td><code>opened</code></td>
+                    <td>-</td>
+                    <td>Triggered when the select drop down is opened</td>
+                    <td><a routerLink="/examples/opened">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>closed</code></td>
+                    <td>-</td>
+                    <td>Triggered when the select drop down is closed</td>
+                    <td>"</td>
+                </tr>
+                <tr>
+                    <td><code>selected</code></td>
+                    <td><code>IOption</code></td>
+                    <td>Returns selected option</td>
+                    <td><a routerLink="/examples/selected">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>deselected</code></td>
+                    <td><code>IOption</code></td>
+                    <td>Returns deselected option</td>
+                    <td>"</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="keyboard">Keyboard interaction</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>ENTER</code>, <code>ALT+KEYDOWN</code></td>
+                    <td>Open dropdown</td>
+                </tr>
+                <tr>
+                    <td><code>ESC</code>, <code>ALT+KEYUP</code></td>
+                    <td>Close dropdown</td>
+                </tr>
+                <tr>
+                    <td><code>KEYUP</code>, <code>KEYDOWN</code></td>
+                    <td>Navigate through options in the drop down</td>
+                </tr>
+                <tr>
+                    <td><code>ENTER</code></td>
+                    <td>Select highlighted option</td>
+                </tr>
+                <tr>
+                    <td><code>TAB</code></td>
+                    <td>Focus/blur the select container</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="methods">Methods</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>select</code></td>
+                    <td><code>value: string</code></td>
+                    <td>Select option with given value</td>
+                    <td><a routerLink="/examples/select-method">example</a></td>
+                </tr>
+                <tr>
+                    <td><code>clear</code></td>
+                    <td>-</td>
+                    <td>Clear selection.</td>
+                    <td><a routerLink="/examples/clear-method">example</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </md-card-content>
+</md-card>

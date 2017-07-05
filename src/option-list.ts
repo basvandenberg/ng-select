@@ -13,6 +13,14 @@ export class OptionList {
 
     private _highlightedOption: Option = null;
     private _hasShown: boolean;
+    private _hasSelected: boolean;
+
+    get hasShown(): boolean {
+        return this._hasShown;
+    }
+    get hasSelected(): boolean {
+        return this._hasSelected;
+    }
 
     constructor(options: Array<IOption>) {
 
@@ -47,9 +55,7 @@ export class OptionList {
     /** Value. **/
 
     get value(): Array<string> {
-        return this.selection.map((selectedOption) => {
-            return selectedOption.value;
-        });
+        return this.selection.map(option => option.value);
     }
 
     set value(v: Array<string>) {
@@ -58,14 +64,13 @@ export class OptionList {
         this.options.forEach((option) => {
             option.selected = v.indexOf(option.value) > -1;
         });
+        this.updateHasSelected();
     }
 
     /** Selection. **/
 
     get selection(): Array<Option> {
-        return this.options.filter((option) => {
-            return option.selected;
-        });
+        return this.options.filter(option => option.selected);
     }
 
     select(option: Option, multiple: boolean) {
@@ -73,24 +78,33 @@ export class OptionList {
             this.clearSelection();
         }
         option.selected = true;
+        this.updateHasSelected();
     }
 
     deselect(option: Option) {
         option.selected = false;
+        this.updateHasSelected();
     }
 
     clearSelection() {
         this.options.forEach((option) => {
             option.selected = false;
         });
+        this._hasSelected = false;
+    }
+
+    private updateHasSelected() {
+        this._hasSelected = this.options.some(option => option.selected);
     }
 
     /** Filter. **/
 
     get filtered(): Array<Option> {
-        return this.options.filter((option) => {
-            return option.shown;
-        });
+        return this.options.filter(option => option.shown);
+    }
+
+    get filteredEnabled(): Array<Option> {
+        return this.options.filter(option => option.shown && !option.disabled);
     }
 
     filter(term: string): boolean {
@@ -147,20 +161,20 @@ export class OptionList {
     }
 
     highlightNextOption() {
-        let shownOptions = this.filtered;
-        let index = this.getHighlightedIndexFromList(shownOptions);
+        let shownEnabledOptions = this.filteredEnabled;
+        let index = this.getHighlightedIndexFromList(shownEnabledOptions);
 
-        if (index > -1 && index < shownOptions.length - 1) {
-            this.highlightOption(shownOptions[index + 1]);
+        if (index > -1 && index < shownEnabledOptions.length - 1) {
+            this.highlightOption(shownEnabledOptions[index + 1]);
         }
     }
 
     highlightPreviousOption() {
-        let shownOptions = this.filtered;
-        let index = this.getHighlightedIndexFromList(shownOptions);
+        let shownEnabledOptions = this.filteredEnabled;
+        let index = this.getHighlightedIndexFromList(shownEnabledOptions);
 
         if (index > 0) {
-            this.highlightOption(shownOptions[index - 1]);
+            this.highlightOption(shownEnabledOptions[index - 1]);
         }
     }
 
@@ -185,16 +199,6 @@ export class OptionList {
     }
 
     /** Util. **/
-
-    get hasShown(): boolean {
-        return this._hasShown;
-    }
-
-    hasSelected() {
-        return this.options.some((option) => {
-            return option.selected;
-        });
-    }
 
     hasShownSelected() {
         return this.options.some((option) => {

@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700|Open+Sans:400italic,700italic,400,700);
+
+@include mat-core();
+
+// Fonts.
+
+$font-size-base: 16px;
+$roboto: 'Roboto', sans-serif;
+$open-sans: 'Open Sans', sans-serif;
+$monospace: monospace;
+
+// Dimensions.
+
+$toolbar-height: 3rem;
+$toolbar-padding-inner: 0.5rem;
+$sidenav-width: 220px;
+
+$content-container-padding-sm: 10px;
+$content-container-padding-md: 14px;
+$content-container-padding-lg: 24px;
+
+$nav-link-height: 30px;
+
+// Colors.
+
+$bd-white: #fff;
+$bd-black: #000;
+
+// Screen breakpoints.
+
+$screen-max-small: 600px;

@@ -1,0 +1,39 @@
+<md-card>
+    <md-card-title>
+        Opened &amp; closed event
+    </md-card-title>
+    <md-card-content>
+
+        <p>The <code>opened</code> and <code>closed</code> events are triggered
+        when the drop-down is opened and closed respectively.</p>
+
+        <h3>Single select</h3>
+
+        <div class="select-value">Dropdown open: {{isOpen0}}</div>
+        <ng-select
+            [options]="characters"
+            (closed)="isOpen0 = false"
+            (opened)="isOpen0 = true">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <div class="select-value">Dropdown open: {{isOpen1}}</div>
+        <ng-select
+            [options]="characters"
+            [multiple]="true"
+            (closed)="isOpen1 = false"
+            (opened)="isOpen1 = true">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

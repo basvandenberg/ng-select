@@ -1,0 +1,140 @@
+@import './variables';
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.select-value {
+    color: mat-color($mat-indigo, 900);
+    //color: mat-color($mat-grey, 600);
+    font-family: $monospace;
+    font-size: 0.9em;
+    line-height: 1.2rem;
+    margin: 10px 0 2px 0;
+    padding: 5px 0;
+
+    pre {
+        margin: 0;
+    }
+}
+
+.code-header {
+    color: mat-color($mat-grey, 600);
+    font-family: $monospace;
+    font-size: 0.9em;
+    margin: 24px 0 -12px 0;
+}
+
+code {
+    font-size: 0.9em;
+
+    &.hljs {
+        background-color: mat-color($mat-indigo, 50);
+        font-size: 0.9em;
+        line-height: 1rem;
+        padding: .8em;
+    }
+
+    /*&::after,
+    &::before {
+        letter-spacing: -0.2em;
+        content: "\00a0";
+    }*/
+}
+
+section,
+p {
+    max-width: 632px;
+}
+
+p {
+    color: mat-color($mat-grey, 800);
+    font-family: $open-sans;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 1rem 0;
+}
+
+p,
+td {
+    code {
+        background-color: mat-color($mat-grey, 100);
+        border-radius: 2px;
+        color: mat-color($mat-grey, 800);
+        padding: 0.1em 0.3em;
+    }
+}
+
+table {
+    border-collapse: collapse;
+    font-family: $open-sans;
+    font-size: 1em;
+    font-weight: 300;
+
+    thead {
+        tr {
+            th {
+                border-bottom: 3px double mat-color($mat-grey, 500);
+                font-style: italic;
+                font-weight: 500;
+                text-align: left;
+                padding: 6px 12px;
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                border-bottom: 1px solid mat-color($mat-grey, 500);
+                font-weight: 300;
+                line-height: 1.2rem;
+                padding: 6px 12px;
+
+                &.description {
+                    font-size: 0.9em;
+                }
+            }
+        }
+    }
+}
+
+ng-select-app {
+    faq {
+        .mat-card-content {
+            >:first-child {
+                margin-top: 0;
+            }
+        }
+        .mat-card {
+            h3 {
+                margin: 0 0 8px 0;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 20px 0 0 0;
+
+            li {
+                border-bottom: 1px solid mat-color($mat-grey, 300);
+                margin-bottom: 8px;
+                padding-bottom: 8px;
+
+                &:last-child {
+                    border-bottom: 0px solid;
+                }
+
+                a {
+                    color: mat-color($mat-grey, 600);
+                    cursor: pointer;
+                    font-size: 1.1em;
+
+                    &:hover {
+                        color: mat-color($mat-blue, 500);
+                    }
+                }
+            }
+        }
+    }
+}

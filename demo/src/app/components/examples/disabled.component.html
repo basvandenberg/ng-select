@@ -1,0 +1,48 @@
+<md-card>
+    <md-card-title>
+        Disabled
+    </md-card-title>
+    <md-card-content>
+
+        <p>The select component can be disabled by setting the
+        <code>disabled</code> property to true.</p>
+
+        <h3>Single select</h3>
+
+        <ng-select
+            [options]="characters"
+            [disabled]="isDisabled0">
+        </ng-select>
+
+        <div style="margin-top: 10px;">
+            <button
+                md-raised-button
+                (click)="isDisabled0 = !isDisabled0">
+                <span *ngIf="!isDisabled0">Dis</span><span *ngIf="isDisabled0">En</span><span>able</span>
+            </button>
+        </div>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <ng-select
+            [options]="characters"
+            [multiple]="true"
+            [disabled]="isDisabled1">
+        </ng-select>
+
+        <div style="margin-top: 10px;">
+            <button
+                md-raised-button
+                (click)="isDisabled1 = !isDisabled1">
+                <span *ngIf="!isDisabled1">Dis</span><span *ngIf="isDisabled1">En</span><span>able</span>
+            </button>
+        </div>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

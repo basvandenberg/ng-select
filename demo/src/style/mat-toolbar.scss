@@ -1,0 +1,30 @@
+@import './variables';
+
+ng-select-app {
+    .mat-toolbar {
+        font-size: 1em;
+        height: $toolbar-height;
+        min-height: $toolbar-height;
+
+        .mat-toolbar-row {
+            height: $toolbar-height;
+        }
+
+        .mat-icon-button {
+            &:first-child {
+                margin-right: $toolbar-padding-inner;
+            }
+        }
+
+        .mat-button {
+            font-size: 0.8em;
+            height: $toolbar-height;
+            line-height: $toolbar-height;
+            min-width: 48px;
+
+            &.active {
+                text-decoration: underline;
+            }
+        }
+    }
+}

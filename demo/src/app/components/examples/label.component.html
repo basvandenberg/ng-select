@@ -1,0 +1,32 @@
+<md-card>
+    <md-card-title>
+        Label
+    </md-card-title>
+    <md-card-content>
+
+        <p>Set the <code>label</code> property to have a label text shown above
+        the select component.</p>
+
+        <h3>Single select</h3>
+
+        <ng-select
+            label="Favorite character"
+            [options]="characters">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <ng-select
+            label="Favorite characters"
+            [options]="characters"
+            [multiple]="true">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

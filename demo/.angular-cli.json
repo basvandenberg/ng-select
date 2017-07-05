@@ -19,7 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "style/base.scss"
       ],
       "scripts": [
         "../lib/highlight/highlight.pack.js"

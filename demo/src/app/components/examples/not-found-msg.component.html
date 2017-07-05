@@ -1,0 +1,23 @@
+<md-card>
+    <md-card-title>
+        Not found message
+    </md-card-title>
+    <md-card-content>
+
+        <p>When filtering the list of options, the message <i>"No results
+        found"</i> is shown by default if none of the options match the
+        given search term. This message can be customized with the
+        <code>NotFoundMsg</code> property.</p>
+
+        <h3>Single select</h3>
+
+        <ng-select
+            notFoundMsg="No characters found"
+            [options]="characters">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

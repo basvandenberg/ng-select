@@ -1,0 +1,37 @@
+<md-card>
+    <md-card-title>
+        Introduction
+    </md-card-title>
+    <md-card-content>
+
+        <p>Two lists of options are used in the examples, a list of <i>Ready
+        Player One</i> characters and a list of countries:</p>
+
+        <md-button-toggle-group
+            style="margin-bottom: 4px;"
+            value="characters"
+            [(ngModel)]="optionsId"
+            (change)="onToggleChange()">
+            <md-button-toggle
+                value="characters">
+                Characters
+            </md-button-toggle>
+            <md-button-toggle
+                value="countries">
+                Countries
+            </md-button-toggle>
+        </md-button-toggle-group>
+
+        <section style="max-height:300px; overflow-y:auto;" innerHTML="<pre><code class='json'>{{options | json}}</code></pre>" highlight-js-content=".highlight"></section>
+
+        <p>Options are obtained with the following <code>OptionService</code>,
+        either directly (<code>getCharacters</code>) or with a five seconds
+        delay (<code>loadCharacters</code>) to simulate loading remote data:
+
+        <div class="code-header">option-service.ts</div>
+        <section [innerHTML]="optionServiceTs" highlight-js-content=".highlight"></section>
+
+
+
+    </md-card-content>
+</md-card>

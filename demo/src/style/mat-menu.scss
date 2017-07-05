@@ -1,0 +1,12 @@
+@import './variables';
+
+.cdk-overlay-container  {
+    .mat-menu-content {
+        [md-menu-item] {
+            &.active {
+                background-color: mat-color($mat-indigo, 300);
+                color: $bd-white;
+            }
+        }
+    }
+}

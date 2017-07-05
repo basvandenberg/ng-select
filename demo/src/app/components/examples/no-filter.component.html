@@ -1,0 +1,54 @@
+<md-card>
+    <md-card-title>
+        No filter
+    </md-card-title>
+    <md-card-content>
+
+        <p>When setting the <code>noFilter</code> property, the filter will be
+        hidden if the number of options is smaller then the specified number.
+        Set the propery to <code>Infinity</code> to always hide the filter.</p>
+
+        <h3>Single select</h3>
+
+        <span class="select-value">Hide filter when there are less then</span>
+        <select
+            style="margin:10px 4px;"
+            (change)="onNoFilterThresholdChange0($event)">
+            <option value="5">5</option>
+            <option value="6" selected="selected">6</option>
+            <option value="Infinity">Infinity</option>
+        </select>
+        <span class="select-value">options</span>
+        <ng-select
+            [options]="characters"
+            [noFilter]="noFilterThreshold0">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <span class="select-value">Hide filter when there are less then</span>
+        <select
+            style="margin:10px 4px;"
+            (change)="onNoFilterThresholdChange1($event)">
+            <option value="5">5</option>
+            <option value="6" selected="selected">6</option>
+            <option value="Infinity">Infinity</option>
+        </select>
+        <span class="select-value">options</span>
+        <ng-select
+            [options]="characters"
+            [multiple]="true"
+            [noFilter]="noFilterThreshold1">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

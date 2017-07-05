@@ -1,15 +1,4 @@
-import {
-    AfterViewInit,
-    Component,
-    EventEmitter,
-    Input,
-    OnChanges,
-    OnInit,
-    Output,
-    ViewChild,
-    ViewEncapsulation
-} from '@angular/core';
-
+import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild, TemplateRef, ViewEncapsulation} from '@angular/core';
 import {STYLE} from './select-dropdown.component.css';
 import {TEMPLATE} from './select-dropdown.component.html';
 import {Option} from './option';
@@ -35,10 +24,12 @@ export class SelectDropdownComponent
     @Input() top: number;
     @Input() width: number;
     @Input() placeholder: string;
+    @Input() optionTemplate: TemplateRef<any>;
 
-    @Output() close = new EventEmitter<boolean>();
     @Output() optionClicked = new EventEmitter<Option>();
+    @Output() optionsListClick = new EventEmitter<null>();
     @Output() singleFilterClick = new EventEmitter<null>();
+    @Output() singleFilterFocus = new EventEmitter<null>();
     @Output() singleFilterInput = new EventEmitter<string>();
     @Output() singleFilterKeydown = new EventEmitter<any>();
 
@@ -49,8 +40,6 @@ export class SelectDropdownComponent
     disabledTextColor: string = '9e9e9e';
 
     /** Event handlers. **/
-
-    // Angular life cycle hooks.
 
     ngOnInit() {
         this.optionsReset();
@@ -69,9 +58,11 @@ export class SelectDropdownComponent
         }
     }
 
-    // Filter input (single select).
+    onOptionsListClick() {
+        this.optionsListClick.emit(null);
+    }
 
-    onSingleFilterClick(event: any) {
+    onSingleFilterClick() {
         this.singleFilterClick.emit(null);
     }
 
@@ -83,7 +74,9 @@ export class SelectDropdownComponent
         this.singleFilterKeydown.emit(event);
     }
 
-    // Options list.
+    onSingleFilterFocus() {
+        this.singleFilterFocus.emit(null);
+    }
 
     onOptionsWheel(event: any) {
         this.handleOptionsWheel(event);
@@ -120,12 +113,6 @@ export class SelectDropdownComponent
         }
         else {
             return {};
-        }
-    }
-
-    clearFilterInput() {
-        if (this.filterEnabled) {
-            this.filterInput.nativeElement.value = '';
         }
     }
 

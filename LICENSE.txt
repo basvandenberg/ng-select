@@ -1,6 +1,6 @@
 ISC License
 
-Copyright (c) 2016, B.A. van den Berg
+Copyright (c) 2017, B.A. van den Berg
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above

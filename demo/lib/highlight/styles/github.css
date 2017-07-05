@@ -7,12 +7,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs {
   display: block;
   overflow-x: auto;
-  padding: 16px;
+  padding: 0.5em;
   color: #333;
-  background: #f7f7f7;
-  line-height: 1.45;
-  font-size: 14px;
-  border-radius: 3px;
+  background: #f8f8f8;
 }
 
 .hljs-comment,

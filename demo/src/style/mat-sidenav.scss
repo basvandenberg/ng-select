@@ -1,0 +1,48 @@
+@import './variables';
+
+ng-select-app {
+    .mat-sidenav {
+        background-color: $bd-white;
+        width: $sidenav-width;
+
+        h3 {
+            background-color: $bd-white;
+            color: mat-color($mat-indigo, 900);
+            font-weight: 600;
+            font-size: 0.95em;
+            line-height: $nav-link-height;
+            margin: 10px 0 0 0;
+            padding: 0 16px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                display: list-item;
+                font-size: 0.9em;
+                margin: 0;
+                padding: 0;
+
+                a {
+                    color: mat-color($mat-grey, 700);
+                    display: block;
+                    line-height: $nav-link-height;
+                    padding: 0 16px;
+                    width: 100%;
+
+                    &:hover {
+                        background-color: mat-color($mat-indigo, 50);
+                    }
+
+                    &.active {
+                        background-color: mat-color($mat-grey, 100);
+                        color: mat-color($mat-indigo, 900);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+<md-card>
+    <md-card-title>
+        Highlight color
+    </md-card-title>
+    <md-card-content>
+
+        <p>The backgrond color and text color of the highlighted option in the
+        drop-down can be changed using the <code>highlightColor</code> and
+        <code>highlightTextColor</code> properties, as shown in the following
+        example.</p>
+
+        <h3>Single select</h3>
+
+        <ng-select
+            highlightColor="#9575cd"
+            highlightTextColor="#fff"
+            [options]="characters">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <ng-select
+            highlightColor="#9575cd"
+            highlightTextColor="#fff"
+            [options]="characters"
+            [multiple]="true">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

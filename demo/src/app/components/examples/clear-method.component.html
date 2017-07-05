@@ -1,0 +1,46 @@
+<md-card>
+    <md-card-title>
+        Clear method
+    </md-card-title>
+    <md-card-content>
+
+        <p>When not using <code>ngModel</code> or a reactive form, the current
+        selection can be cleared with the <code>clear</code> method.</p>
+
+        <h3>Single select</h3>
+
+        <ng-select
+            #mySelect0
+            [options]="characters">
+        </ng-select>
+        <div style="margin-top: 10px;">
+            <button
+                md-raised-button
+                (click)="mySelect0.clear()">
+                Clear selection
+            </button>
+        </div>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <ng-select
+            #mySelect1
+            [options]="characters"
+            [multiple]="true">
+        </ng-select>
+        <div style="margin-top: 10px;">
+            <button
+                md-raised-button
+                (click)="mySelect1.clear()">
+                Clear selection
+            </button>
+        </div>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

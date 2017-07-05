@@ -1,0 +1,21 @@
+<md-card>
+    <md-card-title>
+        Filter placeholder (single select only)
+    </md-card-title>
+    <md-card-content>
+
+        <p>Set the <code>filterPlaceholder</code> placeholder to have a
+        placeholder text shown in the filter input field.</p>
+
+        <h3>Single select</h3>
+
+        <ng-select
+            filterPlaceholder="Type to search..."
+            [options]="characters">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

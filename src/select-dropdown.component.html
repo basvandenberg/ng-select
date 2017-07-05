@@ -7,12 +7,14 @@
             #filterInput
             autocomplete="off"
             [placeholder]="placeholder"
-            (click)="onSingleFilterClick($event)"
+            (click)="onSingleFilterClick()"
             (input)="onSingleFilterInput($event)"
-            (keydown)="onSingleFilterKeydown($event)">
+            (keydown)="onSingleFilterKeydown($event)"
+            (focus)="onSingleFilterFocus()">
     </div>
 
     <div class="options"
+        (click)="onOptionsListClick()"
         #optionsList>
         <ul
             (wheel)="onOptionsWheel($event)">
@@ -21,7 +23,8 @@
                 [ngStyle]="getOptionStyle(option)"
                 (click)="onOptionClick(option)"
                 (mouseover)="onOptionMouseover(option)">
-                {{option.label}}
+                <ng-template [ngOutletContext]="{option: option.wrappedOption}" [ngTemplateOutlet]="optionTemplate"></ng-template>
+                <span *ngIf="!optionTemplate">{{option.label}}</span>
             </li>
             <li
                 *ngIf="!optionList.hasShown"

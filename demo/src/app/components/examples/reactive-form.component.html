@@ -1,0 +1,68 @@
+<md-card>
+    <md-card-title>
+        Use with reactive form
+    </md-card-title>
+    <md-card-content>
+
+        <p>This example shows how <code>ng-select</code> can be used in a <a
+            href="https://angular.io/guide/reactive-forms"
+            target="_blank">reactive form</a>.</p>
+
+        <h3>Single select</h3>
+
+        <div class="select-value">
+            <span>Form state: </span>
+            <span *ngIf="form0.get('character')?.dirty">dirty</span>
+            <span *ngIf="form0.get('character')?.pristine">pristine</span>
+            <span> &amp; </span>
+            <span *ngIf="form0.get('character')?.touched">touched</span>
+            <span *ngIf="form0.get('character')?.untouched">untouched</span>
+            <div>Form value: {{form0.value | json}}</div>
+        </div>
+        <form
+            novalidate
+            [formGroup]="form0">
+            <ng-select
+                formControlName="character"
+                [allowClear]="true"
+                [options]="characters">
+            </ng-select>
+        </form>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <div class="select-value">
+            <span>Form state: </span>
+            <span *ngIf="form1.get('character')?.dirty">dirty</span>
+            <span *ngIf="form1.get('character')?.pristine">pristine</span>
+            <span> &amp; </span>
+            <span *ngIf="form1.get('character')?.touched">touched</span>
+            <span *ngIf="form1.get('character')?.untouched">untouched</span>
+            <div>Form value: {{form1.value | json}}</div>
+        </div>
+        <form
+            novalidate
+            [formGroup]="form1">
+            <ng-select
+                formControlName="character"
+                [multiple]="true"
+                [allowClear]="true"
+                [options]="characters">
+            </ng-select>
+        </form>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts1" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>
+

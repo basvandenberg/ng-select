@@ -1,5 +1,33 @@
 # Changelog
 
+
+
+<a name="1.0.0-beta.6"></a>
+## [1.0.0-beta.6](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.5...1.0.0-beta.6) (2017-07-05)
+
+### Features
+- New ng-select web site.
+- Blur and focus output events (#170).
+- Option template for customizing option layout/styling (#92).
+
+### Bug fixes
+- Stop clearing the (single select) filter input in the drop down (#162).
+- Enable/disable filter (based on noFilter) if list of options changes (#146).
+- Skip disabled options when navigating option list with up/down keys (#182).
+- Set value, also if there is no option with this value present yet, this
+  prevents having to use setTimeout when setting a value directly after
+  setting/updating options (#169, #130).
+- Call the onChange only for user (de)select actions (#176).
+- Fix missing placeholder (multiple select) if filter is hidden (#110).
+- Prevent drop down to close when clicking disabled option (#156).
+- Update filter input width when closing drop down (#198).
+- Show pointer instead of text cursor when hovering placeholder in multiple 
+  select (#199).
+- Added change detection for placeholder property (#192).
+- Fixed placeholder initially not visible in multi select (#193).
+
+
+
 <a name="1.0.0-beta.5"></a>
 ## [1.0.0-beta.5](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.4...1.0.0-beta.5) (2017-03-29)
 
@@ -146,7 +174,7 @@ Fixes for use with angular4.
 
 ### Improvements
 
-- Set ViewEncapsulation to None to enable style override ([#16] (https://github.com/basvandenberg/ng-select/issues/16)). 
+- Set ViewEncapsulation to None to enable style override ([#16] (https://github.com/basvandenberg/ng-select/issues/16)).
 
 
 
@@ -175,4 +203,3 @@ Fixes for use with angular4.
 - Update current selection when option list is changed ([#6] (https://github.com/basvandenberg/ng-select/issues/6)).
 - Prevent javascript error when list of options is empty ([#7] (https://github.com/basvandenberg/ng-select/issues/7)).
 - Prevent javascript error when clicking the 'No results found' option ([#8] (https://github.com/basvandenberg/ng-select/issues/8)).
-

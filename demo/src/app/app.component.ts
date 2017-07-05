@@ -1,24 +1,64 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
 
 import {SelectComponent, IOption} from 'ng-select';
 
 declare var hljs: any;
 
 @Component({
-  selector: 'app-root',
+  selector: 'ng-select-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+export class AppComponent {
 
-export class AppComponent implements AfterViewInit, OnInit {
+    @ViewChild('mainContainer') mainContainer: ElementRef;
 
-    delayedOptions: Array<any>;
-    updatedOptions: Array<any>;
+    static readonly SCREEN_BREAKPOINT: number = 600;
+    smallScreen: boolean = false;
+
+    constructor(
+        public router: Router
+    ) {}
+
+    /** Event listeners **/
+
+    ngOnInit() {
+        this.updateScreen(window.innerWidth);
+        this.router.events.subscribe((evt) => {
+            if (!(evt instanceof NavigationEnd)) {
+                return;
+            }
+            if (evt.url.indexOf('/faq') === -1) {
+                this.mainContainer.nativeElement.scrollTop = 0;
+            }
+        });
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onWindowResize(event) {
+        this.updateScreen(event.target.innerWidth);
+    }
+
+    /** Helper functions. **/
+
+    updateScreen(width: number) {
+        this.smallScreen = width < AppComponent.SCREEN_BREAKPOINT;
+    }
+}
+/*export class AppComponent implements AfterViewInit, OnInit {
+
+    delayedOptions: Array<IOption> = [];
+    delayedDefault: string = '';
+    updatedOptions: Array<IOption>;
+    updatedOptionsValue: string = '1';
+    selectedValues: Array<string>;
+    selectedValuesOptions: Array<IOption> = [];
     disabled: boolean = true;
     form: FormGroup;
 
     @ViewChild('clearSelectExample') clearSelectExample: SelectComponent;
+    @ViewChild('delayed') delayedExample: SelectComponent;
 
     constructor(
         private elementRef: ElementRef
@@ -33,7 +73,11 @@ export class AppComponent implements AfterViewInit, OnInit {
 
         setTimeout(() => {
             this.delayedOptions = this.OPTIONS_BASIC;
+            this.delayedExample.select('2');
+
         }, 5000);
+
+        this.selectedValuesOptions = this.OPTIONS_BASIC.map(a => a);
     }
 
     ngAfterViewInit() {
@@ -63,7 +107,22 @@ export class AppComponent implements AfterViewInit, OnInit {
         console.log(term);
     }
 
-    /** Code strings **/
+    onSelectedValuesClick() {
+        this.selectedValuesOptions = this.OPTIONS_BASIC.map(a => a).slice(0, 2);
+        //setTimeout(() => {
+            this.selectedValues = ['0','1'];
+        //});
+    }
+
+    onUpdateOptionsA() {
+        this.updatedOptions = this.OPTIONS_BASIC.map(a => a);
+        this.updatedOptionsValue = '4';
+    }
+
+    onUpdateOptionsB() {
+        this.updatedOptions = this.OPTIONS_BASIC.map(a => a).slice(0, 2);
+        this.updatedOptionsValue = '2';
+    }
 
     sample00ts = `
 <pre><code class="typescript">characters: Array&lt;any&gt;;
@@ -339,8 +398,6 @@ ngOnInit() {
 </code></pre>`;
 
 
-    /** Sample data **/
-
     OPTIONS_BASIC: Array<IOption> = [
         {value: '0', label: 'Aech'},
         {value: '1', label: 'Art3mis'},
@@ -503,4 +560,4 @@ ngOnInit() {
         {label: 'Zem', value: '137'}
     ];
 }
-
+*/

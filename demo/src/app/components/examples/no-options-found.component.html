@@ -1,0 +1,34 @@
+<md-card>
+    <md-card-title>
+        No options found event
+    </md-card-title>
+    <md-card-content>
+
+        <h3>Single select</h3>
+
+        <div class="select-value">No options found for: {{noResultsTerm0}}</div>
+        <ng-select
+            [options]="characters"
+            (noOptionsFound)="onNoOptionsFound0($event)">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <p class="select-value">No options found for: {{noResultsTerm1}}</p>
+        <ng-select
+            [options]="characters"
+            [multiple]="true"
+            (noOptionsFound)="onNoOptionsFound1($event)">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

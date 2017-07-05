@@ -1,0 +1,31 @@
+<md-card>
+    <md-card-title>
+        Placeholder
+    </md-card-title>
+
+    <md-card-content>
+
+        <p>Set the <code>placeholder</code> property to have a placeholder text
+        shown if nothing is selected.</p>
+
+        <h3>Single select</h3>
+
+        <ng-select
+            placeholder="Choose your favorite character"
+            [options]="characters"
+            [allowClear]="true">
+        </ng-select>
+
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+        <ng-select
+            placeholder="Choose your favorite characters"
+            [options]="characters"
+            [multiple]="true">
+        </ng-select>
+
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

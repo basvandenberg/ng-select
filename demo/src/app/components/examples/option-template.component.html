@@ -1,0 +1,73 @@
+<md-card>
+    <md-card-title>
+        Option template
+    </md-card-title>
+    <md-card-content>
+
+        <p>Option layout and styling can be customized with an option template.
+        To do this, add an <code>&lt;ng-template&gt;</code>
+        element with parameters <code>#optionTemplate</code> and
+        <code>let-option="option"</code> as child to the
+        <code>&lt;ng-select&gt;</code> element. The option template can now be
+        defined in the <code>&lt;ng-template&gt;</code> element, in which
+        <code>option</code> can be used to access the
+        <code>IOption</code> object.</p>
+
+        <p> In the example below, a template is defined to show a flag icon in
+        front of the country name using the <a
+            href="http://www.famfamfam.com/lab/icons/flags"
+            target="_blank">famfamfam flags</a> icon library.</p>
+
+        <h3>Single select</h3>
+
+        <div class="select-value">Selected option: {{selectedCountry}}</div>
+        <ng-select
+            placeholder="Select a country"
+            [options]="countries"
+            [allowClear]="true"
+            [(ngModel)]="selectedCountry">
+            <ng-template
+                #optionTemplate
+                let-option="option">
+                <div class="famfamfam-flags {{option?.value.toLowerCase()}}"></div>
+                {{option?.label}}
+            </ng-template>
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Icon styling</div>
+        <section [innerHTML]="css" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <div class="select-value">Selected options: {{selectedCountries}}</div>
+        <ng-select
+            placeholder="Select countries"
+            [options]="countries"
+            [multiple]="true"
+            [allowClear]="true"
+            [(ngModel)]="selectedCountries">
+            <ng-template
+                #optionTemplate
+                let-option="option">
+                <div class="famfamfam-flags {{option?.value.toLowerCase()}}"></div>
+                {{option?.label}}
+            </ng-template>
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts1" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Icon styling</div>
+        <section [innerHTML]="css" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

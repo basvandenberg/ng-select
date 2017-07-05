@@ -1,0 +1,21 @@
+<md-card>
+    <md-card-title>
+        Disabled options
+    </md-card-title>
+    <md-card-content>
+
+        <p>Options can be disabled by setting the (optional)
+        <code>disabled</code> property to true.</p>
+
+        <ng-select
+            [options]="charactersWithDisabled">
+        </ng-select>
+
+        <div class="code-header">Options in component class</div>
+        <section [innerHTML]="data" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

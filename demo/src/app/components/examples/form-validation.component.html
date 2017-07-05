@@ -1,0 +1,68 @@
+<md-card>
+    <md-card-title>
+        Form validation
+    </md-card-title>
+    <md-card-content>
+
+        <p>This example shows how to use angular's <a
+            href="https://angular.io/api/forms/Validators#required"
+            target="_blank">required validator</a> in a reactive form to
+        disable the submit button when the selection is empty.</p>
+
+        <h3>Single select</h3>
+
+        <div class="select-value">
+            Form valid: {{form0.valid}}
+        </div>
+        <form
+            novalidate
+            [formGroup]="form0">
+            <ng-select
+                formControlName="character"
+                [allowClear]="true"
+                [options]="characters">
+            </ng-select>
+            <div style="margin-top: 10px;">
+                <button
+                    md-raised-button
+                    [disabled]="!form0.valid">
+                    Submit
+                </button>
+            </div>
+        </form>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <div class="select-value">
+            Form valid: {{form1.valid}}
+        </div>
+        <form
+            novalidate
+            [formGroup]="form1">
+            <ng-select
+                formControlName="character"
+                [multiple]="true"
+                [options]="characters">
+            </ng-select>
+            <div style="margin-top: 10px;">
+                <button
+                    md-raised-button
+                    [disabled]="!form1.valid">
+                    Submit
+                </button>
+            </div>
+        </form>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts1" highlight-js-content=".highlight"></section>
+    </md-card-content>
+</md-card>

@@ -1,0 +1,40 @@
+<md-card>
+    <md-card-title>
+        Selected and deselected event
+    </md-card-title>
+    <md-card-content>
+
+        <p>The <code>selected</code> and <code>deselected</code> events are
+        triggered when users select and deselect options respectively.</p>
+
+        <h3>Single select</h3>
+
+        <div class="select-value">Last event: {{msg0}}</div>
+        <ng-select
+            [options]="characters"
+            [allowClear]="true"
+            (selected)="onSelected0($event)"
+            (deselected)="onDeselected0($event)">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <div class="select-value">Last event: {{msg1}}</div>
+        <ng-select
+            [options]="characters"
+            [multiple]="true"
+            (selected)="onSelected1($event)"
+            (deselected)="onDeselected1($event)">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

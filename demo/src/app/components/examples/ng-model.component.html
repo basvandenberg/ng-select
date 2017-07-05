@@ -1,0 +1,56 @@
+<md-card>
+    <md-card-title>
+        Use with <code>ngModel</code>
+    </md-card-title>
+    <md-card-content>
+
+        <p>Use <code>ngModel</code> to bind the value of the select component
+        to a variable in your component class. This way you can set a default
+        selection, programatically update the selection, and keep track of the
+        current selection.</p>
+
+        <h3>Single select</h3>
+
+        <div class="select-value">Selected option: {{selectedCharacter}}</div>
+        <ng-select
+            [options]="characters"
+            [(ngModel)]="selectedCharacter">
+        </ng-select>
+        <div style="margin-top: 10px;">
+            <button
+                md-raised-button
+                (click)="selectedCharacter='1'">
+                Select Art3mis
+            </button>
+        </div>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <p class="select-value">Selected options: {{selectedCharacters}}</p>
+        <ng-select
+            [options]="characters"
+            [multiple]="true"
+            [(ngModel)]="selectedCharacters">
+        </ng-select>
+        <div style="margin-top: 10px;">
+            <button
+                md-raised-button
+                (click)="selectedCharacters = ['2', '4']">
+                Select Daito and Shoto
+            </button>
+        </div>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts1" highlight-js-content=".highlight"></section>
+
+    </md-card-content>
+</md-card>

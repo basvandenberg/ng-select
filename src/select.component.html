@@ -8,22 +8,21 @@
     [ngClass]="{'open': isOpen, 'focus': hasFocus, 'below': isBelow, 'disabled': disabled}"
     (click)="onSelectContainerClick($event)"
     (focus)="onSelectContainerFocus()"
-    (keydown)="onSelectContainerKeydown($event)"
-    (window:click)="onWindowClick()"
-    (window:resize)="onWindowResize()">
+    (keydown)="onSelectContainerKeydown($event)">
 
     <div class="single"
         *ngIf="!multiple">
         <div class="value"
-            *ngIf="optionList.hasSelected()">
-            {{optionList.selection[0].label}}
+            *ngIf="optionList.hasSelected">
+            <ng-template [ngOutletContext]="{option: optionList.selection[0], onDeselectOptionClick: onDeselectOptionClick}" [ngTemplateOutlet]="optionTemplate"></ng-template>
+            <span *ngIf="!optionTemplate">{{optionList.selection[0].label}}</span>
         </div>
         <div class="placeholder"
-            *ngIf="!optionList.hasSelected()">
+            *ngIf="!optionList.hasSelected">
             {{placeholderView}}
         </div>
         <div class="clear"
-            *ngIf="allowClear && hasSelected"
+            *ngIf="allowClear && optionList.hasSelected"
             (click)="onClearSelectionClick($event)">
             &#x2715;
         </div>
@@ -47,6 +46,10 @@
             </span>
             {{option.label}}
         </div>
+        <div class="placeholder"
+            *ngIf="!filterEnabled && !optionList.hasSelected">
+            {{placeholderView}}
+        </div>
         <input
             *ngIf="filterEnabled"
             #filterInput
@@ -54,8 +57,9 @@
             tabindex="-1"
             [placeholder]="placeholderView"
             [ngStyle]="{'width.px': filterInputWidth}"
-            (input)="onMultipleFilterInput($event)"
-            (keydown)="onMultipleFilterKeydown($event)"/>
+            (input)="onFilterInput($event.target.value)"
+            (keydown)="onMultipleFilterKeydown($event)"
+            (focus)="onMultipleFilterFocus()"/>
     </div>
 
 </div>
@@ -72,9 +76,11 @@
     [width]="width"
     [top]="top"
     [left]="left"
-    (close)="onDropdownClose($event)"
+    [optionTemplate]="optionTemplate"
     (optionClicked)="onDropdownOptionClicked($event)"
+    (optionsListClick)="onOptionsListClick()"
     (singleFilterClick)="onSingleFilterClick()"
-    (singleFilterInput)="onSingleFilterInput($event)"
+    (singleFilterFocus)="onSingleFilterFocus()"
+    (singleFilterInput)="onFilterInput($event)"
     (singleFilterKeydown)="onSingleFilterKeydown($event)">
 </select-dropdown>

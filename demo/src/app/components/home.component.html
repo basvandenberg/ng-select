@@ -1,0 +1,22 @@
+<md-card>
+    <md-card-title>
+        <code>ng-select<span> {{version}}</span></code>
+    </md-card-title>
+    <md-card-subtitle>
+        A select component for <a href="https://angular.io" target="_blank">angular</a> based on the <a href="https://select2.github.io/" target="_blank">select2</a> JQuery plugin
+    </md-card-subtitle>
+    <md-card-content>
+        <h3>Single select</h3>
+        <div class="select-value">Select value: <code>{{singleSelectValue}}</code></div>
+        <ng-select
+            [options]="countries"
+            [(ngModel)]="singleSelectValue">
+        </ng-select>
+        <h3>Multiple select</h3>
+        <div class="select-value">Select value: <code>{{multiSelectValue}}</code></div>
+        <ng-select                                                                                                      [multiple]="true"
+            [options]="countries"
+            [(ngModel)]="multiSelectValue">
+        </ng-select>
+    </md-card-content>
+</md-card>
