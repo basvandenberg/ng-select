@@ -1,11 +1,14 @@
 # Changelog
 
+
+
 <a name="1.0.0-beta.6"></a>
-## [1.0.0-beta.6](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.5...1.0.0-beta.6) (2017-..-..)
+## [1.0.0-beta.6](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.5...1.0.0-beta.6) (2017-07-05)
 
 ### Features
 - New ng-select web site.
 - Blur and focus output events (#170).
+- Option template for customizing option layout/styling (#92).
 
 ### Bug fixes
 - Stop clearing the (single select) filter input in the drop down (#162).
@@ -20,8 +23,8 @@
 - Update filter input width when closing drop down (#198).
 - Show pointer instead of text cursor when hovering placeholder in multiple 
   select (#199).
-
-### Improvements
+- Added change detection for placeholder property (#192).
+- Fixed placeholder initially not visible in multi select (#193).
 
 
 

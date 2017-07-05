@@ -15,17 +15,18 @@ $ yarn install
 $ gulp build
 ```
 
-To install local modifications to the demo folder run:
+To install and run the ng-select web site on your local machine, run the following in the demo
+folder:
 ```bash
-$ ./copy_to_demo.sh
-```
-
-To run the ng-select web site on your local maching, enter the demo folder and
-run:
-```bash
+$ yarn install
 $ ng serve
 ```
 
+For manual testing, pack and install a modified version of the ng-select component to ng-select web 
+site with the script:
+```bash
+$ ./copy_to_demo.sh
+```
 [ng-select]: https://basvandenberg.github.io/ng-select
 [select2]: https://select2.github.io
 [plunker]: https://plnkr.co/edit/vxwV6zxEwZGVUVR5V6tg?p=preview
