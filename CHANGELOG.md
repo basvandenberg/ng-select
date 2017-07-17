@@ -1,5 +1,11 @@
 # Changelog
 
+<a name="1.0.0-rc.1"></a>
+## [1.0.0-rc.1](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.6...1.0.0-rc.1) (2017-07-05)
+
+### Bug fixes
+- Use original option object in option template of selected option (#92).
+
 
 
 <a name="1.0.0-beta.6"></a>
