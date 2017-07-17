@@ -15,6 +15,8 @@ export class OptionTemplate implements AfterViewInit {
     selectedCountry: string = 'NL';
     selectedCountries: Array<string> = ['BE', 'LU', 'NL'];
 
+    markedCharacters: Array<IOption> = this.optionService.getCharactersWithMarked();
+
     constructor(
         private elementRef: ElementRef,
         private optionService: OptionService
@@ -95,5 +97,33 @@ export class OptionTemplate implements AfterViewInit {
     width: 16px;
 }
 </pre></code>`;
+
+    ts2: string = `
+<pre><code class="typescript">export class OptionTemplateExample {
+
+    markedCharacters: Array&lt;any&gt; = this.optionService.getCharacters();
+
+    constructor(
+        private optionService: OptionService
+    ) {
+        this.markedCharacters[0].marked = true;
+        this.markedCharacters[1].marked = false;
+        this.markedCharacters[2].marked = true;
+        this.markedCharacters[3].marked = true;
+        this.markedCharacters[4].marked = false;
+    }
+}
+</pre></code>`;
+
+    html2: string = `
+<pre><code class="html">&lt;ng-select
+    [options]="markedCharacters"&gt;
+    &lt;ng-template
+        #optionTemplate
+        let-option="option"&gt;
+        &lt;span&gt;{{option?.label}}&lt;/span&gt;&lt;span *ngIf="option.marked"&gt; *&lt;/span&gt;
+    &lt;/ng-template&gt;
+&lt;/ng-select&gt;
+</code></pre>`;
 
 }
