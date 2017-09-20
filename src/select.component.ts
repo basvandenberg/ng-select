@@ -279,7 +279,9 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
     private updateState() {
         this.placeholderView = this.optionList.hasSelected ? '' : this.placeholder;
-        this.updateFilterWidth();
+        setTimeout(() => {
+            this.updateFilterWidth();
+        });
     }
 
     /** Select. **/
