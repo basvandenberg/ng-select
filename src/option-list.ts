@@ -73,7 +73,7 @@ export class OptionList {
         for (let i = 0; i < arr.length; i++) {
             a = arr[i];
             if (a === value) return i;
-            if (typeof a == 'object') {
+            if (typeof a === 'object') {
                 if (this.compareObj(arr[i], value)) {
                     return i;
                 }
@@ -85,7 +85,7 @@ export class OptionList {
     }
 
     compareObj(o1, o2) {
-        if (typeof o1 == 'object' && typeof o2 == 'object') {
+        if (typeof o1 === 'object' && typeof o2 === 'object') {
             for (let p in o1) {
                 if (o1.hasOwnProperty(p) && o2.hasOwnProperty(p)) {
                     if (o1[p] !== o2[p]) return false;
