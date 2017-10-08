@@ -4,6 +4,7 @@
 /node_modules
 /src
 /package
+/.idea
 
 /dist/ng-select.js
 /dist/ng-select.d.ts
