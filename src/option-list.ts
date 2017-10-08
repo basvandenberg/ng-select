@@ -88,7 +88,7 @@ export class OptionList {
         if (typeof o1 == 'object' && typeof o2 == 'object') {
             for (let p in o1) {
                 if (o1.hasOwnProperty(p) && o2.hasOwnProperty(p)) {
-                    if (o1[p] != o2[p]) return false;
+                    if (o1[p] !== o2[p]) return false;
                 } else {
                     return false;
                 }
