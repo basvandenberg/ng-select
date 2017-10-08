@@ -3,6 +3,7 @@
 /docs
 /node_modules
 /src
+/package
 
 /dist/ng-select.js
 /dist/ng-select.d.ts

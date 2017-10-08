@@ -1,6 +1,7 @@
 /dist
 /node_modules
 /docs/*.map
+/package
 
 npm-debug.log
 yarn-error.log

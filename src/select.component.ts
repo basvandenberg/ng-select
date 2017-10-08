@@ -1,4 +1,21 @@
-import {Component, HostListener, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef, ElementRef, SimpleChange, SimpleChanges, ContentChild, TemplateRef} from '@angular/core';
+import {
+    Component,
+    HostListener,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    EventEmitter,
+    ExistingProvider,
+    ViewChild,
+    ViewEncapsulation,
+    forwardRef,
+    ElementRef,
+    SimpleChange,
+    SimpleChanges,
+    ContentChild,
+    TemplateRef
+} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 import {STYLE} from './select.component.css';
 import {TEMPLATE} from './select.component.html';
@@ -80,12 +97,13 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     private top: number;
     private left: number;
 
-    private onChange = (_: any) => {};
-    private onTouched = () => {};
+    private onChange = (_: any) => {
+    }
+    private onTouched = () => {
+    }
 
-    constructor(
-        private hostElement: ElementRef
-    ) {}
+    constructor(private hostElement: ElementRef) {
+    }
 
     /** Event handlers. **/
 
@@ -255,17 +273,13 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         return this.multiple ? this._value : this._value[0];
     }
 
-    set value(v: string | string[]) {
+    set value(v) {
         if (typeof v === 'undefined' || v === null || v === '') {
             v = [];
         }
-        else if (typeof v === 'string') {
+        else if (!Array.isArray(v)) {
             v = [v];
         }
-        else if (!Array.isArray(v)) {
-            throw new TypeError('Value must be a string or an array.');
-        }
-
         this.optionList.value = v;
         this._value = v;
         this.updateState();
@@ -452,7 +466,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         else {
             // DEPRICATED --> SPACE
             if (key === this.KEYS.ENTER || key === this.KEYS.SPACE ||
-                    (key === this.KEYS.DOWN && event.altKey)) {
+                (key === this.KEYS.DOWN && event.altKey)) {
 
                 /* FIREFOX HACK:
                  *
@@ -460,7 +474,9 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
                  * to be triggered for the filter input field, which causes
                  * the dropdown to be closed again.
                  */
-                setTimeout(() => { this.openDropdown(); });
+                setTimeout(() => {
+                    this.openDropdown();
+                });
             }
             else if (key === this.KEYS.TAB) {
                 this._blur();
@@ -474,7 +490,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
         if (key === this.KEYS.BACKSPACE) {
             if (this.optionList.hasSelected && this.filterEnabled &&
-                    this.filterInput.nativeElement.value === '') {
+                this.filterInput.nativeElement.value === '') {
                 this.deselectLast();
             }
         }
@@ -484,8 +500,8 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         let key = event.which;
 
         if (key === this.KEYS.ESC || key === this.KEYS.TAB
-                || key === this.KEYS.UP || key === this.KEYS.DOWN
-                || key === this.KEYS.ENTER) {
+            || key === this.KEYS.UP || key === this.KEYS.DOWN
+            || key === this.KEYS.ENTER) {
             this.handleSelectContainerKeydown(event);
         }
     }

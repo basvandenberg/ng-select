@@ -7,7 +7,7 @@
     </md-card-subtitle>
     <md-card-content>
         <h3>Single select</h3>
-        <div class="select-value">Select value: <code>{{singleSelectValue}}</code></div>
+        <div class="select-value">Select value: <code>{{singleSelectValue | json}}</code></div>
         <ng-select
             [options]="countries"
             [(ngModel)]="singleSelectValue">

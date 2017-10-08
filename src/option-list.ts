@@ -18,6 +18,7 @@ export class OptionList {
     get hasShown(): boolean {
         return this._hasShown;
     }
+
     get hasSelected(): boolean {
         return this._hasSelected;
     }
@@ -54,17 +55,46 @@ export class OptionList {
 
     /** Value. **/
 
-    get value(): Array<string> {
+    get value() {
         return this.selection.map(option => option.value);
     }
 
-    set value(v: Array<string>) {
+    set value(v) {
         v = typeof v === 'undefined' || v === null ? [] : v;
 
         this.options.forEach((option) => {
-            option.selected = v.indexOf(option.value) > -1;
+            option.selected = this.specialIndexOf(v, option.value) > -1;
         });
         this.updateHasSelected();
+    }
+
+    specialIndexOf(arr, value) {
+        let a;
+        for (let i = 0; i < arr.length; i++) {
+            a = arr[i];
+            if (a === value) return i;
+            if (typeof a == 'object') {
+                if (this.compareObj(arr[i], value)) {
+                    return i;
+                }
+            } else {
+                // deal with other types
+            }
+        }
+        return -1;
+    }
+
+    compareObj(o1, o2) {
+        if (typeof o1 == 'object' && typeof o2 == 'object') {
+            for (let p in o1) {
+                if (o1.hasOwnProperty(p) && o2.hasOwnProperty(p)) {
+                    if (o1[p] != o2[p]) return false;
+                } else {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
     /** Selection. **/
