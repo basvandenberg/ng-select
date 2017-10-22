@@ -3,11 +3,13 @@
 <a name="1.0.0"></a>
 ## [1.0.0](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.6...1.0.0) (2017-10-..)
 
+### Breaking changes
+- Removed font-family: Sans-Serif from style sheets (#241).
+
 ### Bug fixes
 - Use original option object in option template of selected option (#92).
 - Prevent changed-after-checked error when using a placeholder (#208).
 - Remove deprecated ngOutletContext (#242).
-
 
 
 <a name="1.0.0-beta.6"></a>
