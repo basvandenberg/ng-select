@@ -83,7 +83,7 @@ import {OptionService} from './services/option.service';
         HttpModule,
         MaterialModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot(appRoutes, {useHash: true}),
         SelectModule
     ],
     providers: [
