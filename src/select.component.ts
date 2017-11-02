@@ -231,6 +231,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
         if (optionsChanged) {
             this.updateOptionList(changes.options.currentValue);
+            this.updateState();
         }
         if (optionsChanged || noFilterChanged) {
             this.updateFilterEnabled();
