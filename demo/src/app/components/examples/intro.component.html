@@ -1,26 +1,26 @@
-<md-card>
-    <md-card-title>
+<mat-card>
+    <mat-card-title>
         Introduction
-    </md-card-title>
-    <md-card-content>
+    </mat-card-title>
+    <mat-card-content>
 
         <p>Two lists of options are used in the examples, a list of <i>Ready
         Player One</i> characters and a list of countries:</p>
 
-        <md-button-toggle-group
+        <mat-button-toggle-group
             style="margin-bottom: 4px;"
             value="characters"
             [(ngModel)]="optionsId"
             (change)="onToggleChange()">
-            <md-button-toggle
+            <mat-button-toggle
                 value="characters">
                 Characters
-            </md-button-toggle>
-            <md-button-toggle
+            </mat-button-toggle>
+            <mat-button-toggle
                 value="countries">
                 Countries
-            </md-button-toggle>
-        </md-button-toggle-group>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
 
         <section style="max-height:300px; overflow-y:auto;" innerHTML="<pre><code class='json'>{{options | json}}</code></pre>" highlight-js-content=".highlight"></section>
 
@@ -33,5 +33,5 @@
 
 
 
-    </md-card-content>
-</md-card>
+    </mat-card-content>
+</mat-card>

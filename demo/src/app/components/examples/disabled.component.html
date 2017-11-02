@@ -1,8 +1,8 @@
-<md-card>
-    <md-card-title>
+<mat-card>
+    <mat-card-title>
         Disabled
-    </md-card-title>
-    <md-card-content>
+    </mat-card-title>
+    <mat-card-content>
 
         <p>The select component can be disabled by setting the
         <code>disabled</code> property to true.</p>
@@ -16,7 +16,7 @@
 
         <div style="margin-top: 10px;">
             <button
-                md-raised-button
+                mat-raised-button
                 (click)="isDisabled0 = !isDisabled0">
                 <span *ngIf="!isDisabled0">Dis</span><span *ngIf="isDisabled0">En</span><span>able</span>
             </button>
@@ -35,7 +35,7 @@
 
         <div style="margin-top: 10px;">
             <button
-                md-raised-button
+                mat-raised-button
                 (click)="isDisabled1 = !isDisabled1">
                 <span *ngIf="!isDisabled1">Dis</span><span *ngIf="isDisabled1">En</span><span>able</span>
             </button>
@@ -44,5 +44,5 @@
         <div class="code-header">Component template</div>
         <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
 
-    </md-card-content>
-</md-card>
+    </mat-card-content>
+</mat-card>

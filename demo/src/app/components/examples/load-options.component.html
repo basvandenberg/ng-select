@@ -1,8 +1,8 @@
-<md-card>
-    <md-card-title>
+<mat-card>
+    <mat-card-title>
         Loading options
-    </md-card-title>
-    <md-card-content>
+    </mat-card-title>
+    <mat-card-content>
 
         <p>In this example the options are set after a five seconds delay, to
         simulate loading data from, for example, a REST API.</p>
@@ -10,6 +10,8 @@
         <div class="select-value">Options loaded in {{timeLeft}} sec</div>
         <ng-select
             [options]="characters"
+            [multiple]="true"
+            placeholder="Select character"
             [(ngModel)]="selectedCharacter">
         </ng-select>
 
@@ -19,5 +21,5 @@
         <div class="code-header">Component class</div>
         <section [innerHTML]="ts" highlight-js-content=".highlight"></section>
 
-    </md-card-content>
-</md-card>
+    </mat-card-content>
+</mat-card>

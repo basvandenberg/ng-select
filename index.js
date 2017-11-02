@@ -5,9 +5,9 @@ function __export(m) {
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var forms_1 = require('@angular/forms');
-var select_component_1 = require('./dist/select.component');
-var select_dropdown_component_1 = require('./dist/select-dropdown.component');
-__export(require('./dist/select.component'));
+var select_component_1 = require('./dist/src/select.component');
+var select_dropdown_component_1 = require('./dist/src/select-dropdown.component');
+__export(require('./dist/src/select.component'));
 var SelectModule = (function () {
     function SelectModule() {
     }
