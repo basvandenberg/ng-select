@@ -1,17 +1,17 @@
-<md-card>
-    <md-card-title>
+<mat-card>
+    <mat-card-title>
         Frequently asked questions
-    </md-card-title>
-    <md-card-content>
+    </mat-card-title>
+    <mat-card-content>
         <ul>
             <li><a (click)="goTo('update-options')">{{question1}}</a></li>
         </ul>
-    </md-card-content>
-</md-card>
+    </mat-card-content>
+</mat-card>
 
-<md-card
+<mat-card
     id="update-options">
-    <md-card-content>
+    <mat-card-content>
         <h3>{{question1}}</h3>
         <p>If you want the options to be updated, you'll need to replace the option array with a new one, so that angular detects that it is a new object. If you push new options to existing list of options, angular will not detect the change, which is why the new options will not appear in the select drop down. For the following template:</p>
 
@@ -24,6 +24,6 @@
         <p>This will work:</p>
 
         <section [innerHTML]="question1tsWorking" highlight-js-content=".highlight"></section>
-    </md-card-content>
-</md-card>
+    </mat-card-content>
+</mat-card>
 

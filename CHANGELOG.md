@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="1.0.0-rc.1"></a>
+## [1.0.0-rc.1](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.6...1.0.0-rc.1) (2017-11-02)
+
+Works with Angular 5.
+
+### Breaking changes
+- Removed font-family: Sans-Serif from style sheets (#241).
+
+### Bug fixes
+- Use original option object in option template of selected option (#92).
+- Prevent changed-after-checked error when using a placeholder (#208).
+- Remove deprecated ngOutletContext (#242).
+- Hide placeholder in multi-select when setting delayed options (#249).
 
 
 <a name="1.0.0-beta.6"></a>

@@ -1,4 +1,4 @@
-export * from './dist/option.interface';
-export * from './dist/select.component';
+export * from './dist/src/option.interface';
+export * from './dist/src/select.component';
 export declare class SelectModule {
 }

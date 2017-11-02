@@ -1,8 +1,8 @@
-<md-card>
-    <md-card-title>
+<mat-card>
+    <mat-card-title>
         Option template
-    </md-card-title>
-    <md-card-content>
+    </mat-card-title>
+    <mat-card-content>
 
         <p>Option layout and styling can be customized with an option template.
         To do this, add an <code>&lt;ng-template&gt;</code>
@@ -69,5 +69,23 @@
         <div class="code-header">Icon styling</div>
         <section [innerHTML]="css" highlight-js-content=".highlight"></section>
 
-    </md-card-content>
-</md-card>
+        <h3>Using custom option properties</h3>
+
+        <ng-select
+            placeholder="Select a character"
+            [options]="markedCharacters">
+            <ng-template
+                #optionTemplate
+                let-option="option">
+                <span>{{option?.label}}</span><span *ngIf="option.marked"> *</span>
+            </ng-template>
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html2" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts2" highlight-js-content=".highlight"></section>
+
+    </mat-card-content>
+</mat-card>

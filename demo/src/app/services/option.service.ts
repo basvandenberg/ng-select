@@ -20,6 +20,16 @@ export class OptionService {
         return characters;
     }
 
+    getCharactersWithMarked(): Array<IOption> {
+        let characters: Array<any> = this.cloneOptions(OptionService.PLAYER_ONE);
+        characters[0].marked = true;
+        characters[1].marked = false;
+        characters[2].marked = true;
+        characters[3].marked = true;
+        characters[4].marked = false;
+        return characters;
+    }
+
     getCountries(): Array<IOption> {
         return this.cloneOptions(OptionService.COUNTRIES);
     }

@@ -3,7 +3,16 @@ import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-import {MaterialModule} from '@angular/material';
+import {
+    MatInputModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatMenuModule,
+    MatIconModule
+} from '@angular/material';
 import {RouterModule} from '@angular/router';
 
 import 'hammerjs';
@@ -81,9 +90,16 @@ import {OptionService} from './services/option.service';
         BrowserAnimationsModule,
         FormsModule,
         HttpModule,
-        MaterialModule,
+        MatInputModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatButtonModule,
+        MatButtonToggleModule,
+        MatMenuModule,
+        MatIconModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot(appRoutes, {useHash: true}),
         SelectModule
     ],
     providers: [

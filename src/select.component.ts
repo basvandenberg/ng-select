@@ -231,6 +231,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
         if (optionsChanged) {
             this.updateOptionList(changes.options.currentValue);
+            this.updateState();
         }
         if (optionsChanged || noFilterChanged) {
             this.updateFilterEnabled();
@@ -279,7 +280,9 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
     private updateState() {
         this.placeholderView = this.optionList.hasSelected ? '' : this.placeholder;
-        this.updateFilterWidth();
+        setTimeout(() => {
+            this.updateFilterWidth();
+        });
     }
 
     /** Select. **/
