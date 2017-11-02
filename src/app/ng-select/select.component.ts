@@ -1,7 +1,5 @@
 import {Component, HostListener, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef, ElementRef, SimpleChange, SimpleChanges, ContentChild, TemplateRef} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
-import {STYLE} from './select.component.css';
-import {TEMPLATE} from './select.component.html';
 import {SelectDropdownComponent} from './select-dropdown.component';
 import {IOption} from './option.interface';
 import {Option} from './option';
@@ -15,8 +13,8 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
 
 @Component({
     selector: 'ng-select',
-    template: TEMPLATE,
-    styles: [STYLE],
+    templateUrl: 'select.component.html',
+    styleUrls: ['select.component.scss'],
     providers: [SELECT_VALUE_ACCESSOR],
     encapsulation: ViewEncapsulation.None
 })

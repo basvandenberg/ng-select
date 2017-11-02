@@ -1,13 +1,11 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild, TemplateRef, ViewEncapsulation} from '@angular/core';
-import {STYLE} from './select-dropdown.component.css';
-import {TEMPLATE} from './select-dropdown.component.html';
 import {Option} from './option';
 import {OptionList} from './option-list';
 
 @Component({
     selector: 'select-dropdown',
-    template: TEMPLATE,
-    styles: [STYLE],
+    templateUrl: 'select-dropdown.component.html',
+    styleUrls: ['select-dropdown.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 

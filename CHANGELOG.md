@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.0.0-rc.3"></a>
+## [1.0.0-rc.3](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.2...1.0.0-rc.3) (2017-11-02)
+
+Changed build process from Gulp to angular-cli and ng-packagr.
+
+<a name="1.0.0-rc.2"></a>
+## [1.0.0-rc.2](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.1...1.0.0-rc.2) (2017-11-02)
+
 <a name="1.0.0-rc.1"></a>
 ## [1.0.0-rc.1](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.6...1.0.0-rc.1) (2017-11-02)
 
