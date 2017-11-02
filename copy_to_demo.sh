@@ -1,8 +1,8 @@
 #!/bin/bash
-rm -v ng-select-*.tgz
+rm -v src/app/ng-select/dist/ng-select-*.tgz
 rm -rv demo/node_modules/ng-select/*
 
-npm pack
+npm pack src/app/ng-select/dist
 tar -xzvf ng-select-*.tgz
 mv -v package/* demo/node_modules/ng-select/
 

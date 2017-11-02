@@ -1,0 +1,7 @@
+{
+  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+  "src": "src/app/ng-select",
+  "lib": {
+    "entryFile": "public_api.ts"
+  }
+}
