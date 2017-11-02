@@ -71,7 +71,7 @@ THE SOFTWARE.
 MIT
 MIT
 
-ng-select@1.0.0-rc.1
+ng-select@1.0.0-rc.2
 ISC
 ISC License
 
