@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+src/app/ng-select/dist
 
 # dependencies
 /node_modules
