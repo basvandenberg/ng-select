@@ -28,12 +28,6 @@ To build the ng-select module, run:
 $ yarn run build-lib
 ```
 
-Publishing to npm is done from the `dist` folder:
-```bash
-$ cd dist
-$ npm publish
-```
-
 
 
 [ng-select]: https://basvandenberg.github.io/ng-select
