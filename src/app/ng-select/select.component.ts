@@ -358,13 +358,16 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
     private openDropdown() {
         if (!this.isOpen) {
-            this.updateWidth();
-            this.updatePosition();
             this.isOpen = true;
-            if (this.multiple && this.filterEnabled) {
-                this.filterInput.nativeElement.focus();
-            }
-            this.opened.emit(null);
+
+            setTimeout(() => {
+                this.updateWidth();
+                this.updatePosition();
+                if (this.multiple && this.filterEnabled) {
+                    this.filterInput.nativeElement.focus();
+                }
+                this.opened.emit(null);
+            });
         }
     }
 
@@ -519,13 +522,35 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     private updatePosition() {
         const hostRect = this.hostElement.nativeElement.getBoundingClientRect();
         const spanRect = this.selectionSpan.nativeElement.getBoundingClientRect();
+        const winHeight = window.innerHeight;
+        const offset = this.getOffset(this.hostElement.nativeElement);
+        const list = this.dropdown.optionsList.nativeElement.parentElement;
+        const listHeight = list.clientHeight + 1.5;
+
         this.left = spanRect.left - hostRect.left;
         this.top = (spanRect.top - hostRect.top) + spanRect.height;
+
+        if (offset.top + listHeight > winHeight) {
+            this.top = -listHeight;
+        }
+    }
+
+    private getOffset(el: any): { top, left } {
+        let x = 0;
+        let y = 0;
+
+        while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+            x += el.offsetLeft - el.scrollLeft;
+            y += el.offsetTop - el.scrollTop;
+            el = el.offsetParent;
+        }
+
+        return { top: y, left: x };
     }
 
     private updateFilterWidth() {
         if (typeof this.filterInput !== 'undefined') {
-            let value: string = this.filterInput.nativeElement.value;
+            const value: string = this.filterInput.nativeElement.value;
             this.filterInputWidth = value.length === 0 ?
                 1 + this.placeholderView.length * 10 : 1 + value.length * 10;
         }
