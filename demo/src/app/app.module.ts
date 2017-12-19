@@ -46,6 +46,7 @@ import {Label} from './components/examples/label.component';
 import {Focus} from './components/examples/focus.component';
 import {Opened} from './components/examples/opened.component';
 import {Selected} from './components/examples/selected.component';
+import {FilterInputChanged} from './components/examples/filter-input-changed.component';
 import {NoOptionsFound} from './components/examples/no-options-found.component';
 import {SelectMethod} from './components/examples/select-method.component';
 import {ClearMethod} from './components/examples/clear-method.component';
@@ -81,6 +82,7 @@ import {OptionService} from './services/option.service';
         Focus,
         Opened,
         Selected,
+        FilterInputChanged,
         NoOptionsFound,
         SelectMethod,
         ClearMethod
