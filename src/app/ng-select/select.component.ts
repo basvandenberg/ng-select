@@ -48,7 +48,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     @Output() focus = new EventEmitter<null>();
     @Output() blur = new EventEmitter<null>();
     @Output() noOptionsFound = new EventEmitter<string>();
-    @Output() onFilterInputChanged = new EventEmitter<string>();
+    @Output() filterInputChanged = new EventEmitter<string>();
 
     @ViewChild('selection') selectionSpan: ElementRef;
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
@@ -158,7 +158,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     onFilterInput(term: string) {
-        this.onFilterInputChanged.emit(term);
+        this.filterInputChanged.emit(term);
         this.filter(term);
     }
 
