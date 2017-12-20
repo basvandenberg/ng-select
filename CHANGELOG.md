@@ -5,6 +5,7 @@
 
 ### Features
 - Add filterInputChanged output event (#258).
+- Drop up at page bottem (#257, #266).
 
 
 <a name="1.0.0-rc.3"></a>
