@@ -14,7 +14,7 @@
         *ngIf="!multiple">
         <div class="value"
             *ngIf="optionList.hasSelected">
-            <ng-template [ngOutletContext]="{option: optionList.selection[0], onDeselectOptionClick: onDeselectOptionClick}" [ngTemplateOutlet]="optionTemplate"></ng-template>
+            <ng-template [ngTemplateOutletContext]="{option: optionList.selection[0], onDeselectOptionClick: onDeselectOptionClick}" [ngTemplateOutlet]="optionTemplate"></ng-template>
             <span *ngIf="!optionTemplate">{{optionList.selection[0].label}}</span>
         </div>
         <div class="placeholder"

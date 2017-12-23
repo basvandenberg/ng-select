@@ -1,9 +1,10 @@
 {
-  "name": "ng-select",
+  "name": "@bitbeter/ng-select",
   "version": "1.0.0-beta.6",
   "description": "Select component for angular.",
   "main": "index.js",
-  "repository": "git@github.com:basvandenberg/ng-select.git",
+  "publishConfig": {"registry": "http://172.16.111.170:8081/repository/npm-private/"},
+  "repository": "git@github.com:bitbeter/ng-select.git",
   "keywords": [
     "angular",
     "select",
