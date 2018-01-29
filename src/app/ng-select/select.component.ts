@@ -29,6 +29,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     @Input() disabled: boolean = false;
     @Input() multiple: boolean = false;
     @Input() noFilter: number = 0;
+    @Input() maxResults: number = null;
 
     // Style settings.
     @Input() highlightColor: string;
@@ -226,6 +227,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         let optionsChanged: boolean = changes.hasOwnProperty('options');
         let noFilterChanged: boolean = changes.hasOwnProperty('noFilter');
         let placeholderChanged: boolean = changes.hasOwnProperty('placeholder');
+        let maxResultsChanged: boolean = changes.hasOwnProperty('maxResults');
 
         if (optionsChanged) {
             this.updateOptionList(changes.options.currentValue);
@@ -237,6 +239,11 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         if (placeholderChanged) {
             this.updateState();
         }
+
+        if (maxResultsChanged) {
+            this.updateMaxResultsDisplayed();
+        }
+
     }
 
     private updateOptionList(options: Array<IOption>) {
@@ -247,6 +254,10 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     private updateFilterEnabled() {
         this.filterEnabled = this.optionList.options.length >= this.noFilter;
     }
+
+    private updateMaxResultsDisplayed() {
+        this.optionList.maxResults = this.maxResults;
+    }    
 
     /** Value. **/
 

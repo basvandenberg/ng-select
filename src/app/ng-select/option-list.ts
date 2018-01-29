@@ -15,6 +15,8 @@ export class OptionList {
     private _hasShown: boolean;
     private _hasSelected: boolean;
 
+    private _maxResults: number = null;
+
     get hasShown(): boolean {
         return this._hasShown;
     }
@@ -67,6 +69,19 @@ export class OptionList {
         this.updateHasSelected();
     }
 
+    /** Value. **/
+
+    get maxResults(): number {
+        return this._maxResults;
+    }
+
+    set maxResults(v: number) {
+        v = typeof v === 'undefined' || v === null ? null : v;
+
+        this._maxResults = v;
+    }
+
+
     /** Selection. **/
 
     get selection(): Array<Option> {
@@ -100,7 +115,11 @@ export class OptionList {
     /** Filter. **/
 
     get filtered(): Array<Option> {
-        return this.options.filter(option => option.shown);
+        if (!this._maxResults) {
+            return this.options.filter((option, idx) => option.shown);
+        } else {
+            return this.options.filter((option, idx) => option.shown).slice(0, this._maxResults);
+        }
     }
 
     get filteredEnabled(): Array<Option> {
