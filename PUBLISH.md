@@ -11,6 +11,6 @@ yarn run build-lib
 
 Publish from dist directory:
 ```bash
-cd dist
+cd src/app/ng-select/dist
 npm publish
 ```
