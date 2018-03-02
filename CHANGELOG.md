@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.0.0-rc.4"></a>
+## [1.0.0-rc.4](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.2...1.0.0-rc.4) (2017-12-19)
+
+### Features
+- Add filterInputChanged output event (#258).
+- Drop up at page bottem (#257, #266).
+
+
 <a name="1.0.0-rc.3"></a>
 ## [1.0.0-rc.3](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.2...1.0.0-rc.3) (2017-11-02)
 

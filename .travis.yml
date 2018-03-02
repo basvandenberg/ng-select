@@ -4,4 +4,4 @@ node_js:
 cache: yarn
 before_script:
     - yarn global add angular-cli
-script: ng build --prod
+script: yarn run build-lib

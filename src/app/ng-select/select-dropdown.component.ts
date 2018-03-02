@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild, TemplateRef, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild, TemplateRef, ViewEncapsulation} from '@angular/core';
 import {Option} from './option';
 import {OptionList} from './option-list';
 
@@ -36,6 +36,10 @@ export class SelectDropdownComponent
 
     disabledColor: string = '#fff';
     disabledTextColor: string = '9e9e9e';
+
+    constructor(
+        public hostElement: ElementRef
+    ) {}
 
     /** Event handlers. **/
 

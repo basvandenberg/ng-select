@@ -1,0 +1,34 @@
+<mat-card>
+    <mat-card-title>
+        Filter input changed event
+    </mat-card-title>
+    <mat-card-content>
+
+        <h3>Single select</h3>
+
+        <div class="select-value">Search term: {{searchTerm0}}</div>
+        <ng-select
+            [options]="characters"
+            (filterInputChanged)="onFilterInputChanged0($event)">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html0" highlight-js-content=".highlight"></section>
+
+        <div class="code-header">Component class</div>
+        <section [innerHTML]="ts0" highlight-js-content=".highlight"></section>
+
+        <h3>Multiple select</h3>
+
+        <p class="select-value">Search term: {{searchTerm1}}</p>
+        <ng-select
+            [options]="characters"
+            [multiple]="true"
+            (filterInputChanged)="onFilterInputChanged1($event)">
+        </ng-select>
+
+        <div class="code-header">Component template</div>
+        <section [innerHTML]="html1" highlight-js-content=".highlight"></section>
+
+    </mat-card-content>
+</mat-card>

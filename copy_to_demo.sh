@@ -1,5 +1,4 @@
 #!/bin/bash
-rm -v src/app/ng-select/dist/ng-select-*.tgz
 rm -rv demo/node_modules/ng-select/*
 
 npm pack src/app/ng-select/dist

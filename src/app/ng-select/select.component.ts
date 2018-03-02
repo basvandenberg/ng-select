@@ -48,6 +48,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     @Output() focus = new EventEmitter<null>();
     @Output() blur = new EventEmitter<null>();
     @Output() noOptionsFound = new EventEmitter<string>();
+    @Output() filterInputChanged = new EventEmitter<string>();
 
     @ViewChild('selection') selectionSpan: ElementRef;
     @ViewChild('dropdown') dropdown: SelectDropdownComponent;
@@ -157,6 +158,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     onFilterInput(term: string) {
+        this.filterInputChanged.emit(term);
         this.filter(term);
     }
 
@@ -358,13 +360,15 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
     private openDropdown() {
         if (!this.isOpen) {
-            this.updateWidth();
-            this.updatePosition();
             this.isOpen = true;
-            if (this.multiple && this.filterEnabled) {
-                this.filterInput.nativeElement.focus();
-            }
-            this.opened.emit(null);
+            this.updateWidth();
+            setTimeout(() => {
+                this.updatePosition();
+                if (this.multiple && this.filterEnabled) {
+                    this.filterInput.nativeElement.focus();
+                }
+                this.opened.emit(null);
+            });
         }
     }
 
@@ -519,8 +523,14 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     private updatePosition() {
         const hostRect = this.hostElement.nativeElement.getBoundingClientRect();
         const spanRect = this.selectionSpan.nativeElement.getBoundingClientRect();
+        const dropRect = this.dropdown.hostElement.nativeElement.firstChild.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const top = spanRect.top - hostRect.top;
+        const bottom = hostRect.bottom + dropRect.height;
+
+        this.isBelow = bottom < windowHeight;
         this.left = spanRect.left - hostRect.left;
-        this.top = (spanRect.top - hostRect.top) + spanRect.height;
+        this.top = this.isBelow ? top + spanRect.height : top - dropRect.height;
     }
 
     private updateFilterWidth() {
