@@ -255,7 +255,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     set value(v: string | string[]) {
-        if (typeof v === 'undefined' || v === null || v === '') {
+        if (typeof v === 'undefined' || v === null) { //  || v === ''
             v = [];
         }
         else if (typeof v === 'string') {
