@@ -19,6 +19,7 @@ export class SelectDropdownComponent
     @Input() multiple: boolean;
     @Input() notFoundMsg: string;
     @Input() optionList: OptionList;
+    @Input() isBelow: boolean;
     @Input() top: number;
     @Input() width: number;
     @Input() placeholder: string;

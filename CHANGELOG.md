@@ -1,7 +1,13 @@
 # Changelog
 
+<a name="1.0.0"></a>
+## [1.0.0](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.4...1.0.0) (2018-..-..)
+
+### Bug fixes
+- Bug-fix and style-fix for drop-up functionality (#286).
+
 <a name="1.0.0-rc.4"></a>
-## [1.0.0-rc.4](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.2...1.0.0-rc.4) (2017-12-19)
+## [1.0.0-rc.4](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.3...1.0.0-rc.4) (2018-03-02)
 
 ### Features
 - Add filterInputChanged output event (#258).

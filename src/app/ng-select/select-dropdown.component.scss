@@ -8,10 +8,17 @@ select-dropdown {
     >div {
         background-color: #fff;
         border: 1px solid #ccc;
-        border-top: none;
         box-sizing: border-box;
         position: absolute;
         z-index: 1;
+
+        &.above {
+            border-bottom: none;
+        }
+
+        &.below {
+            border-top: none;
+        }
 
         .filter {
             padding: 3px;
