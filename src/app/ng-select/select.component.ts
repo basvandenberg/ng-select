@@ -521,16 +521,18 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     }
 
     private updatePosition() {
-        const hostRect = this.hostElement.nativeElement.getBoundingClientRect();
-        const spanRect = this.selectionSpan.nativeElement.getBoundingClientRect();
-        const dropRect = this.dropdown.hostElement.nativeElement.firstElementChild.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const top = spanRect.top - hostRect.top;
-        const bottom = hostRect.bottom + dropRect.height;
+        if (typeof this.dropdown !== 'undefined') {
+            const hostRect = this.hostElement.nativeElement.getBoundingClientRect();
+            const spanRect = this.selectionSpan.nativeElement.getBoundingClientRect();
+            const dropRect = this.dropdown.hostElement.nativeElement.firstElementChild.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const top = spanRect.top - hostRect.top;
+            const bottom = hostRect.bottom + dropRect.height;
 
-        this.isBelow = bottom < windowHeight;
-        this.left = spanRect.left - hostRect.left;
-        this.top = this.isBelow ? top + spanRect.height : top - dropRect.height;
+            this.isBelow = bottom < windowHeight;
+            this.left = spanRect.left - hostRect.left;
+            this.top = this.isBelow ? top + spanRect.height : top - dropRect.height;
+        }
     }
 
     private updateFilterWidth() {

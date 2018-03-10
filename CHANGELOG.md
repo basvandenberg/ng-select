@@ -1,10 +1,13 @@
 # Changelog
 
-<a name="1.0.0"></a>
-## [1.0.0](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.4...1.0.0) (2018-..-..)
+<a name="1.0.0-rc.5"></a>
+## [1.0.0-rc.5](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.4...1.0.0-rc.5) (2018-03-10)
 
 ### Bug fixes
+- Prevent console error when removing select option from multi-select (#289).
 - Bug-fix and style-fix for drop-up functionality (#286).
+
+
 
 <a name="1.0.0-rc.4"></a>
 ## [1.0.0-rc.4](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.3...1.0.0-rc.4) (2018-03-02)
@@ -14,13 +17,18 @@
 - Drop up at page bottem (#257, #266).
 
 
+
 <a name="1.0.0-rc.3"></a>
 ## [1.0.0-rc.3](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.2...1.0.0-rc.3) (2017-11-02)
 
 Changed build process from Gulp to angular-cli and ng-packagr.
 
+
+
 <a name="1.0.0-rc.2"></a>
 ## [1.0.0-rc.2](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.1...1.0.0-rc.2) (2017-11-02)
+
+
 
 <a name="1.0.0-rc.1"></a>
 ## [1.0.0-rc.1](https://github.com/basvandenberg/ng-select/compare/1.0.0-beta.6...1.0.0-rc.1) (2017-11-02)
