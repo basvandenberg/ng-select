@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { IOption } from 'ng-select';
 declare var hljs: any;
 import { OptionService } from '../../services/option.service';

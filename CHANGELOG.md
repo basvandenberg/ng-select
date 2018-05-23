@@ -3,6 +3,10 @@
 <a name="1.0.0"></a>
 ## [1.0.0](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.5...1.0.0) (2018-..-..)
 
+### Features
+- Upgrade to Angular 6.
+- Upgrade other dependencies.
+
 
 
 <a name="1.0.0-rc.5"></a>
