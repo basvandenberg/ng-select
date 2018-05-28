@@ -17,6 +17,7 @@
   },
   "homepage": "https://basvandenberg.github.io/ng-select",
     "scripts": {
+    "ng": "ng",
     "build-lib": "ng-packagr -p ng-package.json"
   },
   "dependencies": {

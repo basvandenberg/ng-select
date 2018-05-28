@@ -9,6 +9,23 @@ ng-select {
         box-sizing: border-box;
     }
 
+    .toggle::after {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 1px;
+        vertical-align: middle;
+        content: "";
+        border-top: 4px solid;
+        border-right: 4px solid transparent;
+        border-bottom: 0;
+        border-left: 4px solid transparent;
+    }
+    .toggle.is-open::after{
+        border-top: 0;
+        border-bottom: 4px solid;
+    }
+
     // Container.
     >div {
         border: 1px solid #ddd;
