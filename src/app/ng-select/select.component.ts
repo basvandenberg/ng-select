@@ -109,8 +109,13 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     onWindowClick() {
         if (!this.selectContainerClicked &&
             (!this.optionListClicked || (this.optionListClicked && this.optionClicked))) {
-            this.closeDropdown(this.optionClicked);
+            if (!this.multiple) {
+                this.closeDropdown(this.optionClicked);
+            }
             if (!this.optionClicked) {
+                if (this.multiple) {
+                    this.closeDropdown(this.optionClicked);
+                }
                 this._blur();
             }
         }
