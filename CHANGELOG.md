@@ -1,5 +1,10 @@
 # Changelog
 
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/basvandenberg/ng-select/compare/1.0.0...1.0.1) (2018-..-..)
+
+
+
 <a name="1.0.0"></a>
 ## [1.0.0](https://github.com/basvandenberg/ng-select/compare/1.0.0-rc.5...1.0.0) (2018-06-27)
 
