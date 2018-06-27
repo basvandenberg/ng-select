@@ -4331,9 +4331,9 @@ netmask@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
 
-ng-select@1.0.0-rc.5:
-  version "1.0.0-rc.5"
-  resolved "https://registry.yarnpkg.com/ng-select/-/ng-select-1.0.0-rc.5.tgz#d5523d31dc822ff2c489fa7c9b0a1035cf2fa9a3"
+ng-select@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ng-select/-/ng-select-1.0.0.tgz#4453c0c88c1afdc322161bef45d7f900b8fb130e"
 
 no-case@^2.2.0:
   version "2.3.2"
