@@ -17,7 +17,7 @@
   },
   "homepage": "https://basvandenberg.github.io/ng-select",
   "peerDependencies": {
-    "@angular/core": "^5.0.0",
-    "@angular/common": "^5.0.0"
+    "@angular/core": ">=4.0.0 <7.0.0",
+    "@angular/common": ">=4.0.0 <7.0.0"
   }
 }
