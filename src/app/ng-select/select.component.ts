@@ -1,9 +1,9 @@
-import {Component, HostListener, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef, ElementRef, SimpleChange, SimpleChanges, ContentChild, TemplateRef} from '@angular/core';
-import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
-import {SelectDropdownComponent} from './select-dropdown.component';
-import {IOption} from './option.interface';
-import {Option} from './option';
-import {OptionList} from './option-list';
+import { Component, HostListener, Input, OnChanges, OnInit, Output, EventEmitter, ExistingProvider, ViewChild, ViewEncapsulation, forwardRef, ElementRef, SimpleChange, SimpleChanges, ContentChild, TemplateRef, ChangeDetectorRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { SelectDropdownComponent } from './select-dropdown.component';
+import { IOption } from './option.interface';
+import { Option } from './option';
+import { OptionList } from './option-list';
 
 export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
     provide: NG_VALUE_ACCESSOR,
@@ -79,12 +79,13 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     private top: number;
     private left: number;
 
-    private onChange = (_: any) => {};
-    private onTouched = () => {};
+    private onChange = (_: any) => { };
+    private onTouched = () => { };
 
     constructor(
-        private hostElement: ElementRef
-    ) {}
+        private hostElement: ElementRef,
+        private changeDetectorRef: ChangeDetectorRef
+    ) { }
 
     /** Event handlers. **/
 
@@ -282,6 +283,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         this.placeholderView = this.optionList.hasSelected ? '' : this.placeholder;
         setTimeout(() => {
             this.updateFilterWidth();
+            this.changeDetectorRef.markForCheck();
         });
     }
 
@@ -457,7 +459,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         else {
             // DEPRICATED --> SPACE
             if (key === this.KEYS.ENTER || key === this.KEYS.SPACE ||
-                    (key === this.KEYS.DOWN && event.altKey)) {
+                (key === this.KEYS.DOWN && event.altKey)) {
 
                 /* FIREFOX HACK:
                  *
@@ -479,7 +481,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
 
         if (key === this.KEYS.BACKSPACE) {
             if (this.optionList.hasSelected && this.filterEnabled &&
-                    this.filterInput.nativeElement.value === '') {
+                this.filterInput.nativeElement.value === '') {
                 this.deselectLast();
             }
         }
@@ -489,8 +491,8 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         let key = event.which;
 
         if (key === this.KEYS.ESC || key === this.KEYS.TAB
-                || key === this.KEYS.UP || key === this.KEYS.DOWN
-                || key === this.KEYS.ENTER) {
+            || key === this.KEYS.UP || key === this.KEYS.DOWN
+            || key === this.KEYS.ENTER) {
             this.handleSelectContainerKeydown(event);
         }
     }
