@@ -1,16 +1,16 @@
 {
   "name": "ng-select-demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "scripts": {
     "test-lib": "ng test ng-select",
     "lint-lib": "ng lint ng-select",
     "build-lib": "ng build ng-select",
-        
+
     "serve-demo": "ng serve",
     "build-demo": "ng build ng-select-demo",
-    "build-demo-prod": "ng build ng-select-demo --prod --base-href /ng-select/ --deploy-url /ng-select/",    
-    
+    "build-demo-prod": "ng build ng-select-demo --prod --base-href /ng-select/ --deploy-url /ng-select/",
+
     "e2e": "ng e2e"
   },
   "private": true,
