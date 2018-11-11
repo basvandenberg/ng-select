@@ -4,7 +4,6 @@
 /dist
 /tmp
 /out-tsc
-src/app/ng-select/dist
 
 # dependencies
 /node_modules
@@ -17,9 +16,6 @@ src/app/ng-select/dist
 *.launch
 .settings/
 *.sublime-workspace
-*.orig
-*.swp
-*.tgz
 
 # IDE - VSCode
 .vscode/*
@@ -37,10 +33,6 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-
-# e2e
-/e2e/*.js
-/e2e/*.map
 
 # System Files
 .DS_Store

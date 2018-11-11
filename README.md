@@ -9,18 +9,15 @@ A select component for angular, based on the [select2] JQuery plugin. See the
 
 Make sure that `yarn` is installed.
 
-After clone the repository, run the test app with:
+After cloning the repository, install dependencies with:
 ```bash
 $ yarn install
-$ ng serve
 ```
 
-To install and run the ng-select demo/documentation web site on your local 
-machine, enter the `demo` folder and run:
+To run the ng-select demo web site on your local machine, run:
+
 ```bash
-$ cd demo
-$ yarn install
-$ ng serve
+$ yarn run serve-demo
 ```
 
 To build the ng-select module, run:

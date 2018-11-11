@@ -1,8 +1,7 @@
 Bump version in:
 - package.json
-- src/app/ng-select/package.json
-- demo/package.json
-- demo/src/app/components/home.compenent.ts
+- projects/ng-select/package.json
+- src/app/components/home.compenent.ts
 
 Build with:
 ```bash
@@ -11,6 +10,6 @@ yarn run build-lib
 
 Publish from dist directory:
 ```bash
-cd src/app/ng-select/dist
+cd dist/ng-select
 npm publish
 ```
