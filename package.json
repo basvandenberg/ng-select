@@ -6,11 +6,9 @@
     "test-lib": "ng test ng-select",
     "lint-lib": "ng lint ng-select",
     "build-lib": "ng build ng-select",
-
     "serve-demo": "ng serve",
     "build-demo": "ng build ng-select-demo",
     "build-demo-prod": "ng build ng-select-demo --prod --base-href /ng-select/ --deploy-url /ng-select/",
-
     "e2e": "ng e2e"
   },
   "private": true,
@@ -29,7 +27,7 @@
     "core-js": "^2.5.4",
     "famfamfam-flags": "^1.0.0",
     "hammerjs": "^2.0.8",
-    "ng-select": "1.0.0",
+    "ng-select": "1.0.1",
     "normalize.css": "^8.0.1",
     "rxjs": "^6.3.3",
     "web-animations-js": "^2.2.5",
@@ -41,9 +39,9 @@
     "@angular/cli": "~7.0.5",
     "@angular/compiler-cli": "~7.0.0",
     "@angular/language-service": "~7.0.0",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
