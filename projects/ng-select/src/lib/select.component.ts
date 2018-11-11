@@ -57,17 +57,17 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     @ContentChild('optionTemplate') optionTemplate: TemplateRef<any>;
 
     private _value: Array<any> = [];
-    private optionList: OptionList = new OptionList([]);
+    optionList: OptionList = new OptionList([]);
 
     // View state variables.
     hasFocus: boolean = false;
     isOpen: boolean = false;
     isBelow: boolean = true;
 
-    private filterEnabled: boolean = true;
-    private filterInputWidth: number = 1;
+    filterEnabled: boolean = true;
+    filterInputWidth: number = 1;
     private isDisabled: boolean = false;
-    private placeholderView: string = '';
+    placeholderView: string = '';
 
     private clearClicked: boolean = false;
     private selectContainerClicked: boolean = false;
@@ -75,9 +75,9 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
     private optionClicked: boolean = false;
 
     // Width and position for the dropdown container.
-    private width: number;
-    private top: number;
-    private left: number;
+    width: number;
+    top: number;
+    left: number;
 
     private onChange = (_: any) => {};
     private onTouched = () => {};

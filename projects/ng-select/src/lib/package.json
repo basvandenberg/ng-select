@@ -1,0 +1,23 @@
+{
+  "name": "ng-select",
+  "version": "1.0.0",
+  "description": "Select component for angular.",
+  "repository": "git@github.com:basvandenberg/ng-select.git",
+  "keywords": [
+    "angular",
+    "select",
+    "select2",
+    "selectize",
+    "chosen"
+  ],
+  "author": "Bastiaan van den Berg <b.a.vandenberg@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/basvandenberg/ng-select/issues"
+  },
+  "homepage": "https://basvandenberg.github.io/ng-select",
+  "peerDependencies": {
+    "@angular/core": ">=4.0.0 <8.0.0",
+    "@angular/common": ">=4.0.0 <8.0.0"
+  }
+}
