@@ -4554,10 +4554,10 @@ ng-packagr@5.2.0:
     terser "^3.16.1"
     update-notifier "^3.0.0"
 
-ng-select@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/ng-select/-/ng-select-1.0.1.tgz#9b5cf9e77e56ca537c7ecc52ecaf85dcd6a02d42"
-  integrity sha512-zTs+XS5PY7rijNNvsmoTuw/GxY67pRgUqbylDuwOQgkPGDKo7OBRn/T3oBwOS0/ulDpmaKOD9tuBnLFM9lBycA==
+ng-select@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/ng-select/-/ng-select-1.0.2.tgz#a1b196f8681907462598a09c85a17195ad4bf994"
+  integrity sha512-QMh5NqnYrsK18J8vmRBjpcv4o9euGd5Grs+4sutNNWWDX65rJlLh+S6oUq3uvo35S2v/ZMcMMR/e5f0gMlwxlA==
   dependencies:
     tslib "^1.9.0"
 
