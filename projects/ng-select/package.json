@@ -1,6 +1,6 @@
 {
   "name": "ng-select",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Select component for angular.",
   "repository": "git@github.com:basvandenberg/ng-select.git",
   "keywords": [
