@@ -1,6 +1,6 @@
 {
   "name": "ng-select",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Select component for angular.",
   "repository": "git@github.com:basvandenberg/ng-select.git",
   "keywords": [
@@ -17,7 +17,7 @@
   },
   "homepage": "https://basvandenberg.github.io/ng-select",
   "peerDependencies": {
-    "@angular/core": ">=5.0.0 <8.0.0",
-    "@angular/common": ">=5.0.0 <8.0.0"
+    "@angular/core": ">=5.0.0 <9.0.0",
+    "@angular/common": ">=5.0.0 <9.0.0"
   }
 }
