@@ -362,9 +362,6 @@ Apache-2.0
  
 
 
-web-animations-js
-Apache-2.0
-
 zone.js
 MIT
 The MIT License
