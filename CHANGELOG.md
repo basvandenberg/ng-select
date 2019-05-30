@@ -1,7 +1,11 @@
 # Changelog
 
 <a name="1.0.2"></a>
-## [1.0.2](https://github.com/basvandenberg/ng-select/compare/1.0.1...1.0.2) (2019-..-..)
+## [1.0.2](https://github.com/basvandenberg/ng-select/compare/1.0.1...1.0.2) (2019-05-30)
+
+### Features
+- Changed peer dependencies to include Angular 8.
+- Upgrade dependencies.
 
 
 
