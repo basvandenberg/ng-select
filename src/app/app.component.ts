@@ -12,7 +12,7 @@ declare var hljs: any;
 })
 export class AppComponent {
 
-    @ViewChild('mainContainer') mainContainer: ElementRef;
+    @ViewChild('mainContainer', { static: true }) mainContainer: ElementRef;
 
     static readonly SCREEN_BREAKPOINT: number = 600;
     smallScreen: boolean = false;
