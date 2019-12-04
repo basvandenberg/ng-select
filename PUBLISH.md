@@ -1,11 +1,11 @@
 Bump version in:
 - package.json
 - projects/ng-select/package.json
-- src/app/components/home.compenent.ts
+- projects/ng-select-demo/src/app/components/home.compenent.ts
 
 Build with:
 ```bash
-yarn run build-lib
+ng build ng-select
 ```
 
 Publish from dist directory:

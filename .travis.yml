@@ -1,7 +1,6 @@
 language: node_js
 node_js:
-    - "10"
-cache: yarn
+    - "12"
 before_script:
-    - yarn global add angular-cli
-script: yarn run build-lib
+    - npm install -g @angular/cli
+script: npm run ng build ng-select
