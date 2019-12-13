@@ -22,7 +22,7 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
 export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit {
 
     // Data input.
-    @Input() options: Array<IOption> = [];
+    @Input() options: readonly IOption[] = [];
 
     // Functionality settings.
     @Input() allowClear: boolean = false;
@@ -241,7 +241,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
         }
     }
 
-    private updateOptionList(options: Array<IOption>) {
+    private updateOptionList(options: readonly IOption[]) {
         this.optionList = new OptionList(options);
         this.optionList.value = this._value;
     }

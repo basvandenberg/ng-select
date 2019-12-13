@@ -22,7 +22,7 @@ export class OptionList {
         return this._hasSelected;
     }
 
-    constructor(options: Array<IOption>) {
+    constructor(options: readonly IOption[]) {
 
         if (typeof options === 'undefined' || options === null) {
             options = [];
