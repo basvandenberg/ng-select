@@ -1,3 +1,7 @@
+This Angular component is outdated and has not been maintained for a long time.
+Please don't use this component, there are many great alternatives around.
+
+
 # Select component for angular
 [![npm version](https://badge.fury.io/js/ng-select.svg)](https://badge.fury.io/js/ng-select)
 [![Build Status](https://travis-ci.org/basvandenberg/ng-select.svg?branch=master)](https://travis-ci.org/basvandenberg/ng-select)
